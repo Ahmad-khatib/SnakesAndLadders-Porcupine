@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="MainPageController">
+
+    <Button text="Start Game" onAction="#startGame"/>
+    <Button text="View History" onAction="#viewHistory"/>
+    <Button text="Manage Questions" onAction="#manageQuestions"/>
+
+    <Label fx:id="instructionLabel" text="Instructions: Your instructions here..."/>
+
+</VBox>
