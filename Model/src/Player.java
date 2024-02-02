@@ -37,31 +37,5 @@ public class Player {
     public void setPlayerPosition(int playerPosition) {
         this.playerPosition = playerPosition;
     }
-    private String playername;
-    private String color;
-    private int position;
 
-
-    public String getPlayername() {
-        return playername;
-    }
-    public void setPlayername(String playername) {
-        this.playername = playername;
-    }
-
-
-    public String getColor() {
-        return color;
-    }
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-
-    public int getPosition() {
-        return position;
-    }
-    public void setPosition(int position) {
-        this.position = position;
-    }
 }
