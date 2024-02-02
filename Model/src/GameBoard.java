@@ -3,10 +3,9 @@ import java.util.List;
 public class GameBoard {
     private int gameId;
     private int difficultyLevel;
-    private int[] cells;
+    private int[][] cells;
     private List<Snake> snakes;
     private List<Ladder> ladders;
-    private List<Questions> questions;
 
     // Getters and Setters for all fields
     public int getGameId() {
@@ -25,11 +24,11 @@ public class GameBoard {
         this.difficultyLevel = difficultyLevel;
     }
 
-    public int[] getCells() {
+    public int[][] getCells() {
         return cells;
     }
 
-    public void setCells(int[] cells) {
+    public void setCells(int[][] cells) {
         this.cells = cells;
     }
 
@@ -49,11 +48,4 @@ public class GameBoard {
         this.ladders = ladders;
     }
 
-    public List<Questions> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(List<Questions> questions) {
-        this.questions = questions;
-    }
 }

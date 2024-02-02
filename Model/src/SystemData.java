@@ -11,6 +11,7 @@ public class SystemData {
 
     public SystemData() {
 
+
     }
 
     // Getters and setters for currentPlayerIndex
