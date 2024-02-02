@@ -1,5 +1,4 @@
 public class Player {
-
     private int playerId;
     private String playerName;
     private String playerColor;
@@ -37,5 +36,4 @@ public class Player {
     public void setPlayerPosition(int playerPosition) {
         this.playerPosition = playerPosition;
     }
-
 }
