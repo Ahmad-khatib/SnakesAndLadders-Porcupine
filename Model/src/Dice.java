@@ -1,4 +1,4 @@
-public class Dise {
+public class Dice {
     private int diceId;
     private int possibleSteps;
 

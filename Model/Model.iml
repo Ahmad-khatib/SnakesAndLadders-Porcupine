@@ -11,5 +11,6 @@
     <orderEntry type="library" name="javafx-swt1" level="project" />
     <orderEntry type="library" name="JavaFx" level="project" />
     <orderEntry type="library" name="Java" level="project" />
+    <orderEntry type="library" name="JavaFX1" level="project" />
   </component>
 </module>
