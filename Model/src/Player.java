@@ -1,30 +1,39 @@
 public class Player {
-    private String playername;
-    private String color;
-    private int position;
+    private int playerId;
+    private String playerName;
+    private String playerColor;
+    private int playerPosition;
 
-    // Getter and Setter for player name
-    public String getPlayername() {
-        return playername;
-    }
-    public void setPlayername(String playername) {
-        this.playername = playername;
+    // Getters and Setters for all fields
+    public int getPlayerId() {
+        return playerId;
     }
 
-    // Getter and Setter for player color
-    public String getColor() {
-        return color;
-    }
-    public void setColor(String color) {
-        this.color = color;
+    public void setPlayerId(int playerId) {
+        this.playerId = playerId;
     }
 
-    // Getter and Setter for player position
-    public int getPosition() {
-        return position;
-    }
-    public void setPosition(int position) {
-        this.position = position;
+    public String getPlayerName() {
+        return playerName;
     }
 
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public String getPlayerColor() {
+        return playerColor;
+    }
+
+    public void setPlayerColor(String playerColor) {
+        this.playerColor = playerColor;
+    }
+
+    public int getPlayerPosition() {
+        return playerPosition;
+    }
+
+    public void setPlayerPosition(int playerPosition) {
+        this.playerPosition = playerPosition;
+    }
 }
