@@ -12,25 +12,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="MainPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="872.0" styleClass="button" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="java.lang.ModuleLayer.Controller.MainPageController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="MainPage" fx:id="MainPage" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0"
+            prefWidth="872.0" style="-fx-background-image: url(@Photos/background1.jpg);" styleClass="MainPage"
+            stylesheets="@style.css" xmlns="http://javafx.com/javafx/8"
+            >
     <children>
-        <ImageView fitHeight="606.0" fitWidth="888.0" layoutX="-6.0" layoutY="-7.0">
-            <image>
-                <Image url="@../../../../../AppData/Local/Temp/a530bf5a-a421-4ca2-9e42-0ac44fdb7698_summer-forest-glade-with-green-grass.zip.698/15Z_2102.w026.n002.153B.p1.153.jpg" />
-            </image>
-        </ImageView>
         <Button fx:id="StartButton" layoutX="298.0" layoutY="184.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="277.0" styleClass="button" text="Start Game" />
-        <ImageView fitHeight="354.0" fitWidth="216.0" layoutX="420.0" layoutY="159.0">
-            <image>
-                <Image url="@../../../../../Downloads/snakes-and-ladders-reptile-clip-art-board-game-ladder-9cc32e66da7a44fa6dd6304f93d6e2e9.png" />
-            </image>
-        </ImageView>
         <Button layoutX="298.0" layoutY="302.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="277.0" styleClass="button" text="View History" />
-        <ImageView fitHeight="206.0" fitWidth="216.0" layoutX="44.0" layoutY="378.0">
-            <image>
-                <Image url="@../../../../../Downloads/snakes-and-ladders-ludo-neo-classic-ludo-king™-draw-paint-abcya-games-snakes-and-ladders-52d9c9af8442124d69272c703bd9433a.png" />
-            </image>
-        </ImageView>
         <Button layoutX="297.0" layoutY="409.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="277.0" styleClass="button" text="Manage Questions" />
     </children>
 </AnchorPane>

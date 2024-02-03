@@ -43,4 +43,5 @@ public class MainPageController {
         System.out.println("Managing questions");
         instructionLabel.setText("Managing questions"); // Update the instruction label if needed
     }
+
 }

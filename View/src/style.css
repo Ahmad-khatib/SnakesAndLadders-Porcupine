@@ -1,0 +1,19 @@
+/* style.css */
+
+#MainPage {
+    -fx-background-image: url("@Photos/background1.jpg");
+    -fx-background-size: cover;
+}
+
+
+.button {
+    -fx-background-radius: 15; /* Set the radius for rounded corners */
+    -fx-background-color: #D2B48C; /* Set the background color */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 10, 0, 0, 0); /* Add a drop shadow */
+}
+
+.button .text {
+    -fx-font-size: 18; /* Set the font size for the text */
+    -fx-text-fill: white; /* Set the text color to white */
+    -fx-alignment: center; /* Center-align the text */
+}
