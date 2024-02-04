@@ -1,26 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="SnakesAndLadders-Porcupine:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="...">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/SnakesAndLadders_Porcupine_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/JavaFX.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Main/Main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Controller/Controller/MainPageController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Model/Classes/Dice.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Model/Classes/GameBoard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Model/Classes/Ladder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Model/Classes/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Model/Classes/Question.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Model/Classes/Snake.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Model/Classes/SystemData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Model/Classes/Tile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Model/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Model/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Model/Questions.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/View/PorcupineStyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/View/Screens/History.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/View/Screens/MainPage.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/View/Screens/ManageQuestions.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/View/Screens/PlayerSelections.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/SnakesAndLadders-Porcupine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/SnakesAndLadders-Porcupine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Controller.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Controller.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/src/MainPageController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Model.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Model.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/src/Classes/Dice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/src/Classes/GameBoard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/src/Classes/Ladder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/src/Classes/Player.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/src/Classes/Question.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/src/Classes/Snake.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/src/Classes/SystemData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/src/Classes/Tile.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/src/Questions.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/View.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/View.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/src/PorcupineStyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/History.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/MainPage.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/ManageQuestions.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/Photos/SnakeLadders1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/Photos/SnakeLadders2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/Photos/background1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/Photos/background2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/Photos/coloredDices.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/Photos/goldenDices.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/Photos/transSnake.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/PlayerSelections.fxml" beforeDir="false" />
     </list>
+    <list id="4eab7431-56fc-4d74-abc0-9c4782af3869" name="Changes by noura" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Ahmad-khatib"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Ahmad-khatib&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -32,10 +94,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2busbwJPGIurl1u0AQCLMDYHlRR" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -44,10 +106,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.Main (1).executor": "Run",
     "Application.Main.executor": "Run",
+    "Application.Start.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "jdk.selected.JAVA_MODULE": "1.8",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Program Files/Java/jre-1.8",
     "node.js.detected.package.eslint": "true",
@@ -55,6 +120,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/more_/Documents/GitHub/SnakesAndLadders-PorcupineNew/SnakesAndLadders--Porcupine/src/Main.java",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -63,11 +129,27 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\Model\src" />
+      <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-PorcupineNew\SnakesAndLadders--Porcupine\src\View" />
+      <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-PorcupineNew\SnakesAndLadders--Porcupine\src" />
+      <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-PorcupineNew\SnakesAndLadders--Porcupine\src\Controller" />
+      <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View\src\Screens" />
+      <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-PorcupineNew\SnakesAndLadders--Porcupine\src\Model" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Start">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Model" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Model" />
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\JavaFX\javafx-sdk-21.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
@@ -75,8 +157,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Controller.Start" />
+      <module name="SnakesAndLadders--Porcupine" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Start" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Start" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -84,8 +188,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-11.0.16-jbr_dcevm-11.0.16-f644763e9732-a11e3e72" />
-        <option value="jdk-21.0.2-openjdk-21.0.2-f644763e9732-c0c073db" />
+        <option value="jdk-1.8.0_402-corretto-1.8.0_402-4caba194b151-ae57be32" />
       </set>
     </attachedChunks>
   </component>
@@ -97,7 +200,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1707076374312</updated>
-      <workItem from="1707076378090" duration="1330000" />
+      <workItem from="1707076378090" duration="3486000" />
+      <workItem from="1707084486222" duration="2026000" />
+      <workItem from="1707086526547" duration="2470000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <option name="closed" value="true" />
@@ -107,14 +212,51 @@
       <option name="project" value="LOCAL" />
       <updated>1707077446730</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="...">
+      <option name="closed" value="true" />
+      <created>1707078029798</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1707078029798</updated>
+    </task>
+    <task id="LOCAL-00003" summary="...">
+      <option name="closed" value="true" />
+      <created>1707078053086</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1707078053086</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="..." />
     <option name="LAST_COMMIT_MESSAGE" value="..." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.RuntimeException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
