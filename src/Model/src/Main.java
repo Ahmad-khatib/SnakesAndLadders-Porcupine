@@ -16,7 +16,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         // Load FXML using the correct path
-        InputStream fxmlStream = getClass().getResourceAsStream("/view/Screens/MainPage.fxml");
+        InputStream fxmlStream = getClass().getResourceAsStream("/src/view/Screens/MainPage.fxml");
 
         if (fxmlStream == null) {
             System.err.println("FXML file not found!");

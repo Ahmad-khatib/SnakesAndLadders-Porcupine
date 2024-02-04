@@ -4,113 +4,73 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed7ff9ce-0b79-4795-87c8-7ca76f95fdc8" name="Changes" comment="added style sheet with design of the main page">
-      <change beforePath="$PROJECT_DIR$/src/Controller/src/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/src/MainPageController.java" afterDir="false" />
+    <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="...">
+      <change beforePath="$PROJECT_DIR$/src/Model/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="CodeInsightWorkspaceSettings">
-    <option name="optimizeImportsOnTheFly" value="true" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="CSS File" />
-        <option value="Class" />
-        <option value="FxmlFile" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="PREVIOUS_COMMIT_AUTHORS">
-      <list>
-        <option value="nour amash &lt;nouramash@outlook.com&gt;" />
-      </list>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;nouramash&quot;
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Ahmad-khatib"
   }
-}</component>
+}]]></component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
-        <option name="accountId" value="fe476a27-867f-4764-9c34-a4139a1ce05e" />
+        <option name="accountId" value="e3020405-9436-4474-a689-e48142f63595" />
         <option name="url" value="https://github.com/Ahmad-khatib/SnakesAndLadders-Porcupine.git" />
       </UrlAndAccount>
     </option>
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="jar://$PROJECT_DIR$/../../../../../Program Files/JavaFx/javafx-sdk-21.0.2/lib/javafx.graphics.jar!/javafx/application/Application.class" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/Controller/Controller.iml" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/Controller/MainPageController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/src/SystemData.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Model/src/java/lang/ModuleLayer/Controller/MainPageController.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/View/View.iml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/View/src/MainPage.fxml" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
-}</component>
-  <component name="ProjectId" id="2bdAFPOOwC9Cd6v2sA7NlUGB5OI" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2busbwJPGIurl1u0AQCLMDYHlRR" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MainPage.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Program Files/JavaFx&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Program Files/Java/jre-1.8",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\noura\Documents\GitHub\SnakesAndLadders-Porcupine\View\src" />
-      <recent name="C:\Users\noura\Documents\GitHub\SnakesAndLadders-Porcupine\View" />
-      <recent name="C:\Users\noura\Documents\GitHub\SnakesAndLadders-Porcupine\Photos" />
+      <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\Model\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MainPage">
+  <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Controller" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MainPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MainPage" />
-      <module name="View" />
+      <module name="Model" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\JavaFX\javafx-sdk-21.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -118,150 +78,43 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.MainPage" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+        <option value="jdk-11.0.16-jbr_dcevm-11.0.16-f644763e9732-a11e3e72" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-f644763e9732-c0c073db" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ed7ff9ce-0b79-4795-87c8-7ca76f95fdc8" name="Changes" comment="" />
-      <created>1706534478474</created>
+      <changelist id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="" />
+      <created>1707076374312</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1706534478474</updated>
-      <workItem from="1706534482202" duration="46000" />
-      <workItem from="1706536748327" duration="119000" />
-      <workItem from="1706536892110" duration="70000" />
-      <workItem from="1706563331872" duration="3967000" />
-      <workItem from="1706610624242" duration="4631000" />
-      <workItem from="1706616278833" duration="57000" />
-      <workItem from="1706713101058" duration="4555000" />
-      <workItem from="1706874580054" duration="2140000" />
-      <workItem from="1706984317206" duration="755000" />
-      <workItem from="1706985089475" duration="2023000" />
-      <workItem from="1706987132523" duration="5274000" />
-      <workItem from="1706992762998" duration="3458000" />
-      <workItem from="1707039856925" duration="21000" />
-      <workItem from="1707051846852" duration="5228000" />
-      <workItem from="1707077977706" duration="110000" />
-      <workItem from="1707078098037" duration="7000" />
+      <updated>1707076374312</updated>
+      <workItem from="1707076378090" duration="1330000" />
     </task>
-    <task id="LOCAL-00001" summary="Installed JavaFx SDK and started with the main page">
+    <task id="LOCAL-00001" summary="...">
       <option name="closed" value="true" />
-      <created>1706566905916</created>
+      <created>1707077446730</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1706566905916</updated>
+      <updated>1707077446730</updated>
     </task>
-    <task id="LOCAL-00002" summary="Installed JavaFx SDK and started with the main page">
-      <option name="closed" value="true" />
-      <created>1706566976147</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1706566976147</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Installed JavaFx SDK and started with the main page">
-      <option name="closed" value="true" />
-      <created>1706567027827</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1706567027827</updated>
-    </task>
-    <task id="LOCAL-00004" summary="added style sheet with design of the main page">
-      <option name="closed" value="true" />
-      <created>1706616323244</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1706616323244</updated>
-    </task>
-    <task id="LOCAL-00005" summary="added style sheet with design of the main page">
-      <option name="closed" value="true" />
-      <created>1706876449841</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1706876449841</updated>
-    </task>
-    <task id="LOCAL-00006" summary="added style sheet with design of the main page">
-      <option name="closed" value="true" />
-      <created>1706987798793</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1706987798793</updated>
-    </task>
-    <task id="LOCAL-00007" summary="added style sheet with design of the main page">
-      <option name="closed" value="true" />
-      <created>1706989853219</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1706989853219</updated>
-    </task>
-    <task id="LOCAL-00008" summary="added style sheet with design of the main page">
-      <option name="closed" value="true" />
-      <created>1706989947858</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1706989947858</updated>
-    </task>
-    <task id="LOCAL-00009" summary="added style sheet with design of the main page">
-      <option name="closed" value="true" />
-      <created>1707051888888</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1707051888888</updated>
-    </task>
-    <task id="LOCAL-00010" summary="added style sheet with design of the main page">
-      <option name="closed" value="true" />
-      <created>1707052194323</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1707052194323</updated>
-    </task>
-    <task id="LOCAL-00011" summary="added style sheet with design of the main page">
-      <option name="closed" value="true" />
-      <created>1707067054666</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1707067054666</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Installed JavaFx SDK and started with the main page" />
-    <MESSAGE value="added style sheet with design of the main page" />
-    <option name="LAST_COMMIT_MESSAGE" value="added style sheet with design of the main page" />
+    <MESSAGE value="..." />
+    <option name="LAST_COMMIT_MESSAGE" value="..." />
   </component>
 </project>
