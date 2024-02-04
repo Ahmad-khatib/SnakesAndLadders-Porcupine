@@ -11,7 +11,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Path to the FXML file in the Screens module
-        String fxmlPath = "src/View/src/Screens/ManageQuestions.fxml";
+        String fxmlPath = "MainPage.fxml";
 
         // Load the FXML file
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
