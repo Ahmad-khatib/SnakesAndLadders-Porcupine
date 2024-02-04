@@ -15,5 +15,6 @@
     <orderEntry type="library" name="jdk-1" level="project" />
     <orderEntry type="library" name="jdk-11" level="project" />
     <orderEntry type="library" name="JavaFx" level="project" />
+    <orderEntry type="module" module-name="Controller" />
   </component>
 </module>
