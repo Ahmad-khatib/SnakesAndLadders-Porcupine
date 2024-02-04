@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/javafx-sdk-21.0"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/javafx-swt1"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFx"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX1"/>
+	<classpathentry kind="output" path="/out/production/Controller"/>
+</classpath>
