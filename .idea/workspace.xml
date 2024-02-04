@@ -5,7 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="...">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main/Main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Model/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Model/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/View/Photos/SnakeLadders1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/View/Photos/SnakeLadders2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/View/Photos/background1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/View/Photos/background2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/View/Photos/coloredDices.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/View/Photos/goldenDices.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/View/Photos/transSnake.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/View/Screens/MainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/View/Screens/MainPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/SnakesAndLadders-Porcupine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/SnakesAndLadders-Porcupine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Controller.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Controller.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Model.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Model.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/View.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/View.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/src/Photos/SnakeLadders1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/src/Screens/Photos/SnakeLadders1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/src/Photos/SnakeLadders2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/src/Screens/Photos/SnakeLadders2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/src/Photos/background1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/src/Screens/Photos/background1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/src/Photos/background2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/src/Screens/Photos/background2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/src/Photos/coloredDices.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/src/Screens/Photos/coloredDices.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/src/Photos/goldenDices.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/src/Screens/Photos/goldenDices.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/src/Photos/transSnake.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/src/Screens/Photos/transSnake.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/MainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/src/Screens/MainPage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +68,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.Main (1).executor": "Run",
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -55,7 +80,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
@@ -63,7 +88,13 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View\src\Screens\Photos" />
+      <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View\src\Screens" />
+      <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View\src" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\Model\src" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
     </key>
   </component>
   <component name="RunManager">
@@ -75,8 +106,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Model" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\JavaFX\javafx-sdk-21.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -97,7 +138,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1707076374312</updated>
-      <workItem from="1707076378090" duration="1330000" />
+      <workItem from="1707076378090" duration="3486000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <option name="closed" value="true" />
@@ -107,7 +148,23 @@
       <option name="project" value="LOCAL" />
       <updated>1707077446730</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="...">
+      <option name="closed" value="true" />
+      <created>1707078029798</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1707078029798</updated>
+    </task>
+    <task id="LOCAL-00003" summary="...">
+      <option name="closed" value="true" />
+      <created>1707078053086</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1707078053086</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
