@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/src/Controller/Controller.iml" filepath="$PROJECT_DIR$/src/Controller/Controller.iml" />
       <module fileurl="file://$PROJECT_DIR$/Main/Main.iml" filepath="$PROJECT_DIR$/Main/Main.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/Model/Model.iml" filepath="$PROJECT_DIR$/src/Model/Model.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../SnakesAndLadders-PorcupineNew/SnakesAndLadders--Porcupine/SnakesAndLadders--Porcupine.iml" filepath="$PROJECT_DIR$/../SnakesAndLadders-PorcupineNew/SnakesAndLadders--Porcupine/SnakesAndLadders--Porcupine.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/.idea/SnakesAndLadders-Porcupine.iml" filepath="$PROJECT_DIR$/src/.idea/SnakesAndLadders-Porcupine.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/View/View.iml" filepath="$PROJECT_DIR$/src/View/View.iml" />
     </modules>
