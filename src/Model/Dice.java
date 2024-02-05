@@ -1,7 +1,9 @@
 package Model;
 
+
 public class Dice {
     private int diceId;
+
     private int possibleSteps;
 
     // Getters and Setters for all fields

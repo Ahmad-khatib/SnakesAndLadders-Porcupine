@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.Objects;
+import java.io.IOException;
 
 public class Start extends Application {
 
@@ -15,13 +15,29 @@ public class Start extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("View/MainPage.fxml")));
+            // Load the FXML file
+            Parent root = FXMLLoader.load(getClass().getResource("/View/MainPage.fxml"));
+
+            // Create the scene
             Scene scene = new Scene(root);
+
+            // Add the CSS file to the scene
+            scene.getStylesheets().add(getClass().getResource("/View/PorcupineStyle.css").toExternalForm());
+
+            // Set the scene and show the stage
             primaryStage.setScene(scene);
+
+            // Adjust stage size to fit the content
+            primaryStage.sizeToScene();
+
+            // Maximize the window (optional)
+            primaryStage.setMaximized(true);
+
             primaryStage.show();
-        } catch(Exception e) {
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

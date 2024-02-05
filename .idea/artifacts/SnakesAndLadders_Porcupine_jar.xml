@@ -1,12 +1,8 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="SnakesAndLadders-Porcupine:jar">
-    <output-path>$PROJECT_DIR$/../SnakesAndLadders--Porcupine/out/artifacts/SnakesAndLadders_Porcupine_jar</output-path>
+    <output-path>$PROJECT_DIR$/out/artifacts/SnakesAndLadders_Porcupine_jar</output-path>
     <root id="archive" name="SnakesAndLadders-Porcupine.jar">
-      <element id="module-output" name="Model" />
-      <element id="module-output" name="SnakesAndLadders--Porcupine" />
-      <element id="module-output" name="Controller" />
-      <element id="module-output" name="View" />
-      <element id="library" level="project" name="JavaFX" />
+      <element id="module-output" name="SnakesAndLadders-Porcupine" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../Program Files/JavaFX/javafx-sdk-21.0.2/lib/javafx-swt.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../Program Files/JavaFX/javafx-sdk-21.0.2/lib/javafx.web.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../Program Files/JavaFX/javafx-sdk-21.0.2/lib/javafx.base.jar" path-in-jar="/" />
@@ -15,6 +11,7 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../Program Files/JavaFX/javafx-sdk-21.0.2/lib/javafx.swing.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../Program Files/JavaFX/javafx-sdk-21.0.2/lib/javafx.controls.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../Program Files/JavaFX/javafx-sdk-21.0.2/lib/javafx.graphics.jar" path-in-jar="/" />
+      <element id="library" level="project" name="JavaFX" />
       <element id="library" level="project" name="jdk-1" />
     </root>
   </artifact>

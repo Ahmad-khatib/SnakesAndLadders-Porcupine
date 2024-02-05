@@ -1,2 +1,4 @@
-public class MainPageController {
+package Controller;
+
+public class   MainPageController {
 }
