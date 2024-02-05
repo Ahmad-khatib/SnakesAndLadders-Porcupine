@@ -10,62 +10,76 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="...">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/SnakesAndLadders_Porcupine_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/JavaFX.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Main/Main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/MainPageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Dice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/GameBoard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Ladder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Question.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Snake.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/SystemData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Tile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/MainPage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Controller/Controller/MainPageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Model/Classes/Dice.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Model/Classes/GameBoard.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Model/Classes/Ladder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Model/Classes/Player.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Model/Classes/Question.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Model/Classes/Snake.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Model/Classes/SystemData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Model/Classes/Tile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Model/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Model/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Model/Questions.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/View/PorcupineStyle.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/View/Screens/History.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/View/Screens/MainPage.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/View/Screens/ManageQuestions.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/View/Screens/PlayerSelections.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main/Main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/.name" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/.idea/SnakesAndLadders-Porcupine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/SnakesAndLadders-Porcupine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Controller.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Controller.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/libraries/Java.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/libraries/JavaFx.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/libraries/SnakesAndLadders_Porcupine.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/libraries/SnakesAndLadders_Porcupine1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/libraries/javafx_sdk_21_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/libraries/jdk_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/libraries/jdk_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/libraries/lib.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Controller.eml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Controller.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/src/MainPageController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Model.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Model.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/src/Classes/Dice.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/src/Classes/GameBoard.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/src/Classes/Ladder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/src/Classes/Player.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/src/Classes/Question.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/src/Classes/Snake.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/src/Classes/SystemData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/src/Classes/Tile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/src/Questions.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/View.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/View.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/src/PorcupineStyle.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/History.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/MainPage.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/ManageQuestions.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/Photos/SnakeLadders1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/Photos/SnakeLadders2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/Photos/background1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/Photos/background2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/Photos/coloredDices.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/Photos/goldenDices.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/Photos/transSnake.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/src/Screens/PlayerSelections.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Model.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/View.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/Controller/Controller/MainPageController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/Model/Classes/Dice.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/Model/Classes/GameBoard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/Model/Classes/Ladder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/Model/Classes/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/Model/Classes/Question.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/Model/Classes/Snake.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/Model/Classes/SystemData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/Model/Classes/Tile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/Model/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/Model/Questions.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Questions.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/View/Photos/SnakeLadders1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Photos/SnakeLadders1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/View/Photos/SnakeLadders2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Photos/SnakeLadders2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/View/Photos/background1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Photos/background1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/View/Photos/background2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Photos/background2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/View/Photos/coloredDices.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Photos/coloredDices.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/View/Photos/goldenDices.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Photos/goldenDices.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/View/Photos/transSnake.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Photos/transSnake.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/View/PorcupineStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/PorcupineStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/View/Screens/History.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/History.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/View/Screens/MainPage.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/View/Screens/ManageQuestions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ManageQuestions.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/View/Screens/PlayerSelections.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/PlayerSelections.fxml" afterDir="false" />
     </list>
     <list id="4eab7431-56fc-4d74-abc0-9c4782af3869" name="Changes by noura" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="printScope" value="4" />
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../SnakesAndLadders--Porcupine" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -114,7 +128,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "jdk.selected.JAVA_MODULE": "1.8",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Program Files/Java/jre-1.8",
+    "last_opened_file_path": "C:/Users/more_/Documents/GitHub/SnakesAndLadders-Porcupine/src/Model",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -128,6 +142,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-PorcupineNew\SnakesAndLadders--Porcupine\src\View" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-PorcupineNew\SnakesAndLadders--Porcupine\src" />
@@ -203,6 +220,8 @@
       <workItem from="1707076378090" duration="3486000" />
       <workItem from="1707084486222" duration="2026000" />
       <workItem from="1707086526547" duration="2470000" />
+      <workItem from="1707117044556" duration="308000" />
+      <workItem from="1707117820751" duration="2614000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <option name="closed" value="true" />
