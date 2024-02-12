@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane  styleClass="PlayerSel" stylesheets="@PorcupineStyle.css" prefHeight="532.0" prefWidth="793.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PlayerSelectionsController">
+   <children>
+      <Text fill="WHITE" fontSmoothingType="LCD" layoutX="14.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Before We get Started" wrappingWidth="584.6171875">
+         <font>
+            <Font name="Jokerman" size="41.0" />
+         </font></Text>
+      <ChoiceBox fx:id="gameLevelChoiceBox" layoutX="323.0" layoutY="388.0" prefWidth="150.0">
+         <effect>
+            <InnerShadow blurType="GAUSSIAN" color="#b5531b" />
+         </effect></ChoiceBox>
+      <ChoiceBox fx:id="playersNumberChoiceBox" layoutX="323.0" layoutY="463.0" prefWidth="150.0">
+         <effect>
+            <InnerShadow blurType="GAUSSIAN" color="#b5531b" />
+         </effect></ChoiceBox>
+      <Text fill="#7c4747" fontSmoothingType="LCD" layoutX="89.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+ Choose  Level" wrappingWidth="209.6171875">
+         <font>
+            <Font name="Jokerman" size="24.0" />
+         </font>
+      </Text>
+      <Text fill="#7c4747" fontSmoothingType="LCD" layoutX="89.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+ Players Number" wrappingWidth="222.6171875">
+         <font>
+            <Font name="Jokerman" size="24.0" />
+         </font>
+      </Text>
+      <Button fx:id="nextButton" layoutX="426.0" layoutY="519.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="NEXT -&gt; " textFill="#7c4747" underline="true">
+
+      <font>
+            <Font name="Jokerman" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
