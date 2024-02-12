@@ -2,5 +2,22 @@
 #mainPage {
     -fx-background-color: transparent;
 }
+.manageQ{
+    -fx-background-image: url("Photos/background3.jpg");
+    -fx-background-size:  cover ;
+}
+.mainP {
+    -fx-background-image: url("Photos/background1.jpg");
+    -fx-background-size:  cover ;
+}
+.PlayerSel{
+    -fx-background-image: url("Photos/background4.jpg");
+    -fx-background-size:  cover ;
+}
+.transparent-list-view .list-view {
+    -fx-background-color: transparent;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
 
+}
 

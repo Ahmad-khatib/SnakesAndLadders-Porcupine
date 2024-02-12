@@ -1,13 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
 <?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane id="manageQuestionsPage" prefHeight="619.0" prefWidth="850.0" styleClass="manageQ" stylesheets="@PorcupineStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ManageQuestionsController">
+    <children>
+        <VBox layoutX="20" layoutY="20" spacing="10">
+            <children>
+                <Label style="-fx-font-family: 'Jokerman'; -fx-font-size: 36px;" text="Manage Questions" textFill="#b5531b" />
 
+                <ListView fx:id="questionListView" prefHeight="400" prefWidth="600" style="-fx-background-color: transparent; -fx-border-radius: 30; -fx-background-radius: 10px;" styleClass="transparent-list-view" />
+                <HBox spacing="10" />
+            </children>
+        </VBox>
+        <Button layoutX="633.0" layoutY="248.0" onAction="#deleteQuestion" style="-fx-background-color: CHOCOLATE; -fx-background-radius: 30;" text="Delete Question">
+            <effect>
+                <InnerShadow blurType="GAUSSIAN" color="#170000" />
+            </effect>
+            <font>
+                <Font name="Jokerman" size="18.0" />
+            </font>
+        </Button>
+        <Button layoutX="633.0" layoutY="133.0" onAction="#addQuestion" prefHeight="42.0" prefWidth="167.0" style="-fx-background-color: CHOCOLATE; -fx-background-radius: 30;" text="Add Question">
+            <effect>
+                <InnerShadow blurType="GAUSSIAN" />
+            </effect>
+            <font>
+                <Font name="Jokerman" size="18.0" />
+            </font>
+        </Button>
+        <Button layoutX="633.0" layoutY="190.0" onAction="#editQuestion" prefHeight="42.0" prefWidth="167.0" style="-fx-background-color: CHOCOLATE; -fx-background-radius: 30;" text="Edit Question">
+            <effect>
+                <InnerShadow blurType="GAUSSIAN" />
+            </effect>
+            <font>
+                <Font name="Jokerman" size="18.0" />
+            </font>
+        </Button>
+    </children>
 </AnchorPane>

@@ -10,21 +10,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="...">
-      <change afterPath="$PROJECT_DIR$/production/SnakesAndLadders-Porcupine/.idea/SnakesAndLadders-Porcupine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/SnakesAndLadders_Porcupine_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/SnakesAndLadders_Porcupine_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/PlayerSelectionsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/JUnits/PlayerSelectionsControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/.idea/SnakesAndLadders-Porcupine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/SnakesAndLadders-Porcupine.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Start.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Start.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Dice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Dice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/MainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MainPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/ManageQuestions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ManageQuestions.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/PlayerSelections.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/PlayerSelections.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/PorcupineStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/PorcupineStyle.css" afterDir="false" />
     </list>
     <list id="4eab7431-56fc-4d74-abc0-9c4782af3869" name="Changes by noura" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="ExportToHTMLSettings">
     <option name="printScope" value="4" />
@@ -33,8 +38,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
+        <option value="package.json" />
       </list>
     </option>
   </component>
@@ -73,29 +79,30 @@
     "Application.Main (1).executor": "Run",
     "Application.Main.executor": "Run",
     "Application.Start (1).executor": "Run",
-    "Application.Start .executor": "Coverage",
+    "Application.Start .executor": "Run",
     "Application.Start.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
+    "Repository.Attach.Annotations": "true",
+    "Repository.Attach.JavaDocs": "true",
+    "Repository.Attach.Sources": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "create.test.in.the.same.root": "true",
+    "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "1.8",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "C:/Users/more_/Documents/GitHub/SnakesAndLadders-Porcupine/src",
-    "last_opened_file_path": "C:/Program Files/Java/jre-1.8/lib",
+    "last_opened_file_path": "C:/Users/noura/Documents/json-simple-1.1.1.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/more_/Documents/GitHub/SnakesAndLadders-PorcupineNew/SnakesAndLadders--Porcupine/src/Main.java",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager",
@@ -177,6 +184,7 @@
     <attachedChunks>
       <set>
         <option value="jdk-1.8.0_402-corretto-1.8.0_402-4caba194b151-ae57be32" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
       </set>
     </attachedChunks>
   </component>
@@ -201,6 +209,9 @@
       <workItem from="1707131258324" duration="2244000" />
       <workItem from="1707134143994" duration="801000" />
       <workItem from="1707149076641" duration="1014000" />
+      <workItem from="1707231524057" duration="5179000" />
+      <workItem from="1707323638950" duration="4623000" />
+      <workItem from="1707678578095" duration="14989000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <option name="closed" value="true" />
@@ -277,6 +288,10 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.RuntimeException" package="java.lang" />
           <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="3" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
