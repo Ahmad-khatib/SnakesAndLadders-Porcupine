@@ -12,7 +12,7 @@ public class Question {
     private String answer4;
     private String correctAnswer;
 
-    public Question(String text, String answer1, String answer2, String answer3, String answer4, String correctAnswer, difficultLevel difficultLevel) {
+    public Question(String text, String answer1, String answer2, String answer3, String answer4, String correctAnswer, int difficultLevel) {
         this.text = text;
         this.answer1 = answer1;
         this.answer2 = answer2;
@@ -112,8 +112,8 @@ public class Question {
         if (!Objects.equals(answer2, question.answer2)) return false;
         if (!Objects.equals(answer3, question.answer3)) return false;
         if (!Objects.equals(answer4, question.answer4)) return false;
-        if (!Objects.equals(correctAnswer, question.correctAnswer))
-            return false;
+        if (!Objects.equals(correctAnswer, question.correctAnswer))return false;
+            return true;
 
     }
 
@@ -125,7 +125,7 @@ public class Question {
         result = 31 * result + (answer3 != null ? answer3.hashCode() : 0);
         result = 31 * result + (answer4 != null ? answer4.hashCode() : 0);
         result = 31 * result + (correctAnswer != null ? correctAnswer.hashCode() : 0);
-        result = 31 * result + (difficultLevel != null ? difficultLevel : 0);
+        result = 31 * result + (difficultLevel != 0 ? difficultLevel : 0);
 
         return result;
     }
