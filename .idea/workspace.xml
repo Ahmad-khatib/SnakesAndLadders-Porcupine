@@ -9,31 +9,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="...">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/json_lib_2_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/json_lib_2_4_javadoc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/json_lib_2_4_sources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/json_simple_1_1_1_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/json_simple_1_1_1_sources_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/json_simple_1_1_bundle_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Main/Main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/Controller.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Model.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/View.iml" afterDir="false" />
+    <list default="true" id="bbb851a4-f5b0-410a-87c6-38dd982c05ec" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Controller/BoardGameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/BoardGame.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/.idea/SnakesAndLadders-Porcupine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/.idea/SnakesAndLadders-Porcupine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/GameBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/GameBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/MainPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/MainPageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/ManageQuestionsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/ManageQuestionsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/PlayerSelectionsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/PlayerSelectionsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/questions_scheme.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/questions_scheme.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Player.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Question.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Question.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.idea/SnakesAndLadders-Porcupine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/SnakesAndLadders-Porcupine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Snake.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Snake.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/ManageQuestions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/ManageQuestions.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/PlayerSelections.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/PlayerSelections.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/PorcupineStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/PorcupineStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/PlayerSelectionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PlayerSelectionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/questions_scheme.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/questions_scheme.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/ManageQuestions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ManageQuestions.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/PlayerSelections.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/PlayerSelections.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/PorcupineStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/PorcupineStyle.css" afterDir="false" />
     </list>
-    <list id="98896034-1531-4a3f-9c3a-e9e32f1fbb00" name="Changes by noora" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Model/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Snake.java" afterDir="false" />
-    </list>
-    <list id="4eab7431-56fc-4d74-abc0-9c4782af3869" name="Changes by noura" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,6 +49,7 @@
       <list>
         <option value="JUnit5 Test Class" />
         <option value="package.json" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -72,18 +71,6 @@
       </UrlAndAccount>
     </option>
   </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/Model/GameBoard.java">
-      <ranges>
-        <range start1="7" end1="8" start2="7" end2="8" changelist="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" />
-        <range start1="10" end1="10" start2="10" end2="54" changelist="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" />
-        <range start1="29" end1="30" start2="73" end2="74" changelist="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" />
-        <range start1="31" end1="31" start2="75" end2="76" changelist="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" />
-        <range start1="33" end1="34" start2="78" end2="79" changelist="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" />
-        <range start1="52" end1="53" start2="97" end2="106" changelist="98896034-1531-4a3f-9c3a-e9e32f1fbb00" />
-      </ranges>
-    </file>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -101,40 +88,21 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Application.Controller.Main.executor": "Run",
-    "Application.Main (1).executor": "Run",
     "Application.Main.executor": "Run",
-    "Application.Start (1).executor": "Run",
     "Application.Start .executor": "Run",
     "Application.Start.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "true",
-    "Repository.Attach.JavaDocs": "true",
-    "Repository.Attach.Sources": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "create.test.in.the.same.root": "true",
-    "git-widget-placeholder": "main",
-    "jdk.selected.JAVA_MODULE": "1.8",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_directory_selection": "C:/Users/more_/Documents/GitHub/SnakesAndLadders-Porcupine/src",
-    "last_opened_file_path": "C:/Users/more_/Desktop/json-simple-1.1.1.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/more_/Documents/GitHub/SnakesAndLadders-PorcupineNew/SnakesAndLadders--Porcupine/src/Main.java",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -163,7 +131,7 @@
       <recent name="Controller" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Controller.Main">
+  <component name="RunManager" selected="Application.Start ">
     <configuration name="Controller.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Controller.Main" />
       <module name="SnakesAndLadders-Porcupine" />
@@ -216,121 +184,28 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Controller.Main" />
         <item itemvalue="Application.Start " />
+        <item itemvalue="Application.Controller.Main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-1.8.0_402-corretto-1.8.0_402-4caba194b151-ae57be32" />
-      </set>
-    </attachedChunks>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="" />
-      <created>1707076374312</created>
+      <changelist id="bbb851a4-f5b0-410a-87c6-38dd982c05ec" name="Changes" comment="" />
+      <created>1707751628224</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1707076374312</updated>
-      <workItem from="1707076378090" duration="3486000" />
-      <workItem from="1707084486222" duration="2026000" />
-      <workItem from="1707086526547" duration="2470000" />
-      <workItem from="1707117044556" duration="308000" />
-      <workItem from="1707117820751" duration="2720000" />
-      <workItem from="1707122581914" duration="2911000" />
-      <workItem from="1707129356839" duration="47000" />
-      <workItem from="1707129440734" duration="450000" />
-      <workItem from="1707129952167" duration="170000" />
-      <workItem from="1707130190766" duration="1046000" />
-      <workItem from="1707131258324" duration="2244000" />
-      <workItem from="1707134143994" duration="801000" />
-      <workItem from="1707149076641" duration="1014000" />
-      <workItem from="1707231524057" duration="5179000" />
-      <workItem from="1707323638950" duration="4623000" />
-      <workItem from="1707678578095" duration="15093000" />
-      <workItem from="1707723207836" duration="2749000" />
-      <workItem from="1707734783596" duration="316000" />
-      <workItem from="1707735425488" duration="6689000" />
+      <updated>1707751628224</updated>
+      <workItem from="1707751631491" duration="4618000" />
     </task>
-    <task id="LOCAL-00001" summary="...">
-      <option name="closed" value="true" />
-      <created>1707077446730</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1707077446730</updated>
-    </task>
-    <task id="LOCAL-00002" summary="...">
-      <option name="closed" value="true" />
-      <created>1707078029798</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1707078029798</updated>
-    </task>
-    <task id="LOCAL-00003" summary="...">
-      <option name="closed" value="true" />
-      <created>1707078053086</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1707078053086</updated>
-    </task>
-    <task id="LOCAL-00004" summary="...">
-      <option name="closed" value="true" />
-      <created>1707121824119</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1707121824119</updated>
-    </task>
-    <task id="LOCAL-00005" summary="...">
-      <option name="closed" value="true" />
-      <created>1707129480532</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1707129480532</updated>
-    </task>
-    <task id="LOCAL-00006" summary="...">
-      <option name="closed" value="true" />
-      <created>1707129882898</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1707129882898</updated>
-    </task>
-    <task id="LOCAL-00007" summary="...">
-      <option name="closed" value="true" />
-      <created>1707699731862</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1707699731862</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
