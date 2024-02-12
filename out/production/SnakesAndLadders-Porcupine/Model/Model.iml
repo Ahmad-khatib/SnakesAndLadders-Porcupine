@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="json-simple-1.1-bundle.jar" level="project" />
+    <orderEntry type="library" name="json-simple-1.1.1-sources.jar" level="project" />
+    <orderEntry type="library" name="json-lib-2.4" level="project" />
+    <orderEntry type="library" name="json-simple-1.1.1.jar" level="project" />
+    <orderEntry type="library" name="json-lib-2.4-javadoc" level="project" />
+    <orderEntry type="library" name="json-lib-2.4-sources" level="project" />
+  </component>
+</module>
