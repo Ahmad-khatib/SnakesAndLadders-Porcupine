@@ -95,4 +95,12 @@ public class GameBoard {
         this.ladders = ladders;
     }
 
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
 }
+
