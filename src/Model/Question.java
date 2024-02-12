@@ -1,7 +1,7 @@
 package Model;
 
 import java.util.Objects;
-import Utils.Difficulty;
+
 public class Question {
     private int questionId;
     private int difficultLevel;

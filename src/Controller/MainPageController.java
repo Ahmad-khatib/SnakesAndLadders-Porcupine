@@ -15,6 +15,9 @@ public class MainPageController {
     @FXML
     private Button ManageQuestionsButton;
     @FXML
+    private Button backButton;
+
+    @FXML
     private void initialize() {
 
     }
@@ -38,6 +41,7 @@ public class MainPageController {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void manageQuestions() {
         // Add functionality to navigate to the ManageQuestions.fxml screen
@@ -52,4 +56,17 @@ public class MainPageController {
         }
     }
 
+    // Handle the back button action
+    @FXML
+    private void goBack() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PreviousPage.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -17,6 +17,7 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class ManageQuestionsController {
     @FXML
@@ -32,25 +33,32 @@ public class ManageQuestionsController {
     private Button deleteButton;
     @FXML
     private Button backButton;
+    @FXML
+    private Button sortButton;
     private ObservableList<String> questions = FXCollections.observableArrayList();
 
     @FXML
     private void initialize() {
-
-            // Load questions from JSON file and populate the ListView
-            loadQuestionsFromJSONFile();
-            questionListView.setItems(questions);
-            System.out.println("Initialized with " + questions.size() + " questions.");
-
-
+        // Load questions from JSON file and populate the ListView
+        loadQuestionsFromJSONFile();
+        questionListView.setItems(questions);
+        System.out.println("Initialized with " + questions.size() + " questions.");
     }
+
     @FXML
     private void goBack() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("View/MainPage.fxml"));
+            // Load the FXML file for the main page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/MainPage.fxml"));
             Parent root = loader.load();
+
+            // Get the current stage
             Stage stage = (Stage) backButton.getScene().getWindow();
-            stage.setScene(new Scene(root));
+
+            // Set the main page as the scene
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -82,6 +90,32 @@ public class ManageQuestionsController {
         }
     }
 
+    @FXML
+    private void sortByLevel() {
+        questions.sort(Comparator.comparingInt(this::extractLevel));
+        questionListView.setItems(questions); // Refresh the ListView with the sorted questions
+    }
+
+    private int extractLevel(String question) {
+        // Extract the difficulty level from the question string
+        String[] parts = question.split("\n");
+        for (String part : parts) {
+            if (part.startsWith("Level: ")) {
+                String levelStr = part.substring("Level: ".length()).trim();
+                try {
+                    return Integer.parseInt(levelStr);
+                } catch (NumberFormatException e) {
+                    System.err.println("Error parsing difficulty level: " + levelStr);
+                    e.printStackTrace();
+                }
+            }
+        }
+        System.err.println("Difficulty level not found in question: " + question);
+        return 0; // Default value if extraction fails
+    }
+
+
+
     private void loadQuestionsFromJSONFile() {
         // Read questions from JSON file and populate the questions list
         JSONParser parser = new JSONParser();
@@ -109,7 +143,4 @@ public class ManageQuestionsController {
             e.printStackTrace();
         }
     }
-
-
-
 }

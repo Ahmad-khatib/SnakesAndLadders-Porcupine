@@ -12,6 +12,14 @@
         <VBox layoutX="20" layoutY="20" spacing="10">
             <children>
                 <Label style="-fx-font-family: 'Jokerman'; -fx-font-size: 36px;" text="Manage Questions" textFill="#b5531b" />
+              <Button fx:id="sortButton" contentDisplay="RIGHT" onAction="#sortByLevel" style="-fx-background-color: transparent; -fx-background-radius: 30;" text="Sort by Level  &gt;&gt;" textAlignment="CENTER" textFill="#bf6018" underline="true">
+                  <effect>
+                      <InnerShadow blurType="GAUSSIAN" color="#170000" />
+                  </effect>
+                  <font>
+                      <Font name="Jokerman" size="18.0" />
+                  </font>
+              </Button>
 
                 <ListView fx:id="questionListView" prefHeight="400" prefWidth="600" style="-fx-background-color: transparent; -fx-border-radius: 30; -fx-background-radius: 10px;" styleClass="transparent-list-view" />
                 <HBox spacing="10" />
