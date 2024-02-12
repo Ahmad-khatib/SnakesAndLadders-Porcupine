@@ -41,5 +41,15 @@
                 <Font name="Jokerman" size="18.0" />
             </font>
         </Button>
+        <Button fx:id="backButton" layoutX="592.0" layoutY="26.0" onAction="#goBack" prefHeight="42.0" prefWidth="225.0" style="-fx-background-color: transparent; -fx-background-radius: 30;" text=" &lt;- Back To Main Page" textFill="#bf6018" underline="true">
+            <effect>
+                <InnerShadow blurType="GAUSSIAN" />
+            </effect>
+            <font>
+                <Font name="Jokerman" size="18.0" />
+            </font>
+        </Button>
+
+
     </children>
 </AnchorPane>

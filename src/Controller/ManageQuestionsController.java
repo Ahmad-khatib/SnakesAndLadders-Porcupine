@@ -3,8 +3,12 @@ package Controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -26,7 +30,8 @@ public class ManageQuestionsController {
 
     @FXML
     private Button deleteButton;
-
+    @FXML
+    private Button backButton;
     private ObservableList<String> questions = FXCollections.observableArrayList();
 
     @FXML
@@ -39,6 +44,18 @@ public class ManageQuestionsController {
 
 
     }
+    @FXML
+    private void goBack() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("View/MainPage.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @FXML
     private void addQuestion() {
