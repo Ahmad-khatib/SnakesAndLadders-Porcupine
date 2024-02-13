@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Question {
@@ -11,6 +12,7 @@ public class Question {
     private String answer3;
     private String answer4;
     private String correctAnswer;
+    private List<Question> questionList;
 
     public Question ( String text, String answer1, String answer2, String answer3, String answer4, String correctAnswer, int difficultLevel ) {
         this.text = text;
@@ -120,30 +122,65 @@ public class Question {
 
     }
 
-    @Override
-    public int hashCode () {
-        int result = text != null ? text.hashCode() : 0;
-        result = 31 * result + (answer1 != null ? answer1.hashCode() : 0);
-        result = 31 * result + (answer2 != null ? answer2.hashCode() : 0);
-        result = 31 * result + (answer3 != null ? answer3.hashCode() : 0);
-        result = 31 * result + (answer4 != null ? answer4.hashCode() : 0);
-        result = 31 * result + (correctAnswer != null ? correctAnswer.hashCode() : 0);
-        result = 31 * result + (difficultLevel != 0 ? difficultLevel : 0);
-
-        return result;
-    }
-
     public Boolean checkCorrect ( String answer ) {
         if (answer.equals(this.correctAnswer))
             return true;
         return false;
     }
 
+    // function to generate a unique ID for the questions
+    private int generateUniqueId() {
+        int counter = 0;
 
-    public boolean addAnswer ( String answerToAdd ) {
-
-        return true;
+        counter++;
+        return counter;
     }
+
+    // function to add questions
+    public void addQuestion(Question newQuestion) {
+        int uniqueId = generateUniqueId();
+        newQuestion.setQuestionId(uniqueId);
+        questionList.add(newQuestion);
+
+    }
+    // function to find question
+    public Question findQuestionById(int questionId) {
+        for (Question question : questionList) {
+            if (question.getQuestionId() == questionId) {
+                return question;
+            }
+        }
+        return null;
+    }
+    // function to remove question
+    public void deleteQuestion(int questionId) {
+        Question questionToRemove = findQuestionById(questionId);
+        if (questionToRemove != null) {
+            questionList.remove(questionToRemove);
+
+        } else {
+            throw new IllegalArgumentException("No question found with this questionId.");
+        }
+    }
+
+    // function to edit question
+    public void editQuestion(int questionId, Question editedQuestion) {
+        Question existingQuestion = findQuestionById(questionId);
+        if (existingQuestion != null) {
+
+            existingQuestion.setText(editedQuestion.getText());
+            existingQuestion.setAnswer1(editedQuestion.getAnswer1());
+            existingQuestion.setAnswer2(editedQuestion.getAnswer2());
+            existingQuestion.setAnswer3(editedQuestion.getAnswer3());
+            existingQuestion.setAnswer4(editedQuestion.getAnswer4());
+            existingQuestion.setCorrectAnswer(editedQuestion.getCorrectAnswer());
+            existingQuestion.setDifficultLevel(editedQuestion.getDifficultLevel());
+
+        } else {
+            throw new IllegalArgumentException("No question found with this questionId.");
+        }
+    }
+
 }
 
 
