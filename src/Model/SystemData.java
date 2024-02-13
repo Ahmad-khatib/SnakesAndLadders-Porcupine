@@ -1,99 +1,110 @@
 package Model;
 
-public class SystemData extends Question {
-    private int currentPlayerIndex;
-    private Player[] players;
-    private GameBoard gameBoard;
-    private Snake snake;
-    private Ladder ladder;
-    private Dice dice;
-    private Question question;
-    private Tile tile;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-    public SystemData() {
+public class SystemData {
 
+    private static SystemData instance;
+    private HashMap<Difficulty, ArrayList<Question>> questions;
+    private ArrayList<GameBoard> games;
+    private ArrayList<Player> players;
 
+    private String questionJSONPath = "src/JSON/questions_scheme.txt";
+    private final String originalPath = questionJSONPath;
+
+    private SystemData() {
+        questions = new HashMap<>();
+        games = new ArrayList<>();
+        players = new ArrayList<>();
     }
 
-    // Getters and setters for currentPlayerIndex
-    public int getCurrentPlayerIndex() {
-        return currentPlayerIndex;
+    public static SystemData getInstance() {
+        if (instance == null)
+            instance = new SystemData();
+        return instance;
     }
 
-    public void setCurrentPlayerIndex(int currentPlayerIndex) {
-        this.currentPlayerIndex = currentPlayerIndex;
+    public HashMap<Difficulty, ArrayList<Question>> getQuestions() {
+        return questions;
     }
 
-    // Getters and setters for players array
-    public Player[] getPlayers() {
+    public void setQuestions(HashMap<Difficulty, ArrayList<Question>> questions) {
+        this.questions = questions;
+    }
+
+    public ArrayList<GameBoard> getGameBoards() {
+        return games;
+    }
+
+    public void setGameBoards(ArrayList<GameBoard> games) {
+        this.games = games;
+    }
+
+    public ArrayList<Player> getPlayers() {
         return players;
     }
 
-    public void setPlayers(Player[] players) {
+    public void setPlayers(ArrayList<Player> players) {
         this.players = players;
     }
 
-    // Getters and setters for gameBoard
-    public GameBoard getGameBoard() {
-        return gameBoard;
+    public boolean loadQuestions(String externalPath) {
+        String pathToUse = externalPath != null ? externalPath : originalPath;
+
+        JSONParser parser = new JSONParser();
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(pathToUse)))) {
+            Object obj = parser.parse(reader);
+            JSONObject jo = (JSONObject) obj;
+            JSONArray questionsArray = (JSONArray) jo.get("questions");
+
+            for (Object questionObj : questionsArray) {
+                JSONObject q = (JSONObject) questionObj;
+                String text = (String) q.get("question");
+                int correctAnswer = Integer.parseInt(q.get("correct_ans").toString());
+                Difficulty level = getQuestionLevel(Integer.parseInt(q.get("level").toString()));
+
+                Question questionToAdd = new Question(text, correctAnswer, level);
+                JSONArray answersArray = (JSONArray) q.get("answers");
+
+                for (Object answerObj : answersArray) {
+                    String answer = (String) answerObj;
+                    questionToAdd.addAnswer(answer);
+                }
+
+                questions.computeIfAbsent(questionToAdd.getDifficulty(), k -> new ArrayList<>()).add(questionToAdd);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            resetPathToDefault();
+            return false;
+        }
+        resetPathToDefault();
+        return true;
     }
 
-    public void setGameBoard(GameBoard gameBoard) {
-        this.gameBoard = gameBoard;
+    private void resetPathToDefault() {
+        questionJSONPath = originalPath;
     }
 
-    // Getters and setters for snake
-    public Snake getSnake() {
-        return snake;
-    }
-
-    public void setSnake(Snake snake) {
-        this.snake = snake;
-    }
-
-    // Getters and setters for ladder
-    public Ladder getLadder() {
-        return ladder;
-    }
-
-    public void setLadder(Ladder ladder) {
-        this.ladder = ladder;
-    }
-
-    // Getters and setters for Classes.Dice
-    public Dice getDice() {
-        return dice;
-    }
-
-    public void setDice(Dice dice) {
-        this.dice = dice;
-    }
-
-    // Getters and setters for Classes.Question
-    public Question getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(Question question) {
-        this.question = question;
-    }
-
-    // Getters and setters for tile
-    public Tile getTile() {
-        return tile;
-    }
-
-    public void setTile(Tile tile) {
-        this.tile = tile;
-    }
-
-    // Methods for saving and loading the data if needed
-    public void saveDataToFile(String Games) {
-        // Save data to file
-    }
-
-    public void loadDataFromFile(String Games) {
-        // Load data from file
+    private static Difficulty getQuestionLevel(int level) {
+        switch (level) {
+            case 1:
+                return Difficulty.EASY;
+            case 2:
+                return Difficulty.MEDIUM;
+            case 3:
+                return Difficulty.HARD;
+            default:
+                return Difficulty.MEDIUM;
+        }
     }
 }
