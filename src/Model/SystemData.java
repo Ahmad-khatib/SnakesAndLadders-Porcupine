@@ -80,7 +80,7 @@ public class SystemData {
                     questionToAdd.addAnswer(answer);
                 }
 
-                questions.computeIfAbsent(questionToAdd.getDifficulty(), k -> new ArrayList<>()).add(questionToAdd);
+                questions.computeIfAbsent(questionToAdd.getDifficultLevel(), k -> new ArrayList<>()).add(questionToAdd);
             }
         } catch (Exception e) {
             e.printStackTrace();
