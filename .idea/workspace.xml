@@ -9,27 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="Merge remote-tracking branch 'origin/main' into main">
-      <change afterPath="$PROJECT_DIR$/qodana.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Difficulty.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/SystemDataTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/src/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/src/MainPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/src/PlayerSelectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/src/PlayerSelectionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/src/Dice.java" beforeDir="false" afterPath="$PROJECT_DIR$/Model/src/Dice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/src/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Model/src/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/src/Ladder.java" beforeDir="false" afterPath="$PROJECT_DIR$/Model/src/Ladder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Model/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/Model/src/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/src/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/Model/src/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/src/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/Model/src/Snake.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/src/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/Model/src/Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.idea/SnakesAndLadders-Porcupine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/SnakesAndLadders-Porcupine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Questions.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/SystemData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/SystemData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/ManageQuestions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ManageQuestions.fxml" afterDir="false" />
     </list>
     <list id="4eab7431-56fc-4d74-abc0-9c4782af3869" name="Changes by noura" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,19 +30,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JUnit5 Test Class" />
         <option value="Class" />
         <option value="package.json" />
-        <option value="Enum" />
-        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="PREVIOUS_COMMIT_AUTHORS">
-      <list>
-        <option value="nour amash &lt;nouramash@outlook.com&gt;" />
-      </list>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -78,9 +55,6 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -113,17 +87,17 @@
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_directory_selection&quot;: &quot;C:/Users/more_/Documents/GitHub/SnakesAndLadders-Porcupine/src&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/97252/Downloads/java-util-1.9.2.jar&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/noura/Documents/json-simple-1.1.1.jar&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/more_/Documents/GitHub/SnakesAndLadders-PorcupineNew/SnakesAndLadders--Porcupine/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -146,7 +120,6 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="Model" />
       <recent name="Controller" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -203,6 +176,7 @@
     <attachedChunks>
       <set>
         <option value="jdk-1.8.0_402-corretto-1.8.0_402-4caba194b151-ae57be32" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
       </set>
     </attachedChunks>
   </component>
@@ -232,8 +206,6 @@
       <workItem from="1707678578095" duration="15093000" />
       <workItem from="1707723207836" duration="2749000" />
       <workItem from="1707734783596" duration="316000" />
-      <workItem from="1707735735989" duration="15737000" />
-      <workItem from="1707818419804" duration="901000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <option name="closed" value="true" />
@@ -309,7 +281,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Merge remote-tracking branch 'origin/main' into main" />
     <MESSAGE value="..." />
     <option name="LAST_COMMIT_MESSAGE" value="..." />
   </component>
