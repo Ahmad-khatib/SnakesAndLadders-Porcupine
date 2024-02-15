@@ -4,11 +4,13 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 
 public class SystemData {
 
@@ -31,6 +33,7 @@ public class SystemData {
             instance = new SystemData();
         return instance;
     }
+
 
     public HashMap<Difficulty, ArrayList<Question>> getQuestions() {
         return questions;
@@ -68,19 +71,17 @@ public class SystemData {
 
             for (Object questionObj : questionsArray) {
                 JSONObject q = (JSONObject) questionObj;
+                int questionId = Integer.parseInt(q.get("questionId").toString()); // Assuming questionId is included in JSON
                 String text = (String) q.get("question");
-                int correctAnswer = Integer.parseInt(q.get("correct_ans").toString());
-                Difficulty level = getQuestionLevel(Integer.parseInt(q.get("level").toString()));
+                String answer1 = (String) q.get("answer1");
+                String answer2 = (String) q.get("answer2");
+                String answer3 = (String) q.get("answer3");
+                String answer4 = (String) q.get("answer4");
+                String correctAnswer = (String) q.get("correct_ans");
+                Difficulty level = SystemData.getQuestionLevel(Integer.parseInt(q.get("level").toString()));
 
-                Question questionToAdd = new Question(text, correctAnswer, level);
-                JSONArray answersArray = (JSONArray) q.get("answers");
-
-                for (Object answerObj : answersArray) {
-                    String answer = (String) answerObj;
-                    questionToAdd.addAnswer(answer);
-                }
-
-                questions.computeIfAbsent(questionToAdd.getDifficultLevel(), k -> new ArrayList<>()).add(questionToAdd);
+                Question questionToAdd = new Question();
+                questions.computeIfAbsent(questionToAdd.getLevel(), k -> new ArrayList<>()).add(questionToAdd);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -91,20 +92,134 @@ public class SystemData {
         return true;
     }
 
+    public void saveQuestions(String externalPath) {
+        if (externalPath != null) {
+            questionJSONPath = externalPath;
+        }
+
+        try {
+            JSONArray JSONQuestions = new JSONArray();
+            JSONObject toWrite = new JSONObject();
+
+            for (ArrayList<Question> list : questions.values()) {
+                if (list == null)
+                    continue;
+
+                for (Question q : list) {
+                    JSONObject jo1 = new JSONObject();
+                    jo1.put("questionId", q.getQuestionId()); // Assuming questionId is included in JSON
+                    jo1.put("question", q.getText());
+                    jo1.put("answer1", q.getAnswer1());
+                    jo1.put("answer2", q.getAnswer2());
+                    jo1.put("answer3", q.getAnswer3());
+                    jo1.put("answer4", q.getAnswer4());
+                    jo1.put("correct_ans", q.getCorrectAnswer());
+                    jo1.put("level", q.getLevel());
+                    JSONQuestions.add(jo1);
+                }
+            }
+            toWrite.put("questions", JSONQuestions);
+
+            FileWriter file = new FileWriter(questionJSONPath);
+            file.write(toWrite.toJSONString());
+            file.flush();
+            System.out.println("JSON Question was saved successfully");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            resetPathToDefault();
+        }
+    }
+
+    public static String readFileAsString(String file) throws IOException {
+        return new String(Files.readAllBytes(Paths.get(file)));
+    }
+
+    public boolean loadData(Type type) {
+        if (type == null)
+            return false;
+
+        try {
+            if (type.equals(Type.QUESTIONS)) {
+                String file = "src/JSON/QuestionsFormat.txt";
+                String json = readFileAsString(file);
+                List<Question> loadedQuestions = JsonParser.getInstance().parseToList(json, new Question());
+                if (loadedQuestions != null) {
+                    questions.clear();
+                    for (Question question : loadedQuestions) {
+                        questions.computeIfAbsent(question.getLevel(), k -> new ArrayList<>()).add(question);
+                    }
+                }
+                return true;
+            } else
+                return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean writeData(Type type) {
+        if (type == null)
+            return false;
+        FileWriter writer = null;
+
+        try {
+            if (type.equals(Type.QUESTIONS)) {
+                String filePath = "src/JSON/QuestionsFormat.txt";
+                writer = new FileWriter(filePath);
+                JSONArray JSONQuestions = new JSONArray();
+
+                for (ArrayList<Question> list : questions.values()) {
+                    if (list == null)
+                        continue;
+
+                    for (Question q : list) {
+                        JSONObject jo1 = new JSONObject();
+                        jo1.put("questionId", q.getQuestionId());
+                        jo1.put("question", q.getText());
+                        jo1.put("answer1", q.getAnswer1());
+                        jo1.put("answer2", q.getAnswer2());
+                        jo1.put("answer3", q.getAnswer3());
+                        jo1.put("answer4", q.getAnswer4());
+                        jo1.put("correct_ans", q.getCorrectAnswer());
+                        jo1.put("level", q.getLevel());
+                        JSONQuestions.add(jo1);
+                    }
+                }
+
+                JSONObject toWrite = new JSONObject();
+                toWrite.put("questions", JSONQuestions);
+
+                writer.write(toWrite.toJSONString());
+                return true;
+            } else
+                return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.flush();
+                    writer.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    private static Difficulty getQuestionLevel(int level) {
+        return switch (level) {
+            case 1 -> Difficulty.EASY;
+            case 3 -> Difficulty.HARD;
+            default -> Difficulty.MEDIUM;
+        };
+    }
+
+
     private void resetPathToDefault() {
         questionJSONPath = originalPath;
     }
 
-    private static Difficulty getQuestionLevel(int level) {
-        switch (level) {
-            case 1:
-                return Difficulty.EASY;
-            case 2:
-                return Difficulty.MEDIUM;
-            case 3:
-                return Difficulty.HARD;
-            default:
-                return Difficulty.MEDIUM;
-        }
-    }
 }
