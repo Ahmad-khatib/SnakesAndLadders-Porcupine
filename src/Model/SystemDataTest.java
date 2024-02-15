@@ -1,7 +1,6 @@
 package Model;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 class SystemDataTest {
 
     @org.junit.jupiter.api.Test
