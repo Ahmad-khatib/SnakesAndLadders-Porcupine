@@ -4,25 +4,31 @@ import java.util.List;
 import java.util.Objects;
 
 public class Question {
+
     private int questionId;
-    private int difficultLevel;
     private String text;
     private String answer1;
     private String answer2;
     private String answer3;
     private String answer4;
     private String correctAnswer;
+    private Difficulty level;
     private List<Question> questionList;
 
-    public Question ( String text, String answer1, String answer2, String answer3, String answer4, String correctAnswer, int difficultLevel ) {
+
+    public Question ( String text, String answer1, String answer2, String answer3, String answer4, String correctAnswer, Difficulty level ) {
         this.text = text;
         this.answer1 = answer1;
         this.answer2 = answer2;
         this.answer3 = answer3;
         this.answer4 = answer4;
         this.correctAnswer = correctAnswer;
-        this.difficultLevel = difficultLevel;
+        this.level = level;
 
+    }
+
+    public Question(Difficulty level) {
+        this.level = level;
     }
 
 
@@ -32,21 +38,11 @@ public class Question {
         return questionId;
     }
 
-    public Question ( String text, int correctAnswer, Difficulty level ) {
-
-    }
 
     public void setQuestionId ( int questionId ) {
         this.questionId = questionId;
     }
 
-    public int getDifficultLevel () {
-        return difficultLevel;
-    }
-
-    public void setDifficultLevel ( int difficultLevel ) {
-        this.difficultLevel = difficultLevel;
-    }
 
     public String getText () {
         return text;
@@ -96,12 +92,23 @@ public class Question {
     public void setCorrectAnswer ( String correctAnswer ) {
         this.correctAnswer = correctAnswer;
     }
+    public Difficulty getLevel() {
+        return level;
+    }
+
+    public void setLevel(Difficulty level) {
+        this.level = level;
+    }
+
+    public void setQuestionList(List<Question> questionList) {
+        this.questionList = questionList;
+    }
 
     @Override
     public String toString () {
         return "Question: {" + text + '\'' +
                 ", correctAnswer=" + correctAnswer +
-                ", DifficultLevel=" + difficultLevel +
+                ", DifficultLevel=" + level +
                 '}';
     }
 
@@ -174,13 +181,24 @@ public class Question {
             existingQuestion.setAnswer3(editedQuestion.getAnswer3());
             existingQuestion.setAnswer4(editedQuestion.getAnswer4());
             existingQuestion.setCorrectAnswer(editedQuestion.getCorrectAnswer());
-            existingQuestion.setDifficultLevel(editedQuestion.getDifficultLevel());
+            existingQuestion.setLevel(editedQuestion.getLevel());
 
         } else {
             throw new IllegalArgumentException("No question found with this questionId.");
         }
     }
-
+    public static String getQuestion(Difficulty difficulty) {
+        switch (difficulty) {
+            case EASY:
+                return "Easy question";
+            case MEDIUM:
+                return "Medium question";
+            case HARD:
+                return "Hard question";
+            default:
+                throw new IllegalArgumentException("Invalid difficulty");
+        }
+    }
 }
 
 
