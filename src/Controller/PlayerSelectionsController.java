@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.GameBoard;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -59,7 +60,7 @@ public class PlayerSelectionsController {
         try {
             root = loader.load();
             BoardGameController boardGameController = loader.getController();
-            boardGameController.initializeBoard(boardSize); // Pass board size to the controller
+            boardGameController.initializeBoard(new GameBoard(selectedLevel)); // Pass board size to the controller
             Stage stage = (Stage) nextButton.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
@@ -75,12 +76,11 @@ public class PlayerSelectionsController {
             // Load the FXML file for the main page
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/MainPage.fxml"));
             Parent root = loader.load();
-
+            Scene scene = new Scene(root);
             // Get the current stage
             Stage stage = (Stage) backButton.getScene().getWindow();
 
             // Set the main page as the scene
-            Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {

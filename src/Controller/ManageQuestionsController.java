@@ -5,10 +5,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -16,6 +16,8 @@ import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -51,7 +53,6 @@ public class ManageQuestionsController {
             // Load the FXML file for the main page
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/MainPage.fxml"));
             Parent root = loader.load();
-
             // Get the current stage
             Stage stage = (Stage) backButton.getScene().getWindow();
 
@@ -120,27 +121,34 @@ public class ManageQuestionsController {
         // Read questions from JSON file and populate the questions list
         JSONParser parser = new JSONParser();
         try {
-            Object obj = parser.parse(new FileReader("C:\\Users\\noura\\Documents\\GitHub\\SnakesAndLadders-Porcupine\\src\\Controller\\questions_scheme.json"));
-            JSONObject jsonObject = (JSONObject) obj; // Cast to JSONObject
-            JSONArray jsonArray = (JSONArray) jsonObject.get("questions");
-            int questionNumber = 1;
-            for (Object o : jsonArray) {
-                JSONObject questionObject = (JSONObject) o;
-                String question = (String) questionObject.get("question");
-                String level = (String) questionObject.get("difficulty");
-                JSONArray answersArray = (JSONArray) questionObject.get("answers");
-                String[] answers = new String[answersArray.size()];
-                for (int i = 0; i < answersArray.size(); i++) {
-                    answers[i] = (String) answersArray.get(i);
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream("controller/questions_scheme.json");
+            if (inputStream != null) {
+                InputStreamReader reader = new InputStreamReader(inputStream);
+                Object obj = parser.parse(reader);
+                JSONObject jsonObject = (JSONObject) obj; // Cast to JSONObject
+                JSONArray jsonArray = (JSONArray) jsonObject.get("questions");
+                int questionNumber = 1;
+                for (Object o : jsonArray) {
+                    JSONObject questionObject = (JSONObject) o;
+                    String question = (String) questionObject.get("question");
+                    String level = (String) questionObject.get("difficulty");
+                    JSONArray answersArray = (JSONArray) questionObject.get("answers");
+                    String[] answers = new String[answersArray.size()];
+                    for (int i = 0; i < answersArray.size(); i++) {
+                        answers[i] = (String) answersArray.get(i);
+                    }
+                    String correctAnswer = (String) questionObject.get("correct_ans");
+                    String formattedQuestion = String.format("%d. %s%nLevel: %s%nAnswers: %s%nCorrect Answer: %s",
+                            questionNumber, question, level, Arrays.toString(answers), correctAnswer);
+                    questions.add(formattedQuestion);
+                    questionNumber++;
                 }
-                String correctAnswer = (String) questionObject.get("correct_ans");
-                String formattedQuestion = String.format("%d. %s%nLevel: %s%nAnswers: %s%nCorrect Answer: %s",
-                        questionNumber, question, level, Arrays.toString(answers), correctAnswer);
-                questions.add(formattedQuestion);
-                questionNumber++;
+            } else {
+                System.err.println("Failed to load JSON file. InputStream is null.");
             }
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
     }
+
 }

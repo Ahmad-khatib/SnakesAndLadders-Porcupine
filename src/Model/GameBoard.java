@@ -5,53 +5,54 @@ import java.util.List;
 public class GameBoard {
     private int gameId;
     private int difficultyLevel;
-    private int[][] board;
+    private Tile[][] tiles;
     private List<Snake> snakes;
     private List<Ladder> ladders;
     private int size;
 
-    public GameBoard(int difficultyLevel) {
-        switch (difficultyLevel) {
-            case 1:
+    public GameBoard(String Level) {
+        switch (Level) {
+            case "Easy":
                 size = 7; // Easy level
                 difficultyLevel = 1;
                 break;
-            case 2:
+            case "Medium":
                 size = 10; // Medium level
                 difficultyLevel = 2;
                 break;
-            case 3:
+            case "Hard":
                 size = 13; // Hard level
                 difficultyLevel = 3;
                 break;
             default:
                 throw new IllegalArgumentException("Invalid difficulty level");
         }
-
         initializeBoard();
+
     }
 
     private void initializeBoard() {
-        board = new int[size][size];
-        // Initialize the board with sequential numbers
+        tiles = new Tile[size][size];
         int count = 1;
         for (int row = size - 1; row >= 0; row--) {
             for (int col = 0; col < size; col++) {
-                board[row][col] = count++;
+                // Create a Normal tile for now
+                tiles[row][col] = new Tile(row, col, "Normal");
+                count++;
             }
         }
-
+        displayBoard();
     }
+
 
     public void displayBoard() {
         for (int row = size - 1; row >= 0; row--) {
             for (int col = 0; col < size; col++) {
-                System.out.print(board[row][col] + "\t");
+                System.out.print(tiles[row][col].getTileType() + "\t");
             }
             System.out.println();
         }
     }
-
 
     // Getters and Setters for all fields
     public int getGameId() {
@@ -70,13 +71,12 @@ public class GameBoard {
         this.difficultyLevel = difficultyLevel;
     }
 
-    public int[][] getCells() {
-        return board;
+    public Tile[][] getTiles() {
+        return tiles;
     }
 
-
-    public void setCells(int[][] cells) {
-        this.board = cells;
+    public void setTiles(Tile[][] tiles) {
+        this.tiles = tiles;
     }
 
     public List<Snake> getSnakes() {
@@ -103,4 +103,3 @@ public class GameBoard {
         this.size = size;
     }
 }
-
