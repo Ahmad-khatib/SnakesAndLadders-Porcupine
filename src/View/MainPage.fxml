@@ -7,54 +7,56 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="mainPage" styleClass="mainP" stylesheets="@PorcupineStyle.css" prefHeight="463.0" prefWidth="631.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainPageController">
+<StackPane id="mainPage" prefHeight="578.0" prefWidth="713.0" styleClass="mainP" stylesheets="@PorcupineStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainPageController">
     <children>
-        <Button fx:id="startGameButton" layoutX="177.0" layoutY="114.0" onAction="#startGame" prefHeight="71.0" prefWidth="290.0" style="-fx-background-color: CHOCOLATE; -fx-background-radius: 30;" text="Start Game" textFill="WHITE">
-            <effect>
-                <InnerShadow blurType="GAUSSIAN" choke="0.33" height="20.02" radius="11.215" width="26.84">
-                    <input>
-                        <DropShadow />
-                    </input>
-                </InnerShadow>
-            </effect>
-            <font>
-                <Font name="Jokerman" size="31.0" />
-            </font>
-        </Button>
-
-        <Button  fx:id="ManageQuestionsButton" layoutX="177.0" layoutY="309.0" onAction="#manageQuestions" prefHeight="64.0" prefWidth="290.0" style="-fx-background-color: CHOCOLATE; -fx-background-radius: 30;" text="Manage Questions" textFill="WHITE">
-            <effect>
-                <InnerShadow blurType="GAUSSIAN" choke="0.33" height="23.43" radius="12.067499999999999" width="26.84">
-                    <input>
-                        <DropShadow />
-                    </input>
-                </InnerShadow>
-            </effect>
-            <font>
-                <Font name="Jokerman" size="28.0" />
-            </font>
-        </Button>
-        <ImageView fitHeight="311.0" fitWidth="339.0" layoutX="271.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@Photos/transSnake.png" />
-            </image>
-        </ImageView>
-        <Button layoutX="177.0" layoutY="211.0" prefHeight="71.0" prefWidth="290.0" style="-fx-background-color: CHOCOLATE; -fx-background-radius: 30; -fx-background-insets: 0;" text="View History" textFill="WHITE">
-            <effect>
-                <InnerShadow blurType="GAUSSIAN" choke="0.33" height="20.02" radius="11.215" width="26.84">
-                    <input>
-                        <DropShadow />
-                    </input>
-                </InnerShadow>
-            </effect>
-            <font>
-                <Font name="Jokerman" size="25.0" />
-            </font>
-        </Button>
-        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="27.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@Photos/SnakeLadders2.png" />
-            </image>
-        </ImageView>
+        <VBox alignment="CENTER" prefHeight="610.0" prefWidth="763.0" spacing="10">
+           <children>
+      
+              <!-- Add ImageView here -->
+              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                      <Image url="@Photos/SnakeLadders2.png" />
+                  </image>
+              </ImageView>
+               <Button fx:id="startGameButton" onAction="#startGame" prefHeight="71.0" prefWidth="290.0" style="-fx-background-color: CHOCOLATE; -fx-background-radius: 30;" text="Start Game" textFill="WHITE">
+                   <effect>
+                       <InnerShadow blurType="GAUSSIAN" choke="0.33" height="20.02" radius="11.215" width="26.84">
+                           <input>
+                               <DropShadow />
+                           </input>
+                       </InnerShadow>
+                   </effect>
+                   <font>
+                       <Font name="Jokerman" size="31.0" />
+                   </font>
+               </Button>
+   
+               <Button fx:id="ManageQuestionsButton" onAction="#manageQuestions" prefHeight="64.0" prefWidth="290.0" style="-fx-background-color: CHOCOLATE; -fx-background-radius: 30;" text="Manage Questions" textFill="WHITE">
+                   <effect>
+                       <InnerShadow blurType="GAUSSIAN" choke="0.33" height="23.43" radius="12.067499999999999" width="26.84">
+                           <input>
+                               <DropShadow />
+                           </input>
+                       </InnerShadow>
+                   </effect>
+                   <font>
+                       <Font name="Jokerman" size="28.0" />
+                   </font>
+               </Button>
+   
+               <Button prefHeight="71.0" prefWidth="290.0" style="-fx-background-color: CHOCOLATE; -fx-background-radius: 30; -fx-background-insets: 0;" text="View History" textFill="WHITE">
+                   <effect>
+                       <InnerShadow blurType="GAUSSIAN" choke="0.33" height="20.02" radius="11.215" width="26.84">
+                           <input>
+                               <DropShadow />
+                           </input>
+                       </InnerShadow>
+                   </effect>
+                   <font>
+                       <Font name="Jokerman" size="25.0" />
+                   </font>
+               </Button>
+           </children>
+        </VBox>
     </children>
-</AnchorPane>
+</StackPane>

@@ -7,57 +7,58 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="manageQuestionsPage" prefHeight="619.0" prefWidth="850.0" styleClass="manageQ" stylesheets="@PorcupineStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ManageQuestionsController">
+<StackPane prefHeight="724.0" prefWidth="864.0" styleClass="manageQ" stylesheets="@PorcupineStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ManageQuestionsController">
     <children>
-        <VBox layoutX="20" layoutY="20" spacing="10">
+        <VBox layoutX="20" layoutY="20" spacing="10" alignment="CENTER">
             <children>
                 <Label style="-fx-font-family: 'Jokerman'; -fx-font-size: 36px;" text="Manage Questions" textFill="#b5531b" />
-              <Button fx:id="sortButton" contentDisplay="RIGHT" onAction="#sortByLevel" style="-fx-background-color: transparent; -fx-background-radius: 30;" text="Sort by Level  &gt;&gt;" textAlignment="CENTER" textFill="#bf6018" underline="true">
-                  <effect>
-                      <InnerShadow blurType="GAUSSIAN" color="#170000" />
-                  </effect>
-                  <font>
-                      <Font name="Jokerman" size="18.0" />
-                  </font>
-              </Button>
-
-                <ListView fx:id="questionListView" prefHeight="400" prefWidth="600" style="-fx-background-color: transparent; -fx-border-radius: 30; -fx-background-radius: 10px;" styleClass="transparent-list-view" />
-                <HBox spacing="10" />
+                <Button fx:id="backButton" onAction="#goBack" prefHeight="42.0" prefWidth="225.0" style="-fx-background-color: transparent; -fx-background-radius: 30;" text=" &lt;- Back To Main Page" textFill="#bf6018" underline="true">
+                    <effect>
+                        <InnerShadow blurType="GAUSSIAN" />
+                    </effect>
+                    <font>
+                        <Font name="Jokerman" size="18.0" />
+                    </font>
+                </Button>
+                <HBox alignment="CENTER"> <!-- Added alignment here -->
+                    <children>
+                        <Button onAction="#deleteQuestion" style="-fx-background-color: CHOCOLATE; -fx-background-radius: 30;" text="Delete Question">
+                            <effect>
+                                <InnerShadow blurType="GAUSSIAN" color="#170000" />
+                            </effect>
+                            <font>
+                                <Font name="Jokerman" size="18.0" />
+                            </font>
+                        </Button>
+                        <Button onAction="#editQuestion" prefHeight="42.0" prefWidth="167.0" style="-fx-background-color: CHOCOLATE; -fx-background-radius: 30;" text="Edit Question">
+                            <effect>
+                                <InnerShadow blurType="GAUSSIAN" />
+                            </effect>
+                            <font>
+                                <Font name="Jokerman" size="18.0" />
+                            </font>
+                        </Button>
+                        <Button onAction="#addQuestion" prefHeight="42.0" prefWidth="167.0" style="-fx-background-color: CHOCOLATE; -fx-background-radius: 30;" text="Add Question">
+                            <effect>
+                                <InnerShadow blurType="GAUSSIAN" />
+                            </effect>
+                            <font>
+                                <Font name="Jokerman" size="18.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+                <Button fx:id="sortButton" contentDisplay="RIGHT" layoutX="50.0" layoutY="100.0" onAction="#sortByLevel" style="-fx-background-color: transparent; -fx-background-radius: 30;" text="Sort by Level  &gt;&gt;" textFill="#bf6018" underline="true">
+                    <effect>
+                        <InnerShadow blurType="GAUSSIAN" color="#170000" />
+                    </effect>
+                    <font>
+                        <Font name="Jokerman" size="18.0" />
+                    </font>
+                </Button>
+                <ListView fx:id="questionListView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="389.0" prefWidth="568.0" style="-fx-background-color: transparent; -fx-border-radius: 30; -fx-background-radius: 10px;" styleClass="transparent-list-view" />
             </children>
         </VBox>
-        <Button layoutX="633.0" layoutY="248.0" onAction="#deleteQuestion" style="-fx-background-color: CHOCOLATE; -fx-background-radius: 30;" text="Delete Question">
-            <effect>
-                <InnerShadow blurType="GAUSSIAN" color="#170000" />
-            </effect>
-            <font>
-                <Font name="Jokerman" size="18.0" />
-            </font>
-        </Button>
-        <Button layoutX="633.0" layoutY="133.0" onAction="#addQuestion" prefHeight="42.0" prefWidth="167.0" style="-fx-background-color: CHOCOLATE; -fx-background-radius: 30;" text="Add Question">
-            <effect>
-                <InnerShadow blurType="GAUSSIAN" />
-            </effect>
-            <font>
-                <Font name="Jokerman" size="18.0" />
-            </font>
-        </Button>
-        <Button layoutX="633.0" layoutY="190.0" onAction="#editQuestion" prefHeight="42.0" prefWidth="167.0" style="-fx-background-color: CHOCOLATE; -fx-background-radius: 30;" text="Edit Question">
-            <effect>
-                <InnerShadow blurType="GAUSSIAN" />
-            </effect>
-            <font>
-                <Font name="Jokerman" size="18.0" />
-            </font>
-        </Button>
-        <Button fx:id="backButton" layoutX="592.0" layoutY="26.0" onAction="#goBack" prefHeight="42.0" prefWidth="225.0" style="-fx-background-color: transparent; -fx-background-radius: 30;" text=" &lt;- Back To Main Page" textFill="#bf6018" underline="true">
-            <effect>
-                <InnerShadow blurType="GAUSSIAN" />
-            </effect>
-            <font>
-                <Font name="Jokerman" size="18.0" />
-            </font>
-        </Button>
-
 
     </children>
-</AnchorPane>
+</StackPane>
