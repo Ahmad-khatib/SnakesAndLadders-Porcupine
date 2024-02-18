@@ -30,6 +30,13 @@ public class Question {
         this.level = level;
     }
 
+    public Question(int questionId, String text, String answer1, String answer2, String answer3, String answer4, String correctAnswer, Difficulty level) {
+    }
+
+    public Question() {
+
+    }
+
 
     // Getters and Setters for all fields
     public int getQuestionId () {

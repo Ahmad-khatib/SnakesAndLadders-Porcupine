@@ -20,8 +20,5 @@
     -fx-background-radius: 10px;
 
 }
-.Board{
-    -fx-background-image: url("Photos/boardbackground.jpg");
-    -fx-background-size:  cover ;
-}
+
 

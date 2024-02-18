@@ -11,38 +11,50 @@ public class GameBoard {
     private int size;
 
     public GameBoard(String Level) {
+        double preferredTileSize=00.0;
         switch (Level) {
             case "Easy":
                 size = 7; // Easy level
                 difficultyLevel = 1;
+                preferredTileSize=114.285714;
                 break;
             case "Medium":
                 size = 10; // Medium level
                 difficultyLevel = 2;
+                preferredTileSize=80;
                 break;
             case "Hard":
                 size = 13; // Hard level
                 difficultyLevel = 3;
+                preferredTileSize=60.5;
                 break;
             default:
                 throw new IllegalArgumentException("Invalid difficulty level");
         }
-        initializeBoard();
-
+        tiles= initializeBoard(preferredTileSize);
     }
 
-    private void initializeBoard() {
+    private Tile[][] initializeBoard(double preferredTileSize) {
         tiles = new Tile[size][size];
         int count = 1;
+
         for (int row = size - 1; row >= 0; row--) {
             for (int col = 0; col < size; col++) {
-                // Create a Normal tile for now
-                tiles[row][col] = new Tile(row, col, "Normal");
+                tiles[row][col] = new Tile(count, Tile.TileType.NORMAL, col, row, preferredTileSize, preferredTileSize);
                 count++;
             }
         }
         displayBoard();
+        return tiles;
+
     }
+    public void placeSnakeOnTile(int col, int row) {
+        if (col >= 0 && col < size && row >= 0 && row < size) {
+            tiles[row][col].setTileType(Tile.TileType.NORMAL);
+        }
+    }
+
+
 
 
     public void displayBoard() {
