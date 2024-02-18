@@ -2,7 +2,6 @@ package Model;
 
 import java.util.List;
 import java.util.Objects;
-
 public class Question {
 
     private int questionId;
@@ -29,6 +28,13 @@ public class Question {
 
     public Question(Difficulty level) {
         this.level = level;
+    }
+
+    public Question(int questionId, String text, String answer1, String answer2, String answer3, String answer4, String correctAnswer, Difficulty level) {
+    }
+
+    public Question() {
+
     }
 
 

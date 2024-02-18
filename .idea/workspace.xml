@@ -10,17 +10,59 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="...">
-      <change afterPath="$PROJECT_DIR$/Main/Main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/Controller.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/View.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/GameBoardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/JUnits/LoadingQuestionsTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/JUnits/PlayerEqualsTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/JUnits/QuestionEqualsTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/JUnits/playerNameExistanceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/Photos/blueSnake.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/Photos/greenSnake.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/Photos/redSnake.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/Photos/yellowSnake.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Dice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Dice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Ladder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Ladder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/src/MainPageController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/src/PlayerSelectionController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main/Main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/src/Dice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/src/GameBoard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/src/Ladder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/src/Player.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/src/Question.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/src/Snake.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/src/Tile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/.idea/SnakesAndLadders-Porcupine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/.idea/SnakesAndLadders-Porcupine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/BoardGameController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Dice.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Dice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Ladder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Ladder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Question.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Question.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Questions.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Snake.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Snake.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/SystemData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/SystemData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Tile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Tile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/BoardGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/BoardGame.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/MainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/MainPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/Photos/transSnake.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/Photos/transSnake.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/Photos/transSnake2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/PorcupineStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/PorcupineStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/SnakesAndLadders-Porcupine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/SnakesAndLadders-Porcupine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/BoardGameController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/PlayerSelectionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PlayerSelectionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JUnits/PlayerSelectionsControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/JsonParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/JsonParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Snake.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/SystemData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/SystemData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/SystemDataTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/SystemDataTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/BoardGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/BoardGame.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/MainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MainPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/Photos/transSnake.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Photos/transSnake.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/Photos/transSnake2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/PorcupineStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/PorcupineStyle.css" afterDir="false" />
     </list>
     <list id="4eab7431-56fc-4d74-abc0-9c4782af3869" name="Changes by noura" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,6 +116,9 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2busbwJPGIurl1u0AQCLMDYHlRR" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -87,9 +132,9 @@
     "Application.Start .executor": "Run",
     "Application.Start.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "true",
+    "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "true",
-    "Repository.Attach.Sources": "true",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -121,11 +166,11 @@
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View\Photos" />
       <recent name="C:\Users\97252\Documents\GitHub\SnakesAndLadders-Porcupine" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-PorcupineNew\SnakesAndLadders--Porcupine\src\View" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-PorcupineNew\SnakesAndLadders--Porcupine\src" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-PorcupineNew\SnakesAndLadders--Porcupine\src\Controller" />
-      <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View\src\Screens" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -224,6 +269,8 @@
       <workItem from="1707946999524" duration="762000" />
       <workItem from="1708022335709" duration="22000" />
       <workItem from="1708022605373" duration="5548000" />
+      <workItem from="1708202403733" duration="12231000" />
+      <workItem from="1708263243202" duration="20475000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <option name="closed" value="true" />
@@ -329,11 +376,6 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Model/JsonParser.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

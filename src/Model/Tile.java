@@ -1,11 +1,33 @@
 package Model;
 
+import javafx.scene.shape.Rectangle;
+
 import java.util.Random;
 
-public class Tile {
+public class Tile extends Rectangle {
     private int tileId;
     private TileType tileType;
-    private int position;
+
+
+
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
+    public void setCol(int col) {
+        this.col = col;
+    }
+
+    private int row;
+    private int col;
 
     public enum TileType {
         NORMAL,
@@ -13,10 +35,12 @@ public class Tile {
         SURPRISE_JUMP
     }
 
-    public Tile(int tileId, TileType tileType, int position) {
+    public Tile(int tileId, TileType tileType, int col , int row,double width, double height) {
+        super(width, height);
         this.tileId = tileId;
         this.tileType = tileType;
-        this.position = position;
+        this.row = row;
+        this.col = col;
     }
 
     // Getters and Setters for all fields
@@ -35,14 +59,6 @@ public class Tile {
 
     public void setTileType(TileType tileType) {
         this.tileType = tileType;
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
     }
 
     // Method to handle special actions for each tile type
