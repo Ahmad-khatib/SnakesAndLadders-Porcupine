@@ -10,15 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="...">
-      <change afterPath="$PROJECT_DIR$/src/JUnits/QuestionsSort.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/Photos/dice/dice1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/Photos/dice/dice2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/Photos/dice/dice3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/Photos/dice/dice4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/Photos/dice/dice5.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/BoardGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/BoardGame.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GameBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameBoardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/BoardGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/BoardGame.fxml" afterDir="false" />
     </list>
     <list id="4eab7431-56fc-4d74-abc0-9c4782af3869" name="Changes by noura" comment="" />
@@ -282,7 +275,7 @@
       <workItem from="1708022605373" duration="5548000" />
       <workItem from="1708202403733" duration="12231000" />
       <workItem from="1708263243202" duration="21341000" />
-      <workItem from="1708289745119" duration="7980000" />
+      <workItem from="1708289745119" duration="8784000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <option name="closed" value="true" />
@@ -388,7 +381,23 @@
       <option name="project" value="LOCAL" />
       <updated>1708292378069</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="...">
+      <option name="closed" value="true" />
+      <created>1708298055955</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1708298055955</updated>
+    </task>
+    <task id="LOCAL-00015" summary="...">
+      <option name="closed" value="true" />
+      <created>1708298093441</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1708298093441</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
