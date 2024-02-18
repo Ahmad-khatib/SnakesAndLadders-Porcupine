@@ -10,59 +10,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="...">
-      <change afterPath="$PROJECT_DIR$/src/Controller/GameBoardController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/JUnits/LoadingQuestionsTest.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/JUnits/PlayerEqualsTest.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/JUnits/QuestionEqualsTest.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/JUnits/playerNameExistanceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/Photos/blueSnake.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/Photos/greenSnake.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/Photos/redSnake.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/Photos/yellowSnake.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/src/MainPageController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Controller/src/PlayerSelectionController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main/Main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/src/Dice.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/src/GameBoard.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/src/Ladder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/src/Player.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/src/Question.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/src/Snake.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/src/Tile.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/.idea/SnakesAndLadders-Porcupine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/.idea/SnakesAndLadders-Porcupine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/BoardGameController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Dice.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Dice.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Ladder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Ladder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Question.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Question.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Questions.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Snake.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Snake.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/SystemData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/SystemData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Tile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Tile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/BoardGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/BoardGame.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/MainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/MainPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/Photos/transSnake.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/Photos/transSnake.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/Photos/transSnake2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/PorcupineStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/PorcupineStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.idea/SnakesAndLadders-Porcupine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/SnakesAndLadders-Porcupine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/BoardGameController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/questions_scheme.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/GameBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameBoardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/PlayerSelectionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PlayerSelectionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/PlayerSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PlayerSettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/questions_scheme.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/questions_scheme.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JUnits/PlayerSelectionsControllerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/JsonParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/JsonParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/SystemData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/SystemData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/SystemDataTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/SystemDataTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/BoardGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/BoardGame.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/MainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MainPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/Photos/transSnake.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Photos/transSnake.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/Photos/transSnake2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/PorcupineStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/PorcupineStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/PlayerSettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/PlayerSettings.fxml" afterDir="false" />
     </list>
     <list id="4eab7431-56fc-4d74-abc0-9c4782af3869" name="Changes by noura" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -123,54 +85,60 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Application.Main (1).executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.Start (1).executor": "Run",
-    "Application.Start .executor": "Run",
-    "Application.Start.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "true",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "create.test.in.the.same.root": "true",
-    "git-widget-placeholder": "Merging main",
-    "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "1.8",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "C:/Users/more_/Documents/GitHub/SnakesAndLadders-Porcupine/src",
-    "last_opened_file_path": "C:/Users/noura/Documents/json-simple-1.1.1.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/more_/Documents/GitHub/SnakesAndLadders-PorcupineNew/SnakesAndLadders--Porcupine/src/Main.java",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Main (1).executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Start (1).executor&quot;: &quot;Run&quot;,
+    &quot;Application.Start .executor&quot;: &quot;Run&quot;,
+    &quot;Application.Start.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.LoadingQuestionsTest.LoadQuestionsTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LoadingQuestionsTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayerEqualsTest.CheckTwoEqualPlayers.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlayerEqualsTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.QuestionEqualsTest.CheckEqualQuestions.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.QuestionEqualsTest.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Merging main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/more_/Documents/GitHub/SnakesAndLadders-Porcupine/src&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/noura/Documents/json-simple-1.1.1.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/more_/Documents/GitHub/SnakesAndLadders-PorcupineNew/SnakesAndLadders--Porcupine/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\Model" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\Model" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View\Photos" />
       <recent name="C:\Users\97252\Documents\GitHub\SnakesAndLadders-Porcupine" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-PorcupineNew\SnakesAndLadders--Porcupine\src\View" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-PorcupineNew\SnakesAndLadders--Porcupine\src" />
-      <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-PorcupineNew\SnakesAndLadders--Porcupine\src\Controller" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -185,27 +153,8 @@
       <recent name="Controller" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Start ">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Model" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Model" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\JavaFX\javafx-sdk-21.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Start " type="Application" factoryName="Application" temporary="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+  <component name="RunManager" selected="Application.Start">
+    <configuration name="Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Controller.Start" />
       <module name="SnakesAndLadders-Porcupine" />
       <extension name="coverage">
@@ -218,16 +167,81 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="LoadingQuestionsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SnakesAndLadders-Porcupine" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="JUnits.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="JUnits" />
+      <option name="MAIN_CLASS_NAME" value="JUnits.LoadingQuestionsTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoadingQuestionsTest.LoadQuestionsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SnakesAndLadders-Porcupine" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="JUnits.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="JUnits" />
+      <option name="MAIN_CLASS_NAME" value="JUnits.LoadingQuestionsTest" />
+      <option name="METHOD_NAME" value="LoadQuestionsTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlayerEqualsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SnakesAndLadders-Porcupine" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="JUnits.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="JUnits" />
+      <option name="MAIN_CLASS_NAME" value="JUnits.PlayerEqualsTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="QuestionEqualsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SnakesAndLadders-Porcupine" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="JUnits.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="JUnits" />
+      <option name="MAIN_CLASS_NAME" value="JUnits.QuestionEqualsTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Application.Start " />
-      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Start" />
+      <item itemvalue="JUnit.LoadingQuestionsTest" />
+      <item itemvalue="JUnit.LoadingQuestionsTest.LoadQuestionsTest" />
+      <item itemvalue="JUnit.PlayerEqualsTest" />
+      <item itemvalue="JUnit.QuestionEqualsTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Start " />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Start" />
+        <item itemvalue="JUnit.LoadingQuestionsTest" />
+        <item itemvalue="JUnit.LoadingQuestionsTest.LoadQuestionsTest" />
+        <item itemvalue="JUnit.PlayerEqualsTest" />
+        <item itemvalue="JUnit.QuestionEqualsTest" />
       </list>
     </recent_temporary>
   </component>
@@ -270,7 +284,8 @@
       <workItem from="1708022335709" duration="22000" />
       <workItem from="1708022605373" duration="5548000" />
       <workItem from="1708202403733" duration="12231000" />
-      <workItem from="1708263243202" duration="20475000" />
+      <workItem from="1708263243202" duration="21341000" />
+      <workItem from="1708289745119" duration="2579000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <option name="closed" value="true" />
@@ -344,7 +359,23 @@
       <option name="project" value="LOCAL‎" />
       <updated>1708027803209</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="...">
+      <option name="closed" value="true" />
+      <created>1708287806039</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1708287806039</updated>
+    </task>
+    <task id="LOCAL-00011" summary="...">
+      <option name="closed" value="true" />
+      <created>1708290725088</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1708290725088</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

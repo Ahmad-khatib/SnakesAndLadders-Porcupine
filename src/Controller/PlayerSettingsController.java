@@ -1,17 +1,28 @@
 package Controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+import static Controller.PlayerSelectionsController.chosenLevel;
 
 public class PlayerSettingsController {
 
     @FXML
     private VBox playerBoxContainer;
+    @FXML
+    private Button startButton;
 
     private int maxPlayers = 4; // Maximum number of players
 
@@ -37,7 +48,41 @@ public class PlayerSettingsController {
         }
     }
 
-    // Method to set the number of players
+    @FXML
+    private void handleStartButtonClicked() {
+        int boardSize = 0;
+
+        switch (chosenLevel) {
+            case "Easy":
+                boardSize = 7;
+                break;
+            case "Medium":
+                boardSize = 10;
+                break;
+            case "Hard":
+                boardSize = 13;
+                break;
+            default:
+                break;
+        }
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/BoardGame.fxml"));
+        Parent root;
+        try {
+            root = loader.load();
+            GameBoardController boardGameController = loader.getController();
+            boardGameController.initialize(chosenLevel); // Pass board size to the controller
+            root.getStylesheets().add(getClass().getResource("/View/PorcupineStyle.css").toExternalForm());
+            Stage stage = (Stage) startButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+// Method to set the number of players
     public void setNumberOfPlayers(int numPlayers) {
         // Clear existing player fields and choice boxes
         playerBoxContainer.getChildren().clear();

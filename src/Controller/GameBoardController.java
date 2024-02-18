@@ -26,14 +26,10 @@ public class GameBoardController extends GridPane {
     }
 
     private void placeSnake(String selectedLevel) {
-        String greenSnake = "/View/Photos/greenSnake.png";
-        String blueSnake = "/View/Photos/blueSnake.png";
-        String yellowSnake = "/View/Photos/yellowSnake.png";
-        String redSnake = "/View/Photos/redSnake.png";
-        Image greenSnakeimage = new Image(getClass().getResourceAsStream(greenSnake));
-        Image bludSnakeimage = new Image(getClass().getResourceAsStream(blueSnake));
-        Image yellowSnakeimage = new Image(getClass().getResourceAsStream(yellowSnake));
-        Image redSnakeimage = new Image(getClass().getResourceAsStream(redSnake));
+        Image greenSnakeimage = new Image(getClass().getResourceAsStream("/View/Photos/greenSnake.png"));
+        Image bludSnakeimage = new Image(getClass().getResourceAsStream("/View/Photos/blueSnake.png"));
+        Image yellowSnakeimage = new Image(getClass().getResourceAsStream("/View/Photos/yellowSnake.png"));
+        Image redSnakeimage = new Image(getClass().getResourceAsStream("/View/Photos/redSnake.png"));
 
         ImageView greenSnakeimageimageView = new ImageView(greenSnakeimage);
         ImageView bludSnakeimageimageView = new ImageView(bludSnakeimage);

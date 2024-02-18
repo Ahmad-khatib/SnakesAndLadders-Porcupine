@@ -1,6 +1,5 @@
 package Controller;
 
-import Model.GameBoard;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,11 +8,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class PlayerSelectionsController {
+    public static String chosenLevel;
 
     @FXML
     private ChoiceBox<String> gameLevelChoiceBox = new ChoiceBox<>();
@@ -25,6 +26,8 @@ public class PlayerSelectionsController {
     private Button nextButton;
     @FXML
     private Button backButton;
+    @FXML
+    private HBox playerBox1;
     @FXML
     private void initialize() {
         ObservableList<String> gameLevelChoiceBoxlist = FXCollections.observableArrayList("Easy", "Medium", "Hard");
@@ -38,6 +41,7 @@ public class PlayerSelectionsController {
     @FXML
     private void handleNextButtonClicked() {
         String selectedLevel = gameLevelChoiceBox.getValue();
+        this.chosenLevel=selectedLevel;
         int boardSize = 0;
 
         switch (selectedLevel) {
@@ -54,13 +58,11 @@ public class PlayerSelectionsController {
                 break;
         }
 
-        // Pass the board size to the next controller
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/BoardGame.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PlayerSettings.fxml"));
         Parent root;
         try {
             root = loader.load();
-            BoardGameController boardGameController = loader.getController();
-            boardGameController.initializeBoard(new GameBoard(selectedLevel)); // Pass board size to the controller
+            root.getStylesheets().add(getClass().getResource("/View/PorcupineStyle.css").toExternalForm());
             Stage stage = (Stage) nextButton.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
