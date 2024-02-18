@@ -209,13 +209,17 @@ public class SystemData {
             }
         }
     }
-    private static Difficulty getQuestionLevel(int level) {
-        return switch (level) {
-            case 1 -> Difficulty.EASY;
-            case 3 -> Difficulty.HARD;
-            default -> Difficulty.MEDIUM;
-        };
+    private static Difficulty getQuestionLevel(int level) {  // updated to switch method that fits our java version (8) - Ahmad
+        switch (level) {
+            case 1:
+                return Difficulty.EASY;
+            case 3:
+                return Difficulty.HARD;
+            default:
+                return Difficulty.MEDIUM;
+        }
     }
+
 
 
     private void resetPathToDefault() {
