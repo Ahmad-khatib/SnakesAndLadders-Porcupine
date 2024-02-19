@@ -120,7 +120,7 @@ public class GameBoardController extends GridPane {
         dynamicGridPane.add(yellowSnakeimageimageViewstackPane, 2, 3, 2, 2);
 
 
-// Rotate the ImageView 45 degrees (diagonally)
+
         redSnakeimageimageView.setRotate(310);
         redSnakeimageimageView.setSmooth(true);
         redSnakeimageimageView.setPreserveRatio(true);

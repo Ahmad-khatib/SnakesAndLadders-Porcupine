@@ -120,7 +120,7 @@ public class ManageQuestionsController {
         // Read questions from JSON file and populate the questions list
         JSONParser parser = new JSONParser();
         try {
-            Object obj = parser.parse(new FileReader("C:\\Users\\noura\\Documents\\GitHub\\SnakesAndLadders-Porcupine\\src\\Controller\\questions_scheme.json"));
+            Object obj = parser.parse(new FileReader("src/Model/questions_scheme.json"));
             JSONObject jsonObject = (JSONObject) obj; // Cast to JSONObject
             JSONArray jsonArray = (JSONArray) jsonObject.get("questions");
             int questionNumber = 1;
