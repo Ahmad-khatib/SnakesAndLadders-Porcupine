@@ -23,8 +23,11 @@ public class PlayerSettingsController {
     private VBox playerBoxContainer;
     @FXML
     private Button startButton;
+    @FXML
+    private Button backButton;
 
-    private int maxPlayers = 4; // Maximum number of players
+
+    private int maxPlayers = 4; // Maximum number of players as we defined it in the srs
 
     private Circle[] iconOptions = {createColoredCircle(Color.RED), createColoredCircle(Color.GREEN), createColoredCircle(Color.BLUE)};
 
@@ -35,7 +38,7 @@ public class PlayerSettingsController {
     }
 
     private void addPlayerFields(int numPlayers) {
-        // Add player fields and choice boxes dynamically based on the number of players
+        // Add player fields and choice boxes dynamically based on the number of players choosen by player
         for (int i = 1; i <= numPlayers; i++) {
             HBox playerBox = new HBox();
             TextField playerNameField = new TextField();
@@ -49,7 +52,9 @@ public class PlayerSettingsController {
     }
 
     @FXML
+
     private void handleStartButtonClicked() {
+        // Add functionality to move to the board game page where the game is being started
         int boardSize = 0;
 
         switch (chosenLevel) {
@@ -80,20 +85,40 @@ public class PlayerSettingsController {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void handleBackButtonClicked() {
+        // Add functionality to navigate to the previous page (PlayerSelections.fxml)
+        // Load the main page when the back button is clicked
+        try {
+            // Load the FXML file for the main page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PlayerSelections.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            // Get the current stage
+            Stage stage = (Stage) backButton.getScene().getWindow();
+
+            // Set the main page as the scene
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 // Method to set the number of players
     public void setNumberOfPlayers(int numPlayers) {
         // Clear existing player fields and choice boxes
         playerBoxContainer.getChildren().clear();
-        // Add player fields and choice boxes for the new number of players
+        // Add player fields and choice boxes for the new number of players (NOT COMPLETED)
         addPlayerFields(numPlayers);
     }
 
-    // Method to create a colored circle
+    // Method to create a colored circle (NOT COMPLETED)
     private Circle createColoredCircle(Color color) {
         Circle circle = new Circle(10);
         circle.setFill(color);
         return circle;
     }
+
 }

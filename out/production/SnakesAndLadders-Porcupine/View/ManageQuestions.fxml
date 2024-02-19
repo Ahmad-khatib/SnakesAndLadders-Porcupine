@@ -20,7 +20,7 @@
                         <Font name="Jokerman" size="18.0" />
                     </font>
                 </Button>
-                <HBox alignment="CENTER"> <!-- Added alignment here -->
+                <HBox alignment="CENTER">
                     <children>
                         <Button onAction="#deleteQuestion" style="-fx-background-color: CHOCOLATE; -fx-background-radius: 30;" text="Delete Question">
                             <effect>

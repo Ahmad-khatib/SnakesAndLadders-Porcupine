@@ -39,7 +39,7 @@ public class ManageQuestionsController {
 
     @FXML
     private void initialize() {
-        // Load questions from JSON file and populate the ListView
+        // Load questions from JSON file and populate the ListView of the questions
         loadQuestionsFromJSONFile();
         questionListView.setItems(questions);
         System.out.println("Initialized with " + questions.size() + " questions.");
@@ -48,6 +48,7 @@ public class ManageQuestionsController {
     @FXML
     private void goBack() {
         try {
+            // Add functionality to navigate to the previous page: MainPage.fxml screen
             // Load the FXML file for the main page
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/MainPage.fxml"));
             Parent root = loader.load();
@@ -67,13 +68,13 @@ public class ManageQuestionsController {
 
     @FXML
     private void addQuestion() {
-        // Add functionality to add a new question
+        // Add functionality to add a new question (still not working)
         System.out.println("Add question button clicked!");
     }
 
     @FXML
     private void editQuestion() {
-        // Add functionality to edit the selected question
+        // Add functionality to edit the selected question (still not working)
         String selectedQuestion = questionListView.getSelectionModel().getSelectedItem();
         if (selectedQuestion != null) {
             System.out.println("Edit question button clicked for: " + selectedQuestion);
@@ -82,7 +83,7 @@ public class ManageQuestionsController {
 
     @FXML
     private void deleteQuestion() {
-        // Add functionality to delete the selected question
+        // Add functionality to delete the selected question (partially implemented - still have to delete it from the json file)
         String selectedQuestion = questionListView.getSelectionModel().getSelectedItem();
         if (selectedQuestion != null) {
             System.out.println("Delete question button clicked for: " + selectedQuestion);
@@ -92,6 +93,7 @@ public class ManageQuestionsController {
 
     @FXML
     private void sortByLevel() {
+        // Add functionality to sort the questions by level
         questions.sort(Comparator.comparingInt(this::extractLevel));
         questionListView.setItems(questions); // Refresh the ListView with the sorted questions
     }
@@ -117,10 +119,10 @@ public class ManageQuestionsController {
 
 
     private void loadQuestionsFromJSONFile() {
-        // Read questions from JSON file and populate the questions list
+        // Read questions from JSON file and populate the questions listview
         JSONParser parser = new JSONParser();
         try {
-            Object obj = parser.parse(new FileReader("src/Model/questions_scheme.json`132   qw4`1`1`1`1`1`1`1`1`1`1"));
+            Object obj = parser.parse(new FileReader("src/Model/questions_scheme.json"));
             JSONObject jsonObject = (JSONObject) obj; // Cast to JSONObject
             JSONArray jsonArray = (JSONArray) jsonObject.get("questions");
             int questionNumber = 1;

@@ -10,7 +10,7 @@ public class GameBoard {
     private List<Ladder> ladders;
     private int size;
 
-    public GameBoard(String Level) {
+    public GameBoard(String Level) {      // Constructor to that receives the level and create the tile size to match  the level selected
         double preferredTileSize=00.0;
         switch (Level) {
             case "Easy":
@@ -38,7 +38,7 @@ public class GameBoard {
         tiles = new Tile[size][size];
         int count = 1;
 
-        for (int row = size - 1; row >= 0; row--) {
+        for (int row = size - 1; row >= 0; row--) {    // set all the tiles Normal for now
             for (int col = 0; col < size; col++) {
                 tiles[row][col] = new Tile(count, Tile.TileType.NORMAL, col, row, preferredTileSize, preferredTileSize);
                 count++;
@@ -47,11 +47,6 @@ public class GameBoard {
         displayBoard();
         return tiles;
 
-    }
-    public void placeSnakeOnTile(int col, int row) {
-        if (col >= 0 && col < size && row >= 0 && row < size) {
-            tiles[row][col].setTileType(Tile.TileType.NORMAL);
-        }
     }
 
 

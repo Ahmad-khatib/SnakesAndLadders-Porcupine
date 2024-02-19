@@ -12,7 +12,7 @@
         <VBox alignment="CENTER" prefHeight="610.0" prefWidth="763.0" spacing="10">
            <children>
       
-              <!-- Add ImageView here -->
+
               <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                       <Image url="@Photos/SnakeLadders2.png" />

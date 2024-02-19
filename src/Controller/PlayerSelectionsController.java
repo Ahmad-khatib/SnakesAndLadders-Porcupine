@@ -40,6 +40,7 @@ public class PlayerSelectionsController {
     }
     @FXML
     private void handleNextButtonClicked() {
+        // Add functionality to move to the next page(playersettings) when clicking on next and also maintaining the level selected by player because we will be using it in the game board
         String selectedLevel = gameLevelChoiceBox.getValue();
         this.chosenLevel=selectedLevel;
         int boardSize = 0;
@@ -73,7 +74,7 @@ public class PlayerSelectionsController {
 
     @FXML
     private void handleBackButtonClicked() {
-        // Load the main page when the back button is clicked
+        // Add functionality to navigate to the previous page  MainPage.fxml screen
         try {
             // Load the FXML file for the main page
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/MainPage.fxml"));

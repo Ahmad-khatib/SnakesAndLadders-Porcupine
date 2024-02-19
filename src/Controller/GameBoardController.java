@@ -34,6 +34,7 @@ public class GameBoardController extends GridPane {
     private Text timerLabel;
 
 
+
     @FXML
     private Button rollButton;
 
@@ -44,7 +45,7 @@ public class GameBoardController extends GridPane {
         initializeTimer();
     }
     Random random = new Random();
-    private void initializeTimer() {
+    private void initializeTimer() {    //function to start the timer
         AtomicInteger timerSeconds = new AtomicInteger();
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             timerSeconds.getAndIncrement();
@@ -54,7 +55,7 @@ public class GameBoardController extends GridPane {
         timeline.play();
     }
     @FXML
-    void roll(ActionEvent event) {
+    void roll(ActionEvent event) {    // function to roll the dice
 
         rollButton.setDisable(true);
 

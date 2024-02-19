@@ -17,8 +17,7 @@ public class MainPageController {
     private Button startGameButton;
     @FXML
     private Button ManageQuestionsButton;
-    @FXML
-    private Button backButton;
+
 
     @FXML
     private void initialize() {
@@ -32,7 +31,7 @@ public class MainPageController {
             Parent root = loader.load();
             Scene scene = new Scene(root);
 
-            // Get the current stage from the event's source (the button)
+            // Get the current stage from the event's source (the start game button)
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setScene(scene);
@@ -61,17 +60,6 @@ public class MainPageController {
     }
 
 
-    // Handle the back button action
-    @FXML
-    private void goBack() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PreviousPage.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) backButton.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
+
 }

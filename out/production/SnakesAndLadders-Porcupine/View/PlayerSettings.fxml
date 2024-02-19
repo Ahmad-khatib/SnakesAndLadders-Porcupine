@@ -23,8 +23,11 @@
             </ChoiceBox>
             <ColorPicker fx:id="colorPicker2" />
         </HBox>
-        <!-- Additional player fields will be added dynamically based on player selection -->
+        <!-- Additional player fields will be added dynamically based on player selection (STILL NOT COMPLETED)-->
     </VBox>
+    <Button fx:id="backButton" layoutX="692.0" layoutY="29.0" onAction="#handleBackButtonClicked" style="-fx-background-color: transparent;" text="&lt;- BACK" textFill="#7c4747" underline="true">
+
+    </Button>
    <Button fx:id="startButton" onAction = "#handleStartButtonClicked" layoutX="271.0" layoutY="257.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="103.0" text="Start Game" />
     <!-- Other elements -->
 </AnchorPane>
