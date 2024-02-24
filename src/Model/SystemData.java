@@ -209,18 +209,50 @@ public class SystemData {
             }
         }
     }
-    private static Difficulty getQuestionLevel(int level) {  // updated to switch method that fits our java version (8) - Ahmad
-        switch (level) {
-            case 1:
-                return Difficulty.EASY;
-            case 3:
-                return Difficulty.HARD;
-            default:
-                return Difficulty.MEDIUM;
+
+        //create Difficulty objects based on level with factory patternb
+        public static Difficulty getQuestionLevel ( int level ) {
+            // Use a switch statement to determine which factory to use
+            switch (level) {
+                case 1:
+                    return new EasyLevelFactory().createDifficulty();
+                case 2:
+                    return new MediumLevelFactory().createDifficulty();
+                case 3:
+                    return new HardLevelFactory().createDifficulty();
+                default:
+                    // If an unknown level is provided, return a default Difficulty
+                    return new MediumLevelFactory().createDifficulty();
+            }
+        }
+    // Define an interface for the factory
+    interface LevelFactory {
+        Difficulty createDifficulty();
+    }
+
+    // Concrete factory for creating Easy difficulty
+    static class EasyLevelFactory implements LevelFactory {
+        @Override
+        public Difficulty createDifficulty() {
+            return Difficulty.EASY;
         }
     }
 
+    // Concrete factory for creating Medium difficulty
+    static class MediumLevelFactory implements LevelFactory {
+        @Override
+        public Difficulty createDifficulty() {
+            return Difficulty.MEDIUM;
+        }
+    }
 
+    // Concrete factory for creating Hard difficulty
+    static class HardLevelFactory implements LevelFactory {
+        @Override
+        public Difficulty createDifficulty() {
+            return Difficulty.HARD;
+        }
+    }
 
     private void resetPathToDefault() {
         questionJSONPath = originalPath;
