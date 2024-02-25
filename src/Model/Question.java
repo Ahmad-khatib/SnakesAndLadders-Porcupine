@@ -1,4 +1,5 @@
 package Model;
+import java.util.ArrayList;
 
 import java.util.List;
 import java.util.Objects;
@@ -13,6 +14,18 @@ public class Question {
     private String correctAnswer;
     private Difficulty level;
     private List<Question> questionList;
+
+    private List<QuestionObserver> observers = new ArrayList<>();
+
+    public void registerObserver(QuestionObserver observer) {
+        observers.add(observer);
+    }
+
+    private void notifyObservers(Question question) {
+        for (QuestionObserver observer : observers) {
+            observer.onQuestionAdded(question);
+        }
+    }
 
 
     public Question ( String text, String answer1, String answer2, String answer3, String answer4, String correctAnswer, Difficulty level ) {
@@ -149,13 +162,15 @@ public class Question {
         return counter;
     }
 
+
     // function to add questions
     public void addQuestion(Question newQuestion) {
         int uniqueId = generateUniqueId();
         newQuestion.setQuestionId(uniqueId);
         questionList.add(newQuestion);
-
+        notifyObservers(newQuestion); // Notify observers that a new question has been added
     }
+
     // function to find question
     public Question findQuestionById(int questionId) {
         for (Question question : questionList) {
@@ -205,4 +220,8 @@ public class Question {
                 throw new IllegalArgumentException("Invalid difficulty");
         }
     }
+
+
+
+
 }

@@ -1,5 +1,6 @@
 package Controller;
-
+import Model.Question;
+import Model.QuestionObserver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,7 +20,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class ManageQuestionsController {
+public class ManageQuestionsController implements QuestionObserver  {
     @FXML
     private ListView<String> questionListView;
 
@@ -42,6 +43,10 @@ public class ManageQuestionsController {
         // Load questions from JSON file and populate the ListView of the questions
         loadQuestionsFromJSONFile();
         questionListView.setItems(questions);
+        // Register this controller as an observer
+        Question questionModel = new Question();
+        questionModel.registerObserver(this);
+
         System.out.println("Initialized with " + questions.size() + " questions.");
     }
 
@@ -116,7 +121,11 @@ public class ManageQuestionsController {
         return 0; // Default value if extraction fails
     }
 
-
+    @Override
+    public void onQuestionAdded(Question question) {
+        // Add the new question to the ListView
+        questions.add(question.toString());
+    }
 
     private void loadQuestionsFromJSONFile() {
         // Read questions from JSON file and populate the questions listview
