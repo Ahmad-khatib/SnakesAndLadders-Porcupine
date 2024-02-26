@@ -31,16 +31,17 @@ public class JsonParser<T> {
 
             for (Object obj : jsonArray) {
                 JSONObject questionJson = (JSONObject) obj;
-                int questionId = Integer.parseInt(questionJson.get("questionId").toString());
                 String text = (String) questionJson.get("question");
-                String answer1 = (String) questionJson.get("answer1");
-                String answer2 = (String) questionJson.get("answer2");
-                String answer3 = (String) questionJson.get("answer3");
-                String answer4 = (String) questionJson.get("answer4");
+                JSONArray answersArray = (JSONArray) questionJson.get("answers");
+                String[] answers = new String[answersArray.size()];
+                for (int i = 0; i < answersArray.size(); i++) {
+                    answers[i] = (String) answersArray.get(i);
+                }
                 String correctAnswer = (String) questionJson.get("correct_ans");
-                Difficulty level = Difficulty.valueOf(questionJson.get("level").toString());
+                Difficulty level = Difficulty.valueOf(questionJson.get("difficulty").toString());
 
-                Question question = new Question(questionId, text, answer1, answer2, answer3, answer4, correctAnswer, level);
+                // Create a new Question object with the parsed data
+                Question question = new Question(text, answers[0], answers[1], answers[2], answers[3], correctAnswer, level);
                 resultList.add((T) question);
             }
         } catch (ParseException e) {
@@ -49,4 +50,5 @@ public class JsonParser<T> {
 
         return resultList;
     }
+
 }
