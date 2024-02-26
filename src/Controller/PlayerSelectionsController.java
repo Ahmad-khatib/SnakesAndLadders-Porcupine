@@ -63,6 +63,9 @@ public class PlayerSelectionsController {
         Parent root;
         try {
             root = loader.load();
+            PlayerSettingsController controller = loader.getController();
+            int numPlayers = Integer.parseInt(playersNumberChoiceBox.getValue());
+            controller.initializePlayerFields(numPlayers); // Initialize player fields based on the selected number of players
             root.getStylesheets().add(getClass().getResource("/View/PorcupineStyle.css").toExternalForm());
             Stage stage = (Stage) nextButton.getScene().getWindow();
             stage.setScene(new Scene(root));

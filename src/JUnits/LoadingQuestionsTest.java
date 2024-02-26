@@ -13,9 +13,9 @@ import static org.junit.Assert.assertTrue;
 public class LoadingQuestionsTest {
     @Test
     public void LoadQuestionsTest() {
-        SystemData.getInstance().loadQuestions("src/Controller/questions_scheme.json");
+        SystemData.getInstance().loadQuestions();
         HashMap<Difficulty, ArrayList<Question>> questions = SystemData.getInstance().getQuestions();
-        SystemData.getInstance().loadQuestions("src/Controller/questions_scheme.json");
+        SystemData.getInstance().loadQuestions();
         HashMap<Difficulty, ArrayList<Question>> questions2 = SystemData.getInstance().getQuestions();
 
         assertTrue("Successful Load Question", questions.equals(questions2));

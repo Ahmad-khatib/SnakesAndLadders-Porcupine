@@ -43,8 +43,8 @@
                        <Font name="Jokerman" size="28.0" />
                    </font>
                </Button>
-   
-               <Button prefHeight="71.0" prefWidth="290.0" style="-fx-background-color: CHOCOLATE; -fx-background-radius: 30; -fx-background-insets: 0;" text="View History" textFill="WHITE">
+
+               <Button fx:id="ViewHistoryButton" onAction="#viewHistory" prefHeight="71.0" prefWidth="290.0" style="-fx-background-color: CHOCOLATE; -fx-background-radius: 30; -fx-background-insets: 0;" text="View History" textFill="WHITE">
                    <effect>
                        <InnerShadow blurType="GAUSSIAN" choke="0.33" height="20.02" radius="11.215" width="26.84">
                            <input>
@@ -56,6 +56,7 @@
                        <Font name="Jokerman" size="25.0" />
                    </font>
                </Button>
+
            </children>
         </VBox>
     </children>

@@ -1,7 +1,9 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 public class Question {
 
     private int questionId;
@@ -14,8 +16,8 @@ public class Question {
     private Difficulty level;
     private List<Question> questionList;
 
-
-    public Question ( String text, String answer1, String answer2, String answer3, String answer4, String correctAnswer, Difficulty level ) {
+    public Question(String text, String answer1, String answer2, String answer3, String answer4, String correctAnswer, Difficulty level) {
+        this.questionId = questionId;
         this.text = text;
         this.answer1 = answer1;
         this.answer2 = answer2;
@@ -23,81 +25,69 @@ public class Question {
         this.answer4 = answer4;
         this.correctAnswer = correctAnswer;
         this.level = level;
-
+        this.questionList = new ArrayList<>();
     }
-
-    public Question(Difficulty level) {
-        this.level = level;
-    }
-
-    public Question(int questionId, String text, String answer1, String answer2, String answer3, String answer4, String correctAnswer, Difficulty level) {
-    }
-
     public Question() {
-
+        this.questionList = new ArrayList<>();
     }
-
 
     // Getters and Setters for all fields
-    public int getQuestionId () {
-
+    public int getQuestionId() {
         return questionId;
     }
 
-
-    public void setQuestionId ( int questionId ) {
+    public void setQuestionId(int questionId) {
         this.questionId = questionId;
     }
 
-
-    public String getText () {
+    public String getText() {
         return text;
     }
 
-    public void setText ( String text ) {
+    public void setText(String text) {
         this.text = text;
     }
 
-
-    public String getAnswer1 () {
+    public String getAnswer1() {
         return answer1;
     }
 
-    public void setAnswer1 ( String answer1 ) {
+    public void setAnswer1(String answer1) {
         this.answer1 = answer1;
     }
 
-    public String getAnswer2 () {
+    public String getAnswer2() {
         return answer2;
     }
 
-    public void setAnswer2 ( String answer2 ) {
+    public void setAnswer2(String answer2) {
         this.answer2 = answer2;
     }
 
-    public String getAnswer3 () {
+    public String getAnswer3() {
         return answer3;
     }
 
-    public void setAnswer3 ( String answer3 ) {
+    public void setAnswer3(String answer3) {
         this.answer3 = answer3;
     }
 
-    public String getAnswer4 () {
+    public String getAnswer4() {
         return answer4;
     }
 
-    public void setAnswer4 ( String answer4 ) {
+    public void setAnswer4(String answer4) {
         this.answer4 = answer4;
     }
 
-    public String getCorrectAnswer () {
+    public String getCorrectAnswer() {
         return correctAnswer;
     }
 
-    public void setCorrectAnswer ( String correctAnswer ) {
+    public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
     }
+
     public Difficulty getLevel() {
         return level;
     }
@@ -109,17 +99,14 @@ public class Question {
     public void setQuestionList(List<Question> questionList) {
         this.questionList = questionList;
     }
-
     @Override
-    public String toString () {
-        return "Question: {" + text + '\'' +
-                ", correctAnswer=" + correctAnswer +
-                ", DifficultLevel=" + level +
-                '}';
+    public String toString() {
+        return text;
     }
 
+
     @Override
-    public boolean equals ( Object o ) {
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
@@ -130,33 +117,30 @@ public class Question {
         if (!Objects.equals(answer2, question.answer2)) return false;
         if (!Objects.equals(answer3, question.answer3)) return false;
         if (!Objects.equals(answer4, question.answer4)) return false;
-        if (!Objects.equals(correctAnswer, question.correctAnswer)) return false;
-        return true;
-
+        return Objects.equals(correctAnswer, question.correctAnswer);
     }
 
-    public Boolean checkCorrect ( String answer ) {
-        if (answer.equals(this.correctAnswer))
-            return true;
-        return false;
+    @Override
+    public int hashCode() {
+        return Objects.hash(text, answer1, answer2, answer3, answer4, correctAnswer);
     }
 
-    // function to generate a unique ID for the questions
-    private int generateUniqueId() {
-        int counter = 0;
-
-        counter++;
-        return counter;
+    public Boolean checkCorrect(String answer) {
+        return answer.equals(this.correctAnswer);
     }
 
-    // function to add questions
+    private static int lastGeneratedId = 0;
+
+    public static int generateUniqueId() {
+        return ++lastGeneratedId;
+    }
+
     public void addQuestion(Question newQuestion) {
         int uniqueId = generateUniqueId();
         newQuestion.setQuestionId(uniqueId);
         questionList.add(newQuestion);
-
     }
-    // function to find question
+
     public Question findQuestionById(int questionId) {
         for (Question question : questionList) {
             if (question.getQuestionId() == questionId) {
@@ -165,22 +149,19 @@ public class Question {
         }
         return null;
     }
-    // function to remove question
+
     public void deleteQuestion(int questionId) {
         Question questionToRemove = findQuestionById(questionId);
         if (questionToRemove != null) {
             questionList.remove(questionToRemove);
-
         } else {
             throw new IllegalArgumentException("No question found with this questionId.");
         }
     }
 
-    // function to edit question
     public void editQuestion(int questionId, Question editedQuestion) {
         Question existingQuestion = findQuestionById(questionId);
         if (existingQuestion != null) {
-
             existingQuestion.setText(editedQuestion.getText());
             existingQuestion.setAnswer1(editedQuestion.getAnswer1());
             existingQuestion.setAnswer2(editedQuestion.getAnswer2());
@@ -188,11 +169,11 @@ public class Question {
             existingQuestion.setAnswer4(editedQuestion.getAnswer4());
             existingQuestion.setCorrectAnswer(editedQuestion.getCorrectAnswer());
             existingQuestion.setLevel(editedQuestion.getLevel());
-
         } else {
             throw new IllegalArgumentException("No question found with this questionId.");
         }
     }
+
     public static String getQuestion(Difficulty difficulty) {
         switch (difficulty) {
             case EASY:
@@ -205,4 +186,6 @@ public class Question {
                 throw new IllegalArgumentException("Invalid difficulty");
         }
     }
+
+
 }

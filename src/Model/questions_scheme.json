@@ -1,324 +1,145 @@
 {
   "questions": [{
-    "question": "What is the purpose of version control systems?",
+    "question": "What is the primary goal of requirements in software engineering?",
     "answers": [
-      "A. To track changes in software development",
-      "B. To manage project deadlines",
-      "C. To write code faster",
-      "D. To automate testing processes"
+      "To finalize the project budget",
+      "To identify and document software requirements",
+      "To develop the software architecture",
+      "To determine the project timeline"
     ],
-    "correct_ans": "A",
-    "difficulty": "2"
-  }, {
-    "question": "Which programming language is commonly used for web development?",
-    "answers": [
-      "A. Java",
-      "B. C++",
-      "C. Python",
-      "D. JavaScript"
-    ],
-    "correct_ans": "D",
+    "correct_ans": "2",
     "difficulty": "1"
   }, {
-    "question": "What is the output of 2 + 2 * 3?",
+    "question": "What is the primary purpose of using prototypes in requirements engineering?",
     "answers": [
-      "A. 6",
-      "B. 8",
-      "C. 10",
-      "D. 12"
+      "To demonstrate the final software product to stakeholders",
+      "To replace the final software product",
+      "To provide a visual representation for better understanding of requirements",
+      "To finalize the project schedule"
     ],
-    "correct_ans": "B",
+    "correct_ans": "3",
+    "difficulty": "3"
+  },  {
+    "question": "Why is requirements traceability important in software development?",
+    "answers": [
+      "It enables tracking of requirements throughout the development process",
+      "It determines the project's return on investment",
+      "It ensures that requirements are not changed",
+      "t helps in creating user stories"
+    ],
+    "correct_ans": "1",
+    "difficulty": "2"
+  },  {
+    "question": "In Agile development, what is the primary responsibility of a Scrum Master?",
+    "answers": [
+      "Writing code and developing features",
+      "Managing the project budget",
+      "Ensuring the team follows Agile principles and practices",
+      "Creating user stories and acceptance criteria"
+    ],
+    "correct_ans": "3",
+    "difficulty": "2"
+  },  {
+    "question": "What is the purpose of a Burndown Chart in Agile development?",
+    "answers": [
+      "To measure the project's return on investment",
+      "To track the team's progress in completing tasks over time",
+      "To visualize the team's skill levels",
+      "To display the hierarchy of user stories"
+    ],
+    "correct_ans": "2",
+    "difficulty": "2"
+  },  {
+    "question": "What is the purpose of using architectural patterns in software development?",
+    "answers": [
+      "To document the project budget",
+      "To estimate the return on investment",
+      "To provide reusable solutions to commonly occurring problems",
+      "To assign tasks to team members"
+    ],
+    "correct_ans": "3",
     "difficulty": "1"
-  }, {
-    "question": "What does HTML stand for?",
+  },  {
+    "question": "what does software architecture include?",
     "answers": [
-      "A. Hyper Text Markup Language",
-      "B. High Tech Markup Language",
-      "C. Home Tool Markup Language",
-      "D. Hyperlinks and Text Markup Language"
+      "Only the structural aspects of a system",
+      "Only the behavioral aspects of a system",
+      "The interactions between a system and its environment",
+      "The fundamental organization, components, and design principles of a system"
     ],
-    "correct_ans": "A",
+    "correct_ans": "4",
+    "difficulty": "2"
+  },  {
+    "question": "Why is scalability an important consideration in software architecture?",
+    "answers": [
+      "It determines the project timeline",
+      "It ensures that the software has a visually appealing design",
+      "It focuses on the security aspects of the software",
+      "It addresses the system's ability to handle growth in users"
+    ],
+    "correct_ans": "4",
+    "difficulty": "3"
+  },  {
+    "question": "What is the primary purpose of program testing?",
+    "answers": [
+      "To execute a program with real-world data",
+      "To identify as many requirements as possible",
+      "To discover defects before the program is put into use",
+      "To verify the software's non-functional attributes"
+    ],
+    "correct_ans": "3",
+    "difficulty": "2"
+  },  {
+    "question": "What is the main distinction between validation testing and defect testing?",
+    "answers": [
+      "The use of artificial data in validation testing",
+      "The intentional obscurity of test cases in defect testing",
+      "The focus on system crashes in defect testing",
+      "The expectation of correct performance in validation testing"
+    ],
+    "correct_ans": "4",
+    "difficulty": "3"
+  },  {
+    "question": "What is the primary focus of software maintenance?",
+    "answers": [
+      "Modifying a program after it has been put into use",
+      "Developing new software from scratch",
+      "Creating different versions of custom software",
+      "Developing generic software products"
+    ],
+    "correct_ans": "1",
+    "difficulty": "2"
+  },  {
+    "question": "In adaptive and perfective maintenance, what does the maintenance programmer need to be an expert in?",
+    "answers": [
+      "implementation and integration",
+      "New programming languages",
+      "testing and documentation",
+      "Requirements,Specifications,Design,and Implementation and integration"
+    ],
+    "correct_ans": "4",
+    "difficulty": "2"
+  },  {
+    "question": "What is the primary purpose of conductive surveys in software engineering?",
+    "answers": [
+      "To gather user feedback on software performance",
+      "To collect data on specific software-related topics",
+      "To promote new software releases",
+      "To identify and fix bugs in the software"
+    ],
+    "correct_ans": "2",
     "difficulty": "1"
-  }, {
-    "question": "Which of the following is a relational database management system?",
+  },  {
+    "question": "When designing a survey in software engineering, what is a crucial consideration?",
     "answers": [
-      "A. MongoDB",
-      "B. SQLite",
-      "C. Redis",
-      "D. Elasticsearch"
+      "Using complex technical language",
+      "Focusing on positive feedback",
+      "Excluding open-ended questions",
+      "The length of the survey"
     ],
-    "correct_ans": "B",
-    "difficulty": "1"
-  }, {
-    "question": "What does CSS stand for?",
-    "answers": [
-      "A. Computer Style Sheets",
-      "B. Creative Style Sheets",
-      "C. Cascading Style Sheets",
-      "D. Colorful Style Sheets"
-    ],
-    "correct_ans": "C",
-    "difficulty": "1"
-  }, {
-    "question": "What is the purpose of the 'git clone' command?",
-    "answers": [
-      "A. To create a new branch",
-      "B. To copy a repository",
-      "C. To delete a repository",
-      "D. To merge branches"
-    ],
-    "correct_ans": "B",
+    "correct_ans": "4",
     "difficulty": "2"
-  }, {
-    "question": "Which of the following is NOT a programming paradigm?",
-    "answers": [
-      "A. Object-Oriented Programming",
-      "B. Functional Programming",
-      "C. Procedural Programming",
-      "D. Circular Programming"
-    ],
-    "correct_ans": "D",
-    "difficulty": "2"
-  }, {
-    "question": "What does the SQL acronym stand for?",
-    "answers": [
-      "A. Structured Query Language",
-      "B. Sequential Query Language",
-      "C. Simplified Query Language",
-      "D. Standardized Query Language"
-    ],
-    "correct_ans": "A",
-    "difficulty": "2"
-  }, {
-    "question": "Which of the following is NOT a software development methodology?",
-    "answers": [
-      "A. Waterfall",
-      "B. Agile",
-      "C. Spiral",
-      "D. Top-down"
-    ],
-    "correct_ans": "D",
-    "difficulty": "2"
-  }, {
-    "question": "What is the purpose of a 'for' loop in programming?",
-    "answers": [
-      "A. To repeat a block of code a specific number of times",
-      "B. To execute code based on a condition",
-      "C. To define a function",
-      "D. To declare a variable"
-    ],
-    "correct_ans": "A",
-    "difficulty": "2"
-  }, {
-    "question": "What is the purpose of a 'try...catch' block in programming?",
-    "answers": [
-      "A. To define a function",
-      "B. To handle exceptions",
-      "C. To declare a variable",
-      "D. To repeat a block of code"
-    ],
-    "correct_ans": "B",
-    "difficulty": "2"
-  }, {
-    "question": "What is the role of a 'product owner' in Agile methodology?",
-    "answers": [
-      "A. To write code",
-      "B. To manage project stakeholders",
-      "C. To lead daily standup meetings",
-      "D. To prioritize and manage the product backlog"
-    ],
-    "correct_ans": "D",
-    "difficulty": "3"
-  }, {
-    "question": "What is a 'stack overflow' error?",
-    "answers": [
-      "A. When a program runs out of memory",
-      "B. When a function calls itself indefinitely",
-      "C. When a program terminates unexpectedly",
-      "D. When a program crashes"
-    ],
-    "correct_ans": "B",
-    "difficulty": "3"
-  }, {
-    "question": "What does the 'npm' command do in Node.js?",
-    "answers": [
-      "A. Installs a new Node.js module",
-      "B. Removes a Node.js module",
-      "C. Updates Node.js to the latest version",
-      "D. None of the above"
-    ],
-    "correct_ans": "A",
-    "difficulty": "3"
-  }, {
-    "question": "What is the purpose of a 'lambda function' in Python?",
-    "answers": [
-      "A. To define anonymous functions",
-      "B. To create object instances",
-      "C. To handle exceptions",
-      "D. To implement inheritance"
-    ],
-    "correct_ans": "A",
-    "difficulty": "3"
-  }, {
-    "question": "What is the role of a 'Scrum Master' in Agile methodology?",
-    "answers": [
-      "A. To write code",
-      "B. To manage project stakeholders",
-      "C. To facilitate the Scrum process",
-      "D. To prioritize and manage the product backlog"
-    ],
-    "correct_ans": "C",
-    "difficulty": "3"
-  }, {
-    "question": "What is the purpose of the 'SELECT' statement in SQL?",
-    "answers": [
-      "A. To insert data into a table",
-      "B. To delete data from a table",
-      "C. To retrieve data from a table",
-      "D. To update data in a table"
-    ],
-    "correct_ans": "C",
-    "difficulty": "3"
-  }, {
-    "question": "What is the purpose of the 'finally' block in a 'try...catch' statement?",
-    "answers": [
-      "A. To define a function",
-      "B. To handle exceptions",
-      "C. To always execute code regardless of exceptions",
-      "D. To repeat a block of code"
-    ],
-    "correct_ans": "C",
-    "difficulty": "3"
-  }, {
-    "question": "Which of the following is NOT a Git workflow?",
-    "answers": [
-      "A. Feature Branch Workflow",
-      "B. GitFlow Workflow",
-      "C. Distributed Workflow",
-      "D. Subversion Workflow"
-    ],
-    "correct_ans": "D",
-    "difficulty": "3"
-  }, {
-    "question": "What is the purpose of the 'virtualenv' tool in Python?",
-    "answers": [
-      "A. To create virtual machines",
-      "B. To manage Python packages",
-      "C. To debug Python code",
-      "D. To create isolated Python environments"
-    ],
-    "correct_ans": "D",
-    "difficulty": "3"
-  }, {
-    "question": "What is the purpose of the 'map' function in Python?",
-    "answers": [
-      "A. To apply a function to all elements of an iterable",
-      "B. To filter elements of an iterable",
-      "C. To sort elements of an iterable",
-      "D. To remove duplicates from an iterable"
-    ],
-    "correct_ans": "A",
-    "difficulty": "3"
-  }, {
-    "question": "What is the purpose of the 'npm install' command in Node.js?",
-    "answers": [
-      "A. Installs a new Node.js module",
-      "B. Removes a Node.js module",
-      "C. Updates Node.js to the latest version",
-      "D. None of the above"
-    ],
-    "correct_ans": "A",
-    "difficulty": "3"
-  }, {
-    "question": "What is the purpose of the 'git push' command?",
-    "answers": [
-      "A. To upload changes to a remote repository",
-      "B. To create a new branch",
-      "C. To download changes from a remote repository",
-      "D. To delete a branch"
-    ],
-    "correct_ans": "A",
-    "difficulty": "3"
-  }, {
-    "question": "What is the purpose of a 'docker container'?",
-    "answers": [
-      "A. To run virtual machines",
-      "B. To package and distribute applications",
-      "C. To manage databases",
-      "D. To write code"
-    ],
-    "correct_ans": "B",
-    "difficulty": "3"
-  }, {
-    "question": "What is the purpose of the 'else' statement in programming?",
-    "answers": [
-      "A. To execute code based on a condition",
-      "B. To define a function",
-      "C. To repeat a block of code",
-      "D. To handle exceptions"
-    ],
-    "correct_ans": "A",
-    "difficulty": "3"
-  }, {
-    "question": "What is the purpose of the 'git merge' command?",
-    "answers": [
-      "A. To create a new branch",
-      "B. To copy a repository",
-      "C. To combine changes from different branches",
-      "D. To delete a repository"
-    ],
-    "correct_ans": "C",
-    "difficulty": "3"
-  }, {
-    "question": "What is the purpose of the 'git pull' command?",
-    "answers": [
-      "A. To upload changes to a remote repository",
-      "B. To create a new branch",
-      "C. To download changes from a remote repository",
-      "D. To delete a branch"
-    ],
-    "correct_ans": "C",
-    "difficulty": "3"
-  }, {
-    "question": "What is the purpose of the 'npm start' command in Node.js?",
-    "answers": [
-      "A. Starts a new Node.js project",
-      "B. Installs project dependencies",
-      "C. Starts the Node.js application",
-      "D. None of the above"
-    ],
-    "correct_ans": "C",
-    "difficulty": "3"
-  }, {
-    "question": "What is the purpose of the 'npm uninstall' command in Node.js?",
-    "answers": [
-      "A. Installs a new Node.js module",
-      "B. Removes a Node.js module",
-      "C. Updates Node.js to the latest version",
-      "D. None of the above"
-    ],
-    "correct_ans": "B",
-    "difficulty": "3"
-  }, {
-    "question": "What does the 'git init' command do?",
-    "answers": [
-      "A. Initializes a new Git repository",
-      "B. Initializes a new branch",
-      "C. Initializes a new remote repository",
-      "D. Initializes a new commit"
-    ],
-    "correct_ans": "A",
-    "difficulty": "3"
-  }, {
-    "question": "What is the purpose of the 'git checkout' command?",
-    "answers": [
-      "A. To create a new branch",
-      "B. To switch branches or restore working tree files",
-      "C. To combine changes from different branches",
-      "D. To delete a repository"
-    ],
-    "correct_ans": "B",
-    "difficulty": "3"
   }
   ]
 }
+
