@@ -51,9 +51,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" exported="" name="json-lib-2.4" level="project" />
-    <orderEntry type="library" exported="" name="json-lib-2.4-javadoc" level="project" />
-    <orderEntry type="library" exported="" name="json-lib-2.4-sources" level="project" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
@@ -137,5 +134,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="json-simple-1.1.1.wso2v2" level="project" />
   </component>
 </module>

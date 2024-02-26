@@ -7,27 +7,8 @@ import java.util.Random;
 public class Tile extends Rectangle {
     private int tileId;
     private TileType tileType;
-
-
-
-    public int getRow() {
-        return row;
-    }
-
-    public void setRow(int row) {
-        this.row = row;
-    }
-
-    public int getCol() {
-        return col;
-    }
-
-    public void setCol(int col) {
-        this.col = col;
-    }
-
-    private int row;
-    private int col;
+    private double row;
+    private double col;
 
     public enum TileType {
         NORMAL,
@@ -35,7 +16,7 @@ public class Tile extends Rectangle {
         SURPRISE_JUMP
     }
 
-    public Tile(int tileId, TileType tileType, int col , int row,double width, double height) {
+    public Tile(int tileId, TileType tileType, double col, double row, double width, double height) {
         super(width, height);
         this.tileId = tileId;
         this.tileType = tileType;
@@ -59,6 +40,22 @@ public class Tile extends Rectangle {
 
     public void setTileType(TileType tileType) {
         this.tileType = tileType;
+    }
+
+    public double getRow() {
+        return row;
+    }
+
+    public void setRow(double row) {
+        this.row = row;
+    }
+
+    public double getCol() {
+        return col;
+    }
+
+    public void setCol(double col) {
+        this.col = col;
     }
 
     // Method to handle special actions for each tile type
@@ -91,5 +88,4 @@ public class Tile extends Rectangle {
         int randomDifficultyIndex = random.nextInt(Difficulty.values().length);
         return Difficulty.values()[randomDifficultyIndex];
     }
-
 }

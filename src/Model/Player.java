@@ -126,15 +126,15 @@ public class Player {
 
     // move player forward because a ladder
     public void movePlayerForward(Ladder ladder) {
-        if (playerPosition == ladder.getStartPosition()) {
-            playerPosition = ladder.getEndPosition();
+        if (playerPosition == ladder.getBottomPosition()) {
+            playerPosition = ladder.getTopPosition();
         }
 
     }
 
     // check if player is on a ladder
     public boolean isOnLadder(Ladder ladder) {
-        return playerPosition == ladder.getStartPosition();
+        return playerPosition == ladder.getBottomPosition();
     }
 
     // Method to move the player forward because a dice

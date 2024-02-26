@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameBoard {
@@ -9,48 +10,44 @@ public class GameBoard {
     private List<Snake> snakes;
     private List<Ladder> ladders;
     private int size;
+    private double preferredTileSize;
 
-    public GameBoard(String Level) {      // Constructor to that receives the level and create the tile size to match  the level selected
-        double preferredTileSize=00.0;
-        switch (Level) {
+    public GameBoard(String level) {
+        switch (level) {
             case "Easy":
-                size = 7; // Easy level
+                size = 7; // Easy level, number of rows in the grid
                 difficultyLevel = 1;
-                preferredTileSize=114.285714;
                 break;
             case "Medium":
-                size = 10; // Medium level
+                size = 10; // Medium level, number of rows in the grid
                 difficultyLevel = 2;
-                preferredTileSize=80;
                 break;
             case "Hard":
-                size = 13; // Hard level
+                size = 13; // Hard level, number of rows in the grid
                 difficultyLevel = 3;
-                preferredTileSize=60.5;
                 break;
             default:
                 throw new IllegalArgumentException("Invalid difficulty level");
         }
-        tiles= initializeBoard(preferredTileSize);
+        initializeBoard();
+        snakes = new ArrayList<>(); // Initialize snakes list
+        ladders = new ArrayList<>(); // Initialize ladders list
     }
 
-    private Tile[][] initializeBoard(double preferredTileSize) {
+    private void initializeBoard() {
+        // Calculate preferred dimensions for the tiles
+        preferredTileSize = Math.min(835.0 / size, 1730.0 / size);
+
         tiles = new Tile[size][size];
         int count = 1;
 
-        for (int row = size - 1; row >= 0; row--) {    // set all the tiles Normal for now
+        for (int row = size - 1; row >= 0; row--) {
             for (int col = 0; col < size; col++) {
-                tiles[row][col] = new Tile(count, Tile.TileType.NORMAL, col, row, preferredTileSize, preferredTileSize);
+                tiles[row][col] = new Tile(count, Tile.TileType.NORMAL, col * preferredTileSize, row * preferredTileSize, preferredTileSize, preferredTileSize);
                 count++;
             }
         }
-        displayBoard();
-        return tiles;
-
     }
-
-
-
 
     public void displayBoard() {
         for (int row = size - 1; row >= 0; row--) {
@@ -61,7 +58,19 @@ public class GameBoard {
         }
     }
 
-    // Getters and Setters for all fields
+    // Getters for preferredTileSize and other fields
+    public double getPreferredTileSize() {
+        return preferredTileSize;
+    }
+
+    public double getCellWidth() {
+        return preferredTileSize;
+    }
+
+    public double getCellHeight() {
+        return preferredTileSize;
+    }
+
     public int getGameId() {
         return gameId;
     }
