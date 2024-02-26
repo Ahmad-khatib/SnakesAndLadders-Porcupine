@@ -1,31 +1,23 @@
+// SystemData.java
 package Model;
-//
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 
 public class SystemData {
 
     private static SystemData instance;
     private HashMap<Difficulty, ArrayList<Question>> questions;
-    private ArrayList<GameBoard> games;
-    private ArrayList<Player> players;
 
-    private String questionJSONPath = "src/JSON/questions_scheme.txt";
-    private final String originalPath = questionJSONPath;
 
     private SystemData() {
         questions = new HashMap<>();
-        games = new ArrayList<>();
-        players = new ArrayList<>();
     }
 
     public static SystemData getInstance() {
@@ -34,69 +26,59 @@ public class SystemData {
         return instance;
     }
 
+    private int lastQuestionId = 0;
 
-    public HashMap<Difficulty, ArrayList<Question>> getQuestions() {
-        return questions;
-    }
 
-    public void setQuestions(HashMap<Difficulty, ArrayList<Question>> questions) {
-        this.questions = questions;
-    }
-
-    public ArrayList<GameBoard> getGameBoards() {
-        return games;
-    }
-
-    public void setGameBoards(ArrayList<GameBoard> games) {
-        this.games = games;
-    }
-
-    public ArrayList<Player> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(ArrayList<Player> players) {
-        this.players = players;
-    }
-
-    public boolean loadQuestions(String externalPath) {
-        String pathToUse = externalPath != null ? externalPath : originalPath;
-
+    public boolean loadQuestions() {
         JSONParser parser = new JSONParser();
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(pathToUse)))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("src/Model/questions_scheme.json")))) {
             Object obj = parser.parse(reader);
             JSONObject jo = (JSONObject) obj;
             JSONArray questionsArray = (JSONArray) jo.get("questions");
 
             for (Object questionObj : questionsArray) {
                 JSONObject q = (JSONObject) questionObj;
-                int questionId = Integer.parseInt(q.get("questionId").toString()); // Assuming questionId is included in JSON
                 String text = (String) q.get("question");
-                String answer1 = (String) q.get("answer1");
-                String answer2 = (String) q.get("answer2");
-                String answer3 = (String) q.get("answer3");
-                String answer4 = (String) q.get("answer4");
+                JSONArray answersArray = (JSONArray) q.get("answers");
+                String answer1 = (String) answersArray.get(0);
+                String answer2 = (String) answersArray.get(1);
+                String answer3 = (String) answersArray.get(2);
+                String answer4 = (String) answersArray.get(3);
                 String correctAnswer = (String) q.get("correct_ans");
-                Difficulty level = SystemData.getQuestionLevel(Integer.parseInt(q.get("level").toString()));
+                int difficulty = Integer.parseInt(q.get("difficulty").toString()); // Get difficulty as int
 
-                Question questionToAdd = new Question();
-                questions.computeIfAbsent(questionToAdd.getLevel(), k -> new ArrayList<>()).add(questionToAdd);
+                // Convert difficulty int to Difficulty enum
+                Difficulty enumDifficulty = getQuestionDifficulty(difficulty);
+
+                // Generate unique question ID
+                int questionId = Question.generateUniqueId();
+
+                Question questionToAdd = new Question(text, answer1, answer2, answer3, answer4, correctAnswer, enumDifficulty);
+                questionToAdd.setQuestionId(questionId);
+                questions.computeIfAbsent(enumDifficulty, k -> new ArrayList<>()).add(questionToAdd);
             }
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            resetPathToDefault();
             return false;
         }
-        resetPathToDefault();
-        return true;
     }
 
-    public void saveQuestions(String externalPath) {
-        if (externalPath != null) {
-            questionJSONPath = externalPath;
-        }
 
+    private Difficulty getQuestionDifficulty(int difficulty) {
+        switch (difficulty) {
+            case 1:
+                return Difficulty.EASY;
+            case 2:
+                return Difficulty.MEDIUM;
+            case 3:
+                return Difficulty.HARD;
+            default:
+                throw new IllegalArgumentException("Invalid difficulty level: " + difficulty);
+        }
+    }
+    public void saveQuestions() {
         try {
             JSONArray JSONQuestions = new JSONArray();
             JSONObject toWrite = new JSONObject();
@@ -107,123 +89,39 @@ public class SystemData {
 
                 for (Question q : list) {
                     JSONObject jo1 = new JSONObject();
-                    jo1.put("questionId", q.getQuestionId()); // Assuming questionId is included in JSON
+                    jo1.put("questionId", q.getQuestionId());
                     jo1.put("question", q.getText());
                     jo1.put("answer1", q.getAnswer1());
                     jo1.put("answer2", q.getAnswer2());
                     jo1.put("answer3", q.getAnswer3());
                     jo1.put("answer4", q.getAnswer4());
                     jo1.put("correct_ans", q.getCorrectAnswer());
-                    jo1.put("level", q.getLevel());
+                    jo1.put("difficulty", q.getLevel()); // Save difficulty level
                     JSONQuestions.add(jo1);
                 }
             }
             toWrite.put("questions", JSONQuestions);
 
-            FileWriter file = new FileWriter(questionJSONPath);
+            FileWriter file = new FileWriter("Model/questions_scheme.json");
             file.write(toWrite.toJSONString());
             file.flush();
             System.out.println("JSON Question was saved successfully");
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            resetPathToDefault();
         }
     }
 
-    public static String readFileAsString(String file) throws IOException {
-        return new String(Files.readAllBytes(Paths.get(file)));
+
+    public HashMap<Difficulty, ArrayList<Question>> getQuestions() {
+        return questions;
     }
-
-    public boolean loadData(Type type) {
-        if (type == null)
-            return false;
-
-        try {
-            if (type.equals(Type.QUESTIONS)) {
-                String file = "src/JSON/QuestionsFormat.txt";
-                String json = readFileAsString(file);
-                List<Question> loadedQuestions = JsonParser.getInstance().parseToList(json, new Question());
-                if (loadedQuestions != null) {
-                    questions.clear();
-                    for (Question question : loadedQuestions) {
-                        questions.computeIfAbsent(question.getLevel(), k -> new ArrayList<>()).add(question);
-                    }
-                }
-                return true;
-            } else
-                return false;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public boolean writeData(Type type) {
-        if (type == null)
-            return false;
-        FileWriter writer = null;
-
-        try {
-            if (type.equals(Type.QUESTIONS)) {
-                String filePath = "src/JSON/QuestionsFormat.txt";
-                writer = new FileWriter(filePath);
-                JSONArray JSONQuestions = new JSONArray();
-
-                for (ArrayList<Question> list : questions.values()) {
-                    if (list == null)
-                        continue;
-
-                    for (Question q : list) {
-                        JSONObject jo1 = new JSONObject();
-                        jo1.put("questionId", q.getQuestionId());
-                        jo1.put("question", q.getText());
-                        jo1.put("answer1", q.getAnswer1());
-                        jo1.put("answer2", q.getAnswer2());
-                        jo1.put("answer3", q.getAnswer3());
-                        jo1.put("answer4", q.getAnswer4());
-                        jo1.put("correct_ans", q.getCorrectAnswer());
-                        jo1.put("level", q.getLevel());
-                        JSONQuestions.add(jo1);
-                    }
-                }
-
-                JSONObject toWrite = new JSONObject();
-                toWrite.put("questions", JSONQuestions);
-
-                writer.write(toWrite.toJSONString());
-                return true;
-            } else
-                return false;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        } finally {
-            try {
-                if (writer != null) {
-                    writer.flush();
-                    writer.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+    public List<Question> getAllQuestions() {
+        List<Question> allQuestions = new ArrayList<>();
+        for (ArrayList<Question> list : questions.values()) {
+            if (list != null) {
+                allQuestions.addAll(list);
             }
         }
+        return allQuestions;
     }
-    private static Difficulty getQuestionLevel(int level) {  // updated to switch method that fits our java version (8) - Ahmad
-        switch (level) {
-            case 1:
-                return Difficulty.EASY;
-            case 3:
-                return Difficulty.HARD;
-            default:
-                return Difficulty.MEDIUM;
-        }
-    }
-
-
-
-    private void resetPathToDefault() {
-        questionJSONPath = originalPath;
-    }
-
 }

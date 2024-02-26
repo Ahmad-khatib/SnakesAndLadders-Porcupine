@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="mainP" stylesheets="@PorcupineStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox>
+         <children>
+            <Text fill="#1d5b21" strokeType="OUTSIDE" strokeWidth="0.0" text="Games History" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets bottom="100.0" left="178.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Jokerman" size="37.0" />
+               </font>
+            </Text>
+            <TextArea prefHeight="243.0" prefWidth="515.0" text="No Games At Current Stage" />
+         </children>
+      </VBox>
+   </children>
+</StackPane>

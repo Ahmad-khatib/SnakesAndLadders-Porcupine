@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -10,19 +16,22 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane styleClass="PlayerSel" stylesheets="@PorcupineStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PlayerSelectionsController">
+<StackPane prefHeight="333.0" prefWidth="742.0" styleClass="PlayerSel" stylesheets="@PorcupineStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PlayerSelectionsController">
    <children>
-      <VBox alignment="CENTER" prefHeight="576.0" prefWidth="763.0">
+      <VBox alignment="CENTER" prefHeight="466.0" prefWidth="742.0">
          <children>
             <HBox alignment="CENTER">
                <VBox.margin>
-                  <Insets bottom="200.0" />
+                  <Insets bottom="200.0" top="20.0" />
                </VBox.margin>
                <children>
                   <Text fill="WHITE" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Before We get Started" wrappingWidth="584.6171875">
                      <font>
                         <Font name="Jokerman" size="41.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </Text>
                   <Button fx:id="backButton" onAction="#handleBackButtonClicked" prefHeight="55.0" prefWidth="136.0" style="-fx-background-color: transparent;" text="&lt;- BACK" textFill="#7c4747" underline="true">
                      <font>
@@ -79,7 +88,7 @@
             </HBox>
             <Button fx:id="nextButton" mnemonicParsing="false" onAction="#handleNextButtonClicked" style="-fx-background-color: transparent;" text="NEXT -&gt; " textFill="WHITE" underline="true">
       
-                  <font>
+                        <font>
                   <Font name="Jokerman" size="18.0" />
                </font>
                <VBox.margin>

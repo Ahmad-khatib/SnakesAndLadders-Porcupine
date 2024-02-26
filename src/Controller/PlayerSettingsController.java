@@ -5,20 +5,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 import static Controller.PlayerSelectionsController.chosenLevel;
 
 public class PlayerSettingsController {
-
+    private Set<ImageView> selectedIcons = new HashSet<>(); // Set to store selected icons
+    private Set<CheckBox> selectedCheckboxes = new HashSet<>(); // Set to store selected checkboxes
     @FXML
     private VBox playerBoxContainer;
     @FXML
@@ -26,33 +29,47 @@ public class PlayerSettingsController {
     @FXML
     private Button backButton;
 
+    private int maxPlayers = 4; // Maximum number of players
 
-    private int maxPlayers = 4; // Maximum number of players as we defined it in the srs
-
-    private Circle[] iconOptions = {createColoredCircle(Color.RED), createColoredCircle(Color.GREEN), createColoredCircle(Color.BLUE)};
-
-    @FXML
-    private void initialize() {
-        // Initialize player fields and choice boxes for default number of players
-        addPlayerFields(2); // Assuming default number of players is 2
-    }
-
-    private void addPlayerFields(int numPlayers) {
-        // Add player fields and choice boxes dynamically based on the number of players choosen by player
+    public void initializePlayerFields(int numPlayers) {
         for (int i = 1; i <= numPlayers; i++) {
             HBox playerBox = new HBox();
             TextField playerNameField = new TextField();
             playerNameField.setPromptText("Player " + i + " Name");
-            ChoiceBox<Circle> iconChoiceBox = new ChoiceBox<>();
-            iconChoiceBox.getItems().addAll(iconOptions); // Add icon options to choice box
+            playerBox.getChildren().add(playerNameField);
+            playerNameField.setStyle("-fx-background-color: #173f02; -fx-text-fill: #77d472;  -fx-border-radius: 19px;");
 
-            playerBox.getChildren().addAll(playerNameField, iconChoiceBox);
+            for (int j = 0; j < 4; j++) {
+                Image iconImage = new Image("/View/Photos/" + getIconFileName(j));
+                ImageView iconImageView = new ImageView(iconImage);
+                iconImageView.setFitWidth(30); // Adjust the size of the icon image view
+                iconImageView.setFitHeight(30);
+                CheckBox iconCheckBox = new CheckBox();
+                iconCheckBox.setOnAction(event -> handleIconSelection(iconCheckBox, iconImageView));
+                HBox iconBox = new HBox(iconImageView, iconCheckBox);
+                playerBox.getChildren().add(iconBox);
+            }
+
             playerBoxContainer.getChildren().add(playerBox);
         }
     }
 
-    @FXML
+    private String getIconFileName(int index) {
+        switch (index) {
+            case 0:
+                return "blueIcon.png";
+            case 1:
+                return "redIcon.png";
+            case 2:
+                return "yellowIcon.png";
+            case 3:
+                return "greenIcon.png";
+            default:
+                return "";
+        }
+    }
 
+    @FXML
     private void handleStartButtonClicked() {
         // Add functionality to move to the board game page where the game is being started
         int boardSize = 0;
@@ -85,6 +102,7 @@ public class PlayerSettingsController {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void handleBackButtonClicked() {
         // Add functionality to navigate to the previous page (PlayerSelections.fxml)
@@ -105,20 +123,48 @@ public class PlayerSettingsController {
         }
     }
 
+    private void handleIconSelection(CheckBox iconCheckBox, ImageView iconImageView) {
+        if (iconCheckBox.isSelected()) {
+            // Disable checkboxes for the selected icon for other players
+            playerBoxContainer.getChildren().forEach(playerBox -> {
+                if (playerBox instanceof HBox) {
+                    HBox hbox = (HBox) playerBox;
+                    hbox.getChildren().forEach(node -> {
+                        if (node instanceof HBox && node != iconCheckBox.getParent()) { // Exclude the current player's icon box
+                            HBox iconBox = (HBox) node;
+                            iconBox.getChildren().forEach(childNode -> {
+                                if (childNode instanceof CheckBox) {
+                                    ((CheckBox) childNode).setDisable(true);
+                                }
+                            });
+                        }
+                    });
+                }
+            });
 
-// Method to set the number of players
-    public void setNumberOfPlayers(int numPlayers) {
-        // Clear existing player fields and choice boxes
-        playerBoxContainer.getChildren().clear();
-        // Add player fields and choice boxes for the new number of players (NOT COMPLETED)
-        addPlayerFields(numPlayers);
-    }
+            selectedCheckboxes.add(iconCheckBox);
+            selectedIcons.add(iconImageView);
+        } else {
+            // Re-enable checkboxes if the icon is deselected
+            playerBoxContainer.getChildren().forEach(playerBox -> {
+                if (playerBox instanceof HBox) {
+                    HBox hbox = (HBox) playerBox;
+                    hbox.getChildren().forEach(node -> {
+                        if (node instanceof HBox) {
+                            HBox iconBox = (HBox) node;
+                            iconBox.getChildren().forEach(childNode -> {
+                                if (childNode instanceof CheckBox) {
+                                    ((CheckBox) childNode).setDisable(false);
+                                }
+                            });
+                        }
+                    });
+                }
+            });
 
-    // Method to create a colored circle (NOT COMPLETED)
-    private Circle createColoredCircle(Color color) {
-        Circle circle = new Circle(10);
-        circle.setFill(color);
-        return circle;
+            selectedCheckboxes.remove(iconCheckBox);
+            selectedIcons.remove(iconImageView);
+        }
     }
 
 }
