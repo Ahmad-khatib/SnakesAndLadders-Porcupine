@@ -3,6 +3,7 @@ package Model;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import java.util.Comparator;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -10,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class SystemData {
-
     private static SystemData instance;
     private HashMap<Difficulty, ArrayList<Question>> questions;
 
@@ -122,4 +122,12 @@ public class SystemData {
         }
         return allQuestions;
     }
+
+
+    public List<Question> getAllQuestionsSortedById() {
+        List<Question> allQuestions = getAllQuestions();
+        allQuestions.sort(Comparator.comparingInt(Question::getQuestionId));
+        return allQuestions;
+    }
+
 }
