@@ -1,71 +1,28 @@
 package Model;
 
-import java.util.Objects;
+import java.util.Random;
+
 public class Ladder {
-    private int ladderId;
-    private int ladderLength;
-    private int startPosition;
-    private int endPosition;
+    private int topPosition;
+    private int bottomPosition;
 
-    public Ladder(int ladderId, int ladderLength, int startPosition) {
-        this.ladderId = ladderId;
-        this.ladderLength = ladderLength;
-        this.startPosition = startPosition;
-        this.endPosition = startPosition + ladderLength;
+    public Ladder(int topPosition, int bottomPosition) {
+        this.topPosition = topPosition;
+        this.bottomPosition = bottomPosition;
     }
 
-    // Getters and Setters for all fields
-    public int getLadderId() {
-        return ladderId;
+    public int getTopPosition() {
+        return topPosition;
     }
 
-    public void setLadderId(int ladderId) {
-        this.ladderId = ladderId;
+    public int getBottomPosition() {
+        return bottomPosition;
     }
 
-    public int getLadderLength() {
-        return ladderLength;
+    public static Ladder generateRandomLadder(int ladderIndex, int gridSize) {
+        Random random = new Random();
+        int top = random.nextInt((gridSize * gridSize) - 1) + 1; // Random top position excluding the first cell
+        int bottom = random.nextInt(top); // Random bottom position below the top position
+        return new Ladder(top, bottom);
     }
-
-    public void setLadderLength(int ladderLength) {
-        this.ladderLength = ladderLength;
-    }
-
-    public int getStartPosition() {
-        return startPosition;
-    }
-
-    public void setStartPosition(int startPosition) {
-        this.startPosition = startPosition;
-    }
-
-    public int getEndPosition() {
-        return endPosition;
-    }
-
-    @Override
-    public String toString() {
-        return "Ladder{" +
-                "ladderId=" + ladderId +
-                ", ladderLength=" + ladderLength +
-                ", startPosition=" + startPosition +
-                ", endPosition=" + endPosition +
-                '}';
-    }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Ladder ladder = (Ladder) o;
-        return ladderId == ladder.ladderId &&
-                ladderLength == ladder.ladderLength &&
-                startPosition == ladder.startPosition &&
-                endPosition == ladder.endPosition;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(ladderId, ladderLength, startPosition, endPosition);
-    }
-
 }

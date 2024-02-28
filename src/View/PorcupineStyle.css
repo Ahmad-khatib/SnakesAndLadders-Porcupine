@@ -20,5 +20,22 @@
     -fx-background-radius: 10px;
 
 }
+#playerSettingsPage {
+    -fx-background-color: transparent;
+    -fx-alignment: center;
+}
+
+.PlayerSet {
+    -fx-background-image: url("Photos/background2.jpg");
+    -fx-background-size: cover;
+    -fx-alignment: center;
+}
+
+.PlayerSet VBox, .PlayerSet HBox,.PlayerSet Button {
+    -fx-alignment: center;
+}
+
+
+
 
 
