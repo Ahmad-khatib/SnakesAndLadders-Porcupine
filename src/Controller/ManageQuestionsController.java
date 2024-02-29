@@ -37,8 +37,14 @@ public class ManageQuestionsController implements QuestionObserver {
     private Button sortButton;
 
 
+    private SystemData systemData; // Reference to the SystemData instance
 
     private ObservableList<Question> questions = FXCollections.observableArrayList();
+
+    // Method to set the SystemData instance
+    public void setSystemData(SystemData systemData) {
+        this.systemData = systemData;
+    }
 
     @FXML
     private void initialize() {
@@ -54,6 +60,9 @@ public class ManageQuestionsController implements QuestionObserver {
 
         // Get all loaded questions sorted by ID
         List<Question> allQuestions = systemData.getAllQuestionsSortedById();
+
+        // Populate the questions list with the retrieved questions
+        questions.addAll(allQuestions);
 
         // Convert Question objects to strings with answers
         ObservableList<String> questionTexts = FXCollections.observableArrayList();
@@ -96,48 +105,22 @@ public class ManageQuestionsController implements QuestionObserver {
 
     @FXML
     private void addQuestion() {
-        System.out.println("add question button clicked!");
-
-
+        System.out.println("Edit question button clicked!");
     }
 
 
     @FXML
     private void editQuestion() {
 
-            System.out.println("Edit question button clicked!");
-        }
+        System.out.println("Edit question button clicked!");
+    }
 
     @FXML
     private void deleteQuestion() {
-        // Get the selected question from the list view
-        String selectedQuestionText = questionListView.getSelectionModel().getSelectedItem();
-        System.out.println("Selected question: " + selectedQuestionText);
-
-        // Print all question texts for comparison
-        for (Question question : questions) {
-            System.out.println("Question in list: " + question.getText());
-        }
-
-        // Find the corresponding Question object
-        for (Question question : questions) {
-            if (question.getText().equals(selectedQuestionText)) {
-                // Delete the question using the deleteQuestion method from the Question class
-                int questionId = question.getQuestionId();
-                question.deleteQuestion(questionId); // Pass the question ID
-
-                // Update the UI to reflect the deletion
-                questions.remove(question);
-                questionListView.getItems().remove(selectedQuestionText);
-
-                System.out.println("Question deleted: " + selectedQuestionText);
-                return; // Exit the loop after deleting the question
-            }
-        }
-
-        // If the selected question is not found
-        System.out.println("Selected question not found: " + selectedQuestionText);
+        System.out.println("Delete question button clicked!");
     }
+
+
 
 
 
@@ -192,3 +175,4 @@ public class ManageQuestionsController implements QuestionObserver {
         questionListView.getItems().remove(deletedQuestion.getText());
     }
 }
+

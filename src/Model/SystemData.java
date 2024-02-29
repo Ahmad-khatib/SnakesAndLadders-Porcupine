@@ -12,11 +12,21 @@ import java.util.List;
 
 public class SystemData {
     private static SystemData instance;
-    private final HashMap<Difficulty, ArrayList<Question>> questions;
+    private HashMap<Difficulty, ArrayList<Question>> questionMap;
+    public ArrayList<GameBoard> games;
+    public ArrayList<Player> players;
+
 
     private SystemData() {
-        questions = new HashMap<>();
+        questionMap = new HashMap<>();
+        // Initialize lists for each difficulty level
+        for (Difficulty difficulty : Difficulty.values()) {
+            questionMap.put(difficulty, new ArrayList<>());
+        }
+        games = new ArrayList<GameBoard>();
+        players = new ArrayList<Player>();
     }
+
 
     public static SystemData getInstance() {
         if (instance == null)
@@ -24,7 +34,35 @@ public class SystemData {
         return instance;
     }
 
-    private final int lastQuestionId = 0;
+    // Getter for questions
+    public HashMap<Difficulty, ArrayList<Question>> getQuestions() {
+        return questionMap;
+    }
+
+    // Setter for questions
+    public void setQuestions(HashMap<Difficulty, ArrayList<Question>> questions) {
+        this.questionMap = questions;
+    }
+
+    // Getter for games
+    public ArrayList<GameBoard> getGames() {
+        return games;
+    }
+
+    // Setter for games
+    public void setGames(ArrayList<GameBoard> games) {
+        this.games = games;
+    }
+
+    // Getter for players
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    // Setter for players
+    public void setPlayers(ArrayList<Player> players) { this.players = players; }
+
+
 
     public boolean loadQuestions() {
         JSONParser parser = new JSONParser();
@@ -54,7 +92,7 @@ public class SystemData {
                 // Create the question object and add it to the appropriate list based on difficulty
                 Question questionToAdd = new Question(text, answer1, answer2, answer3, answer4, correctAnswer, enumDifficulty);
                 questionToAdd.setQuestionId(questionId);
-                questions.computeIfAbsent(enumDifficulty, k -> new ArrayList<>()).add(questionToAdd);
+                questionMap.computeIfAbsent(enumDifficulty, k -> new ArrayList<>()).add(questionToAdd);
             }
             return true;
         } catch (Exception e) {
@@ -81,7 +119,7 @@ public class SystemData {
             JSONArray JSONQuestions = new JSONArray();
             JSONObject toWrite = new JSONObject();
 
-            for (ArrayList<Question> list : questions.values()) {
+            for (ArrayList<Question> list : questionMap.values()) {
                 if (list == null)
                     continue;
 
@@ -110,12 +148,10 @@ public class SystemData {
     }
 
 
-    public HashMap<Difficulty, ArrayList<Question>> getQuestions() {
-        return questions;
-    }
+
     public List<Question> getAllQuestions() {
         List<Question> allQuestions = new ArrayList<>();
-        for (ArrayList<Question> list : questions.values()) {
+        for (ArrayList<Question> list : questionMap.values()) {
             if (list != null) {
                 allQuestions.addAll(list);
             }
@@ -129,5 +165,12 @@ public class SystemData {
         allQuestions.sort(Comparator.comparingInt(Question::getQuestionId));
         return allQuestions;
     }
-
+    public void addQuestion(Question question) {
+        // Add the question to the list of questions
+        Difficulty difficulty = question.getLevel();
+        List<Question> questionList = questionMap.get(difficulty);
+        if (questionList != null) {
+            questionList.add(question);
+        }
+    }
 }
