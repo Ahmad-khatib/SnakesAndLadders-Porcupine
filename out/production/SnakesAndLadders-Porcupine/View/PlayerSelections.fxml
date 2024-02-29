@@ -6,15 +6,6 @@
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <StackPane prefHeight="333.0" prefWidth="742.0" styleClass="PlayerSel" stylesheets="@PorcupineStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PlayerSelectionsController">
    <children>
@@ -32,14 +23,24 @@
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
+                     <effect>
+                        <DropShadow blurType="GAUSSIAN" color="CHOCOLATE" height="0.0" radius="2.33" spread="0.8" width="11.32" />
+                     </effect>
                   </Text>
-                  <Button fx:id="backButton" onAction="#handleBackButtonClicked" prefHeight="55.0" prefWidth="136.0" style="-fx-background-color: transparent;" text="&lt;- BACK" textFill="#7c4747" underline="true">
+                  <Button fx:id="backButton" onAction="#handleBackButtonClicked" prefHeight="55.0" prefWidth="136.0" style="-fx-background-color: chocolate; -fx-background-radius: 30;" text="&lt;- BACK" textFill="WHITE">
                      <font>
                         <Font name="Jokerman" size="24.0" />
                      </font>
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
+                     <effect>
+                        <InnerShadow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </InnerShadow>
+                     </effect>
                   </Button>
                </children>
             </HBox>
@@ -52,14 +53,17 @@
                      <HBox.margin>
                         <Insets left="15.0" />
                      </HBox.margin>
-                  </Text>
-                  <ChoiceBox fx:id="gameLevelChoiceBox" prefWidth="150.0">
                      <effect>
-                        <InnerShadow blurType="GAUSSIAN" color="#b5531b" />
+                        <DropShadow color="CHOCOLATE" spread="0.85" />
                      </effect>
+                  </Text>
+                  <ChoiceBox fx:id="gameLevelChoiceBox" prefWidth="150.0" style="-fx-background-radius: 30; -fx-background-color: beige;">
                      <HBox.margin>
                         <Insets left="15.0" />
                      </HBox.margin>
+                     <effect>
+                        <InnerShadow blurType="GAUSSIAN" color="#b5531b" />
+                     </effect>
                   </ChoiceBox>
                </children>
                <VBox.margin>
@@ -75,8 +79,11 @@
                      <HBox.margin>
                         <Insets left="15.0" />
                      </HBox.margin>
+                     <effect>
+                        <DropShadow blurType="GAUSSIAN" color="CHOCOLATE" spread="0.8" />
+                     </effect>
                   </Text>
-                  <ChoiceBox fx:id="playersNumberChoiceBox" prefWidth="150.0">
+                  <ChoiceBox fx:id="playersNumberChoiceBox" prefWidth="150.0" style="-fx-background-radius: 30; -fx-background-color: beige;">
                      <effect>
                         <InnerShadow blurType="GAUSSIAN" color="#b5531b" />
                      </effect>
@@ -86,14 +93,21 @@
                   <Insets bottom="50.0" />
                </VBox.margin>
             </HBox>
-            <Button fx:id="nextButton" mnemonicParsing="false" onAction="#handleNextButtonClicked" style="-fx-background-color: transparent;" text="NEXT -&gt; " textFill="WHITE" underline="true">
-      
+            <Button fx:id="nextButton" mnemonicParsing="false" onAction="#handleNextButtonClicked" style="-fx-background-color: chocolate; -fx-background-radius: 30;" text="NEXT -&gt; " textFill="WHITE">
+
                         <font>
                   <Font name="Jokerman" size="18.0" />
                </font>
                <VBox.margin>
-                  <Insets />
+                  <Insets bottom="20.0" />
                </VBox.margin>
+               <effect>
+                  <InnerShadow>
+                     <input>
+                        <DropShadow />
+                     </input>
+                  </InnerShadow>
+               </effect>
             </Button>
          </children>
       </VBox>
