@@ -6,8 +6,8 @@ import java.util.Random;
 public class Snake {
     public enum SnakeColor {
         YELLOW,
-        GREEN,
         BLUE,
+        GREEN,
         RED
     }
 
@@ -142,14 +142,19 @@ public class Snake {
         player.movePlayerBackward(this);
     }
 
-    public static Snake generateRandomSnake(int snakeId, String selectedLevel, int gridSize) {
+    public static Snake generateRandomSnake(int snakeId, String selectedLevel, int gridSize,SnakeColor color) {
         Random random = new Random();
+        int validRange=0;
         int snakeLength = generateRandomLength(selectedLevel, random);
-        SnakeColor color = generateRandomColor(random);
+        SnakeColor snakeColor = color;
         //Effect effect = getEffectFromColor(color); // Set effect based on color
+        if (color == SnakeColor.RED) {
+            snakeLength = 0;
+            validRange = gridSize * gridSize;
+        } else {
+            validRange = gridSize * (gridSize - 2); // Exclude the first and last rows
+        }
 
-        // Calculate the valid range of cells for the head position
-        int validRange = gridSize * (gridSize - 2); // Exclude the first and last rows
         int headPosition = random.nextInt(validRange) + gridSize; // Add an offset of gridSize for the first row
 
         return new Snake(snakeId, snakeLength, color, headPosition);

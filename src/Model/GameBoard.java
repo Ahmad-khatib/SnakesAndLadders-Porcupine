@@ -15,15 +15,15 @@ public class GameBoard {
     public GameBoard(String level) {
         switch (level) {
             case "Easy":
-                size = 7; // Easy level, number of rows in the grid
+                size = 7; // Easy level, number of rows/cols in the grid
                 difficultyLevel = 1;
                 break;
             case "Medium":
-                size = 10; // Medium level, number of rows in the grid
+                size = 10; // Medium level, number of rows/cols in the grid
                 difficultyLevel = 2;
                 break;
             case "Hard":
-                size = 13; // Hard level, number of rows in the grid
+                size = 13; // Hard level, number of rows/cols in the grid
                 difficultyLevel = 3;
                 break;
             default:

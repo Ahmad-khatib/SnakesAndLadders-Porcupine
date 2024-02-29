@@ -22,6 +22,7 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.Clock;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Random;
@@ -108,17 +109,18 @@ public class GameBoardController extends GridPane {
                 int numberOfSnakes = determineNumberOfSnakes(selectedLevel);
                 int[] snakeCounts = getSnakeCounts(selectedLevel);
 
+
                 Snake.SnakeColor[] snakeColors = Snake.SnakeColor.values();
 
                 // Loop through each snake count for each color
-                for (int colorIndex = 0; colorIndex < snakeCounts.length; colorIndex++) {
+                for (int colorIndex = 0;colorIndex < snakeCounts.length; colorIndex++) {
                     Snake.SnakeColor color = snakeColors[colorIndex];
                     int snakeCount = snakeCounts[colorIndex];
                     int generatedSnakes = 0;
                     // Place the specified number of snakes for the current color
                     for (int j = 0; j < snakeCount && generatedSnakes < snakeCount; j++) {
                         // Generate a unique snake and check for valid positions
-                        Snake snake = generateUniqueSnake(colorIndex + 1, color, usedHeadPositions, usedTailPositions, gridSize);
+                        Snake snake = generateUniqueSnake(colorIndex , color, usedHeadPositions, usedTailPositions, gridSize,generatedSnakes,snakeCount,selectedLevel);
                         if (snake != null) {
                             int headRow = gridSize - 1 - snake.getHeadPosition() / gridSize;
                             int headCol = snake.getHeadPosition() % gridSize;
@@ -135,46 +137,46 @@ public class GameBoardController extends GridPane {
 
                             // Create snake image views and stack panes
                             ImageView snakeHeadImageView = createSnakeImageView(color, tileSize, snake.getSnakeEffect(), gameBoard.getCellHeight());
-                            ImageView snakeTailImageView = createSnakeImageView(color, tileSize, snake.getSnakeEffect(), gameBoard.getCellHeight());
+                          //  ImageView snakeTailImageView = createSnakeImageView(color, tileSize, snake.getSnakeEffect(), gameBoard.getCellHeight());
                             StackPane snakeHeadStackPane = new StackPane(snakeHeadImageView);
-                            StackPane snakeTailStackPane = new StackPane(snakeTailImageView);
+                            //StackPane snakeTailStackPane = new StackPane(snakeTailImageView);
                             snakeHeadStackPane.setAlignment(Pos.CENTER);
-                            snakeTailStackPane.setAlignment(Pos.BOTTOM_RIGHT);
+                           // snakeTailStackPane.setAlignment(Pos.BOTTOM_RIGHT);
 
                             // Set size constraints for snake head and tail stack panes
                             snakeHeadStackPane.setMaxSize(tileSize, tileSize);
                             snakeHeadStackPane.setPrefSize(tileSize, tileSize);
                             snakeHeadStackPane.setMinSize(tileSize, tileSize);
-                            snakeTailStackPane.setMaxSize(tileSize, tileSize);
-                            snakeTailStackPane.setPrefSize(tileSize, tileSize);
-                            snakeTailStackPane.setMinSize(tileSize, tileSize);
+                          //  snakeTailStackPane.setMaxSize(tileSize, tileSize);
+                           // snakeTailStackPane.setPrefSize(tileSize, tileSize);
+                          //  snakeTailStackPane.setMinSize(tileSize, tileSize);
 
                             // Add snake images to the grid pane
                             int finalHeadCol = headCol;
                             int finalTailCol = tailCol;
                             Platform.runLater(() -> {
                                 dynamicGridPane.add(snakeHeadStackPane, finalHeadCol, headRow);
-                                dynamicGridPane.add(snakeTailStackPane, finalTailCol, tailRow);
+                              //  dynamicGridPane.add(snakeTailStackPane, finalTailCol, tailRow);
                             });
 
                             // Calculate positions of snake head and tail within the cell
                             double headX, headY, tailX, tailY;
                             headX = (headCol + 0.5) * tileSize - snakeHeadImageView.getImage().getWidth() / 2;
                             headY = (headRow + 0.5) * tileSize - snakeHeadImageView.getImage().getHeight() / 2;
-                            tailX = (tailCol + 0.5) * tileSize - snakeTailImageView.getImage().getWidth() / 2;
-                            tailY = (tailRow + 0.5) * tileSize - snakeTailImageView.getImage().getHeight() / 2;
+                           // tailX = (tailCol + 0.5) * tileSize - snakeTailImageView.getImage().getWidth() / 2;
+                          //  tailY = (tailRow + 0.5) * tileSize - snakeTailImageView.getImage().getHeight() / 2;
 
                             // Mirror image if head is in the first left column
                             if (headCol == 0) {
                                 snakeHeadImageView.setScaleX(-1);
-                                snakeTailImageView.setScaleX(-1);
+                               // snakeTailImageView.setScaleX(-1);
                             }
 
                             // Set layout positions for snake head and tail
                             snakeHeadStackPane.setLayoutX(headX);
                             snakeHeadStackPane.setLayoutY(headY);
-                            snakeTailStackPane.setLayoutX(tailX);
-                            snakeTailStackPane.setLayoutY(tailY);
+                          //  snakeTailStackPane.setLayoutX(tailX);
+                          //  snakeTailStackPane.setLayoutY(tailY);
 
                             // Update used positions with new snake head and tail positions
                             usedHeadPositions.add(snake.getHeadPosition());
@@ -222,11 +224,9 @@ public class GameBoardController extends GridPane {
         return snakeImageView;
     }
 
-    private Snake generateUniqueSnake(int snakeIndex, Snake.SnakeColor color, Set<Integer> usedHeadPositions, Set<Integer> usedTailPositions, int gridSize) {
+    private Snake generateUniqueSnake(int snakeIndex, Snake.SnakeColor color, Set<Integer> usedHeadPositions, Set<Integer> usedTailPositions, int gridSize,int generatedSnakes, int snakeCount,String selectedLevel) {
         while (true) {
-            Snake snake = Snake.generateRandomSnake(snakeIndex, color.toString(), gridSize);
-
-            // Check the snake's color and adjust head position accordingly
+            Snake snake = Snake.generateRandomSnake(snakeIndex, selectedLevel, gridSize,color);// Check the snake's color and adjust head position accordingly
             int headPos = snake.getHeadPosition();
             int tailPos = snake.getTailPosition();
 
@@ -251,7 +251,7 @@ public class GameBoardController extends GridPane {
                     break;
                 case RED:
                     // Ensure the head is in the center of the board
-                    int centerPosition;
+                    int centerPosition=0;
                     switch (gridSize) {
                         case 7:
                             centerPosition = 24; // Center position for a 7x7 grid
@@ -264,9 +264,6 @@ public class GameBoardController extends GridPane {
                             break;
                         default:
                             return null; // Unsupported grid size
-                    }
-                    if (headPos != centerPosition) {
-                        continue; // Skip this snake and try again
                     }
                     break;
                 default:

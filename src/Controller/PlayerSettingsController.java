@@ -135,6 +135,7 @@ public class PlayerSettingsController {
                             iconBox.getChildren().forEach(childNode -> {
                                 if (childNode instanceof CheckBox) {
                                     ((CheckBox) childNode).setDisable(true);
+                                    System.out.print(childNode);
                                 }
                             });
                         }
