@@ -2,22 +2,22 @@ package Model;
 
 import java.util.List;
 import java.util.Objects;
+
 public class Player {
     private int playerId;
     private String playerName;
     private String playerColor;
     private int playerPosition;
-    private List<Player> playersList;
 
-    public Player ( int playerId, String playerName, String playerColor, int playerPosition ) {
+    public Player(int playerId, String playerName, String playerColor, int playerPosition) {
         this.playerId = playerId;
         this.playerName = playerName;
         this.playerColor = playerColor;
         this.playerPosition = playerPosition;
-
     }
 
-    // Getters and Setters for all fields
+    // Getters and Setters
+
     public int getPlayerId() {
         return playerId;
     }
@@ -49,106 +49,71 @@ public class Player {
     public void setPlayerPosition(int playerPosition) {
         this.playerPosition = playerPosition;
     }
-    public void setPlayersList(List<Player> playersList) {
-        this.playersList = playersList;
-    }
 
     @Override
-    public String toString () {
-        return "Player: {" + playerId + '\'' +
-                ", playerName" + playerName +
-                ", playerColor=" + playerColor +
+    public String toString() {
+        return "Player{" +
+                "playerId=" + playerId +
+                ", playerName='" + playerName + '\'' +
+                ", playerColor='" + playerColor + '\'' +
+                ", playerPosition=" + playerPosition +
                 '}';
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return playerId == player.playerId && Objects.equals(playerName, player.playerName) && Objects.equals(playerColor, player.playerColor) && Objects.equals(playerPosition, player.playerPosition);
+        return playerId == player.playerId &&
+                playerPosition == player.playerPosition &&
+                Objects.equals(playerName, player.playerName) &&
+                Objects.equals(playerColor, player.playerColor);
     }
+
+    @Override
     public int hashCode() {
         return Objects.hash(playerId, playerName, playerColor, playerPosition);
     }
-    // move player to a new position
+
+    // Move player to a new position
     public void movePlayerTo(int newPosition) {
-        // Checking that the new position is not negative
         if (newPosition >= 0) {
-            // Updating the player's position field
             this.playerPosition = newPosition;
         } else {
             throw new IllegalArgumentException("Invalid position");
         }
     }
 
-    public boolean isEndOfGame(int BoardSize, Difficulty difficulty) {
-        // Checking if the player has reached the end of the board
-        if (this.playerPosition >= BoardSize) {
-            // Getting the winning player based on the difficulty level
-            Player winningPlayer = getWinningPlayer(playersList, BoardSize, difficulty);
-            return winningPlayer != null; // The game is over if there is a player who has reached the end of the game
-        }
-        return false;
+    // Check if player has reached the end of the game
+    public boolean isEndOfGame(int boardSize, Difficulty difficulty) {
+        return playerPosition >= boardSize;
     }
 
-    public Player getWinningPlayer(List<Player> players, int winningPosition, Difficulty difficulty) {
-        for (Player player : players) {
-            if (player.getPlayerPosition() >= winningPosition) {
-                return player;
-            }
-        }
-        return null; // No player reached the end of the board
-    }
+    // Method to move the player backward because of a snake
+//    public void movePlayerBackward(Snake snake) {
+//        int newPosition = snake.getTailPosition();
+//        setPlayerPosition(newPosition);
+//    }
 
-    // move player backward because a snake
-    public void movePlayerBackward(Snake snake) {
-        int newPosition = 0;
-
-        switch (snake.getSnakeEffect()) {
-            case YELLOW:
-                newPosition = snake.getTailPosition();
-                break;
-            case GREEN:
-                newPosition = snake.getTailPosition();
-                break;
-            case BLUE:
-                newPosition = snake.getTailPosition();
-                break;
-            case RED:
-                newPosition = 1; // Place the player at the beginning of the game
-                break;
-            default:
-                throw new IllegalArgumentException("Unexpected snake effect: " + snake.getSnakeEffect());
-        }
-
-        setPlayerPosition(newPosition);
-    }
-
-    // move player forward because a ladder
+    // Method to move the player forward because of a ladder
     public void movePlayerForward(Ladder ladder) {
         if (playerPosition == ladder.getBottomPosition()) {
             playerPosition = ladder.getTopPosition();
         }
-
     }
 
-    // check if player is on a ladder
+    // Check if player is on a ladder
     public boolean isOnLadder(Ladder ladder) {
         return playerPosition == ladder.getBottomPosition();
     }
 
-    // Method to move the player forward because a dice
+    // Method to move the player forward by a certain number of steps
     public void movePlayerForward(int steps) {
-        // Checking that the new position is not negative
         if (steps >= 0) {
-            // Updating the player's position field
             this.playerPosition += steps;
         } else {
             throw new IllegalArgumentException("Invalid number of steps");
         }
     }
 }
-
-
-
-

@@ -13,7 +13,7 @@ import java.util.List;
 public class SystemData {
 
     private static SystemData instance;
-    private HashMap<Difficulty, ArrayList<Question>> questions;
+    private final HashMap<Difficulty, ArrayList<Question>> questions;
 
 
     private SystemData() {
@@ -26,7 +26,7 @@ public class SystemData {
         return instance;
     }
 
-    private int lastQuestionId = 0;
+    private final int lastQuestionId = 0;
 
 
     public boolean loadQuestions() {

@@ -1,13 +1,8 @@
 package Controller;
 
 import Model.GameBoard;
-import Model.Ladder;
 import Model.Snake;
 import Model.Tile;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -19,16 +14,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
-
-
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.scene.shape.Rectangle;
 
 
 public class GameBoardController extends GridPane {
@@ -41,23 +36,47 @@ public class GameBoardController extends GridPane {
     private ImageView diceImage2;
     @FXML
     private Text timerLabel;
-
     @FXML
     private Button rollButton;
 
     private final Random random = new Random();
     private double tileSize;
+    private GameBoard gameBoard;
+    private int gridSize;
+    private static int snakeIdCounter = 0;
 
-    public void initialize(String selectedLevel) throws FileNotFoundException {
-        GameBoard gameBoard = new GameBoard(selectedLevel);
-        Set<Integer> usedHeadPositions = new HashSet<>();
-        Set<Integer> usedTailPositions = new HashSet<>();
-        initializeBoardUI(gameBoard);
-        placeSnakes(selectedLevel, usedHeadPositions, usedTailPositions); // Pass the sets of used head and tail positions
+    public void initialize(String selectedLevel) {
+        gameBoard = new GameBoard(selectedLevel);
+        initializeBoardUI();
+        placeSnakes(selectedLevel);
         initializeTimer();
-        placeLadders(selectedLevel, usedHeadPositions, usedTailPositions); // Pass the sets of used head and tail positions
+        placeLadders(selectedLevel);
     }
 
+    private void initializeBoardUI() {
+        Tile[][] tiles = gameBoard.getTiles();
+        this.gridSize = gameBoard.getSize();
+
+        for (int i = 0; i < gameBoard.getSize(); i++) {
+            for (int j = 0; j < gameBoard.getSize(); j++) {
+                // Access the Rectangle object within each Tile
+                Rectangle tileRectangle = tiles[i][j].getTileRectangle();
+                // Set properties of the Rectangle object
+                tileRectangle.setFill(Color.WHITE);
+                tileRectangle.setStroke(Color.BLACK);
+                tileRectangle.setWidth(gameBoard.getPreferredTileSize());
+                tileRectangle.setHeight(gameBoard.getPreferredTileSize());
+                tileRectangle.setStrokeWidth(1);
+                tiles[i][j].setId("cell_" + i + "_" + j);
+                Text tileIdText = new Text(Integer.toString(tiles[i][j].getTileId()));
+                tileIdText.setFill(Color.BLACK);
+                tileIdText.setFont(Font.font(12));
+                StackPane.setAlignment(tileIdText, Pos.CENTER);
+                StackPane tileStackPane = new StackPane(tiles[i][j], tileIdText);
+                dynamicGridPane.add(tileStackPane, j, i);
+            }
+        }
+    }
 
     private void initializeTimer() {
         AtomicInteger timerSeconds = new AtomicInteger();
@@ -72,7 +91,6 @@ public class GameBoardController extends GridPane {
     @FXML
     void roll() {
         rollButton.setDisable(true);
-
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
@@ -91,402 +109,371 @@ public class GameBoardController extends GridPane {
                 return null;
             }
         };
-
         new Thread(task).start();
     }
 
+    private void placeSnakes(String selectedLevel) {
+        int gridSize = gameBoard.getSize();
+        tileSize = gameBoard.getPreferredTileSize();
 
-    private void placeSnakes(String selectedLevel, Set<Integer> usedHeadPositions, Set<Integer> usedTailPositions) {
-        Task<Void> task = new Task<Void>() {
-            @Override
-            protected Void call() {
-                GameBoard gameBoard = new GameBoard(selectedLevel);
-                int gridSize = gameBoard.getSize();
-                tileSize = calculateTileSize(gridSize); // Assign tileSize
+        Set<Integer> usedHeadPositions = new HashSet<>();
+        Set<Integer> usedTailPositions = new HashSet<>();
 
-                // Determine the number of snakes and their counts based on the selected level
-                int numberOfSnakes = determineNumberOfSnakes(selectedLevel);
-                int[] snakeCounts = getSnakeCounts(selectedLevel);
+        int[] snakeCounts = getSnakeCounts(selectedLevel);
 
-                Snake.SnakeColor[] snakeColors = Snake.SnakeColor.values();
-
-                // Loop through each snake count for each color
-                for (int colorIndex = 0; colorIndex < snakeCounts.length; colorIndex++) {
-                    Snake.SnakeColor color = snakeColors[colorIndex];
-                    int snakeCount = snakeCounts[colorIndex];
-                    int generatedSnakes = 0;
-                    // Place the specified number of snakes for the current color
-                    for (int j = 0; j < snakeCount && generatedSnakes < snakeCount; j++) {
-                        // Generate a unique snake and check for valid positions
-                        Snake snake = generateUniqueSnake(colorIndex + 1, color, usedHeadPositions, usedTailPositions, gridSize);
-                        if (snake != null) {
-                            int headRow = gridSize - 1 - snake.getHeadPosition() / gridSize;
-                            int headCol = snake.getHeadPosition() % gridSize;
-                            int tailRow = gridSize - 1 - snake.getTailPosition() / gridSize;
-                            int tailCol = snake.getTailPosition() % gridSize;
-
-                            // Ensure the snake is within the grid bounds
-                            if (headCol >= gridSize) {
-                                headCol = gridSize - 1;
-                            }
-                            if (tailCol >= gridSize) {
-                                tailCol = gridSize - 1;
-                            }
-
-                            // Create snake image views and stack panes
-                            ImageView snakeHeadImageView = createSnakeImageView(color, tileSize, snake.getSnakeEffect(), gameBoard.getCellHeight());
-                            ImageView snakeTailImageView = createSnakeImageView(color, tileSize, snake.getSnakeEffect(), gameBoard.getCellHeight());
-                            StackPane snakeHeadStackPane = new StackPane(snakeHeadImageView);
-                            StackPane snakeTailStackPane = new StackPane(snakeTailImageView);
-                            snakeHeadStackPane.setAlignment(Pos.CENTER);
-                            snakeTailStackPane.setAlignment(Pos.BOTTOM_RIGHT);
-
-                            // Set size constraints for snake head and tail stack panes
-                            snakeHeadStackPane.setMaxSize(tileSize, tileSize);
-                            snakeHeadStackPane.setPrefSize(tileSize, tileSize);
-                            snakeHeadStackPane.setMinSize(tileSize, tileSize);
-                            snakeTailStackPane.setMaxSize(tileSize, tileSize);
-                            snakeTailStackPane.setPrefSize(tileSize, tileSize);
-                            snakeTailStackPane.setMinSize(tileSize, tileSize);
-
-                            // Add snake images to the grid pane
-                            int finalHeadCol = headCol;
-                            int finalTailCol = tailCol;
-                            Platform.runLater(() -> {
-                                dynamicGridPane.add(snakeHeadStackPane, finalHeadCol, headRow);
-                                dynamicGridPane.add(snakeTailStackPane, finalTailCol, tailRow);
-                            });
-
-                            // Calculate positions of snake head and tail within the cell
-                            double headX, headY, tailX, tailY;
-                            headX = (headCol + 0.5) * tileSize - snakeHeadImageView.getImage().getWidth() / 2;
-                            headY = (headRow + 0.5) * tileSize - snakeHeadImageView.getImage().getHeight() / 2;
-                            tailX = (tailCol + 0.5) * tileSize - snakeTailImageView.getImage().getWidth() / 2;
-                            tailY = (tailRow + 0.5) * tileSize - snakeTailImageView.getImage().getHeight() / 2;
-
-                            // Mirror image if head is in the first left column
-                            if (headCol == 0) {
-                                snakeHeadImageView.setScaleX(-1);
-                                snakeTailImageView.setScaleX(-1);
-                            }
-
-                            // Set layout positions for snake head and tail
-                            snakeHeadStackPane.setLayoutX(headX);
-                            snakeHeadStackPane.setLayoutY(headY);
-                            snakeTailStackPane.setLayoutX(tailX);
-                            snakeTailStackPane.setLayoutY(tailY);
-
-                            // Update used positions with new snake head and tail positions
-                            usedHeadPositions.add(snake.getHeadPosition());
-                            usedTailPositions.add(snake.getTailPosition());
-
-                            // Increment snake index for the next iteration
-                            generatedSnakes++;
-                        }
-                    }
-                }
-                return null;
+        // Iterate over the snake counts for each color individually
+        for (int yellowCount = 0; yellowCount < snakeCounts[0]; yellowCount++) {
+            Snake yellowSnake = generateUniqueSnake(Snake.SnakeColor.YELLOW, usedHeadPositions, usedTailPositions, gridSize, selectedLevel);
+            if (yellowSnake != null) {
+                updateSnakeUI(yellowSnake, selectedLevel);
+                usedHeadPositions.add(yellowSnake.getHeadPosition());
+                usedTailPositions.add(yellowSnake.getTailPosition(selectedLevel));
             }
-        };
-        new Thread(task).start();
-    }
-
-    private ImageView createSnakeImageView(Snake.SnakeColor color, double tileSize, Snake.Effect effect, double cellHeight) {
-        // Calculate the scaled height based on the snake's effect and the cell height
-        double scaledHeight;
-        if (effect.equals("YELLOW")) {
-            scaledHeight = cellHeight * 2.0;
-        } else if (effect.equals("GREEN")) {
-            scaledHeight = cellHeight * 3.0;
-        } else if (effect.equals("BLUE")) {
-            scaledHeight = cellHeight * 4.0;
-        } else if (effect.equals("RED")) {
-            scaledHeight = cellHeight * 0.5;
-        } else {
-            // Handle default case if necessary
-            scaledHeight = 0.0; // Or any other default value
         }
 
+        for (int greenCount = 0; greenCount < snakeCounts[1]; greenCount++) {
+            Snake greenSnake = generateUniqueSnake(Snake.SnakeColor.GREEN, usedHeadPositions, usedTailPositions, gridSize, selectedLevel);
+            if (greenSnake != null) {
+                updateSnakeUI(greenSnake, selectedLevel);
+                usedHeadPositions.add(greenSnake.getHeadPosition());
+                usedTailPositions.add(greenSnake.getTailPosition(selectedLevel));
+            }
+        }
 
-        // Construct the image path based on the snake color
-        String colorName = color.toString().toLowerCase();
-        String imagePath = "/View/Photos/" + colorName + "Snake.png";
+        for (int blueCount = 0; blueCount < snakeCounts[2]; blueCount++) {
+            Snake blueSnake = generateUniqueSnake(Snake.SnakeColor.BLUE, usedHeadPositions, usedTailPositions, gridSize, selectedLevel);
+            if (blueSnake != null) {
+                updateSnakeUI(blueSnake, selectedLevel);
+                usedHeadPositions.add(blueSnake.getHeadPosition());
+                usedTailPositions.add(blueSnake.getTailPosition(selectedLevel));
+            }
+        }
 
-        // Load the image with the calculated dimensions
-        Image snakeImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)), tileSize, scaledHeight, true, true);
-
-        // Create the ImageView with the scaled image
-        ImageView snakeImageView = new ImageView(snakeImage);
-        snakeImageView.setFitWidth(tileSize); // Set the width to match the initial tile size
-        snakeImageView.setFitHeight(scaledHeight); // Set the height to match the adjusted scaled height
-        return snakeImageView;
+        for (int redCount = 0; redCount < snakeCounts[3]; redCount++) {
+            Snake redSnake = generateUniqueSnake(Snake.SnakeColor.RED, usedHeadPositions, usedTailPositions, gridSize, selectedLevel);
+            if (redSnake != null) {
+                updateSnakeUI(redSnake, selectedLevel);
+                usedHeadPositions.add(redSnake.getHeadPosition());
+                usedTailPositions.add(redSnake.getTailPosition(selectedLevel));
+            }
+        }
     }
 
-    private Snake generateUniqueSnake(int snakeIndex, Snake.SnakeColor color, Set<Integer> usedHeadPositions, Set<Integer> usedTailPositions, int gridSize) {
+
+    private int determineNumberOfSnakes(String selectedLevel) {
+        switch (selectedLevel) {
+            case "Easy":
+                return 4;
+            case "Medium":
+                return 6;
+            case "Hard":
+                return 8;
+            default:
+                throw new IllegalArgumentException("Invalid game level: " + selectedLevel);
+        }
+    }
+
+    private Snake generateUniqueSnake(Snake.SnakeColor color, Set<Integer> usedHeadPositions, Set<Integer> usedTailPositions, int gridSize, String selectedLevel) {
+        Random random = new Random();
         while (true) {
-            Snake snake = Snake.generateRandomSnake(snakeIndex, color.toString(), gridSize);
+            int headPosition = random.nextInt(gridSize * gridSize);
+            int tailPosition = random.nextInt(gridSize * gridSize);
+            int snakeId = generateUniqueSnakeId();
 
-            // Check the snake's color and adjust head position accordingly
-            int headPos = snake.getHeadPosition();
-            int tailPos = snake.getTailPosition();
-
+            // Check if the head position meets the color-specific criteria
             switch (color) {
+                case YELLOW:
+                    if (headPosition < gridSize) // Yellow snake head cannot be in the first row
+                        continue;
+                    break;
                 case GREEN:
-                    // Ensure the head is not in the first 3 rows
-                    if (headPos / gridSize >= gridSize - 3) {
-                        continue; // Skip this snake and try again
-                    }
+                    if (headPosition < gridSize * 2) // Green snake head cannot be in the first two rows
+                        continue;
                     break;
                 case BLUE:
-                    // Ensure the head is not in the first 4 rows
-                    if (headPos / gridSize >= gridSize - 4) {
-                        continue; // Skip this snake and try again
-                    }
-                    break;
-                case YELLOW:
-                    // Ensure the head is not in the first 2 rows
-                    if (headPos / gridSize >= gridSize - 2) {
-                        continue; // Skip this snake and try again
-                    }
+                    if (headPosition < gridSize * 3) // Blue snake head cannot be in the first three rows
+                        continue;
                     break;
                 case RED:
-                    // Ensure the head is in the center of the board
-                    int centerPosition;
-                    switch (gridSize) {
-                        case 7:
-                            centerPosition = 24; // Center position for a 7x7 grid
-                            break;
-                        case 10:
-                            centerPosition = 50; // Center position for a 10x10 grid
-                            break;
-                        case 13:
-                            centerPosition = 84; // Center position for a 13x13 grid
-                            break;
-                        default:
-                            return null; // Unsupported grid size
-                    }
-                    if (headPos != centerPosition) {
-                        continue; // Skip this snake and try again
-                    }
+                    if (headPosition % gridSize == 0 || headPosition % gridSize == gridSize - 1) // Red snake head cannot be in the first or last column
+                        continue;
                     break;
                 default:
-                    break; // No constraint for other snake colors
+                    break;
             }
 
-            // Check if the head and tail positions are unique and tail position doesn't exceed the grid pane
-            if (!usedHeadPositions.contains(headPos) && !usedTailPositions.contains(headPos) &&
-                    !usedHeadPositions.contains(tailPos) && !usedTailPositions.contains(tailPos) &&
-                    !(tailPos % gridSize == 0 && tailPos != headPos - 1)) {
+            Snake snake = new Snake(snakeId, color, headPosition);
+            if (!usedHeadPositions.contains(headPosition) &&
+                    !usedTailPositions.contains(tailPosition) &&
+                    headPosition != tailPosition &&
+                    isValidSnakePosition(snake, usedHeadPositions, usedTailPositions, gridSize, selectedLevel)) {
                 return snake;
             }
         }
     }
 
-    private int determineNumberOfSnakes(String selectedLevel) {
-        if (selectedLevel.equals("Easy")) {
-            return 4;
-        } else if (selectedLevel.equals("Medium")) {
-            return 6;
-        } else if (selectedLevel.equals("Hard")) {
-            return 8;
-        } else {
-            return 0; // Default case
-        }
+
+    private int generateUniqueSnakeId() {
+        return snakeIdCounter++;
     }
+
+    private boolean isValidSnakePosition(Snake snake, Set<Integer> usedHeadPositions, Set<Integer> usedTailPositions, int gridSize, String selectedLevel) {
+        if (usedHeadPositions.contains(snake.getHeadPosition()) ||
+                usedTailPositions.contains(snake.getHeadPosition()) ||
+                usedHeadPositions.contains(snake.getTailPosition(selectedLevel)) ||
+                usedTailPositions.contains(snake.getTailPosition(selectedLevel))) {
+            return false;
+        }
+
+        if (snake.getHeadPosition() >= gridSize * gridSize ||
+                snake.getTailPosition(selectedLevel) >= gridSize * gridSize) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private void updateSnakeUI(Snake snake, String selectedLevel) {
+        // Get the positions of the snake head and tail
+        int headRow = gridSize - 1 - snake.getHeadPosition() / gridSize;
+        int headCol = snake.getHeadPosition() % gridSize;
+//        int tailRow = gridSize - 1 - snake.getTailPosition(selectedLevel) / gridSize;
+//        int tailCol = snake.getTailPosition(selectedLevel) % gridSize;
+
+        // Calculate the height of the snake image based on the number of rows it occupies
+        double cellHeight = gameBoard.getPreferredTileSize();
+        double snakeHeight = 0;
+
+        // Determine the height of the snake image based on its color
+        switch (snake.getColor()) {
+            case YELLOW:
+                snakeHeight = 2 * cellHeight;
+                break;
+            case GREEN:
+                snakeHeight = 3 * cellHeight;
+                break;
+            case BLUE:
+                snakeHeight = 4 * cellHeight;
+                break;
+            case RED:
+                snakeHeight = cellHeight;
+                break;
+            default:
+                break;
+        }
+
+        // Create custom tiles for the snake head and tail
+        Tile headTile = new Tile();
+        //Tile tailTile = new Tile();
+
+        // Load the snake image based on the snake color
+        String imagePath = "/View/Photos/" + snake.getColor().toString().toLowerCase() + "Snake.png";
+        Image snakeImage = new Image(getClass().getResourceAsStream(imagePath));
+
+        // Create ImageView objects for the snake head and tail
+        ImageView snakeHeadImageView = new ImageView(snakeImage);
+        // ImageView snakeTailImageView = new ImageView(snakeImage);
+
+        // Set the scaled width and height for the snake images
+        snakeHeadImageView.setFitWidth(cellHeight);
+        snakeHeadImageView.setFitHeight(snakeHeight);
+//        snakeTailImageView.setFitWidth(cellHeight);
+//        snakeTailImageView.setFitHeight(snakeHeight);
+
+        // Add snake head and tail images to custom tiles
+        headTile.addSnakeHeadImage(snakeHeadImageView);
+        //tailTile.addSnakeTailImage(snakeTailImageView);
+
+        // Add custom tiles to the grid pane at the specified row and column indices
+        dynamicGridPane.add(headTile, headCol, headRow);
+        //dynamicGridPane.add(tailTile, tailCol, tailRow);
+
+        // Ensure the row spans properly to accommodate the snake height
+        GridPane.setRowSpan(headTile, (int) Math.ceil(snakeHeight / cellHeight));
+        //GridPane.setRowSpan(tailTile, (int) Math.ceil(snakeHeight / cellHeight));
+    }
+
 
 
     private int[] getSnakeCounts(String selectedLevel) {
-        if (selectedLevel.equals("Easy")) {
-            return new int[]{1, 1, 1, 1}; // 1 snake of each color
-        } else if (selectedLevel.equals("Medium")) {
-            return new int[]{1, 1, 2, 2}; // 2 red, 2 green, 1 blue, 1 yellow
-        } else if (selectedLevel.equals("Hard")) {
-            return new int[]{2, 2, 2, 2}; // 2 red, 2 green, 2 blue, 2 yellow
-        } else {
-            return new int[4]; // Default to an array of length 4 (all zeros)
+        switch (selectedLevel) {
+            case "Easy":
+                return new int[]{1, 1, 1, 1};
+            case "Medium":
+                return new int[]{2, 1, 1, 2}; // One snake for each color, except for yellow which has two
+            case "Hard":
+                return new int[]{2, 2, 2, 2};
+            default:
+                throw new IllegalArgumentException("Invalid game level: " + selectedLevel);
         }
     }
 
 
-
-
-    private void placeLadders(String selectedLevel, Set<Integer> usedHeadPositions, Set<Integer> usedTailPositions) {
-        Task<Void> task = new Task<Void>() {
-            @Override
-            protected Void call() {
-                GameBoard gameBoard = new GameBoard(selectedLevel);
-                int gridSize = gameBoard.getSize();
-                tileSize = calculateTileSize(gridSize); // Assign tileSize here
-
-                // Determine the number of ladders and their counts based on the selected level
-                int numberOfLadders = determineNumberOfLadders(selectedLevel);
-
-                Set<Integer> usedTopPositions = new HashSet<>();
-                Set<Integer> usedBottomPositions = new HashSet<>();
-                Set<Integer> usedColumns = new HashSet<>(); // Track used columns
-
-                int ladderIndex = 0; // Initialize ladder index
-
-                // Loop to place ladders
-                for (int i = 0; i < numberOfLadders; i++) {
-                    // Generate a unique ladder and check for valid positions
-                    Ladder ladder = generateUniqueLadder(ladderIndex + 1, usedTopPositions, usedBottomPositions, usedHeadPositions, usedTailPositions, gridSize, usedColumns);
-                    // Add ladder to the UI
-                    addLadderToUI(ladder, gameBoard);
-                    // Update used positions with new ladder top and bottom positions
-                    usedTopPositions.add(ladder.getTopPosition());
-                    usedBottomPositions.add(ladder.getBottomPosition());
-                    // Increment ladder index for the next iteration
-                    ladderIndex++;
-                }
-                return null;
-            }
-        };
-        new Thread(task).start();
-    }
-
-    private void addLadderToUI(Ladder ladder, GameBoard gameBoard) {
-        // Get positions
-        int topPosition = ladder.getTopPosition();
-        int bottomPosition = ladder.getBottomPosition();
+    private void placeLadders(String selectedLevel) {
         int gridSize = gameBoard.getSize();
-        int topRow = gridSize - 1 - topPosition / gridSize;
-        int topCol = topPosition % gridSize;
-        int bottomRow = gridSize - 1 - bottomPosition / gridSize;
-        int bottomCol = bottomPosition % gridSize;
+        tileSize = gameBoard.getPreferredTileSize();
 
-        // Create ladder image view and stack pane
-        ImageView ladderImageView = createLadderImageView(tileSize, gameBoard.getCellHeight());
-        StackPane ladderStackPane = new StackPane(ladderImageView);
-        //ladderStackPane.setAlignment(Pos.CENTER);
-        ladderStackPane.setAlignment(Pos.TOP_LEFT);
+        int[] ladderCounts = getLadderCounts(selectedLevel);
 
-        // Set size constraints for ladder stack pane
-        ladderStackPane.setMaxSize(tileSize, tileSize * 2);
-        ladderStackPane.setPrefSize(tileSize, tileSize * 2);
-        ladderStackPane.setMinSize(tileSize, tileSize * 2);
+        // Initialize sets to track used ladder positions
+        Set<Integer> usedTopPositions = new HashSet<>();
+        Set<Integer> usedBottomPositions = new HashSet<>();
 
-        // Add ladder image to the grid pane
-        Platform.runLater(() -> dynamicGridPane.add(ladderStackPane, topCol, topRow));
-
-        // Calculate positions of ladder within the cell
-        double ladderX = topCol * tileSize + (tileSize - ladderImageView.getImage().getWidth()) / 2;
-        double ladderY = topRow * tileSize + tileSize - ladderImageView.getImage().getHeight(); // Adjusted for ladder height
-
-        // Set layout position for ladder
-        ladderStackPane.setLayoutX(ladderX);
-        ladderStackPane.setLayoutY(ladderY);
+        // Iterate over ladder counts for each level
+        for (int i = 0; i < ladderCounts.length; i++) {
+            // Generate ladders for each ladder count
+            for (int j = 0; j < ladderCounts[i]; j++) {
+                int ladderTop = generateUniqueLadderTopPosition(usedTopPositions, gridSize, i);
+                int ladderBottom = generateUniqueLadderBottomPosition(usedBottomPositions, ladderTop, gridSize, i);
+                updateLadderUI(ladderTop, ladderBottom);
+                usedTopPositions.add(ladderTop);
+                usedBottomPositions.add(ladderBottom);
+            }
+        }
     }
 
+    private int[] getLadderCounts(String selectedLevel) {
+        switch (selectedLevel) {
+            case "Easy":
+                return new int[]{1,1,1,1,0,0,0,0}; // Easy level has 4 ladders
+            case "Medium":
+                return new int[]{1,1,1,1,1,1,0,0}; // Medium level has 6 ladders
+            case "Hard":
+                return new int[]{1,1,1,1,1,1,1,1}; // Hard level has 8 ladders
+            default:
+                throw new IllegalArgumentException("Invalid game level: " + selectedLevel);
+        }
+    }
 
-    private ImageView createLadderImageView(double tileSize, double cellHeight) {
-        // Construct the image path for ladder
-        String imagePath = "/View/Photos/ladder1.png";
+    private int generateUniqueLadderTopPosition(Set<Integer> usedTopPositions, int gridSize, int ladderIndex) {
+        Random random = new Random();
+        int ladderTop;
+        do {
+            ladderTop = random.nextInt(gridSize * gridSize);
+        } while (usedTopPositions.contains(ladderTop) || isInvalidLadderTopPosition(ladderTop, ladderIndex, gridSize));
+        return ladderTop;
+    }
 
-        // Load the image with the calculated dimensions
-        Image ladderImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)), tileSize, cellHeight*2 , true, true);
+    private boolean isInvalidLadderTopPosition(int ladderTop, int ladderIndex, int gridSize) {
+        // Implement specific rules for ladder top position based on ladder index and game level
+        switch (ladderIndex) {
+            case 0:
+                // Additional rules for the first ladder type (if any)
+                break;
+            case 1:
+                // Additional rules for the second ladder type (if any)
+                break;
+            case 2:
+                // Additional rules for the third ladder type (if any)
+                break;
+            default:
+                break;
+        }
+        return false;
+    }
 
-        // Create the ImageView with the scaled image
+    private int generateUniqueLadderBottomPosition(Set<Integer> usedBottomPositions, int ladderTop, int gridSize, int ladderIndex) {
+        Random random = new Random();
+        int ladderBottom;
+        do {
+            int ladderHeight = calculateLadderHeight(ladderIndex);
+            ladderBottom = ladderTop - ladderHeight;
+        } while (ladderBottom < 0 || usedBottomPositions.contains(ladderBottom) || isInvalidLadderBottomPosition(ladderBottom, ladderIndex, gridSize));
+        return ladderBottom;
+    }
+
+    private int calculateLadderHeight(int ladderIndex) {
+        // Calculate ladder height based on ladder index
+        // Adjust the height as needed for each ladder type
+        switch (ladderIndex) {
+            case 0:
+                return 2; // Example: First ladder type has a height of 2 rows
+            case 1:
+                return 3; // Example: Second ladder type has a height of 3 rows
+            case 2:
+                return 4; // Example: Third ladder type has a height of 4 rows
+            case 3:
+                return 5;
+            case 4:
+                return 6;
+            case 5:
+                return 7;
+            case 6:
+                return 8;
+            default:
+                return 0;
+        }
+    }
+
+    private boolean isInvalidLadderBottomPosition(int ladderBottom, int ladderIndex, int gridSize) {
+        // Implement specific rules for ladder bottom position based on ladder index and game level
+        switch (ladderIndex) {
+            case 0:
+                // Additional rules for the first ladder type (if any)
+                break;
+            case 1:
+                // Additional rules for the second ladder type (if any)
+                break;
+            case 2:
+                // Additional rules for the third ladder type (if any)
+                break;
+            case 3:
+                // Additional rules for the third ladder type (if any)
+                break;
+            case 4:
+                // Additional rules for the third ladder type (if any)
+                break;
+            case 5:
+                // Additional rules for the third ladder type (if any)
+                break;
+            case 6:
+                // Additional rules for the third ladder type (if any)
+                break;
+            case 7:
+                // Additional rules for the third ladder type (if any)
+                break;
+            default:
+                break;
+        }
+        return false;
+    }
+
+    private void updateLadderUI(int ladderTop, int ladderBottom) {
+        int gridSize = gameBoard.getSize();
+        double cellHeight = gameBoard.getPreferredTileSize();
+
+        // Calculate grid row and column indices for ladder top and bottom
+        int topRow = gridSize - 1 - ladderTop / gridSize;
+        int topCol = ladderTop % gridSize;
+        int bottomRow = gridSize - 1 - ladderBottom / gridSize;
+        int bottomCol = ladderBottom % gridSize;
+
+        // Calculate ladder height based on the difference between top and bottom positions
+        double ladderHeight = Math.abs(bottomRow - topRow + 1) * cellHeight;
+
+        // Load ladder image
+        String imagePath = "/View/Photos/ladder1.png"; // Assuming ladder.png is in the specified path
+        Image ladderImage = new Image(getClass().getResourceAsStream(imagePath));
+
+        // Create ImageView for ladder
         ImageView ladderImageView = new ImageView(ladderImage);
-        ladderImageView.setFitWidth(tileSize); // Set the width to match the initial tile size
-        ladderImageView.setFitHeight(cellHeight *1.5); // Set the height to match the adjusted cell height
-        return ladderImageView;
-    }
 
-    private Ladder generateUniqueLadder(int ladderIndex, Set<Integer> usedTopPositions, Set<Integer> usedBottomPositions, Set<Integer> usedHeadPositions, Set<Integer> usedTailPositions, int gridSize, Set<Integer> usedColumns) {
-        while (true) {
-            Ladder ladder = Ladder.generateRandomLadder(ladderIndex, gridSize);
+        // Set width and height of ladder image
+        ladderImageView.setFitWidth(cellHeight);
+        ladderImageView.setFitHeight(ladderHeight);
 
-            // Check if the ladder's end position coincides with the start position of another ladder
-            if (usedTopPositions.contains(ladder.getBottomPosition())) {
-                continue;
-            }
+        // Add ladder image to custom tile
+        Tile ladderTile = new Tile();
+        ladderTile.addLadderImage(ladderImageView);
 
-            // Check if the ladder's end position coincides with the head position of a snake
-            if (usedHeadPositions.contains(ladder.getBottomPosition())) {
-                continue;
-            }
+        // Add custom tile to grid pane at ladder top position
+        dynamicGridPane.add(ladderTile, topCol, topRow);
 
-            // Check if the ladder's start position coincides with the end position of a snake
-            if (usedTailPositions.contains(ladder.getTopPosition())) {
-                continue;
-            }
-
-            // Check if the ladder's start position coincides with the head position of a snake
-            if (usedHeadPositions.contains(ladder.getTopPosition())) {
-                continue;
-            }
-
-            // Check if the ladder's start position coincides with the end position of another ladder
-            if (usedBottomPositions.contains(ladder.getTopPosition())) {
-                continue;
-            }
-
-            // Check if the ladder's column is already used
-            int ladderColumn = ladder.getTopPosition() % gridSize;
-            if (usedColumns.contains(ladderColumn)) {
-                continue;
-            }
-
-            // Check if the ladder's top position is not in the same cell as the bottom position of another ladder
-            if (usedBottomPositions.contains(ladder.getTopPosition())) {
-                continue;
-            }
-
-            // Check if the ladder's top and bottom positions are not in the last row of the grid
-            int bottomRow = gridSize - 1 - ladder.getBottomPosition() / gridSize;
-            if (bottomRow == gridSize - 1) {
-                continue; // Bottom of the ladder cannot be in the last row
-            }
-
-            // If none of the conditions are met, return the ladder
-            return ladder;
-        }
-    }
-
-    private int determineNumberOfLadders(String selectedLevel) {
-        if (selectedLevel.equals("Easy")) {
-            return 4;
-        } else if (selectedLevel.equals("Medium")) {
-            return 6;
-        } else if (selectedLevel.equals("Hard")) {
-            return 8;
-        } else {
-            return 0; // Default case
-        }
+        // Ensure ladder spans multiple rows
+        GridPane.setRowSpan(ladderTile, (int) Math.ceil(ladderHeight / cellHeight));
     }
 
 
-    private double calculateTileSize(int gridSize) {
-        double gridWidth = dynamicGridPane.getWidth();
-
-        int cols = dynamicGridPane.getColumnConstraints().size(); // Get the number of columns
-        double cellSpacing = (gridWidth - (gridSize * tileSize)) / (gridSize - 1); // Calculate the space between cells
-
-        // Adjust the tile size based on the number of rows and columns and the spacing between them
-        double adjustedTileSize = (gridWidth - (cellSpacing * (cols - 1))) / cols;
-        tileSize = Math.min(adjustedTileSize, gridWidth / gridSize); // Ensure that tileSize fits within the grid width
-
-        return tileSize;
-    }
 
 
-    private void initializeBoardUI(GameBoard gameBoard)  {
-        Tile[][] tiles = gameBoard.getTiles();
-        for (int i = 0; i < gameBoard.getSize(); i++) {
-            for (int j = 0; j < gameBoard.getSize(); j++) {
-                tiles[i][j].setFill(Color.WHITE);
-                tiles[i][j].setStroke(Color.BLACK);
-                tiles[i][j].setStrokeWidth(1);
-                // Assign unique IDs to each cell based on row and column indices
-                tiles[i][j].setId("cell_" + i + "_" + j);
-                Text tileIdText = new Text(Integer.toString(tiles[i][j].getTileId()));
-                tileIdText.setFill(Color.BLACK);
-                tileIdText.setFont(Font.font(12));
-                StackPane.setAlignment(tileIdText, Pos.CENTER);
-                StackPane tileStackPane = new StackPane(tiles[i][j], tileIdText);
-                dynamicGridPane.add(tileStackPane, j, i);
-            }
-        }
-    }
 }
