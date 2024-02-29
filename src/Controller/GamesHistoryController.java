@@ -1,9 +1,6 @@
 package Controller;
 
-import Model.SystemData;
 import Model.Player;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -67,10 +64,7 @@ public class GamesHistoryController {
     }
 
     private void setHistoryTable() {
-        Players = SystemData.getInstance().getPlayers();
-        ObservableList<Player> qs = FXCollections.observableArrayList(Players);
-        historyTable.setItems(qs);
-        historyTable.refresh();
+
     }
     @FXML
     private void goBack() {

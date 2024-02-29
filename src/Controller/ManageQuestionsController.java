@@ -14,7 +14,6 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Comparator;
 import java.util.List;
 
 public class ManageQuestionsController implements QuestionObserver {
@@ -36,15 +35,12 @@ public class ManageQuestionsController implements QuestionObserver {
     @FXML
     private Button sortButton;
 
-
-
     private ObservableList<Question> questions = FXCollections.observableArrayList();
 
     @FXML
     private void initialize() {
         System.out.println("ManageQuestionsController initialized.");
 
-        // Load questions from the JSON file using SystemData
         SystemData systemData = SystemData.getInstance();
         boolean success = systemData.loadQuestions();
         if (!success) {
@@ -52,31 +48,32 @@ public class ManageQuestionsController implements QuestionObserver {
             return;
         }
 
-        // Get all loaded questions sorted by ID
-        List<Question> allQuestions = systemData.getAllQuestionsSortedById();
-
-        // Convert Question objects to strings with answers
+        List<Question> allQuestions = systemData.getAllQuestionsSortedById(); // Sort by ID
         ObservableList<String> questionTexts = FXCollections.observableArrayList();
         for (Question question : allQuestions) {
-            StringBuilder questionWithAnswers = new StringBuilder();
-            questionWithAnswers.append(question.getText()).append("\n");
-            questionWithAnswers.append("Answers:\n");
-            questionWithAnswers.append("1. ").append(question.getAnswer1()).append("\n");
-            questionWithAnswers.append("2. ").append(question.getAnswer2()).append("\n");
-            questionWithAnswers.append("3. ").append(question.getAnswer3()).append("\n");
-            questionWithAnswers.append("4. ").append(question.getAnswer4()).append("\n");
-            questionTexts.add(questionWithAnswers.toString());
+            questionTexts.add(formatQuestionText(question));
         }
 
         questionListView.setItems(questionTexts);
         System.out.println("Initialized with " + allQuestions.size() + " questions.");
 
-        // Register this controller as an observer of questions
         for (Question question : allQuestions) {
             question.registerObserver(this);
         }
     }
 
+    private String formatQuestionText(Question question) {
+        StringBuilder questionWithAnswers = new StringBuilder();
+        questionWithAnswers.append(question.getText()).append("\n");
+        questionWithAnswers.append("Answers:\n");
+        questionWithAnswers.append("1. ").append(question.getAnswer1()).append("\n");
+        questionWithAnswers.append("2. ").append(question.getAnswer2()).append("\n");
+        questionWithAnswers.append("3. ").append(question.getAnswer3()).append("\n");
+        questionWithAnswers.append("4. ").append(question.getAnswer4()).append("\n");
+        questionWithAnswers.append("Correct Answer: ").append(question.getCorrectAnswer()).append("\n"); // Add correct answer information
+        questionWithAnswers.append("Level: ").append(question.getLevel()).append("\n"); // Add level information
+        return questionWithAnswers.toString();
+    }
 
     @FXML
     private void goBack() {
@@ -97,98 +94,68 @@ public class ManageQuestionsController implements QuestionObserver {
     @FXML
     private void addQuestion() {
         System.out.println("add question button clicked!");
-
-
     }
-
 
     @FXML
     private void editQuestion() {
-
-            System.out.println("Edit question button clicked!");
-        }
+        System.out.println("Edit question button clicked!");
+    }
 
     @FXML
     private void deleteQuestion() {
-        // Get the selected question from the list view
         String selectedQuestionText = questionListView.getSelectionModel().getSelectedItem();
         System.out.println("Selected question: " + selectedQuestionText);
 
-        // Print all question texts for comparison
-        for (Question question : questions) {
-            System.out.println("Question in list: " + question.getText());
-        }
+        SystemData systemData = SystemData.getInstance();
+        List<Question> allQuestions = systemData.getAllQuestions();
 
-        // Find the corresponding Question object
-        for (Question question : questions) {
-            if (question.getText().equals(selectedQuestionText)) {
-                // Delete the question using the deleteQuestion method from the Question class
-                int questionId = question.getQuestionId();
-                question.deleteQuestion(questionId); // Pass the question ID
-
-                // Update the UI to reflect the deletion
-                questions.remove(question);
+        for (Question question : allQuestions) {
+            if (formatQuestionText(question).equals(selectedQuestionText)) {
+                // Remove the question from the data model
+                systemData.deleteQuestion(question);
+                // Remove the question from the UI
                 questionListView.getItems().remove(selectedQuestionText);
-
+                // Print confirmation
                 System.out.println("Question deleted: " + selectedQuestionText);
-                return; // Exit the loop after deleting the question
+                return;
             }
         }
 
-        // If the selected question is not found
         System.out.println("Selected question not found: " + selectedQuestionText);
     }
-
-
-
 
     @FXML
     private void sortByLevel() {
         SystemData systemData = SystemData.getInstance();
         List<Question> allQuestions = systemData.getAllQuestions();
+        allQuestions.sort((q1, q2) -> Integer.compare(q2.getLevel().ordinal(), q1.getLevel().ordinal()));
 
-        // Sort questions by difficulty level
-        allQuestions.sort(Comparator.comparing(Question::getLevel));
-
-        // Update UI with sorted questions
         ObservableList<String> questionTexts = FXCollections.observableArrayList();
         for (Question question : allQuestions) {
-            StringBuilder questionWithAnswers = new StringBuilder();
-            questionWithAnswers.append(question.getText()).append("\n");
-            questionWithAnswers.append("Answers:\n");
-            questionWithAnswers.append("1. ").append(question.getAnswer1()).append("\n");
-            questionWithAnswers.append("2. ").append(question.getAnswer2()).append("\n");
-            questionWithAnswers.append("3. ").append(question.getAnswer3()).append("\n");
-            questionWithAnswers.append("4. ").append(question.getAnswer4()).append("\n");
-            questionTexts.add(questionWithAnswers.toString());
+            questionTexts.add(formatQuestionText(question));
         }
 
         questionListView.setItems(questionTexts);
     }
 
-
-    // Observer methods
     @Override
     public void onQuestionAdded(Question question) {
-        // Add the new question to the list and update the UI
         questions.add(question);
-        questionListView.getItems().add(question.getText());
+        questionListView.getItems().add(formatQuestionText(question));
     }
 
     @Override
     public void onQuestionEdited(Question oldQuestion, Question newQuestion) {
-        // Find the old question in the list, replace it with the new question, and update the UI
         int index = questions.indexOf(oldQuestion);
         if (index != -1) {
             questions.set(index, newQuestion);
-            questionListView.getItems().set(index, newQuestion.getText());
+            questionListView.getItems().set(index, formatQuestionText(newQuestion));
         }
     }
 
     @Override
     public void onQuestionDeleted(Question deletedQuestion) {
-        // Remove the deleted question from the list and update the UI
         questions.remove(deletedQuestion);
-        questionListView.getItems().remove(deletedQuestion.getText());
+        questionListView.getItems().remove(formatQuestionText(deletedQuestion));
     }
 }

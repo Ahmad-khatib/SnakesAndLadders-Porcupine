@@ -1,16 +1,17 @@
 package Model;
 
+import Controller.ManageQuestionsController;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import java.util.Comparator;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
-public class SystemData {
+public class SystemData implements QuestionObserver {
     private static SystemData instance;
     private final HashMap<Difficulty, ArrayList<Question>> questions;
 
@@ -23,8 +24,6 @@ public class SystemData {
             instance = new SystemData();
         return instance;
     }
-
-    private final int lastQuestionId = 0;
 
     public boolean loadQuestions() {
         JSONParser parser = new JSONParser();
@@ -45,15 +44,9 @@ public class SystemData {
                 String correctAnswer = (String) q.get("correct_ans");
                 int difficulty = Integer.parseInt(q.get("difficulty").toString());
 
-                // Convert difficulty int to Difficulty enum
                 Difficulty enumDifficulty = getQuestionDifficulty(difficulty);
 
-                // Generate unique question ID
-                int questionId = Question.generateUniqueId();
-
-                // Create the question object and add it to the appropriate list based on difficulty
                 Question questionToAdd = new Question(text, answer1, answer2, answer3, answer4, correctAnswer, enumDifficulty);
-                questionToAdd.setQuestionId(questionId);
                 questions.computeIfAbsent(enumDifficulty, k -> new ArrayList<>()).add(questionToAdd);
             }
             return true;
@@ -94,13 +87,14 @@ public class SystemData {
                     jo1.put("answer3", q.getAnswer3());
                     jo1.put("answer4", q.getAnswer4());
                     jo1.put("correct_ans", q.getCorrectAnswer());
-                    jo1.put("difficulty", q.getLevel()); // Save difficulty level
+                    jo1.put("difficulty", q.getLevel().ordinal() + 1); // Save difficulty level
                     JSONQuestions.add(jo1);
                 }
             }
             toWrite.put("questions", JSONQuestions);
 
-            FileWriter file = new FileWriter("Model/questions_scheme.json");
+            // Specify the full path to the JSON file
+            FileWriter file = new FileWriter("questions_scheme.json");
             file.write(toWrite.toJSONString());
             file.flush();
             System.out.println("JSON Question was saved successfully");
@@ -113,6 +107,7 @@ public class SystemData {
     public HashMap<Difficulty, ArrayList<Question>> getQuestions() {
         return questions;
     }
+
     public List<Question> getAllQuestions() {
         List<Question> allQuestions = new ArrayList<>();
         for (ArrayList<Question> list : questions.values()) {
@@ -123,11 +118,42 @@ public class SystemData {
         return allQuestions;
     }
 
-
     public List<Question> getAllQuestionsSortedById() {
         List<Question> allQuestions = getAllQuestions();
         allQuestions.sort(Comparator.comparingInt(Question::getQuestionId));
         return allQuestions;
     }
 
+    public void deleteQuestion(Question question) {
+        for (ArrayList<Question> list : questions.values()) {
+            if (list != null) {
+                list.removeIf(q -> q.equals(question));
+            }
+        }
+    }
+
+    @Override
+    public void onQuestionAdded(Question question) {
+
+    }
+
+    @Override
+    public void onQuestionEdited(Question oldQuestion, Question newQuestion) {
+
+    }
+
+    @Override
+    public void onQuestionDeleted(Question deletedQuestion) {
+        // Implement logic to handle deletion of questions
+        // Remove the deleted question from the HashMap and save the changes to the JSON file
+        for (ArrayList<Question> list : questions.values()) {
+            if (list != null) {
+                list.removeIf(q -> q.equals(deletedQuestion));
+            }
+        }
+        saveQuestions();
+    }
+
+    public void registerObserver(ManageQuestionsController manageQuestionsController) {
+    }
 }
