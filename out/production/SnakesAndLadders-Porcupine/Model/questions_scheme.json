@@ -1,6 +1,6 @@
 {
   "questions": [{
-    "question": "What is the primary goal of requirements in software engineering?",
+    "question": " 1. What is the primary goal of requirements in software engineering?",
     "answers": [
       "To finalize the project budget",
       "To identify and document software requirements",
@@ -10,7 +10,7 @@
     "correct_ans": "2",
     "difficulty": "1"
   }, {
-    "question": "What is the primary purpose of using prototypes in requirements engineering?",
+    "question": " 2. What is the primary purpose of using prototypes in requirements engineering?",
     "answers": [
       "To demonstrate the final software product to stakeholders",
       "To replace the final software product",
@@ -20,7 +20,7 @@
     "correct_ans": "3",
     "difficulty": "3"
   },  {
-    "question": "Why is requirements traceability important in software development?",
+    "question": "3. Why is requirements traceability important in software development?",
     "answers": [
       "It enables tracking of requirements throughout the development process",
       "It determines the project's return on investment",
@@ -30,7 +30,7 @@
     "correct_ans": "1",
     "difficulty": "2"
   },  {
-    "question": "In Agile development, what is the primary responsibility of a Scrum Master?",
+    "question": "4. In Agile development, what is the primary responsibility of a Scrum Master?",
     "answers": [
       "Writing code and developing features",
       "Managing the project budget",
@@ -40,7 +40,7 @@
     "correct_ans": "3",
     "difficulty": "2"
   },  {
-    "question": "What is the purpose of a Burndown Chart in Agile development?",
+    "question": "5. What is the purpose of a Burndown Chart in Agile development?",
     "answers": [
       "To measure the project's return on investment",
       "To track the team's progress in completing tasks over time",
@@ -50,7 +50,7 @@
     "correct_ans": "2",
     "difficulty": "2"
   },  {
-    "question": "What is the purpose of using architectural patterns in software development?",
+    "question": "6. What is the purpose of using architectural patterns in software development?",
     "answers": [
       "To document the project budget",
       "To estimate the return on investment",
@@ -60,7 +60,7 @@
     "correct_ans": "3",
     "difficulty": "1"
   },  {
-    "question": "what does software architecture include?",
+    "question": "7. what does software architecture include?",
     "answers": [
       "Only the structural aspects of a system",
       "Only the behavioral aspects of a system",
@@ -70,7 +70,7 @@
     "correct_ans": "4",
     "difficulty": "2"
   },  {
-    "question": "Why is scalability an important consideration in software architecture?",
+    "question": "8.Why is scalability an important consideration in software architecture?",
     "answers": [
       "It determines the project timeline",
       "It ensures that the software has a visually appealing design",
@@ -80,7 +80,7 @@
     "correct_ans": "4",
     "difficulty": "3"
   },  {
-    "question": "What is the primary purpose of program testing?",
+    "question": "9.What is the primary purpose of program testing?",
     "answers": [
       "To execute a program with real-world data",
       "To identify as many requirements as possible",
@@ -90,7 +90,7 @@
     "correct_ans": "3",
     "difficulty": "2"
   },  {
-    "question": "What is the main distinction between validation testing and defect testing?",
+    "question": "10.What is the main distinction between validation testing and defect testing?",
     "answers": [
       "The use of artificial data in validation testing",
       "The intentional obscurity of test cases in defect testing",
@@ -100,7 +100,7 @@
     "correct_ans": "4",
     "difficulty": "3"
   },  {
-    "question": "What is the primary focus of software maintenance?",
+    "question": "11.What is the primary focus of software maintenance?",
     "answers": [
       "Modifying a program after it has been put into use",
       "Developing new software from scratch",
@@ -110,7 +110,7 @@
     "correct_ans": "1",
     "difficulty": "2"
   },  {
-    "question": "In adaptive and perfective maintenance, what does the maintenance programmer need to be an expert in?",
+    "question": "12.In adaptive and perfective maintenance, what does the maintenance programmer need to be an expert in?",
     "answers": [
       "implementation and integration",
       "New programming languages",
@@ -120,7 +120,7 @@
     "correct_ans": "4",
     "difficulty": "2"
   },  {
-    "question": "What is the primary purpose of conductive surveys in software engineering?",
+    "question": "13.What is the primary purpose of conductive surveys in software engineering?",
     "answers": [
       "To gather user feedback on software performance",
       "To collect data on specific software-related topics",
@@ -130,7 +130,7 @@
     "correct_ans": "2",
     "difficulty": "1"
   },  {
-    "question": "When designing a survey in software engineering, what is a crucial consideration?",
+    "question": "14.When designing a survey in software engineering, what is a crucial consideration?",
     "answers": [
       "Using complex technical language",
       "Focusing on positive feedback",

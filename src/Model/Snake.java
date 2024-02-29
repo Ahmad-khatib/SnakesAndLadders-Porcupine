@@ -1,9 +1,14 @@
 package Model;
 
 import java.util.Objects;
+import java.util.Random;
+
 public class Snake {
-    public enum Color {
-        YELLOW, GREEN, BLUE, RED
+    public enum SnakeColor {
+        YELLOW,
+        GREEN,
+        BLUE,
+        RED
     }
 
     public enum Effect {
@@ -22,21 +27,20 @@ public class Snake {
             return movement;
         }
     }
-    private int snakeId;
-    private int snakeLength;
-    private Color color;
-    private int headPosition;
-    private int tailPosition;
 
-    public Snake(int snakeId, int snakeLength, Color color, int headPosition) {
+    private int snakeId;
+    private SnakeColor color;
+    private int headPosition;
+    private static final int GRID_SIZE = 13; // Example grid size
+
+    public Snake(int snakeId, SnakeColor color, int headPosition) {
         this.snakeId = snakeId;
-        this.snakeLength = snakeLength;
         this.color = color;
-        this.headPosition = headPosition;
-        this.tailPosition = headPosition - snakeLength + 1;
+        this.headPosition = validatePosition(headPosition);
     }
 
-    // Getters and Setters for all fields
+    // Getters and setters
+
     public int getSnakeId() {
         return snakeId;
     }
@@ -45,58 +49,62 @@ public class Snake {
         this.snakeId = snakeId;
     }
 
-    public int getSnakeLength() {
-        return snakeLength;
-    }
-
-    public void setSnakeLength(int snakeLength) {
-        this.snakeLength = snakeLength;
-    }
-
-    public Color getColor() {
+    public SnakeColor getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(SnakeColor color) {
         this.color = color;
     }
+
     public int getHeadPosition() {
         return headPosition;
     }
 
     public void setHeadPosition(int headPosition) {
-        this.headPosition = headPosition;
-        this.tailPosition = headPosition - snakeLength + 1;
+        this.headPosition = validatePosition(headPosition);
     }
 
-    public int getTailPosition() {
-        return tailPosition;
-    }
-    @Override
-    public String toString() {
-        return "Snake{" +
-                "snakeId=" + snakeId +
-                ", snakeLength=" + snakeLength +
-                ", snakeColor='" + color + '\'' +
-                '}';
+    // Validate position to ensure it's within the bounds of the game board
+    private int validatePosition(int position) {
+        return Math.min(GRID_SIZE * GRID_SIZE - 1, Math.max(0, position));
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Snake snake = (Snake) o;
-
-        if (snakeId != snake.snakeId) return false;
-        if (snakeLength != snake.snakeLength) return false;
-        return Objects.equals(color, snake.color);
+    // Calculate the tail position based on the head position and snake length
+    public int getTailPosition(String selectedLevel) {
+        return Math.max(0, headPosition - getSnakeLength(selectedLevel) + 1);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(snakeId, snakeLength, color);
+
+    // Calculate the snake length based on the selected game level
+    private int getSnakeLength(String selectedLevel) {
+        switch (selectedLevel) {
+            case "Easy":
+                return 1; // Minimum snake length for Easy level
+            case "Medium":
+                return 2; // Fixed snake length for Medium level
+            case "Hard":
+                return 3; // Fixed snake length for Hard level
+            default:
+                throw new IllegalArgumentException("Invalid difficulty level: " + selectedLevel);
+        }
     }
+
+    // Generate a random snake based on the selected game level
+    public static Snake generateRandomSnake(int snakeId, String selectedLevel) {
+        Random random = new Random();
+        SnakeColor color = generateRandomColor(random);
+        int validRange = GRID_SIZE * (GRID_SIZE - 2); // Exclude the first and last rows
+        int headPosition = random.nextInt(validRange) + GRID_SIZE; // Add an offset of GRID_SIZE for the first row
+        return new Snake(snakeId, color, headPosition);
+    }
+
+    // Generate a random color for the snake
+    private static SnakeColor generateRandomColor(Random random) {
+        return SnakeColor.values()[random.nextInt(SnakeColor.values().length)];
+    }
+
+    // Get the effect of the snake based on its color
     public Effect getSnakeEffect() {
         switch (color) {
             case YELLOW:
@@ -111,8 +119,37 @@ public class Snake {
                 throw new IllegalArgumentException("Unsupported snake color: " + color);
         }
     }
+
     // Method to handle the behavior when a player encounters a snake
-    public void handleSnakeEncounter(Player player) {
-        player.movePlayerBackward(this);
+//    public void handleSnakeEncounter(Player player) {
+//        player.movePlayerBackward(this);
+//    }
+
+
+    public String toString(String selectedLevel) {
+        return "Snake{" +
+                "snakeId=" + snakeId +
+                ", color=" + color +
+                ", headPosition=" + headPosition +
+                ", tailPosition=" + getTailPosition(selectedLevel) +
+                '}';
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Snake snake = (Snake) o;
+        return snakeId == snake.snakeId &&
+                headPosition == snake.headPosition &&
+                color == snake.color;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(snakeId, color, headPosition);
     }
 }
+
+

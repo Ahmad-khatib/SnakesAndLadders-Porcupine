@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="json-simple-1.1.1.wso2v2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../Java/json-simple-1.1.1.wso2v2.jar!/" />
+      <root url="file://$PROJECT_DIR$/../.." />
+      <root url="file://$PROJECT_DIR$/../../Java/json_simple" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../Java/junit-4.13.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/src" />
+      <root url="file://$PROJECT_DIR$/../../Java/json_simple/src" />
+      <root url="file://$PROJECT_DIR$/../../Java/json_simple/src" />
+    </SOURCES>
+  </library>
+</component>
