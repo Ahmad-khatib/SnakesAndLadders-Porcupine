@@ -104,6 +104,30 @@ public class Question {
         return text;
     }
 
+    private final List<QuestionObserver> observers = new ArrayList<>();
+
+
+    public void registerObserver(QuestionObserver observer) {
+        observers.add(observer);
+    }
+
+    private void notifyObservers(Question question) {
+        for (QuestionObserver observer : observers) {
+            observer.onQuestionAdded(question);
+        }
+    }
+
+    private void notifyObserversForEdit(Question oldQuestion, Question newQuestion) {
+        for (QuestionObserver observer : observers) {
+            observer.onQuestionEdited(oldQuestion, newQuestion);
+        }
+    }
+
+    private void notifyObserversForDelete(Question deletedQuestion) {
+        for (QuestionObserver observer : observers) {
+            observer.onQuestionDeleted(deletedQuestion);
+        }
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -135,11 +159,14 @@ public class Question {
         return ++lastGeneratedId;
     }
 
+    // function to add questions
     public void addQuestion(Question newQuestion) {
         int uniqueId = generateUniqueId();
         newQuestion.setQuestionId(uniqueId);
         questionList.add(newQuestion);
+        notifyObservers(newQuestion); // Notify observers that a new question has been added
     }
+
 
     public Question findQuestionById(int questionId) {
         for (Question question : questionList) {
@@ -150,18 +177,22 @@ public class Question {
         return null;
     }
 
-    public void deleteQuestion(int questionId) {
-        Question questionToRemove = findQuestionById(questionId);
-        if (questionToRemove != null) {
-            questionList.remove(questionToRemove);
-        } else {
-            throw new IllegalArgumentException("No question found with this questionId.");
-        }
-    }
 
+    // function to edit question
     public void editQuestion(int questionId, Question editedQuestion) {
         Question existingQuestion = findQuestionById(questionId);
         if (existingQuestion != null) {
+            // Create a copy of the existing question
+            Question oldQuestion = new Question();
+            oldQuestion.setQuestionId(existingQuestion.getQuestionId());
+            oldQuestion.setText(existingQuestion.getText());
+            oldQuestion.setAnswer1(existingQuestion.getAnswer1());
+            oldQuestion.setAnswer2(existingQuestion.getAnswer2());
+            oldQuestion.setAnswer3(existingQuestion.getAnswer3());
+            oldQuestion.setAnswer4(existingQuestion.getAnswer4());
+            oldQuestion.setCorrectAnswer(existingQuestion.getCorrectAnswer());
+            oldQuestion.setLevel(existingQuestion.getLevel());
+
             existingQuestion.setText(editedQuestion.getText());
             existingQuestion.setAnswer1(editedQuestion.getAnswer1());
             existingQuestion.setAnswer2(editedQuestion.getAnswer2());
@@ -169,6 +200,20 @@ public class Question {
             existingQuestion.setAnswer4(editedQuestion.getAnswer4());
             existingQuestion.setCorrectAnswer(editedQuestion.getCorrectAnswer());
             existingQuestion.setLevel(editedQuestion.getLevel());
+
+            notifyObserversForEdit(oldQuestion, existingQuestion); // Notify observers that a question has been edited
+        } else {
+            throw new IllegalArgumentException("No question found with this questionId.");
+        }
+    }
+
+
+    // function to delete question
+    public void deleteQuestion(int questionId) {
+        Question deletedQuestion = findQuestionById(questionId);
+        if (deletedQuestion != null) {
+            questionList.remove(deletedQuestion);
+            notifyObserversForDelete(deletedQuestion); // Notify observers that a question has been deleted
         } else {
             throw new IllegalArgumentException("No question found with this questionId.");
         }

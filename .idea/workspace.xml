@@ -11,25 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SnakesAndLadders_Porcupine_jar/SnakesAndLadders-Porcupine.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SnakesAndLadders_Porcupine_jar/SnakesAndLadders-Porcupine.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/PlayerSettingsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/PlayerSettingsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/QuestionObserver.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Snake$Color.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/Photos/redSnake.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/Photos/redSnake.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/production/SnakesAndLadders-Porcupine/.idea/SnakesAndLadders-Porcupine.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/production/SnakesAndLadders-Porcupine/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/production/SnakesAndLadders-Porcupine/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GameBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PlayerSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PlayerSettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/QuestionObserver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Snake.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/Photos/redSnake.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Photos/redSnake.png" afterDir="false" />
     </list>
     <list id="4eab7431-56fc-4d74-abc0-9c4782af3869" name="Changes by noura" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -126,18 +107,25 @@
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_directory_selection&quot;: &quot;C:/Users/more_/Documents/GitHub/SnakesAndLadders-Porcupine/src&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Program Files/TheChimps-knights-move-main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/97252/Documents/GitHub/SnakesAndLadders-Porcupine&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/more_/Documents/GitHub/SnakesAndLadders-PorcupineNew/SnakesAndLadders--Porcupine/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;module&quot;,
+      &quot;repository&quot;
+    ]
   }
 }</component>
   <component name="RecentsManager">
@@ -146,8 +134,8 @@
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View\Photos" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View\Photos\dice" />
+      <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View\Photos" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\Model" />
       <recent name="C:\Users\97252\Documents\GitHub\SnakesAndLadders-Porcupine" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-PorcupineNew\SnakesAndLadders--Porcupine\src\View" />
@@ -243,9 +231,9 @@
     <list>
       <item itemvalue="Application.Start" />
       <item itemvalue="JUnit.CorrectAnswerTest" />
-      <item itemvalue="JUnit.LoadingQuestionsTest" />
-      <item itemvalue="JUnit.QuestionsSort.testSortButton" />
       <item itemvalue="JUnit.testMovePlayerForward" />
+      <item itemvalue="JUnit.QuestionsSort.testSortButton" />
+      <item itemvalue="JUnit.LoadingQuestionsTest" />
     </list>
     <recent_temporary>
       <list>
@@ -305,10 +293,7 @@
       <workItem from="1708348439952" duration="179000" />
       <workItem from="1708348857823" duration="616000" />
       <workItem from="1708353125928" duration="249000" />
-      <workItem from="1708687622997" duration="5122000" />
-      <workItem from="1708955897004" duration="211000" />
-      <workItem from="1709220344557" duration="553000" />
-      <workItem from="1709224533487" duration="7333000" />
+      <workItem from="1708687622997" duration="12566000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <option name="closed" value="true" />
@@ -462,15 +447,55 @@
       <option name="project" value="LOCAL" />
       <updated>1708348608005</updated>
     </task>
-    <task id="LOCAL‎-00020" summary="Random">
+    <task id="LOCAL‎-00020" summary="...">
       <option name="closed" value="true" />
-      <created>1708944238025</created>
+      <created>1708780547564</created>
       <option name="number" value="00020" />
       <option name="presentableId" value="LOCAL‎-00020" />
       <option name="project" value="LOCAL‎" />
-      <updated>1708944238025</updated>
+      <updated>1708780547565</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL‎-00021" summary="...">
+      <option name="closed" value="true" />
+      <created>1708780563510</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL‎-00021" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1708780563510</updated>
+    </task>
+    <task id="LOCAL‎-00022" summary="factor pattern">
+      <option name="closed" value="true" />
+      <created>1708780578377</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL‎-00022" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1708780578377</updated>
+    </task>
+    <task id="LOCAL‎-00023" summary="managecontroller">
+      <option name="closed" value="true" />
+      <created>1709147797199</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL‎-00023" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709147797200</updated>
+    </task>
+    <task id="LOCAL‎-00024" summary="managecontroller">
+      <option name="closed" value="true" />
+      <created>1709147810537</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL‎-00024" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709147810537</updated>
+    </task>
+    <task id="LOCAL‎-00025" summary="managecontroller">
+      <option name="closed" value="true" />
+      <created>1709150760786</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL‎-00025" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709150760787</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -489,8 +514,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="..." />
+    <MESSAGE value="factor pattern" />
     <MESSAGE value="Random" />
-    <option name="LAST_COMMIT_MESSAGE" value="Random" />
+    <MESSAGE value="managecontroller" />
+    <option name="LAST_COMMIT_MESSAGE" value="managecontroller" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -505,10 +532,6 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SnakesAndLadders_Porcupine$Start_.ic" NAME="Start  Coverage Results" MODIFIED="1707150033525" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

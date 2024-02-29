@@ -1,9 +1,9 @@
-// SystemData.java
 package Model;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import java.util.Comparator;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -11,10 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class SystemData {
-
     private static SystemData instance;
-    private HashMap<Difficulty, ArrayList<Question>> questions;
-
+    private final HashMap<Difficulty, ArrayList<Question>> questions;
 
     private SystemData() {
         questions = new HashMap<>();
@@ -26,8 +24,7 @@ public class SystemData {
         return instance;
     }
 
-    private int lastQuestionId = 0;
-
+    private final int lastQuestionId = 0;
 
     public boolean loadQuestions() {
         JSONParser parser = new JSONParser();
@@ -46,7 +43,7 @@ public class SystemData {
                 String answer3 = (String) answersArray.get(2);
                 String answer4 = (String) answersArray.get(3);
                 String correctAnswer = (String) q.get("correct_ans");
-                int difficulty = Integer.parseInt(q.get("difficulty").toString()); // Get difficulty as int
+                int difficulty = Integer.parseInt(q.get("difficulty").toString());
 
                 // Convert difficulty int to Difficulty enum
                 Difficulty enumDifficulty = getQuestionDifficulty(difficulty);
@@ -54,6 +51,7 @@ public class SystemData {
                 // Generate unique question ID
                 int questionId = Question.generateUniqueId();
 
+                // Create the question object and add it to the appropriate list based on difficulty
                 Question questionToAdd = new Question(text, answer1, answer2, answer3, answer4, correctAnswer, enumDifficulty);
                 questionToAdd.setQuestionId(questionId);
                 questions.computeIfAbsent(enumDifficulty, k -> new ArrayList<>()).add(questionToAdd);
@@ -64,7 +62,6 @@ public class SystemData {
             return false;
         }
     }
-
 
     private Difficulty getQuestionDifficulty(int difficulty) {
         switch (difficulty) {
@@ -78,6 +75,7 @@ public class SystemData {
                 throw new IllegalArgumentException("Invalid difficulty level: " + difficulty);
         }
     }
+
     public void saveQuestions() {
         try {
             JSONArray JSONQuestions = new JSONArray();
@@ -124,4 +122,12 @@ public class SystemData {
         }
         return allQuestions;
     }
+
+
+    public List<Question> getAllQuestionsSortedById() {
+        List<Question> allQuestions = getAllQuestions();
+        allQuestions.sort(Comparator.comparingInt(Question::getQuestionId));
+        return allQuestions;
+    }
+
 }
