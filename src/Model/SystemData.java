@@ -8,27 +8,59 @@ import org.json.simple.parser.JSONParser;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class SystemData {
 
     private static SystemData instance;
     private HashMap<Difficulty, ArrayList<Question>> questions;
+    public ArrayList<GameBoard> games;
+    public ArrayList<Player> players;
 
-
-    private SystemData() {
-        questions = new HashMap<>();
-    }
-
+    // Singleton pattern: get instance of SystemData
     public static SystemData getInstance() {
         if (instance == null)
             instance = new SystemData();
         return instance;
     }
 
+    // Private constructor to prevent instantiation
+    private SystemData() {
+        questions = new HashMap<Difficulty, ArrayList<Question>>();
+        games = new ArrayList<GameBoard>();
+        players = new ArrayList<Player>();
+    }
+
+    // Getter for questions
+    public HashMap<Difficulty, ArrayList<Question>> getQuestions() {
+        return questions;
+    }
+
+    // Setter for questions
+    public void setQuestions(HashMap<Difficulty, ArrayList<Question>> questions) {
+        this.questions = questions;
+    }
+
+    // Getter for games
+    public ArrayList<GameBoard> getGames() {
+        return games;
+    }
+
+    // Setter for games
+    public void setGames(ArrayList<GameBoard> games) {
+        this.games = games;
+    }
+
+    // Getter for players
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    // Setter for players
+    public void setPlayers(ArrayList<Player> players) { this.players = players; }
+
     private int lastQuestionId = 0;
 
-
+    // Load questions from JSON file
     public boolean loadQuestions() {
         JSONParser parser = new JSONParser();
 
@@ -37,6 +69,7 @@ public class SystemData {
             JSONObject jo = (JSONObject) obj;
             JSONArray questionsArray = (JSONArray) jo.get("questions");
 
+            // Iterate through JSON array of questions
             for (Object questionObj : questionsArray) {
                 JSONObject q = (JSONObject) questionObj;
                 String text = (String) q.get("question");
@@ -46,7 +79,7 @@ public class SystemData {
                 String answer3 = (String) answersArray.get(2);
                 String answer4 = (String) answersArray.get(3);
                 String correctAnswer = (String) q.get("correct_ans");
-                int difficulty = Integer.parseInt(q.get("difficulty").toString()); // Get difficulty as int
+                int difficulty = Integer.parseInt(q.get("difficulty").toString());
 
                 // Convert difficulty int to Difficulty enum
                 Difficulty enumDifficulty = getQuestionDifficulty(difficulty);
@@ -65,7 +98,7 @@ public class SystemData {
         }
     }
 
-
+    // Map integer difficulty value to Difficulty enum
     private Difficulty getQuestionDifficulty(int difficulty) {
         switch (difficulty) {
             case 1:
@@ -78,11 +111,14 @@ public class SystemData {
                 throw new IllegalArgumentException("Invalid difficulty level: " + difficulty);
         }
     }
+
+    // Save questions to JSON file
     public void saveQuestions() {
         try {
             JSONArray JSONQuestions = new JSONArray();
             JSONObject toWrite = new JSONObject();
 
+            // Iterate through questions map and convert to JSON format
             for (ArrayList<Question> list : questions.values()) {
                 if (list == null)
                     continue;
@@ -96,7 +132,7 @@ public class SystemData {
                     jo1.put("answer3", q.getAnswer3());
                     jo1.put("answer4", q.getAnswer4());
                     jo1.put("correct_ans", q.getCorrectAnswer());
-                    jo1.put("difficulty", q.getLevel()); // Save difficulty level
+                    jo1.put("difficulty", q.getLevel());
                     JSONQuestions.add(jo1);
                 }
             }
@@ -109,19 +145,6 @@ public class SystemData {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
 
-
-    public HashMap<Difficulty, ArrayList<Question>> getQuestions() {
-        return questions;
-    }
-    public List<Question> getAllQuestions() {
-        List<Question> allQuestions = new ArrayList<>();
-        for (ArrayList<Question> list : questions.values()) {
-            if (list != null) {
-                allQuestions.addAll(list);
-            }
-        }
-        return allQuestions;
     }
 }

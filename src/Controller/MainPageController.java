@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainPageController {
+
     @FXML
     private Button startGameButton;
     @FXML
@@ -32,6 +33,7 @@ public class MainPageController {
 
     }
 
+
     @FXML
     private void startGame(ActionEvent event) {
         try {
@@ -43,6 +45,7 @@ public class MainPageController {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             stage.setScene(scene);
+            stage.setTitle("Player Selections");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -60,6 +63,7 @@ public class MainPageController {
             Stage stage = (Stage) ManageQuestionsButton.getScene().getWindow();
 
             Scene scene = new Scene(root);
+            stage.setTitle("Manage Questions");
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -76,6 +80,7 @@ public class MainPageController {
             Stage stage = (Stage)  ViewHistoryButton.getScene().getWindow();
 
             Scene scene = new Scene(root);
+            stage.setTitle("Games History");
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {

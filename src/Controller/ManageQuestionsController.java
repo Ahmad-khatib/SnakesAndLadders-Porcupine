@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.Question;
-import Model.SystemData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,15 +9,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.cell.TextFieldListCell;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Comparator;
 
 public class ManageQuestionsController {
     @FXML
-    private ListView<String> questionListView;
+    private ListView<Question> questionListView;
+
 
     @FXML
     private Button addButton;
@@ -35,20 +33,16 @@ public class ManageQuestionsController {
     @FXML
     private Button sortButton;
 
-    private ObservableList<Question> questions = FXCollections.observableArrayList();
+    private final ObservableList<Question> questions = FXCollections.observableArrayList();
 
     @FXML
     private void initialize() {
         System.out.println("ManageQuestionsController initialized.");
-        loadQuestionsFromSystemData();
 
-        // Convert Question objects to strings
-        ObservableList<String> questionTexts = FXCollections.observableArrayList();
-        for (Question question : questions) {
-            questionTexts.add(question.getText());
-        }
 
-        questionListView.setItems(questionTexts);
+        // No need to convert Question objects to strings
+
+        questionListView.setItems(questions);
         System.out.println("Initialized with " + questions.size() + " questions.");
     }
 
@@ -63,6 +57,7 @@ public class ManageQuestionsController {
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setTitle("Main Page");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -90,8 +85,5 @@ public class ManageQuestionsController {
 
     }
 
-    private void loadQuestionsFromSystemData() {
-        SystemData systemData = SystemData.getInstance();
-        questions.addAll(systemData.getAllQuestions());
-    }
+
 }
