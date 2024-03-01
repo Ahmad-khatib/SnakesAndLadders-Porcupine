@@ -72,29 +72,34 @@ public class SystemData implements QuestionObserver {
     public void saveQuestions() {
         try {
             JSONArray JSONQuestions = new JSONArray();
-            JSONObject toWrite = new JSONObject();
 
             for (ArrayList<Question> list : questions.values()) {
                 if (list == null)
                     continue;
 
                 for (Question q : list) {
-                    JSONObject jo1 = new JSONObject();
-                    jo1.put("questionId", q.getQuestionId());
-                    jo1.put("question", q.getText());
-                    jo1.put("answer1", q.getAnswer1());
-                    jo1.put("answer2", q.getAnswer2());
-                    jo1.put("answer3", q.getAnswer3());
-                    jo1.put("answer4", q.getAnswer4());
-                    jo1.put("correct_ans", q.getCorrectAnswer());
-                    jo1.put("difficulty", q.getLevel().ordinal() + 1); // Save difficulty level
-                    JSONQuestions.add(jo1);
+                    JSONObject questionObj = new JSONObject();
+                    questionObj.put("question", q.getText());
+
+                    JSONArray answersArray = new JSONArray();
+                    answersArray.add(q.getAnswer1());
+                    answersArray.add(q.getAnswer2());
+                    answersArray.add(q.getAnswer3());
+                    answersArray.add(q.getAnswer4());
+
+                    questionObj.put("answers", answersArray);
+                    questionObj.put("correct_ans", q.getCorrectAnswer());
+                    questionObj.put("difficulty", String.valueOf(q.getLevel().ordinal() + 1));
+
+                    JSONQuestions.add(questionObj);
                 }
             }
+
+            JSONObject toWrite = new JSONObject();
             toWrite.put("questions", JSONQuestions);
 
             // Specify the full path to the JSON file
-            FileWriter file = new FileWriter("questions_scheme.json");
+            FileWriter file = new FileWriter("src/Model/questions_scheme.json");
             file.write(toWrite.toJSONString());
             file.flush();
             System.out.println("JSON Question was saved successfully");
@@ -156,4 +161,58 @@ public class SystemData implements QuestionObserver {
 
     public void registerObserver(ManageQuestionsController manageQuestionsController) {
     }
+
+    public boolean addQuestion(Question newQuestion) {
+        // Get the difficulty of the new question
+        Difficulty difficulty = newQuestion.getLevel();
+
+        // Get the list of questions for the given difficulty level
+        ArrayList<Question> questionList = questions.getOrDefault(difficulty, new ArrayList<>());
+
+        // Add the new question to the list
+        questionList.add(newQuestion);
+
+        // Update the HashMap with the modified list
+        questions.put(difficulty, questionList);
+
+        // Save the updated questions to the JSON file
+        saveQuestions();
+
+        // Return true to indicate that the question was successfully added
+        return true;
+    }
+    public boolean editQuestion(Question editedQuestion) {
+        // Get the difficulty of the edited question
+        Difficulty difficulty = editedQuestion.getLevel();
+
+        // Get the list of questions for the given difficulty level
+        ArrayList<Question> questionList = questions.getOrDefault(difficulty, new ArrayList<>());
+
+        // Find the index of the edited question in the list
+        int index = -1;
+        for (int i = 0; i < questionList.size(); i++) {
+            if (questionList.get(i).getQuestionId() == editedQuestion.getQuestionId()) {
+                index = i;
+                break;
+            }
+        }
+
+        // If the question is found, replace it with the edited question
+        if (index != -1) {
+            questionList.set(index, editedQuestion);
+
+            // Update the HashMap with the modified list
+            questions.put(difficulty, questionList);
+
+            // Save the updated questions to the JSON file
+            saveQuestions();
+
+            // Return true to indicate that the question was successfully edited
+            return true;
+        } else {
+            // If the question is not found, return false
+            return false;
+        }
+    }
+
 }
