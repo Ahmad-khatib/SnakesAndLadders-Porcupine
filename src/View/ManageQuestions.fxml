@@ -57,6 +57,7 @@
                     </font>
                 </Button>
                 <ListView fx:id="questionListView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="389.0" prefWidth="568.0" style="-fx-background-color: transparent; -fx-border-radius: 30; -fx-background-radius: 10px;" styleClass="transparent-list-view" />
+
             </children>
         </VBox>
 
