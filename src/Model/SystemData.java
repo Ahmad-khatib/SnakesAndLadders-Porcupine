@@ -1,68 +1,29 @@
 package Model;
 
+import Controller.ManageQuestionsController;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import java.util.Comparator;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
-public class SystemData {
+public class SystemData implements QuestionObserver {
     private static SystemData instance;
-    private HashMap<Difficulty, ArrayList<Question>> questionMap;
-    public ArrayList<GameBoard> games;
-    public ArrayList<Player> players;
-
+    private final HashMap<Difficulty, ArrayList<Question>> questions;
 
     private SystemData() {
-        questionMap = new HashMap<>();
-        // Initialize lists for each difficulty level
-        for (Difficulty difficulty : Difficulty.values()) {
-            questionMap.put(difficulty, new ArrayList<>());
-        }
-        games = new ArrayList<GameBoard>();
-        players = new ArrayList<Player>();
+        questions = new HashMap<>();
     }
-
 
     public static SystemData getInstance() {
         if (instance == null)
             instance = new SystemData();
         return instance;
     }
-
-    // Getter for questions
-    public HashMap<Difficulty, ArrayList<Question>> getQuestions() {
-        return questionMap;
-    }
-
-    // Setter for questions
-    public void setQuestions(HashMap<Difficulty, ArrayList<Question>> questions) {
-        this.questionMap = questions;
-    }
-
-    // Getter for games
-    public ArrayList<GameBoard> getGames() {
-        return games;
-    }
-
-    // Setter for games
-    public void setGames(ArrayList<GameBoard> games) {
-        this.games = games;
-    }
-
-    // Getter for players
-    public ArrayList<Player> getPlayers() {
-        return players;
-    }
-
-    // Setter for players
-    public void setPlayers(ArrayList<Player> players) { this.players = players; }
-
-
 
     public boolean loadQuestions() {
         JSONParser parser = new JSONParser();
@@ -83,16 +44,10 @@ public class SystemData {
                 String correctAnswer = (String) q.get("correct_ans");
                 int difficulty = Integer.parseInt(q.get("difficulty").toString());
 
-                // Convert difficulty int to Difficulty enum
                 Difficulty enumDifficulty = getQuestionDifficulty(difficulty);
 
-                // Generate unique question ID
-                int questionId = Question.generateUniqueId();
-
-                // Create the question object and add it to the appropriate list based on difficulty
                 Question questionToAdd = new Question(text, answer1, answer2, answer3, answer4, correctAnswer, enumDifficulty);
-                questionToAdd.setQuestionId(questionId);
-                questionMap.computeIfAbsent(enumDifficulty, k -> new ArrayList<>()).add(questionToAdd);
+                questions.computeIfAbsent(enumDifficulty, k -> new ArrayList<>()).add(questionToAdd);
             }
             return true;
         } catch (Exception e) {
@@ -117,28 +72,34 @@ public class SystemData {
     public void saveQuestions() {
         try {
             JSONArray JSONQuestions = new JSONArray();
-            JSONObject toWrite = new JSONObject();
 
-            for (ArrayList<Question> list : questionMap.values()) {
+            for (ArrayList<Question> list : questions.values()) {
                 if (list == null)
                     continue;
 
                 for (Question q : list) {
-                    JSONObject jo1 = new JSONObject();
-                    jo1.put("questionId", q.getQuestionId());
-                    jo1.put("question", q.getText());
-                    jo1.put("answer1", q.getAnswer1());
-                    jo1.put("answer2", q.getAnswer2());
-                    jo1.put("answer3", q.getAnswer3());
-                    jo1.put("answer4", q.getAnswer4());
-                    jo1.put("correct_ans", q.getCorrectAnswer());
-                    jo1.put("difficulty", q.getLevel()); // Save difficulty level
-                    JSONQuestions.add(jo1);
+                    JSONObject questionObj = new JSONObject();
+                    questionObj.put("question", q.getText());
+
+                    JSONArray answersArray = new JSONArray();
+                    answersArray.add(q.getAnswer1());
+                    answersArray.add(q.getAnswer2());
+                    answersArray.add(q.getAnswer3());
+                    answersArray.add(q.getAnswer4());
+
+                    questionObj.put("answers", answersArray);
+                    questionObj.put("correct_ans", q.getCorrectAnswer());
+                    questionObj.put("difficulty", String.valueOf(q.getLevel().ordinal() + 1));
+
+                    JSONQuestions.add(questionObj);
                 }
             }
+
+            JSONObject toWrite = new JSONObject();
             toWrite.put("questions", JSONQuestions);
 
-            FileWriter file = new FileWriter("Model/questions_scheme.json");
+            // Specify the full path to the JSON file
+            FileWriter file = new FileWriter("src/Model/questions_scheme.json");
             file.write(toWrite.toJSONString());
             file.flush();
             System.out.println("JSON Question was saved successfully");
@@ -148,10 +109,13 @@ public class SystemData {
     }
 
 
+    public HashMap<Difficulty, ArrayList<Question>> getQuestions() {
+        return questions;
+    }
 
     public List<Question> getAllQuestions() {
         List<Question> allQuestions = new ArrayList<>();
-        for (ArrayList<Question> list : questionMap.values()) {
+        for (ArrayList<Question> list : questions.values()) {
             if (list != null) {
                 allQuestions.addAll(list);
             }
@@ -159,18 +123,96 @@ public class SystemData {
         return allQuestions;
     }
 
-
     public List<Question> getAllQuestionsSortedById() {
         List<Question> allQuestions = getAllQuestions();
         allQuestions.sort(Comparator.comparingInt(Question::getQuestionId));
         return allQuestions;
     }
-    public void addQuestion(Question question) {
-        // Add the question to the list of questions
-        Difficulty difficulty = question.getLevel();
-        List<Question> questionList = questionMap.get(difficulty);
-        if (questionList != null) {
-            questionList.add(question);
+
+    public void deleteQuestion(Question question) {
+        for (ArrayList<Question> list : questions.values()) {
+            if (list != null) {
+                list.removeIf(q -> q.equals(question));
+            }
         }
     }
+
+    @Override
+    public void onQuestionAdded(Question question) {
+
+    }
+
+    @Override
+    public void onQuestionEdited(Question oldQuestion, Question newQuestion) {
+
+    }
+
+    @Override
+    public void onQuestionDeleted(Question deletedQuestion) {
+        // Implement logic to handle deletion of questions
+        // Remove the deleted question from the HashMap and save the changes to the JSON file
+        for (ArrayList<Question> list : questions.values()) {
+            if (list != null) {
+                list.removeIf(q -> q.equals(deletedQuestion));
+            }
+        }
+        saveQuestions();
+    }
+
+    public void registerObserver(ManageQuestionsController manageQuestionsController) {
+    }
+
+    public boolean addQuestion(Question newQuestion) {
+        // Get the difficulty of the new question
+        Difficulty difficulty = newQuestion.getLevel();
+
+        // Get the list of questions for the given difficulty level
+        ArrayList<Question> questionList = questions.getOrDefault(difficulty, new ArrayList<>());
+
+        // Add the new question to the list
+        questionList.add(newQuestion);
+
+        // Update the HashMap with the modified list
+        questions.put(difficulty, questionList);
+
+        // Save the updated questions to the JSON file
+        saveQuestions();
+
+        // Return true to indicate that the question was successfully added
+        return true;
+    }
+    public boolean editQuestion(Question editedQuestion) {
+        // Get the difficulty of the edited question
+        Difficulty difficulty = editedQuestion.getLevel();
+
+        // Get the list of questions for the given difficulty level
+        ArrayList<Question> questionList = questions.getOrDefault(difficulty, new ArrayList<>());
+
+        // Find the index of the edited question in the list
+        int index = -1;
+        for (int i = 0; i < questionList.size(); i++) {
+            if (questionList.get(i).getQuestionId() == editedQuestion.getQuestionId()) {
+                index = i;
+                break;
+            }
+        }
+
+        // If the question is found, replace it with the edited question
+        if (index != -1) {
+            questionList.set(index, editedQuestion);
+
+            // Update the HashMap with the modified list
+            questions.put(difficulty, questionList);
+
+            // Save the updated questions to the JSON file
+            saveQuestions();
+
+            // Return true to indicate that the question was successfully edited
+            return true;
+        } else {
+            // If the question is not found, return false
+            return false;
+        }
+    }
+
 }
