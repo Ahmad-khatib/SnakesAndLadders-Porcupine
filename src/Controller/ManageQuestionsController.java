@@ -9,12 +9,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Comparator;
 import java.util.List;
 
 public class ManageQuestionsController implements QuestionObserver {
@@ -36,15 +37,12 @@ public class ManageQuestionsController implements QuestionObserver {
     @FXML
     private Button sortButton;
 
-
-
     private ObservableList<Question> questions = FXCollections.observableArrayList();
 
     @FXML
     private void initialize() {
         System.out.println("ManageQuestionsController initialized.");
 
-        // Load questions from the JSON file using SystemData
         SystemData systemData = SystemData.getInstance();
         boolean success = systemData.loadQuestions();
         if (!success) {
@@ -52,31 +50,32 @@ public class ManageQuestionsController implements QuestionObserver {
             return;
         }
 
-        // Get all loaded questions sorted by ID
-        List<Question> allQuestions = systemData.getAllQuestionsSortedById();
-
-        // Convert Question objects to strings with answers
+        List<Question> allQuestions = systemData.getAllQuestionsSortedById(); // Sort by ID
         ObservableList<String> questionTexts = FXCollections.observableArrayList();
         for (Question question : allQuestions) {
             StringBuilder questionWithAnswers = new StringBuilder();
+            questionWithAnswers.append("ID: ").append(question.getQuestionId()).append("\n"); // Add question ID
             questionWithAnswers.append(question.getText()).append("\n");
             questionWithAnswers.append("Answers:\n");
             questionWithAnswers.append("1. ").append(question.getAnswer1()).append("\n");
             questionWithAnswers.append("2. ").append(question.getAnswer2()).append("\n");
             questionWithAnswers.append("3. ").append(question.getAnswer3()).append("\n");
             questionWithAnswers.append("4. ").append(question.getAnswer4()).append("\n");
+            questionWithAnswers.append("Correct Answer: ").append(question.getCorrectAnswer()).append("\n"); // Add correct answer information
+            questionWithAnswers.append("Level: ").append(question.getLevel()).append("\n"); // Add level information
             questionTexts.add(questionWithAnswers.toString());
         }
+
+        // Clear the existing items in the ListView
+        questionListView.getItems().clear();
 
         questionListView.setItems(questionTexts);
         System.out.println("Initialized with " + allQuestions.size() + " questions.");
 
-        // Register this controller as an observer of questions
         for (Question question : allQuestions) {
             question.registerObserver(this);
         }
     }
-
 
     @FXML
     private void goBack() {
@@ -96,49 +95,142 @@ public class ManageQuestionsController implements QuestionObserver {
 
     @FXML
     private void addQuestion() {
-        System.out.println("add question button clicked!");
+        try {
+            // Load the FXML file for adding a question
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AddQuestion.fxml"));
+            Parent root = loader.load();
 
+            // Create a new stage for adding a question
+            Stage stage = new Stage();
+            stage.setTitle("Add Question");
+            stage.setScene(new Scene(root));
 
+            // Get the controller for adding a question
+            AddQuestionController addQuestionController = loader.getController();
+
+            // Show the stage and wait for it to be closed
+            stage.showAndWait();
+
+            // After the stage is closed, check if a question was added
+            if (addQuestionController.isQuestionAdded()) {
+                // If a question was added, add it to the UI immediately
+                Question newQuestion = addQuestionController.getNewQuestion();
+                questions.add(newQuestion);
+                questionListView.getItems().add(newQuestion.getText());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
 
     @FXML
     private void editQuestion() {
-
-            System.out.println("Edit question button clicked!");
-        }
-
-    @FXML
-    private void deleteQuestion() {
-        // Get the selected question from the list view
+        // Get the selected question text
         String selectedQuestionText = questionListView.getSelectionModel().getSelectedItem();
-        System.out.println("Selected question: " + selectedQuestionText);
 
-        // Print all question texts for comparison
-        for (Question question : questions) {
-            System.out.println("Question in list: " + question.getText());
-        }
-
-        // Find the corresponding Question object
-        for (Question question : questions) {
-            if (question.getText().equals(selectedQuestionText)) {
-                // Delete the question using the deleteQuestion method from the Question class
-                int questionId = question.getQuestionId();
-                question.deleteQuestion(questionId); // Pass the question ID
-
-                // Update the UI to reflect the deletion
-                questions.remove(question);
-                questionListView.getItems().remove(selectedQuestionText);
-
-                System.out.println("Question deleted: " + selectedQuestionText);
-                return; // Exit the loop after deleting the question
+        // Find the corresponding question object
+        SystemData systemData = SystemData.getInstance();
+        List<Question> allQuestions = systemData.getAllQuestions();
+        Question selectedQuestion = null;
+        for (Question question : allQuestions) {
+            StringBuilder questionWithAnswers = new StringBuilder();
+            questionWithAnswers.append("ID: ").append(question.getQuestionId()).append("\n"); // Add question ID
+            questionWithAnswers.append(question.getText()).append("\n");
+            questionWithAnswers.append("Answers:\n");
+            questionWithAnswers.append("1. ").append(question.getAnswer1()).append("\n");
+            questionWithAnswers.append("2. ").append(question.getAnswer2()).append("\n");
+            questionWithAnswers.append("3. ").append(question.getAnswer3()).append("\n");
+            questionWithAnswers.append("4. ").append(question.getAnswer4()).append("\n");
+            questionWithAnswers.append("Correct Answer: ").append(question.getCorrectAnswer()).append("\n"); // Add correct answer information
+            questionWithAnswers.append("Level: ").append(question.getLevel()).append("\n"); // Add level information
+            if (questionWithAnswers.toString().equals(selectedQuestionText)) {
+                selectedQuestion = question;
+                break;
             }
         }
 
-        // If the selected question is not found
-        System.out.println("Selected question not found: " + selectedQuestionText);
+        // If the selected question is found, open the edit question dialog
+        if (selectedQuestion != null) {
+            try {
+                // Load the FXML file for editing a question
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/EditQuestion.fxml"));
+                Parent root = loader.load();
+
+                // Pass the selected question to the controller for editing
+                EditQuestionController editQuestionController = loader.getController();
+                editQuestionController.setQuestion(selectedQuestion);
+
+                // Create a new stage for editing a question
+                Stage stage = new Stage();
+                stage.setTitle("Edit Question");
+                stage.setScene(new Scene(root));
+
+                // Show the stage and wait for it to be closed
+                stage.showAndWait();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Selected question not found: " + selectedQuestionText);
+        }
     }
 
+
+
+    @FXML
+    private void deleteQuestion() {
+        String selectedQuestionText = questionListView.getSelectionModel().getSelectedItem();
+        System.out.println("Selected question: " + selectedQuestionText);
+
+        // Create a confirmation dialog
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Delete Question");
+        alert.setContentText("Are you sure you want to delete the selected question?");
+
+        // Customize button labels
+        ButtonType buttonYes = new ButtonType("Yes");
+        ButtonType buttonNo = new ButtonType("No");
+
+        alert.getButtonTypes().setAll(buttonYes, buttonNo);
+
+        // Show the confirmation dialog and wait for user response
+        alert.showAndWait().ifPresent(response -> {
+            if (response == buttonYes) {
+                SystemData systemData = SystemData.getInstance();
+                List<Question> allQuestions = systemData.getAllQuestions();
+
+                for (Question question : allQuestions) {
+                    StringBuilder questionWithAnswers = new StringBuilder();
+                    questionWithAnswers.append("ID: ").append(question.getQuestionId()).append("\n"); // Add question ID
+                    questionWithAnswers.append(question.getText()).append("\n");
+                    questionWithAnswers.append("Answers:\n");
+                    questionWithAnswers.append("1. ").append(question.getAnswer1()).append("\n");
+                    questionWithAnswers.append("2. ").append(question.getAnswer2()).append("\n");
+                    questionWithAnswers.append("3. ").append(question.getAnswer3()).append("\n");
+                    questionWithAnswers.append("4. ").append(question.getAnswer4()).append("\n");
+                    questionWithAnswers.append("Correct Answer: ").append(question.getCorrectAnswer()).append("\n"); // Add correct answer information
+                    questionWithAnswers.append("Level: ").append(question.getLevel()).append("\n"); // Add level information
+                    if (questionWithAnswers.toString().equals(selectedQuestionText)) {
+                        // Remove the question from the data model
+                        systemData.deleteQuestion(question);
+                        // Notify the observer (SystemData) that a question is deleted
+                        systemData.onQuestionDeleted(question);
+                        // Remove the question from the UI
+                        questions.remove(question);
+                        questionListView.getItems().remove(selectedQuestionText);
+                        // Print confirmation
+                        System.out.println("Question deleted: " + selectedQuestionText);
+                        return;
+                    }
+                }
+
+                System.out.println("Selected question not found: " + selectedQuestionText);
+            }
+        });
+    }
 
 
 
@@ -146,38 +238,34 @@ public class ManageQuestionsController implements QuestionObserver {
     private void sortByLevel() {
         SystemData systemData = SystemData.getInstance();
         List<Question> allQuestions = systemData.getAllQuestions();
+        allQuestions.sort((q1, q2) -> Integer.compare(q2.getLevel().ordinal(), q1.getLevel().ordinal()));
 
-        // Sort questions by difficulty level
-        allQuestions.sort(Comparator.comparing(Question::getLevel));
-
-        // Update UI with sorted questions
         ObservableList<String> questionTexts = FXCollections.observableArrayList();
         for (Question question : allQuestions) {
             StringBuilder questionWithAnswers = new StringBuilder();
+            questionWithAnswers.append("ID: ").append(question.getQuestionId()).append("\n"); // Add question ID
             questionWithAnswers.append(question.getText()).append("\n");
             questionWithAnswers.append("Answers:\n");
             questionWithAnswers.append("1. ").append(question.getAnswer1()).append("\n");
             questionWithAnswers.append("2. ").append(question.getAnswer2()).append("\n");
             questionWithAnswers.append("3. ").append(question.getAnswer3()).append("\n");
             questionWithAnswers.append("4. ").append(question.getAnswer4()).append("\n");
+            questionWithAnswers.append("Correct Answer: ").append(question.getCorrectAnswer()).append("\n"); // Add correct answer information
+            questionWithAnswers.append("Level: ").append(question.getLevel()).append("\n"); // Add level information
             questionTexts.add(questionWithAnswers.toString());
         }
 
         questionListView.setItems(questionTexts);
     }
 
-
-    // Observer methods
     @Override
     public void onQuestionAdded(Question question) {
-        // Add the new question to the list and update the UI
         questions.add(question);
         questionListView.getItems().add(question.getText());
     }
 
     @Override
     public void onQuestionEdited(Question oldQuestion, Question newQuestion) {
-        // Find the old question in the list, replace it with the new question, and update the UI
         int index = questions.indexOf(oldQuestion);
         if (index != -1) {
             questions.set(index, newQuestion);
@@ -187,8 +275,42 @@ public class ManageQuestionsController implements QuestionObserver {
 
     @Override
     public void onQuestionDeleted(Question deletedQuestion) {
-        // Remove the deleted question from the list and update the UI
         questions.remove(deletedQuestion);
         questionListView.getItems().remove(deletedQuestion.getText());
     }
+    private void refreshQuestionList() {
+        // Reload questions from SystemData
+        SystemData systemData = SystemData.getInstance();
+        boolean success = systemData.loadQuestions();
+        if (!success) {
+            System.out.println("Failed to load questions from JSON file.");
+            return;
+        }
+
+        // Get all questions sorted by ID
+        List<Question> allQuestions = systemData.getAllQuestionsSortedById();
+
+        // Update the UI with the refreshed question list
+        ObservableList<String> questionTexts = FXCollections.observableArrayList();
+        for (Question question : allQuestions) {
+            StringBuilder questionWithAnswers = new StringBuilder();
+            questionWithAnswers.append("ID: ").append(question.getQuestionId()).append("\n"); // Add question ID
+            questionWithAnswers.append(question.getText()).append("\n");
+            questionWithAnswers.append("Answers:\n");
+            questionWithAnswers.append("1. ").append(question.getAnswer1()).append("\n");
+            questionWithAnswers.append("2. ").append(question.getAnswer2()).append("\n");
+            questionWithAnswers.append("3. ").append(question.getAnswer3()).append("\n");
+            questionWithAnswers.append("4. ").append(question.getAnswer4()).append("\n");
+            questionWithAnswers.append("Correct Answer: ").append(question.getCorrectAnswer()).append("\n"); // Add correct answer information
+            questionWithAnswers.append("Level: ").append(question.getLevel()).append("\n"); // Add level information
+            questionTexts.add(questionWithAnswers.toString());
+        }
+
+        // Clear the existing items in the ListView
+        questionListView.getItems().clear();
+
+        // Add the refreshed question list to the ListView
+        questionListView.setItems(questionTexts);
+    }
+
 }

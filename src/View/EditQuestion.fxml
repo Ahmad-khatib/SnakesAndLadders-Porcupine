@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditQuestionController">
+    <children>
+        <VBox layoutX="118.0" layoutY="33.0" spacing="10.0">
+            <children>
+                <Label text="Edit Question" />
+                <TextArea fx:id="questionTextArea" prefHeight="200.0" prefWidth="400.0" promptText="Enter the question here" />
+                <HBox spacing="10.0">
+                    <children>
+                        <TextArea fx:id="answer1TextArea" prefHeight="30.0" prefWidth="100.0" promptText="Answer 1" />
+                        <TextArea fx:id="answer2TextArea" prefHeight="30.0" prefWidth="100.0" promptText="Answer 2" />
+                        <TextArea fx:id="answer3TextArea" prefHeight="30.0" prefWidth="100.0" promptText="Answer 3" />
+                        <TextArea fx:id="answer4TextArea" prefHeight="30.0" prefWidth="100.0" promptText="Answer 4" />
+                    </children>
+                </HBox>
+                <HBox spacing="10.0">
+                    <Label text="Level:" />
+                    <ChoiceBox fx:id="levelChoiceBox" prefWidth="150.0">
+
+                    </ChoiceBox>
+                </HBox>
+                <HBox spacing="10.0">
+                    <Label text="Correct Answer:" />
+                    <ChoiceBox fx:id="correctAnswerChoiceBox" prefWidth="150.0">
+
+                    </ChoiceBox>
+                </HBox>
+                <Button fx:id="saveButton" mnemonicParsing="false" text="Save" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
