@@ -36,7 +36,7 @@ public class GameBoard {
 
     private void initializeBoard() {
         // Calculate preferred dimensions for the tiles
-        preferredTileSize = Math.min(835.0 / size, 1730.0 / size);
+        preferredTileSize = Math.min(823 / size, 800 / size);
 
         tiles = new Tile[size][size];
         int count = 1;

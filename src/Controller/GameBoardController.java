@@ -13,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -130,7 +131,7 @@ public class GameBoardController extends GridPane {
                 usedTailPositions.add(yellowSnake.getTailPosition(selectedLevel));
             }
         }
-
+/*
         for (int greenCount = 0; greenCount < snakeCounts[1]; greenCount++) {
             Snake greenSnake = generateUniqueSnake(Snake.SnakeColor.GREEN, usedHeadPositions, usedTailPositions, gridSize, selectedLevel);
             if (greenSnake != null) {
@@ -157,6 +158,9 @@ public class GameBoardController extends GridPane {
                 usedTailPositions.add(redSnake.getTailPosition(selectedLevel));
             }
         }
+*/
+        System.out.print("Heads" +usedHeadPositions+"\n");
+        System.out.print("Tails" +usedTailPositions);
     }
 
 
@@ -175,74 +179,121 @@ public class GameBoardController extends GridPane {
 
     private Snake generateUniqueSnake(Snake.SnakeColor color, Set<Integer> usedHeadPositions, Set<Integer> usedTailPositions, int gridSize, String selectedLevel) {
         Random random = new Random();
+        int k = 0;
         while (true) {
+            k++;
             int headPosition = random.nextInt(gridSize * gridSize);
-            int tailPosition = random.nextInt(gridSize * gridSize);
+            int tailPosition = 0;
             int snakeId = generateUniqueSnakeId();
+            int upperBound = 0;
+            int lowerBound = 0;
+            int headRow = (headPosition - 1) / gridSize + 1;    // calulates the head position row
+
 
             // Check if the head position meets the color-specific criteria
             switch (color) {
                 case YELLOW:
-                    if (headPosition < gridSize) // Yellow snake head cannot be in the first row
+                    if (headPosition < gridSize) {  // Yellow snake head cannot be in the first row, and its tail can be only one row apart from below
+                        System.out.print("Yellow\n");
                         continue;
+                    }
+                    if (headRow == 2) {
+                        lowerBound = gridSize - 1;
+                    } else
+                        lowerBound = ((headRow - 2) * gridSize) + 1;       //formula to calulate the valid range for the yellow snake tail (1 row below the head)
+                    upperBound = ((headRow - 1) * gridSize);
+                    tailPosition = random.nextInt(upperBound - lowerBound) + lowerBound;
                     break;
-                case GREEN:
-                    if (headPosition < gridSize * 2) // Green snake head cannot be in the first two rows
+                  case GREEN:
+                    if (headPosition < gridSize * 2) {
+                        System.out.print("Green\n");
                         continue;
+                    }
+                    if (headRow == 3) {
+                        lowerBound = gridSize - 1;
+                    } else
+                        lowerBound = ((headRow - 3) * gridSize) + 1; //formula to calulate the valid range for the green snake tail (2 row below the head)
+                    upperBound = ((headRow - 2) * gridSize);
+                    tailPosition = random.nextInt(upperBound - lowerBound) + lowerBound;
                     break;
                 case BLUE:
-                    if (headPosition < gridSize * 3) // Blue snake head cannot be in the first three rows
+                    if (headPosition < gridSize * 3) {
+                        System.out.print("Blue\n");// Blue snake head cannot be in the first three rows
                         continue;
+                    }
+                    if (headRow == 4) {
+                        lowerBound = gridSize - 1;
+                    } else
+                        lowerBound = ((headRow - 4) * gridSize) + 1; //formula to calulate the valid range for the blue snake tail (3 row below the head)
+                    upperBound = ((headRow - 3) * gridSize);
+                    tailPosition = random.nextInt(upperBound - lowerBound) + lowerBound;
                     break;
                 case RED:
-                    if (headPosition % gridSize == 0 || headPosition % gridSize == gridSize - 1) // Red snake head cannot be in the first or last column
-                        continue;
+                    tailPosition = headPosition;
+
+                    if (headPosition == gridSize || headPosition == 0) {
+                        System.out.print("Im the error\n");
+                        break;
+                    }
                     break;
+
                 default:
                     break;
             }
 
-            Snake snake = new Snake(snakeId, color, headPosition);
-            if (!usedHeadPositions.contains(headPosition) &&
+
+            Snake snake = new Snake(snakeId, color, headPosition, tailPosition);
+            if (color == Snake.SnakeColor.RED) {
+                if (!usedHeadPositions.contains(headPosition) &&
+                        !usedTailPositions.contains(tailPosition))
+                    return snake;
+
+            } else if (!usedHeadPositions.contains(headPosition) &&
                     !usedTailPositions.contains(tailPosition) &&
+                    !usedHeadPositions.contains(tailPosition) &&
+                    !usedTailPositions.contains(headPosition) &&
                     headPosition != tailPosition &&
                     isValidSnakePosition(snake, usedHeadPositions, usedTailPositions, gridSize, selectedLevel)) {
                 return snake;
             }
         }
+       // return null;
     }
 
 
-    private int generateUniqueSnakeId() {
-        return snakeIdCounter++;
-    }
-
-    private boolean isValidSnakePosition(Snake snake, Set<Integer> usedHeadPositions, Set<Integer> usedTailPositions, int gridSize, String selectedLevel) {
-        if (usedHeadPositions.contains(snake.getHeadPosition()) ||
-                usedTailPositions.contains(snake.getHeadPosition()) ||
-                usedHeadPositions.contains(snake.getTailPosition(selectedLevel)) ||
-                usedTailPositions.contains(snake.getTailPosition(selectedLevel))) {
-            return false;
+        private int generateUniqueSnakeId () {
+            return snakeIdCounter++;
         }
 
-        if (snake.getHeadPosition() >= gridSize * gridSize ||
-                snake.getTailPosition(selectedLevel) >= gridSize * gridSize) {
-            return false;
-        }
+        private boolean isValidSnakePosition (Snake
+        snake, Set < Integer > usedHeadPositions, Set < Integer > usedTailPositions,int gridSize, String selectedLevel){
+            if (!(snake.getColor().equals("RED"))) {
+                if (usedHeadPositions.contains(snake.getHeadPosition()) ||
+                        usedTailPositions.contains(snake.getHeadPosition()) ||
+                        usedHeadPositions.contains(snake.getTailPosition(selectedLevel)) ||
+                        usedTailPositions.contains(snake.getTailPosition(selectedLevel))) {
+                    return false;
+                }
+            }
 
-        return true;
-    }
+            if (snake.getHeadPosition() >= gridSize * gridSize ||
+                    snake.getTailPosition(selectedLevel) >= gridSize * gridSize) {
+                return false;
+            }
+
+            return true;
+        }
 
     private void updateSnakeUI(Snake snake, String selectedLevel) {
         // Get the positions of the snake head and tail
-        int headRow = gridSize - 1 - snake.getHeadPosition() / gridSize;
-        int headCol = snake.getHeadPosition() % gridSize;
-//        int tailRow = gridSize - 1 - snake.getTailPosition(selectedLevel) / gridSize;
-//        int tailCol = snake.getTailPosition(selectedLevel) % gridSize;
+        int headRow = snake.getHeadPosition() % gridSize ==0 ? (gridSize - (snake.getHeadPosition()/gridSize)):gridSize - ((snake.getHeadPosition()/gridSize)+1);
+        int headCol = snake.getHeadPosition() % gridSize == 0 ? gridSize-1 : ((snake.getHeadPosition() % gridSize)-1);
+        int tailRow = snake.getTailPosition(selectedLevel) % gridSize ==0 ? (gridSize - (snake.getTailPosition(selectedLevel)/gridSize)):gridSize - ((snake.getTailPosition(selectedLevel)/gridSize)+1);
+        int tailCol = snake.getTailPosition(selectedLevel) % gridSize == 0 ? gridSize-1 : ((snake.getTailPosition(selectedLevel) % gridSize)-1);
 
         // Calculate the height of the snake image based on the number of rows it occupies
         double cellHeight = gameBoard.getPreferredTileSize();
-        double snakeHeight = 0;
+        double snakeHeight = 1.0;
 
         // Determine the height of the snake image based on its color
         switch (snake.getColor()) {
@@ -264,16 +315,25 @@ public class GameBoardController extends GridPane {
 
         // Create custom tiles for the snake head and tail
         Tile headTile = new Tile();
-        //Tile tailTile = new Tile();
+        double distance = 1.0;
+        if (!(snake.getColor().equals("RED"))) {
+            distance = calculateDistance(headRow, headCol, tailRow, tailCol) ;
+            System.out.print("This is the Head row " +headRow +"\n");
+            System.out.print("This is the Head col " +headCol +"\n");
+            System.out.print("This is the Tail row " +tailRow +"\n");
+            System.out.print("This is the Tail col " +tailCol +"\n");
+            snakeHeight = ((Math.abs(distance)) * cellHeight);
+        }
 
+        //Tile tailTile = new Tile();
+        StackPane stackPane = new StackPane();
         // Load the snake image based on the snake color
         String imagePath = "/View/Photos/" + snake.getColor().toString().toLowerCase() + "Snake.png";
         Image snakeImage = new Image(getClass().getResourceAsStream(imagePath));
-
-        // Create ImageView objects for the snake head and tail
         ImageView snakeHeadImageView = new ImageView(snakeImage);
+        // Create ImageView objects for the snake head and tail
+        //   ImageView snakeHeadImageView = new ImageView(snakeImage);
         // ImageView snakeTailImageView = new ImageView(snakeImage);
-
         // Set the scaled width and height for the snake images
         snakeHeadImageView.setFitWidth(cellHeight);
         snakeHeadImageView.setFitHeight(snakeHeight);
@@ -281,18 +341,36 @@ public class GameBoardController extends GridPane {
 //        snakeTailImageView.setFitHeight(snakeHeight);
 
         // Add snake head and tail images to custom tiles
-        headTile.addSnakeHeadImage(snakeHeadImageView);
+         headTile.addSnakeHeadImage(snakeHeadImageView);
         //tailTile.addSnakeTailImage(snakeTailImageView);
 
         // Add custom tiles to the grid pane at the specified row and column indices
+        double rotationAngle = Math.toDegrees(Math.atan2((headCol - tailCol), 0));
+        // Rotate the image based on the calculated angle
+        Rotate rotation = new Rotate();
+        rotation.setAxis(Rotate.Y_AXIS);
+        rotation.setAngle(rotationAngle);
+      //  snakeHeadImageView.setTranslateX(0);
+       // snakeHeadImageView.setTranslateY(0);
+        if(tailCol < headCol) {
+            snakeHeadImageView.setScaleX(-1); // miorror the snake when the tail column is smaller than the head column
+        }
+        // Rotate the image based on the calculated angle
+        System.out.print("This is the angle" +rotationAngle +"\n");
+        System.out.print("This is the distance" +distance +"\n");
+
+        //snakeHeadImageView.setRotate(rotationAngle);
         dynamicGridPane.add(headTile, headCol, headRow);
+        // dynamicGridPane.add(headTile, headCol, headRow);
         //dynamicGridPane.add(tailTile, tailCol, tailRow);
 
         // Ensure the row spans properly to accommodate the snake height
-        GridPane.setRowSpan(headTile, (int) Math.ceil(snakeHeight / cellHeight));
+         GridPane.setRowSpan(headTile, (int) Math.ceil(snakeHeight / cellHeight));
         //GridPane.setRowSpan(tailTile, (int) Math.ceil(snakeHeight / cellHeight));
     }
-
+    public static double calculateDistance(int headRow, int headCol, int tailRow, int tailCol) {
+        return Math.sqrt(Math.pow(tailRow - headRow, 2) + Math.pow(tailCol - headCol, 2));
+    }
 
 
     private int[] getSnakeCounts(String selectedLevel) {
