@@ -18,13 +18,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import static Controller.PlayerSelectionsController.chosenLevel;
 
 public class PlayerSettingsController {
     // Set to store selected icon images
-    private Set<ImageView> selectedIcons = new HashSet<>();
+    private final Set<ImageView> selectedIcons = new HashSet<>();
 
     // VBox element to contain player information
     @FXML
@@ -99,7 +100,7 @@ public class PlayerSettingsController {
                 boolean iconChosen = false;
                 boolean nameFilled = false;
                 for (Node node : hbox.getChildren()) {
-                    if (node instanceof ImageView && !((ImageView) node).isDisabled()) {
+                    if (node instanceof ImageView && !node.isDisabled()) {
                         iconChosen = true;
                     }
                     if (node instanceof TextField && !((TextField) node).getText().isEmpty()) {
@@ -144,7 +145,7 @@ public class PlayerSettingsController {
             GameBoardController boardGameController = loader.getController();
             boardGameController.initialize(chosenLevel); // Pass board size to the controller
             // Set the stylesheet for the scene
-            root.getStylesheets().add(getClass().getResource("/View/PorcupineStyle.css").toExternalForm());
+            root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/View/PorcupineStyle.css")).toExternalForm());
             // Get the current stage and set the scene to the board game scene
             Stage stage = (Stage) startButton.getScene().getWindow();
             stage.setScene(new Scene(root));
@@ -173,16 +174,7 @@ public class PlayerSettingsController {
     }
     // Method to handle the selection of an icon
     private void handleIconSelection(ImageView selectedIconImageView) {
-        // Check if the selected icon has already been chosen
-        if (selectedIcons.contains(selectedIconImageView)) {
-            // If already chosen, display a message to the user
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Icon already chosen");
-            alert.setHeaderText(null);
-            alert.setContentText("This icon has already been chosen by another player.");
-            alert.showAndWait();
-            return;
-        }
+
 
         // Add the selected icon to the set of chosen icons
         selectedIcons.add(selectedIconImageView);
@@ -217,7 +209,7 @@ public class PlayerSettingsController {
         dropShadow.setRadius(10); // Adjust the radius as desired
         selectedIconImageView.setEffect(dropShadow); // Apply drop shadow effect
 
-        // You can perform any other actions here, like updating the UI to reflect the selection
+
     }
 
     // Method to handle the selection of an icon
@@ -276,7 +268,7 @@ public class PlayerSettingsController {
         dropShadow.setRadius(10); // Adjust the radius as desired
         selectedIconImageView.setEffect(dropShadow); // Apply drop shadow effect
 
-        // You can perform any other actions here, like updating the UI to reflect the selection
+
     }
     // Method to handle the reset button being clicked
     @FXML
