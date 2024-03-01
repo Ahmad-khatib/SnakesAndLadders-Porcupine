@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
@@ -7,10 +8,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane id="mainPage" prefHeight="578.0" prefWidth="713.0" styleClass="mainP" stylesheets="@PorcupineStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainPageController">
+<StackPane xmlns:fx="http://javafx.com/fxml/1" id="mainPage" prefHeight="578.0" prefWidth="713.0" styleClass="mainP"
+           stylesheets="@PorcupineStyle.css" xmlns="http://javafx.com/javafx/8"
+           fx:controller="Controller.MainPageController">
     <children>
         <VBox alignment="CENTER" prefHeight="610.0" prefWidth="763.0" spacing="10">
            <children>
+
+            <ImageView fitHeight="71.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" />
       
 
               <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">

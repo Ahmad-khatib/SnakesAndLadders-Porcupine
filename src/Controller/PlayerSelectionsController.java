@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.HBox;
@@ -40,6 +41,16 @@ public class PlayerSelectionsController {
     }
     @FXML
     private void handleNextButtonClicked() {
+        // Check if both choice boxes have a selection
+        if (gameLevelChoiceBox.getValue() == null || playersNumberChoiceBox.getValue() == null) {
+            // Show an alert informing the user to select options from both choice boxes
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Selection Required");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select options from both choice boxes.");
+            alert.showAndWait();
+            return;
+        }
         // Add functionality to move to the next page(playersettings) when clicking on next and also maintaining the level selected by player because we will be using it in the game board
         String selectedLevel = gameLevelChoiceBox.getValue();
         this.chosenLevel=selectedLevel;
@@ -68,6 +79,7 @@ public class PlayerSelectionsController {
             controller.initializePlayerFields(numPlayers); // Initialize player fields based on the selected number of players
             root.getStylesheets().add(getClass().getResource("/View/PorcupineStyle.css").toExternalForm());
             Stage stage = (Stage) nextButton.getScene().getWindow();
+            stage.setTitle("Player Settings");
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
@@ -88,6 +100,7 @@ public class PlayerSelectionsController {
 
             // Set the main page as the scene
             stage.setScene(scene);
+            stage.setTitle("Main Page");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

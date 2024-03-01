@@ -26,7 +26,7 @@
 }
 
 .PlayerSet {
-    -fx-background-image: url("Photos/background2.jpg");
+    -fx-background-image: url("Photos/background8.jpg");
     -fx-background-size: cover;
     -fx-alignment: center;
 }
@@ -37,5 +37,14 @@
 
 
 
-
+.selected-icon {
+    -fx-border-color: #ff0000; /* Red border */
+    -fx-border-width: 2px;
+    /* Add any other styles for the selected state */
+}
+/* PorcupineStyle.css */
+.tooltip {
+    -fx-background-color: white !important;
+    -fx-text-fill: black !important;
+}
 

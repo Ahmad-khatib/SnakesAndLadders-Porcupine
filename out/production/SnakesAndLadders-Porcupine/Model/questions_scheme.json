@@ -70,7 +70,7 @@
     "correct_ans": "4",
     "difficulty": "2"
   },  {
-    "question": "8.Why is scalability an important consideration in software architecture?",
+    "question": "8. Why is scalability an important consideration in software architecture?",
     "answers": [
       "It determines the project timeline",
       "It ensures that the software has a visually appealing design",
@@ -80,7 +80,7 @@
     "correct_ans": "4",
     "difficulty": "3"
   },  {
-    "question": "9.What is the primary purpose of program testing?",
+    "question": "9. What is the primary purpose of program testing?",
     "answers": [
       "To execute a program with real-world data",
       "To identify as many requirements as possible",
@@ -90,7 +90,7 @@
     "correct_ans": "3",
     "difficulty": "2"
   },  {
-    "question": "10.What is the main distinction between validation testing and defect testing?",
+    "question": "10. What is the main distinction between validation testing and defect testing?",
     "answers": [
       "The use of artificial data in validation testing",
       "The intentional obscurity of test cases in defect testing",
@@ -100,7 +100,7 @@
     "correct_ans": "4",
     "difficulty": "3"
   },  {
-    "question": "11.What is the primary focus of software maintenance?",
+    "question": "11. What is the primary focus of software maintenance?",
     "answers": [
       "Modifying a program after it has been put into use",
       "Developing new software from scratch",
@@ -110,7 +110,7 @@
     "correct_ans": "1",
     "difficulty": "2"
   },  {
-    "question": "12.In adaptive and perfective maintenance, what does the maintenance programmer need to be an expert in?",
+    "question": "12. In adaptive and perfective maintenance, what does the maintenance programmer need to be an expert in?",
     "answers": [
       "implementation and integration",
       "New programming languages",
@@ -120,7 +120,7 @@
     "correct_ans": "4",
     "difficulty": "2"
   },  {
-    "question": "13.What is the primary purpose of conductive surveys in software engineering?",
+    "question": "13. What is the primary purpose of conductive surveys in software engineering?",
     "answers": [
       "To gather user feedback on software performance",
       "To collect data on specific software-related topics",
@@ -130,7 +130,7 @@
     "correct_ans": "2",
     "difficulty": "1"
   },  {
-    "question": "14.When designing a survey in software engineering, what is a crucial consideration?",
+    "question": "14. When designing a survey in software engineering, what is a crucial consideration?",
     "answers": [
       "Using complex technical language",
       "Focusing on positive feedback",
