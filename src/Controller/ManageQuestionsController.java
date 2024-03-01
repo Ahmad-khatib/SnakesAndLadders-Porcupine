@@ -9,13 +9,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 public class ManageQuestionsController implements QuestionObserver {
     @FXML
@@ -105,24 +105,73 @@ public class ManageQuestionsController implements QuestionObserver {
 
     @FXML
     private void addQuestion() {
-        System.out.println("Edit question button clicked!");
-    }
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Add Question");
+        dialog.setHeaderText("Enter the new question:");
+        dialog.setContentText("Question:");
 
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(question -> {
+            // Add the question to the list
+            questionListView.getItems().add(question);
+            // Save the updated list to the JSON file
+            SystemData.getInstance().saveQuestions();
+        });
+    }
 
     @FXML
     private void editQuestion() {
+        ListView<String> listView = questionListView;
+        int selectedIndex = listView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex != -1) {
+            String selectedQuestion = listView.getSelectionModel().getSelectedItem();
 
-        System.out.println("Edit question button clicked!");
+            TextInputDialog dialog = new TextInputDialog(selectedQuestion);
+            dialog.setTitle("Edit Question");
+            dialog.setHeaderText(null);
+            dialog.setContentText("Question:");
+
+            Optional<String> result = dialog.showAndWait();
+            result.ifPresent(question -> {
+                // Update the question in the list
+                listView.getItems().set(selectedIndex, question);
+                // Save the updated list to the JSON file
+                SystemData.getInstance().saveQuestions();
+            });
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Question Selected");
+            alert.setContentText("Please select a question to edit.");
+            alert.showAndWait();
+        }
     }
 
     @FXML
     private void deleteQuestion() {
-        System.out.println("Delete question button clicked!");
+        ListView<String> listView = questionListView;
+        int selectedIndex = listView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex != -1) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete Question");
+            alert.setHeaderText(null);
+            alert.setContentText("Are you sure you want to delete this question?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                // Remove the selected question from the list
+                listView.getItems().remove(selectedIndex);
+                // Save the updated list to the JSON file
+                SystemData.getInstance().saveQuestions();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Question Selected");
+            alert.setContentText("Please select a question to delete.");
+            alert.showAndWait();
+        }
     }
-
-
-
-
 
 
     @FXML
