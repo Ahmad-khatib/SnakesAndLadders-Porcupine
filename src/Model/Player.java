@@ -1,31 +1,22 @@
 package Model;
 
-import javafx.scene.image.ImageView;
-
 import java.util.List;
 import java.util.Objects;
 
 public class Player {
     private int playerId;
     private String playerName;
-    private ImageView Icon;
+    private String playerColor;
     private int playerPosition;
 
-    public Player(int playerId, String playerName, ImageView icon, int playerPosition) {
+    public Player(int playerId, String playerName, String playerColor, int playerPosition) {
         this.playerId = playerId;
         this.playerName = playerName;
-        this.Icon = icon;
+        this.playerColor = playerColor;
         this.playerPosition = playerPosition;
     }
 
-    public ImageView getIcon() {
-        return Icon;
-    }
-
-    public void setIcon(ImageView icon) {
-        Icon = icon;
-    }
-// Getters and Setters
+    // Getters and Setters
 
     public int getPlayerId() {
         return playerId;
@@ -43,7 +34,13 @@ public class Player {
         this.playerName = playerName;
     }
 
+    public String getPlayerColor() {
+        return playerColor;
+    }
 
+    public void setPlayerColor(String playerColor) {
+        this.playerColor = playerColor;
+    }
 
     public int getPlayerPosition() {
         return playerPosition;
@@ -58,7 +55,7 @@ public class Player {
         return "Player{" +
                 "playerId=" + playerId +
                 ", playerName='" + playerName + '\'' +
-
+                ", playerColor='" + playerColor + '\'' +
                 ", playerPosition=" + playerPosition +
                 '}';
     }
@@ -71,12 +68,12 @@ public class Player {
         return playerId == player.playerId &&
                 playerPosition == player.playerPosition &&
                 Objects.equals(playerName, player.playerName) &&
-                Objects.equals(Icon, player.Icon);
+                Objects.equals(playerColor, player.playerColor);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(playerId, playerName, Icon, playerPosition);
+        return Objects.hash(playerId, playerName, playerColor, playerPosition);
     }
 
     // Move player to a new position
