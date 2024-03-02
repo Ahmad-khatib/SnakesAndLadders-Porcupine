@@ -1,6 +1,10 @@
 package Controller;
 
 import Model.*;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -9,21 +13,19 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
-import javafx.scene.shape.Rectangle;
 
 
 public class GameBoardController extends GridPane {
@@ -37,7 +39,7 @@ public class GameBoardController extends GridPane {
     @FXML
     private Text timerLabel;
     @FXML
-    private Button rollButton;
+    Button rollButton;
 
     private final Random random = new Random();
     private double tileSize;
@@ -45,7 +47,7 @@ public class GameBoardController extends GridPane {
     private int gridSize;
     private static int snakeIdCounter = 0;
 
-    public void initialize(String selectedLevel , ArrayList <Player> players) {
+    public void initialize(String selectedLevel , ArrayList <Player> players) throws IOException {
         gameBoard = new GameBoard(selectedLevel);
         initializeBoardUI();
         placeSnakes(selectedLevel);
@@ -135,8 +137,17 @@ public class GameBoardController extends GridPane {
         };
 
         new Thread(task).start();
-        return 0; // Return a default value if needed
+
+        try {
+            // Wait for the task to finish and get the result
+            int result = task.get();
+            return result;
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+            return 0; // Return a default value if an exception occurs
+        }
     }
+
 
 
     private void placeSnakes(String selectedLevel) {
@@ -185,8 +196,6 @@ public class GameBoardController extends GridPane {
             }
         }
 */
-        System.out.print("Heads" +usedHeadPositions+"\n");
-        System.out.print("Tails" +usedTailPositions);
     }
 
 

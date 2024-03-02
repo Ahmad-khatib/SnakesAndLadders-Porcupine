@@ -4,8 +4,12 @@ import Model.*;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
+
+import java.io.IOException;
 import java.util.Random;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,10 +26,9 @@ public class GameController implements Initializable {
     private ImageView diceImage;
     @FXML
     private ImageView diceImage2;
-    @FXML
-    private static Button rollButton;
 
-    public static void Start(Game game, GridPane dynamicGridPane) {
+
+    public static void Start(Game game, GridPane dynamicGridPane) throws IOException {
         ArrayList<Player> players = game.getPlayers();
         GameBoard gameBoard = game.getGameBoard();
         HashMap<Difficulty, ArrayList<Question>> questions = game.getQuestions();
@@ -37,66 +40,26 @@ public class GameController implements Initializable {
             dynamicGridPane.add(players.get(i).getIcon(), 0, gameBoard.getSize() - 1);
             i++;
         }
+        try {
+            FXMLLoader loader = new FXMLLoader(GameController.class.getResource("/View/BoardGame.fxml"));
+            Parent root = loader.load();
+            GameBoardController boardGameController = loader.getController();
 
-        while (!(game.isGameFinished())) {
-            for (i = 0; i < players.size(); i++) {
-                currentPosition = players.get(i).getPlayerPosition();
-                int rollResult = 1;
-                players.get(i).movePlayerTo(currentPosition + rollResult);
-                // Simulate some game logic to determine whether the game is finished
-                // You need to replace this with your actual game logic
+            while (!(game.isGameFinished())) {
+                for (i = 0; i < players.size(); i++) {
+                    boardGameController.rollButton.setOnAction(event -> boardGameController.roll());
+                    int rollResult = boardGameController.roll();
+                    System.out.print(rollResult);
+                    players.get(i).movePlayerTo(currentPosition + rollResult);
 
                     game.setGameFinished(true);
 
-            }
-        }
-    }
-
-
-    @FXML
-    public void roll() {
-        rollButton.setDisable(true);
-
-        Task<Integer> task = new Task<Integer>() {
-            @Override
-            protected Integer call() throws Exception {
-                int totalSum = 0;
-
-                int dice1Value = 0;
-                int dice2Value = 0;
-                for (int i = 0; i < 20; i++) {
-                    Random random = new Random();
-                    dice1Value = (random.nextInt(5) + 1);
-                    dice2Value = (random.nextInt(5) + 1);
-
-                    File file = new File("src/View/photos/dice/dice" + dice1Value + ".png");
-                    File file2 = new File("src/View/photos/dice/dice" + dice2Value + ".png");
-                    Image image1 = new Image(file.toURI().toString());
-                    Image image2 = new Image(file2.toURI().toString());
-
-                    Platform.runLater(() -> {
-                        diceImage.setImage(image1);
-                        diceImage2.setImage(image2);
-                    });
-
-                    Thread.sleep(50);
                 }
-
-                totalSum = dice1Value + dice2Value;
-
-                Platform.runLater(() -> rollButton.setDisable(false));
-
-                return totalSum;
             }
-        };
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        task.setOnSucceeded(event -> {
-            int result = task.getValue();
-            // Now you can handle the result as needed, for example, update UI
-            System.out.println("Total Sum: " + result);
-        });
-
-        new Thread(task).start();
     }
 
     @Override

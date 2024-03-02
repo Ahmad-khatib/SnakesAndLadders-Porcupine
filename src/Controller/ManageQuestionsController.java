@@ -74,7 +74,6 @@ public class ManageQuestionsController implements QuestionObserver {
         questionListView.getItems().clear();
 
         questionListView.setItems(questionTexts);
-        System.out.println("Initialized with " + allQuestions.size() + " questions.");
 
         for (Question question : allQuestions) {
             question.registerObserver(this);
