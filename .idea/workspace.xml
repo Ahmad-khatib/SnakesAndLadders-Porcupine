@@ -9,25 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="Yellow snakes placed in the right positions and saved accordingly !">
-      <change afterPath="$PROJECT_DIR$/src/Controller/GameController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="1.Created Suprise jump and question tiles&#10;2.Created model.game class and Controller.GameController class and started with the actual logic of the game">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/PlayerSettingsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/PlayerSettingsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/JUnits/PlayerEqualsTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/GameBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/GameBoard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Model.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Model.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Player.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/GameBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PlayerSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PlayerSettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JUnits/PlayerEqualsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JUnits/PlayerEqualsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Model.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Model.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Player.java" afterDir="false" />
     </list>
     <list id="4eab7431-56fc-4d74-abc0-9c4782af3869" name="Changes by noura" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -315,7 +307,7 @@
       <workItem from="1708353125928" duration="249000" />
       <workItem from="1708687622997" duration="12566000" />
       <workItem from="1709306337355" duration="31681000" />
-      <workItem from="1709381858247" duration="14151000" />
+      <workItem from="1709381858247" duration="17469000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <option name="closed" value="true" />
@@ -549,7 +541,31 @@
       <option name="project" value="LOCAL" />
       <updated>1709382306617</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="1.Created Suprise jump and question tiles&#10;2.Created model.game class and Controller.GameController class and started with the actual logic of the game">
+      <option name="closed" value="true" />
+      <created>1709398000131</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1709398000131</updated>
+    </task>
+    <task id="LOCAL-00031" summary="1.Created Suprise jump and question tiles&#10;2.Created model.game class and Controller.GameController class and started with the actual logic of the game">
+      <option name="closed" value="true" />
+      <created>1709399111527</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1709399111527</updated>
+    </task>
+    <task id="LOCAL-00032" summary="1.Created Suprise jump and question tiles&#10;2.Created model.game class and Controller.GameController class and started with the actual logic of the game">
+      <option name="closed" value="true" />
+      <created>1709399580623</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1709399580623</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -572,7 +588,8 @@
     <MESSAGE value="managecontroller" />
     <MESSAGE value="..." />
     <MESSAGE value="Yellow snakes placed in the right positions and saved accordingly !" />
-    <option name="LAST_COMMIT_MESSAGE" value="Yellow snakes placed in the right positions and saved accordingly !" />
+    <MESSAGE value="1.Created Suprise jump and question tiles&#10;2.Created model.game class and Controller.GameController class and started with the actual logic of the game" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.Created Suprise jump and question tiles&#10;2.Created model.game class and Controller.GameController class and started with the actual logic of the game" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
