@@ -66,11 +66,9 @@ public class GameBoard {
             for (int col = 0; col < size; col++) {
                 if (supriseJumpTiles.contains(count)) {
                     tiles[row][col] = new Tile(count, Tile.TileType.SURPRISE_JUMP, col * preferredTileSize, row * preferredTileSize, preferredTileSize, preferredTileSize);
-                    System.out.print("this is the row "+row + " this is the col :" +col + " \n");
                 }
                 else if (questionTiles.contains(count)) {
                     tiles[row][col] = new Tile(count, Tile.TileType.QUESTION, col * preferredTileSize, row * preferredTileSize, preferredTileSize, preferredTileSize);
-                    System.out.print("this is the row "+row + " this is the col :" +col + " \n");
                 } else {
                     tiles[row][col] = new Tile(count, Tile.TileType.NORMAL, col * preferredTileSize, row * preferredTileSize, preferredTileSize, preferredTileSize);
                 }
@@ -86,9 +84,8 @@ public class GameBoard {
     public void displayBoard() {
         for (int row = size - 1; row >= 0; row--) {
             for (int col = 0; col < size; col++) {
-                System.out.print(tiles[row][col].getTileType() + "\t");
             }
-            System.out.println();
+
         }
     }
 
