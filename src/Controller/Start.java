@@ -58,7 +58,7 @@ public class Start extends Application {
 
             // Create the scene
             Scene scene = new Scene(root);
-            primaryStage.getIcons().add(new Image("src/View/Photos/SnakeLadders2.png", 100, 100, true, true));
+            primaryStage.getIcons().add(new Image("/View/Photos/SnakeLadders2.png", 100, 100, true, true));
             // Set the scene and show the stage
             primaryStage.setScene(scene);
             primaryStage.setTitle("Snake and Ladders Game"); // Set the title of the window

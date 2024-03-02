@@ -73,7 +73,7 @@ public class Snake {
     }
 
     // Calculate the tail position based on the head position and snake length
-    public int getTailPosition(String selectedLevel) {
+    public int getTailPosition() {
         return tailPosition;
     }
 
@@ -133,7 +133,7 @@ public class Snake {
                 "snakeId=" + snakeId +
                 ", color=" + color +
                 ", headPosition=" + headPosition +
-                ", tailPosition=" + getTailPosition(selectedLevel) +
+                ", tailPosition=" + getTailPosition() +
                 '}';
     }
 
