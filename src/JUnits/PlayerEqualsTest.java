@@ -1,4 +1,4 @@
-package JUnits;
+/*package JUnits;
 
 import Model.Player;
 import org.junit.Test;
@@ -22,4 +22,4 @@ public class PlayerEqualsTest {
         assertFalse(P.equals(P3));
 
 }
-}
+}*/

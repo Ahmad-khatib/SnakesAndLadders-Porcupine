@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Player;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -16,6 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -25,7 +27,7 @@ import static Controller.PlayerSelectionsController.chosenLevel;
 public class PlayerSettingsController {
     // Set to store selected icon images
     private final Set<ImageView> selectedIcons = new HashSet<>();
-
+    private ArrayList<Player> players = new ArrayList<>();
     // VBox element to contain player information
     @FXML
     private VBox playerBoxContainer;
@@ -79,6 +81,7 @@ public class PlayerSettingsController {
                 iconImageView.setOnMouseClicked(event -> handleIconSelection(iconImageView, playerBox));
                 // Add the icon image view to the player's HBox
                 playerBox.getChildren().add(iconImageView);
+                players.add(new Player(i,playerNameField.getText(),iconImageView,1));
             }
 
             // Add the player's HBox to the player box container
@@ -132,7 +135,7 @@ public class PlayerSettingsController {
             root = loader.load();
             // Initialize the board game controller
             GameBoardController boardGameController = loader.getController();
-            boardGameController.initialize(chosenLevel); // Pass board size to the controller
+            boardGameController.initialize(chosenLevel,players); // Pass board size to the controller
             // Set the stylesheet for the scene
             root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/View/PorcupineStyle.css")).toExternalForm());
             // Get the current stage and set the scene to the board game scene
@@ -308,10 +311,7 @@ public class PlayerSettingsController {
         }
         // All players are ready
         return true;
-    }
-
-
-
+}
 
 
 

@@ -1,10 +1,6 @@
 package Controller;
 
 import Model.*;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -13,19 +9,22 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
-
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.scene.shape.Rectangle;
 
 
 public class GameBoardController extends GridPane {
@@ -52,7 +51,7 @@ public class GameBoardController extends GridPane {
         initializeBoardUI();
         placeSnakes(selectedLevel);
         initializeTimer();
-      //  placeLadders(selectedLevel);
+        //  placeLadders(selectedLevel);
         Game game = new Game(gameBoard.getGameId(),gameBoard,players, SystemData.getInstance().getQuestions());
         GameController.Start(game,dynamicGridPane);
     }
@@ -101,6 +100,9 @@ public class GameBoardController extends GridPane {
     }
 
     @FXML
+    public void  handlerolButtonClicked(){
+        int rollresult = roll();
+    }
     public int roll() {
         rollButton.setDisable(true);
 
@@ -137,17 +139,8 @@ public class GameBoardController extends GridPane {
         };
 
         new Thread(task).start();
-
-        try {
-            // Wait for the task to finish and get the result
-            int result = task.get();
-            return result;
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-            return 0; // Return a default value if an exception occurs
-        }
+        return 0; // Return a default value if needed
     }
-
 
 
     private void placeSnakes(String selectedLevel) {
@@ -196,6 +189,8 @@ public class GameBoardController extends GridPane {
             }
         }
 */
+        System.out.print("Heads" +usedHeadPositions+"\n");
+        System.out.print("Tails" +usedTailPositions);
     }
 
 
@@ -301,32 +296,32 @@ public class GameBoardController extends GridPane {
                 }
             }
         }
-       // return null;
+        // return null;
     }
 
 
-        private int generateUniqueSnakeId () {
-            return snakeIdCounter++;
-        }
+    private int generateUniqueSnakeId () {
+        return snakeIdCounter++;
+    }
 
-        private boolean isValidSnakePosition (Snake
-        snake, Set < Integer > usedHeadPositions, Set < Integer > usedTailPositions,int gridSize, String selectedLevel){
-            if (!(snake.getColor().equals("RED"))) {
-                if (usedHeadPositions.contains(snake.getHeadPosition()) ||
-                        usedTailPositions.contains(snake.getHeadPosition()) ||
-                        usedHeadPositions.contains(snake.getTailPosition()) ||
-                        usedTailPositions.contains(snake.getTailPosition())) {
-                    return false;
-                }
-            }
-
-            if (snake.getHeadPosition() >= gridSize * gridSize ||
-                    snake.getTailPosition() >= gridSize * gridSize) {
+    private boolean isValidSnakePosition (Snake
+                                                  snake, Set < Integer > usedHeadPositions, Set < Integer > usedTailPositions,int gridSize, String selectedLevel){
+        if (!(snake.getColor().equals("RED"))) {
+            if (usedHeadPositions.contains(snake.getHeadPosition()) ||
+                    usedTailPositions.contains(snake.getHeadPosition()) ||
+                    usedHeadPositions.contains(snake.getTailPosition()) ||
+                    usedTailPositions.contains(snake.getTailPosition())) {
                 return false;
             }
-
-            return true;
         }
+
+        if (snake.getHeadPosition() >= gridSize * gridSize ||
+                snake.getTailPosition() >= gridSize * gridSize) {
+            return false;
+        }
+
+        return true;
+    }
 
     private void updateSnakeUI(Snake snake, String selectedLevel) {
         // Get the positions of the snake head and tail, row 0 is the first row
@@ -361,7 +356,7 @@ public class GameBoardController extends GridPane {
         snakeHeadImageView.smoothProperty();
 
         // Add snake head and tail images to custom tiles
-         headTile.addSnakeHeadImage(adjustSnakesnakeImage);
+        headTile.addSnakeHeadImage(adjustSnakesnakeImage);
 
         // Rotate the image based on the calculated angle
 
@@ -370,7 +365,7 @@ public class GameBoardController extends GridPane {
         dynamicGridPane.add(headTile,headCol,headRow);
 
         // Ensure the row spans properly to accommodate the snake height
-         GridPane.setRowSpan(headTile, (int) Math.ceil(snakeHeight / cellHeight));
+        GridPane.setRowSpan(headTile, (int) Math.ceil(snakeHeight / cellHeight));
     }
     public static double calculateDistance(int headRow, int headCol, int tailRow, int tailCol) {
         return Math.sqrt(Math.pow(tailRow - headRow, 2) + Math.pow(tailCol - headCol, 2));
@@ -524,130 +519,130 @@ public class GameBoardController extends GridPane {
     ImageView adjustSnake(ImageView snakeImage, Snake snake, double cellSize, int headRow, int headCol, int tailRow, int tailCol) {
         switch (snake.getColor()) {
             case YELLOW:
-                    int colDiffirence = Math.abs(headCol-tailCol);
+                int colDiffirence = Math.abs(headCol-tailCol);
                 int rowDiffirence = Math.abs(headRow-tailRow);
-                    if(headCol >= tailCol) {
-                        if (colDiffirence == 0) { ///done
-                            snakeImage.setRotate(25);
-                            snakeImage.setTranslateY(50);
+                if(headCol >= tailCol) {
+                    if (colDiffirence == 0) { ///done
+                        snakeImage.setRotate(25);
+                        snakeImage.setTranslateY(50);
 
-                        }
-                        if (colDiffirence == 1) { // done
-                            snakeImage.setRotate(82.1);
-                            snakeImage.setTranslateX(-((cellSize * (colDiffirence))/2));
-                            snakeImage.setTranslateY(-5);
-
-                        }
-                        if (colDiffirence == 2 ) {
-                            snakeImage.setRotate(85.2);
-                            snakeImage.setTranslateY(-(cellSize / 2));
-                            snakeImage.setTranslateX(-(cellSize * (colDiffirence - 1)));
-                        }
-                        if ( colDiffirence == 3) {
-                            snakeImage.setRotate(85.2);
-                            snakeImage.setTranslateY(-(cellSize / 5));
-                            snakeImage.setTranslateX(-((cellSize * (colDiffirence - 1))));
-                        }
-                        if (colDiffirence == 4) {
-                            snakeImage.setRotate(85.2);
-                            snakeImage.setTranslateY(cellSize);
-                            snakeImage.setTranslateX(-((cellSize/2) * (colDiffirence - 1)));
-                        }
-
-
-                        if (colDiffirence == 5) {
-                            snakeImage.setRotate(85);
-                            snakeImage.setTranslateY(-(2*cellSize)); //sample
-                            snakeImage.setTranslateX(-((cellSize * (colDiffirence - 1))/2));
-                        }
-                        if (colDiffirence == 6) {
-                            snakeImage.setRotate(90);
-                            snakeImage.setTranslateY(-(cellSize / 2));
-                            snakeImage.setTranslateX(-(cellSize * (colDiffirence - 1))/2);
-                        }
-                        if (colDiffirence == 7) {
-                            snakeImage.setRotate(40);
-                        }
-                        if (colDiffirence == 8) {
-                            snakeImage.setRotate(70);
-                        }
-                        if (colDiffirence == 9) {
-                            snakeImage.setRotate(75);
-                        }
-                        if (colDiffirence == 10) {
-                            snakeImage.setRotate(-80);
-                        }
-                        if (colDiffirence == 11) {
-                            snakeImage.setRotate(85);
-                        }
-                        if (colDiffirence == 12) {
-                            snakeImage.setRotate(90);
-                        }
                     }
-                    else if (headCol < tailCol){
+                    if (colDiffirence == 1) { // done
+                        snakeImage.setRotate(82.1);
+                        snakeImage.setTranslateX(-((cellSize * (colDiffirence))/2));
+                        snakeImage.setTranslateY(-5);
 
-                        if (colDiffirence == 1) {
-                            snakeImage.setRotate(-25);
-                            snakeImage.setTranslateX((cellSize * (colDiffirence)/2));
-
-                        }
-                        if (colDiffirence == 2 ) {
-                            snakeImage.setRotate(-40);
-                            snakeImage.setTranslateY(1.5*cellSize);
-                            snakeImage.setTranslateX((cellSize * (colDiffirence - 1))/2);
-                        }
-                        if ( colDiffirence == 3 ) { //finla
-                            snakeImage.setRotate(-55);
-                            snakeImage.setTranslateY(25);
-                            snakeImage.setTranslateX((cellSize * (colDiffirence - 1)));
-                        }
-                        if (colDiffirence == 4) { //sample
-                            snakeImage.setRotate(-60);
-                            snakeImage.setTranslateY(-(cellSize));
-                            snakeImage.setTranslateX((cellSize * (colDiffirence - 1)));
-                        }
-                        if (colDiffirence == 5) {
-                            snakeImage.setRotate(-70);
-                            snakeImage.setTranslateY((cellSize / 4));
-
-                            snakeImage.setTranslateX((cellSize * (colDiffirence - 1)));
-                        }
-                        if (colDiffirence == 6) {
-                            snakeImage.setRotate(-71);
-                            snakeImage.setTranslateY(-(cellSize / 2));
-                            snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
-                        }
-                        if (colDiffirence == 7) {
-                            snakeImage.setRotate(-72);
-                            snakeImage.setTranslateY(-(cellSize / 2));
-                            snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/4));
-                        }
-                        if (colDiffirence == 8) {
-                            snakeImage.setRotate(-73);
-                            snakeImage.setTranslateY(-(cellSize / 2));
-                            snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
-                        }
-                        if (colDiffirence == 9) {
-                            snakeImage.setRotate(-74);
-                            snakeImage.setTranslateY(-(cellSize / 2));
-                            snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
-                        }
-                        if (colDiffirence == 10) {
-                            snakeImage.setRotate(-75);
-                            snakeImage.setTranslateY(-(cellSize / 2));
-                            snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
-                        }
-                        if (colDiffirence == 11) {
-                            snakeImage.setRotate(-76);
-                            snakeImage.setTranslateY(-(cellSize / 2));
-                            snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
-                        }
-                        if (colDiffirence == 12) {
-                            snakeImage.setRotate(-77);
-                            snakeImage.setTranslateY(-(cellSize / 2));
-                            snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
-                        }
                     }
+                    if (colDiffirence == 2 ) {
+                        snakeImage.setRotate(85.2);
+                        snakeImage.setTranslateY(-(cellSize / 2));
+                        snakeImage.setTranslateX(-(cellSize * (colDiffirence - 1)));
+                    }
+                    if ( colDiffirence == 3) {
+                        snakeImage.setRotate(85.2);
+                        snakeImage.setTranslateY(-(cellSize / 5));
+                        snakeImage.setTranslateX(-((cellSize * (colDiffirence - 1))));
+                    }
+                    if (colDiffirence == 4) {
+                        snakeImage.setRotate(85.2);
+                        snakeImage.setTranslateY(cellSize);
+                        snakeImage.setTranslateX(-((cellSize/2) * (colDiffirence - 1)));
+                    }
+
+
+                    if (colDiffirence == 5) {
+                        snakeImage.setRotate(85);
+                        snakeImage.setTranslateY(-(2*cellSize)); //sample
+                        snakeImage.setTranslateX(-((cellSize * (colDiffirence - 1))/2));
+                    }
+                    if (colDiffirence == 6) {
+                        snakeImage.setRotate(90);
+                        snakeImage.setTranslateY(-(cellSize / 2));
+                        snakeImage.setTranslateX(-(cellSize * (colDiffirence - 1))/2);
+                    }
+                    if (colDiffirence == 7) {
+                        snakeImage.setRotate(40);
+                    }
+                    if (colDiffirence == 8) {
+                        snakeImage.setRotate(70);
+                    }
+                    if (colDiffirence == 9) {
+                        snakeImage.setRotate(75);
+                    }
+                    if (colDiffirence == 10) {
+                        snakeImage.setRotate(-80);
+                    }
+                    if (colDiffirence == 11) {
+                        snakeImage.setRotate(85);
+                    }
+                    if (colDiffirence == 12) {
+                        snakeImage.setRotate(90);
+                    }
+                }
+                else if (headCol < tailCol){
+
+                    if (colDiffirence == 1) {
+                        snakeImage.setRotate(-25);
+                        snakeImage.setTranslateX((cellSize * (colDiffirence)/2));
+
+                    }
+                    if (colDiffirence == 2 ) {
+                        snakeImage.setRotate(-40);
+                        snakeImage.setTranslateY(1.5*cellSize);
+                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1))/2);
+                    }
+                    if ( colDiffirence == 3 ) { //finla
+                        snakeImage.setRotate(-55);
+                        snakeImage.setTranslateY(25);
+                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)));
+                    }
+                    if (colDiffirence == 4) { //sample
+                        snakeImage.setRotate(-60);
+                        snakeImage.setTranslateY(-(cellSize));
+                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)));
+                    }
+                    if (colDiffirence == 5) {
+                        snakeImage.setRotate(-70);
+                        snakeImage.setTranslateY((cellSize / 4));
+
+                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)));
+                    }
+                    if (colDiffirence == 6) {
+                        snakeImage.setRotate(-71);
+                        snakeImage.setTranslateY(-(cellSize / 2));
+                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
+                    }
+                    if (colDiffirence == 7) {
+                        snakeImage.setRotate(-72);
+                        snakeImage.setTranslateY(-(cellSize / 2));
+                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/4));
+                    }
+                    if (colDiffirence == 8) {
+                        snakeImage.setRotate(-73);
+                        snakeImage.setTranslateY(-(cellSize / 2));
+                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
+                    }
+                    if (colDiffirence == 9) {
+                        snakeImage.setRotate(-74);
+                        snakeImage.setTranslateY(-(cellSize / 2));
+                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
+                    }
+                    if (colDiffirence == 10) {
+                        snakeImage.setRotate(-75);
+                        snakeImage.setTranslateY(-(cellSize / 2));
+                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
+                    }
+                    if (colDiffirence == 11) {
+                        snakeImage.setRotate(-76);
+                        snakeImage.setTranslateY(-(cellSize / 2));
+                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
+                    }
+                    if (colDiffirence == 12) {
+                        snakeImage.setRotate(-77);
+                        snakeImage.setTranslateY(-(cellSize / 2));
+                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
+                    }
+                }
                 break;
             case GREEN:
                 // Add adjustments for green snake if needed
@@ -699,7 +694,7 @@ public class GameBoardController extends GridPane {
 
         // Ensure ladder spans multiple rows
         GridPane.setRowSpan(ladderTile, (int) Math.ceil(ladderHeight / cellHeight));
-    }
+}
 
 
 
