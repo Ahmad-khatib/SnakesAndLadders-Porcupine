@@ -24,6 +24,8 @@ public class GameController implements Initializable {
         }
         while(!(game.isGameFinished())){
             for(i =0 ;i  < players.size(); i++){
+
+
                 game.setGameFinished(true);
             }
         }

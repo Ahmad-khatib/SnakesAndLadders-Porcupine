@@ -99,6 +99,9 @@ public class GameBoardController extends GridPane {
     }
 
     @FXML
+    public void  handlerolButtonClicked(){
+        int rollresult = roll();
+    }
     public int roll() {
         rollButton.setDisable(true);
 

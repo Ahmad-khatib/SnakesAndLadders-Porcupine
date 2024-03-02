@@ -44,7 +44,7 @@
                         </ImageView>
                      </children>
                   </HBox>
-                   <Button fx:id="rollButton" alignment="CENTER" mnemonicParsing="false" onAction="#roll" prefHeight="92.0" prefWidth="300.0" text="Roll">
+                   <Button fx:id="rollButton" alignment="CENTER" mnemonicParsing="false" onAction="#handlerolButtonClicked" prefHeight="92.0" prefWidth="300.0" text="Roll">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin></Button>
