@@ -43,7 +43,6 @@ public class GameController implements Initializable {
                 currentPosition = players.get(i).getPlayerPosition();
                 int rollResult = 1;
                 players.get(i).movePlayerTo(currentPosition + rollResult);
-
                 // Simulate some game logic to determine whether the game is finished
                 // You need to replace this with your actual game logic
 
