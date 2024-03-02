@@ -1,6 +1,5 @@
 package Model;
 
-import Controller.ManageQuestionsController;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -47,7 +46,10 @@ public class SystemData implements QuestionObserver {
 
                 Difficulty enumDifficulty = getQuestionDifficulty(difficulty);
 
-                Question questionToAdd = new Question(text, answer1, answer2, answer3, answer4, correctAnswer, enumDifficulty);
+                // Generate a unique ID for the question
+                int questionId = generateUniqueId();
+
+                Question questionToAdd = new Question(questionId, text, answer1, answer2, answer3, answer4, correctAnswer, enumDifficulty);
                 questions.computeIfAbsent(enumDifficulty, k -> new ArrayList<>()).add(questionToAdd);
             }
             return true;
@@ -55,6 +57,18 @@ public class SystemData implements QuestionObserver {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public int generateUniqueId() {
+        int lastGeneratedId = Integer.MIN_VALUE; // Initialize with the lowest possible integer value
+        for (ArrayList<Question> list : questions.values()) {
+            if (list != null) {
+                for (Question question : list) {
+                    lastGeneratedId = Math.max(lastGeneratedId, question.getQuestionId());
+                }
+            }
+        }
+        return lastGeneratedId == Integer.MIN_VALUE ? 1 : lastGeneratedId + 1;
     }
 
 
@@ -110,7 +124,6 @@ public class SystemData implements QuestionObserver {
         }
     }
 
-
     public HashMap<Difficulty, ArrayList<Question>> getQuestions() {
         return questions;
     }
@@ -137,31 +150,24 @@ public class SystemData implements QuestionObserver {
                 list.removeIf(q -> q.equals(question));
             }
         }
+        saveQuestions(); // Save changes after deleting a question
     }
 
     @Override
     public void onQuestionAdded(Question question) {
-
+        // Not used in this context
     }
 
     @Override
     public void onQuestionEdited(Question oldQuestion, Question newQuestion) {
-
+        // Not used in this context
     }
 
     @Override
     public void onQuestionDeleted(Question deletedQuestion) {
         // Implement logic to handle deletion of questions
         // Remove the deleted question from the HashMap and save the changes to the JSON file
-        for (ArrayList<Question> list : questions.values()) {
-            if (list != null) {
-                list.removeIf(q -> q.equals(deletedQuestion));
-            }
-        }
-        saveQuestions();
-    }
-
-    public void registerObserver(ManageQuestionsController manageQuestionsController) {
+        deleteQuestion(deletedQuestion);
     }
 
     public boolean addQuestion(Question newQuestion) {
@@ -183,38 +189,28 @@ public class SystemData implements QuestionObserver {
         // Return true to indicate that the question was successfully added
         return true;
     }
+
     public boolean editQuestion(Question editedQuestion) {
-        // Get the difficulty of the edited question
-        Difficulty difficulty = editedQuestion.getLevel();
+        // Get the old difficulty of the edited question
+        Difficulty oldDifficulty = editedQuestion.getLevel();
 
-        // Get the list of questions for the given difficulty level
-        ArrayList<Question> questionList = questions.getOrDefault(difficulty, new ArrayList<>());
-
-        // Find the index of the edited question in the list
-        int index = -1;
-        for (int i = 0; i < questionList.size(); i++) {
-            if (questionList.get(i).getQuestionId() == editedQuestion.getQuestionId()) {
-                index = i;
-                break;
-            }
-        }
-
-        // If the question is found, replace it with the edited question
-        if (index != -1) {
+        // Check if the question exists in the old difficulty list
+        ArrayList<Question> questionList = questions.get(oldDifficulty);
+        if (questionList != null && questionList.contains(editedQuestion)) {
+            // Update the question in the old difficulty list
+            int index = questionList.indexOf(editedQuestion);
             questionList.set(index, editedQuestion);
-
-            // Update the HashMap with the modified list
-            questions.put(difficulty, questionList);
 
             // Save the updated questions to the JSON file
             saveQuestions();
 
-            // Return true to indicate that the question was successfully edited
             return true;
-        } else {
-            // If the question is not found, return false
-            return false;
         }
+
+        // If the question is not found in the old difficulty list, return false
+        return false;
     }
+
+
 
 }

@@ -1,13 +1,13 @@
 package Model;
-import java.io.Serializable;
 
 import Controller.ManageQuestionsController;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Question implements Serializable{
+public class Question {
 
+    private static int lastGeneratedId = 0;
     private final ArrayList<Question> questionList;
     private int questionId;
     private String text;
@@ -18,12 +18,8 @@ public class Question implements Serializable{
     private String correctAnswer;
     private Difficulty level;
 
-    private static final long serialVersionUID = 1L;
-    private static int lastGeneratedId;
-
-
-    public Question(String text, String answer1, String answer2, String answer3, String answer4, String correctAnswer, Difficulty level) {
-        this.questionId = generateUniqueId();
+    public Question(int questionId, String text, String answer1, String answer2, String answer3, String answer4, String correctAnswer, Difficulty level) {
+        this.questionId = questionId;
         this.text = text;
         this.answer1 = answer1;
         this.answer2 = answer2;
@@ -34,8 +30,9 @@ public class Question implements Serializable{
         this.questionList = new ArrayList<>();
     }
 
-    public static String getQuestion(Difficulty randomDifficulty) {
 
+
+    public static String getQuestion(Difficulty randomDifficulty) {
         return null;
     }
 
@@ -113,8 +110,7 @@ public class Question implements Serializable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Question question = (Question) o;
-        return Objects.equals(text, question.text) &&
-                Objects.equals(correctAnswer, question.correctAnswer);
+        return Objects.equals(text, question.text) && Objects.equals(answer1, question.answer1) && Objects.equals(answer2, question.answer2) && Objects.equals(answer3, question.answer3) && Objects.equals(answer4, question.answer4) && Objects.equals(correctAnswer, question.correctAnswer);
     }
 
     @Override
@@ -127,9 +123,5 @@ public class Question implements Serializable{
     }
 
     public void registerObserver(ManageQuestionsController manageQuestionsController) {
-    }
-
-    private static int generateUniqueId() {
-        return lastGeneratedId++;
     }
 }
