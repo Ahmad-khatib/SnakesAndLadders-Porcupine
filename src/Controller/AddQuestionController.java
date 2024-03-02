@@ -52,7 +52,7 @@ public class AddQuestionController {
         saveButton.setOnAction(event -> saveQuestion());
     }
 
-    public void setExistingQuestion(Question question) {
+  public void setExistingQuestion(Question question) {
         // Set existing question data into the fields for editing
         existingQuestion = question;
         questionTextArea.setText(question.getText());

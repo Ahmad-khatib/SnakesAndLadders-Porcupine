@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class ManageQuestionsController implements QuestionObserver {
+    private static ManageQuestionsController instance;
     @FXML
     private ListView<String> questionListView;
 
@@ -38,6 +39,12 @@ public class ManageQuestionsController implements QuestionObserver {
     private Button sortButton;
 
     private ObservableList<Question> questions = FXCollections.observableArrayList();
+    public static ManageQuestionsController getInstance() {
+        if (instance == null) {
+            instance = new ManageQuestionsController();
+        }
+        return instance;
+    }
 
     @FXML
     private void initialize() {
@@ -311,6 +318,6 @@ public class ManageQuestionsController implements QuestionObserver {
 
         // Add the refreshed question list to the ListView
         questionListView.setItems(questionTexts);
-    }
+}
 
 }

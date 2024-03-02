@@ -9,17 +9,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="updated the PlayerSettingsController with functionality to choose unique icons for each player added so checks before moving to th next page.">
-      <change afterPath="$PROJECT_DIR$/src/Controller/AddQuestionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/EditQuestionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/AddQuestion.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/EditQuestion.fxml" afterDir="false" />
+    <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="Merge remote-tracking branch 'origin/main' into main">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/ManageQuestionsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/ManageQuestionsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/SystemData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/SystemData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/EditQuestionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/EditQuestionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/MainPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/MainPageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/PlayerSettingsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/PlayerSettingsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Question.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Question.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/questions_scheme.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/questions_scheme.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/questions_scheme.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AddQuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AddQuestionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/EditQuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EditQuestionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/PlayerSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PlayerSettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Question.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/SystemData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/SystemData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/questions_scheme.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/questions_scheme.json" afterDir="false" />
     </list>
@@ -70,9 +72,12 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/Controller/GamesHistoryController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/Controller/PlayerSelectionsController.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Controller/PlayerSettingsController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Model/SystemData.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Model/QuestionObserver.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/Model/SystemData.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/Model/questions_scheme.json" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/View/GamesHistory.fxml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/View/MainPage.fxml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/View/PlayerSelections.fxml" root0="FORCE_HIGHLIGHTING" />
@@ -152,8 +157,8 @@
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\noura\Documents\GitHub\SnakesAndLadders-Porcupine\src\View" />
       <recent name="C:\Users\noura\Documents\GitHub\SnakesAndLadders-Porcupine\src\View\Photos" />
+      <recent name="C:\Users\noura\Documents\GitHub\SnakesAndLadders-Porcupine\src\View" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View\Photos\dice" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View\Photos" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\Model" />
@@ -249,9 +254,9 @@
     <list>
       <item itemvalue="Application.Start" />
       <item itemvalue="JUnit.CorrectAnswerTest" />
-      <item itemvalue="JUnit.testMovePlayerForward" />
-      <item itemvalue="JUnit.QuestionsSort.testSortButton" />
       <item itemvalue="JUnit.LoadingQuestionsTest" />
+      <item itemvalue="JUnit.QuestionsSort.testSortButton" />
+      <item itemvalue="JUnit.testMovePlayerForward" />
     </list>
     <recent_temporary>
       <list>
@@ -316,6 +321,10 @@
       <workItem from="1708953514029" duration="2349000" />
       <workItem from="1709154030545" duration="460000" />
       <workItem from="1709220277724" duration="14535000" />
+      <workItem from="1709289049946" duration="1842000" />
+      <workItem from="1709291327186" duration="3000" />
+      <workItem from="1709311984637" duration="20586000" />
+      <workItem from="1709379935022" duration="3211000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <option name="closed" value="true" />
@@ -501,7 +510,23 @@
       <option name="project" value="LOCAL" />
       <updated>1709251238905</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="updated the ManageQuestionsController with the functionalities add delete and edit question also added controllers and fxml for add and delete, updated the SystemData accordingly">
+      <option name="closed" value="true" />
+      <created>1709289182187</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1709289182187</updated>
+    </task>
+    <task id="LOCAL-00025" summary="updated the ManageQuestionsController with the functionalities add delete and edit question also added controllers and fxml for add and delete, updated the SystemData accordingly">
+      <option name="closed" value="true" />
+      <created>1709289454257</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1709289454257</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -521,7 +546,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="..." />
     <MESSAGE value="updated the PlayerSettingsController with functionality to choose unique icons for each player added so checks before moving to th next page." />
-    <option name="LAST_COMMIT_MESSAGE" value="updated the PlayerSettingsController with functionality to choose unique icons for each player added so checks before moving to th next page." />
+    <MESSAGE value="updated the ManageQuestionsController with the functionalities add delete and edit question also added controllers and fxml for add and delete, updated the SystemData accordingly" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main' into main" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main' into main" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

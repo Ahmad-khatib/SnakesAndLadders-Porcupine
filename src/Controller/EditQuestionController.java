@@ -47,6 +47,7 @@ public class EditQuestionController {
         answer4TextArea.setText(question.getAnswer4());
         levelChoiceBox.setValue(question.getLevel().toString());
         correctAnswerChoiceBox.setValue(question.getCorrectAnswer());
+
     }
 
     @FXML

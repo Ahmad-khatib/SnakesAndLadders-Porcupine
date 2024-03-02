@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
@@ -41,6 +40,7 @@ public class PlayerSettingsController {
 
     // Method to initialize player fields
     public void initializePlayerFields(int numPlayers) {
+        startButton.setDisable(true);
         // Set an action for the reset button
         resetButton.setOnAction(event -> handleResetButtonClicked());
         // Loop through each player
@@ -53,6 +53,18 @@ public class PlayerSettingsController {
             playerBox.getChildren().add(playerNameField);
             // Styling for the text field
             playerNameField.setStyle("-fx-background-color: #173f02; -fx-text-fill: #77d472;  -fx-border-radius: 19px;");
+
+            // Add listener for text field changes
+            playerNameField.textProperty().addListener((observable, oldValue, newValue) -> {
+                startButton.setDisable(!areAllPlayersReady());
+            });
+
+            // Add listener for focus loss
+            playerNameField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                if (!newValue) { // If focus lost
+                    startButton.setDisable(!areAllPlayersReady());
+                }
+            });
 
             // Inside initializePlayerFields method
             for (int j = 0; j < 4; j++) {
@@ -74,6 +86,7 @@ public class PlayerSettingsController {
         }
     }
 
+
     // Method to get the filename of the icon image based on its index
     private String getIconFileName(int index) {
         switch (index) {
@@ -93,32 +106,8 @@ public class PlayerSettingsController {
     // Method to handle the start button being clicked
     @FXML
     private void handleStartButtonClicked() {
-        // Check if any player has not chosen an icon or filled in their name
-        for (Node playerBox : playerBoxContainer.getChildren()) {
-            if (playerBox instanceof HBox) {
-                HBox hbox = (HBox) playerBox;
-                boolean iconChosen = false;
-                boolean nameFilled = false;
-                for (Node node : hbox.getChildren()) {
-                    if (node instanceof ImageView && !node.isDisabled()) {
-                        iconChosen = true;
-                    }
-                    if (node instanceof TextField && !((TextField) node).getText().isEmpty()) {
-                        nameFilled = true;
-                    }
-                }
-                if (!iconChosen || !nameFilled) {
-                    // Show an alert informing the user to fill in all fields and choose an icon
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("Incomplete Selection");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Please fill in all player names and choose an icon for each player.");
-                    alert.showAndWait();
-                    return;
-                }
-            }
-        }
 
+        startButton.setDisable(true);
         // Determine the board size based on the chosen level
         int boardSize = 0;
 
@@ -268,13 +257,14 @@ public class PlayerSettingsController {
         dropShadow.setRadius(10); // Adjust the radius as desired
         selectedIconImageView.setEffect(dropShadow); // Apply drop shadow effect
 
-
+        startButton.setDisable(!areAllPlayersReady());
     }
     // Method to handle the reset button being clicked
     @FXML
     private void handleResetButtonClicked() {
         // Clear the set of chosen icons
         selectedIcons.clear();
+        startButton.setDisable(true);
 
         // Enable all icons for all players
         for (Node playerBox : playerBoxContainer.getChildren()) {
@@ -291,4 +281,39 @@ public class PlayerSettingsController {
             }
         }
     }
+    private boolean areAllPlayersReady() {
+        // Loop through each player
+        for (Node playerBox : playerBoxContainer.getChildren()) {
+            if (playerBox instanceof HBox) {
+                HBox hbox = (HBox) playerBox;
+                boolean iconChosen = false;
+                boolean nameFilled = false;
+                // Check if the player has chosen an icon and filled in their name
+                for (Node node : hbox.getChildren()) {
+                    if (node instanceof ImageView) {
+                        ImageView iconImageView = (ImageView) node;
+                        if (selectedIcons.contains(iconImageView)) {
+                            iconChosen = true;
+                        }
+                    }
+                    if (node instanceof TextField && !((TextField) node).getText().isEmpty()) {
+                        nameFilled = true;
+                    }
+                }
+                // If any player is not ready, return false
+                if (!iconChosen || !nameFilled) {
+                    return false;
+                }
+            }
+        }
+        // All players are ready
+        return true;
+    }
+
+
+
+
+
+
+
 }

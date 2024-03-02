@@ -27,6 +27,7 @@ public class SystemData implements QuestionObserver {
 
     public boolean loadQuestions() {
         JSONParser parser = new JSONParser();
+        questions.clear(); // Clear existing questions
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("src/Model/questions_scheme.json")))) {
             Object obj = parser.parse(reader);
@@ -55,6 +56,7 @@ public class SystemData implements QuestionObserver {
             return false;
         }
     }
+
 
     private Difficulty getQuestionDifficulty(int difficulty) {
         switch (difficulty) {
