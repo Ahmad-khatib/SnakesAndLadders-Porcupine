@@ -98,45 +98,6 @@ public class GameBoardController extends GridPane {
         timeline.play();
     }
 
-    @FXML
-    public int roll() {
-        rollButton.setDisable(true);
-
-        Task<Integer> task = new Task<Integer>() {
-            @Override
-            protected Integer call() throws Exception {
-                int totalSum = 0;
-
-                int dice1Value = 0;
-                int dice2Value = 0;
-                for (int i = 0; i < 20; i++) {
-                    dice1Value = (random.nextInt(5) + 1);
-                    dice2Value = (random.nextInt(5) + 1);
-
-                    File file = new File("src/View/photos/dice/dice" + dice1Value + ".png");
-                    File file2 = new File("src/View/photos/dice/dice" + dice2Value + ".png");
-                    Image image1 = new Image(file.toURI().toString());
-                    Image image2 = new Image(file2.toURI().toString());
-
-                    Platform.runLater(() -> {
-                        diceImage.setImage(image1);
-                        diceImage2.setImage(image2);
-                    });
-
-                    Thread.sleep(50);
-                }
-
-                totalSum = dice1Value + dice2Value;
-
-                Platform.runLater(() -> rollButton.setDisable(false));
-
-                return totalSum;
-            }
-        };
-
-        new Thread(task).start();
-        return 0; // Return a default value if needed
-    }
 
 
     private void placeSnakes(String selectedLevel) {
