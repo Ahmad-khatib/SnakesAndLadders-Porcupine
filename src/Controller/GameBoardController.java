@@ -1,8 +1,6 @@
 package Controller;
 
-import Model.GameBoard;
-import Model.Snake;
-import Model.Tile;
+import Model.*;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -13,10 +11,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -45,12 +45,14 @@ public class GameBoardController extends GridPane {
     private int gridSize;
     private static int snakeIdCounter = 0;
 
-    public void initialize(String selectedLevel) {
+    public void initialize(String selectedLevel , ArrayList <Player> players) {
         gameBoard = new GameBoard(selectedLevel);
         initializeBoardUI();
         placeSnakes(selectedLevel);
         initializeTimer();
-        placeLadders(selectedLevel);
+      //  placeLadders(selectedLevel);
+        Game game = new Game(gameBoard.getGameId(),gameBoard,players, SystemData.getInstance().getQuestions());
+        GameController.Start(game,dynamicGridPane);
     }
 
     private void initializeBoardUI() {
@@ -62,7 +64,15 @@ public class GameBoardController extends GridPane {
                 // Access the Rectangle object within each Tile
                 Rectangle tileRectangle = tiles[i][j].getTileRectangle();
                 // Set properties of the Rectangle object
-                tileRectangle.setFill(Color.WHITE);
+                if(tiles[i][j].getTileType().equals(Tile.TileType.QUESTION)){
+                    tileRectangle.setFill(Color.RED);
+                }
+                if(tiles[i][j].getTileType().equals(Tile.TileType.SURPRISE_JUMP)){
+                    tileRectangle.setFill(Color.YELLOW);
+                }
+                else if (tiles[i][j].getTileType().equals(Tile.TileType.NORMAL)) {
+                    tileRectangle.setFill(Color.WHITE);
+                }
                 tileRectangle.setStroke(Color.BLACK);
                 tileRectangle.setWidth(gameBoard.getPreferredTileSize());
                 tileRectangle.setHeight(gameBoard.getPreferredTileSize());
@@ -89,28 +99,45 @@ public class GameBoardController extends GridPane {
     }
 
     @FXML
-    void roll() {
+    public int roll() {
         rollButton.setDisable(true);
-        Task<Void> task = new Task<Void>() {
+
+        Task<Integer> task = new Task<Integer>() {
             @Override
-            protected Void call() throws Exception {
-                for (int i = 0; i < 15; i++) {
-                    File file = new File("src/View/photos/dice/dice" + (random.nextInt(5) + 1) + ".png");
-                    File file2 = new File("src/View/photos/dice/dice" + (random.nextInt(5) + 1) + ".png");
+            protected Integer call() throws Exception {
+                int totalSum = 0;
+
+                int dice1Value = 0;
+                int dice2Value = 0;
+                for (int i = 0; i < 20; i++) {
+                    dice1Value = (random.nextInt(5) + 1);
+                    dice2Value = (random.nextInt(5) + 1);
+
+                    File file = new File("src/View/photos/dice/dice" + dice1Value + ".png");
+                    File file2 = new File("src/View/photos/dice/dice" + dice2Value + ".png");
                     Image image1 = new Image(file.toURI().toString());
                     Image image2 = new Image(file2.toURI().toString());
+
                     Platform.runLater(() -> {
                         diceImage.setImage(image1);
                         diceImage2.setImage(image2);
                     });
+
                     Thread.sleep(50);
                 }
+
+                totalSum = dice1Value + dice2Value;
+
                 Platform.runLater(() -> rollButton.setDisable(false));
-                return null;
+
+                return totalSum;
             }
         };
+
         new Thread(task).start();
+        return 0; // Return a default value if needed
     }
+
 
     private void placeSnakes(String selectedLevel) {
         int gridSize = gameBoard.getSize();
@@ -127,16 +154,16 @@ public class GameBoardController extends GridPane {
             if (yellowSnake != null) {
                 updateSnakeUI(yellowSnake, selectedLevel);
                 usedHeadPositions.add(yellowSnake.getHeadPosition());
-                usedTailPositions.add(yellowSnake.getTailPosition(selectedLevel));
+                usedTailPositions.add(yellowSnake.getTailPosition());
             }
         }
-
+/*
         for (int greenCount = 0; greenCount < snakeCounts[1]; greenCount++) {
             Snake greenSnake = generateUniqueSnake(Snake.SnakeColor.GREEN, usedHeadPositions, usedTailPositions, gridSize, selectedLevel);
             if (greenSnake != null) {
                 updateSnakeUI(greenSnake, selectedLevel);
                 usedHeadPositions.add(greenSnake.getHeadPosition());
-                usedTailPositions.add(greenSnake.getTailPosition(selectedLevel));
+                usedTailPositions.add(greenSnake.getTailPosition());
             }
         }
 
@@ -145,7 +172,7 @@ public class GameBoardController extends GridPane {
             if (blueSnake != null) {
                 updateSnakeUI(blueSnake, selectedLevel);
                 usedHeadPositions.add(blueSnake.getHeadPosition());
-                usedTailPositions.add(blueSnake.getTailPosition(selectedLevel));
+                usedTailPositions.add(blueSnake.getTailPosition());
             }
         }
 
@@ -154,9 +181,12 @@ public class GameBoardController extends GridPane {
             if (redSnake != null) {
                 updateSnakeUI(redSnake, selectedLevel);
                 usedHeadPositions.add(redSnake.getHeadPosition());
-                usedTailPositions.add(redSnake.getTailPosition(selectedLevel));
+                usedTailPositions.add(redSnake.getTailPosition());
             }
         }
+*/
+        System.out.print("Heads" +usedHeadPositions+"\n");
+        System.out.print("Tails" +usedTailPositions);
     }
 
 
@@ -175,124 +205,167 @@ public class GameBoardController extends GridPane {
 
     private Snake generateUniqueSnake(Snake.SnakeColor color, Set<Integer> usedHeadPositions, Set<Integer> usedTailPositions, int gridSize, String selectedLevel) {
         Random random = new Random();
+        int k = 0;
         while (true) {
+            k++;
             int headPosition = random.nextInt(gridSize * gridSize);
-            int tailPosition = random.nextInt(gridSize * gridSize);
+            int tailPosition = 0;
             int snakeId = generateUniqueSnakeId();
+            int upperBound = 0;
+            int lowerBound = 0;
+            int headRow = headPosition % gridSize == 0 ? headPosition / gridSize  : (headPosition / gridSize) +1; // calulates the head position row while the botton row is 1
+
 
             // Check if the head position meets the color-specific criteria
             switch (color) {
                 case YELLOW:
-                    if (headPosition < gridSize) // Yellow snake head cannot be in the first row
+                    if (headPosition <= gridSize) {  // Yellow snake head cannot be in the first row, and its tail can be only one row apart from below
                         continue;
+                    }
+                    if (headRow == 2) {
+                        lowerBound = gridSize - 1;
+                    } else
+                        lowerBound = ((headRow - 2) * gridSize) + 1;       //formula to calulate the valid range for the yellow snake tail (1 row below the head)
+                    upperBound = ((headRow - 1) * gridSize);
+                    tailPosition = random.nextInt(upperBound - lowerBound) + lowerBound;
                     break;
-                case GREEN:
-                    if (headPosition < gridSize * 2) // Green snake head cannot be in the first two rows
+                 /* case GREEN:
+                    if (headPosition <= gridSize * 2) {
+                        System.out.print("Green\n");
                         continue;
+                    }
+                    if (headRow == 3) {
+                        lowerBound = gridSize - 1;
+                    } else
+                        lowerBound = ((headRow - 3) * gridSize) + 1; //formula to calulate the valid range for the green snake tail (2 row below the head)
+                    upperBound = ((headRow - 2) * gridSize);
+                    tailPosition = random.nextInt(upperBound - lowerBound) + lowerBound;
                     break;
                 case BLUE:
-                    if (headPosition < gridSize * 3) // Blue snake head cannot be in the first three rows
+                    if (headPosition <= gridSize * 3) {
+                        System.out.print("Blue\n");// Blue snake head cannot be in the first three rows
                         continue;
+                    }
+                    if (headRow == 4) {
+                        lowerBound = gridSize - 1;
+                    } else
+                        lowerBound = ((headRow - 4) * gridSize) + 1; //formula to calulate the valid range for the blue snake tail (3 row below the head)
+                    upperBound = ((headRow - 3) * gridSize);
+                    tailPosition = random.nextInt(upperBound - lowerBound) + lowerBound;
                     break;
                 case RED:
-                    if (headPosition % gridSize == 0 || headPosition % gridSize == gridSize - 1) // Red snake head cannot be in the first or last column
-                        continue;
+                    tailPosition = headPosition;
+
+                    if (headPosition == gridSize || headPosition == 0) {
+                        System.out.print("Im the error\n");
+                        break;
+                    }
                     break;
+*/
                 default:
                     break;
             }
+            int snakeHeadRow = headPosition % gridSize ==0 ? (gridSize - (headPosition/gridSize)):gridSize - ((headPosition/gridSize)+1);
+            int snakeHeadCol = headPosition % gridSize == 0 ? gridSize-1 : ((headPosition % gridSize)-1);
+            int snakeTailRow = tailPosition % gridSize ==0 ? (gridSize - (tailPosition/gridSize)):gridSize - ((tailPosition/gridSize)+1);
+            int snakeTailCol = tailPosition % gridSize == 0 ? gridSize-1 : ((tailPosition % gridSize)-1);
 
-            Snake snake = new Snake(snakeId, color, headPosition);
-            if (!usedHeadPositions.contains(headPosition) &&
-                    !usedTailPositions.contains(tailPosition) &&
-                    headPosition != tailPosition &&
-                    isValidSnakePosition(snake, usedHeadPositions, usedTailPositions, gridSize, selectedLevel)) {
-                return snake;
+            Tile[][] tiles= gameBoard.getTiles();
+
+            if(!(tiles[snakeHeadRow][snakeHeadCol].isSpecialTile() || tiles[snakeTailRow][snakeTailCol].isSpecialTile())) {
+
+                Snake snake = new Snake(snakeId, color, headPosition, tailPosition);
+                if (color == Snake.SnakeColor.RED) {
+                    if (!usedHeadPositions.contains(headPosition) &&
+                            !usedTailPositions.contains(tailPosition))
+                        gameBoard.getSnakes().add(snake);
+                    return snake;
+
+                } else if (!usedHeadPositions.contains(headPosition) &&
+                        !usedTailPositions.contains(tailPosition) &&
+                        !usedHeadPositions.contains(tailPosition) &&
+                        !usedTailPositions.contains(headPosition) &&
+                        headPosition != tailPosition &&
+                        isValidSnakePosition(snake, usedHeadPositions, usedTailPositions, gridSize, selectedLevel)) {
+                    gameBoard.getSnakes().add(snake);
+                    return snake;
+                }
             }
         }
+       // return null;
     }
 
 
-    private int generateUniqueSnakeId() {
-        return snakeIdCounter++;
-    }
-
-    private boolean isValidSnakePosition(Snake snake, Set<Integer> usedHeadPositions, Set<Integer> usedTailPositions, int gridSize, String selectedLevel) {
-        if (usedHeadPositions.contains(snake.getHeadPosition()) ||
-                usedTailPositions.contains(snake.getHeadPosition()) ||
-                usedHeadPositions.contains(snake.getTailPosition(selectedLevel)) ||
-                usedTailPositions.contains(snake.getTailPosition(selectedLevel))) {
-            return false;
+        private int generateUniqueSnakeId () {
+            return snakeIdCounter++;
         }
 
-        if (snake.getHeadPosition() >= gridSize * gridSize ||
-                snake.getTailPosition(selectedLevel) >= gridSize * gridSize) {
-            return false;
-        }
+        private boolean isValidSnakePosition (Snake
+        snake, Set < Integer > usedHeadPositions, Set < Integer > usedTailPositions,int gridSize, String selectedLevel){
+            if (!(snake.getColor().equals("RED"))) {
+                if (usedHeadPositions.contains(snake.getHeadPosition()) ||
+                        usedTailPositions.contains(snake.getHeadPosition()) ||
+                        usedHeadPositions.contains(snake.getTailPosition()) ||
+                        usedTailPositions.contains(snake.getTailPosition())) {
+                    return false;
+                }
+            }
 
-        return true;
-    }
+            if (snake.getHeadPosition() >= gridSize * gridSize ||
+                    snake.getTailPosition() >= gridSize * gridSize) {
+                return false;
+            }
+
+            return true;
+        }
 
     private void updateSnakeUI(Snake snake, String selectedLevel) {
-        // Get the positions of the snake head and tail
-        int headRow = gridSize - 1 - snake.getHeadPosition() / gridSize;
-        int headCol = snake.getHeadPosition() % gridSize;
-//        int tailRow = gridSize - 1 - snake.getTailPosition(selectedLevel) / gridSize;
-//        int tailCol = snake.getTailPosition(selectedLevel) % gridSize;
+        // Get the positions of the snake head and tail, row 0 is the first row
+        int headRow = snake.getHeadPosition() % gridSize ==0 ? (gridSize - (snake.getHeadPosition()/gridSize)):gridSize - ((snake.getHeadPosition()/gridSize)+1);
+        int headCol = snake.getHeadPosition() % gridSize == 0 ? gridSize-1 : ((snake.getHeadPosition() % gridSize)-1);
+        int tailRow = snake.getTailPosition() % gridSize ==0 ? (gridSize - (snake.getTailPosition()/gridSize)):gridSize - ((snake.getTailPosition()/gridSize)+1);
+        int tailCol = snake.getTailPosition() % gridSize == 0 ? gridSize-1 : ((snake.getTailPosition() % gridSize)-1);
 
         // Calculate the height of the snake image based on the number of rows it occupies
         double cellHeight = gameBoard.getPreferredTileSize();
-        double snakeHeight = 0;
+        double snakeHeight = 1.0;
 
-        // Determine the height of the snake image based on its color
-        switch (snake.getColor()) {
-            case YELLOW:
-                snakeHeight = 2 * cellHeight;
-                break;
-            case GREEN:
-                snakeHeight = 3 * cellHeight;
-                break;
-            case BLUE:
-                snakeHeight = 4 * cellHeight;
-                break;
-            case RED:
-                snakeHeight = cellHeight;
-                break;
-            default:
-                break;
-        }
 
         // Create custom tiles for the snake head and tail
         Tile headTile = new Tile();
-        //Tile tailTile = new Tile();
+        double distance = 1.0;
+        if (!(snake.getColor().equals("RED"))) {
+            distance = calculateDistance(headRow, headCol, tailRow, tailCol) ;
+            snakeHeight = ((Math.abs(distance)) * cellHeight);
+        }
 
+        //Tile tailTile = new Tile();
         // Load the snake image based on the snake color
         String imagePath = "/View/Photos/" + snake.getColor().toString().toLowerCase() + "Snake.png";
         Image snakeImage = new Image(getClass().getResourceAsStream(imagePath));
-
-        // Create ImageView objects for the snake head and tail
         ImageView snakeHeadImageView = new ImageView(snakeImage);
-        // ImageView snakeTailImageView = new ImageView(snakeImage);
-
-        // Set the scaled width and height for the snake images
+        ImageView adjustSnakesnakeImage  =(adjustSnake(snakeHeadImageView,snake, cellHeight, headRow, headCol,  tailRow,  tailCol)) ;
         snakeHeadImageView.setFitWidth(cellHeight);
         snakeHeadImageView.setFitHeight(snakeHeight);
-//        snakeTailImageView.setFitWidth(cellHeight);
-//        snakeTailImageView.setFitHeight(snakeHeight);
+        snakeHeadImageView.setPreserveRatio(false);
+        snakeHeadImageView.setSmooth(false);
+        snakeHeadImageView.smoothProperty();
 
         // Add snake head and tail images to custom tiles
-        headTile.addSnakeHeadImage(snakeHeadImageView);
-        //tailTile.addSnakeTailImage(snakeTailImageView);
+         headTile.addSnakeHeadImage(adjustSnakesnakeImage);
 
-        // Add custom tiles to the grid pane at the specified row and column indices
-        dynamicGridPane.add(headTile, headCol, headRow);
-        //dynamicGridPane.add(tailTile, tailCol, tailRow);
+        // Rotate the image based on the calculated angle
+
+
+
+        dynamicGridPane.add(headTile,headCol,headRow);
 
         // Ensure the row spans properly to accommodate the snake height
-        GridPane.setRowSpan(headTile, (int) Math.ceil(snakeHeight / cellHeight));
-        //GridPane.setRowSpan(tailTile, (int) Math.ceil(snakeHeight / cellHeight));
+         GridPane.setRowSpan(headTile, (int) Math.ceil(snakeHeight / cellHeight));
     }
-
+    public static double calculateDistance(int headRow, int headCol, int tailRow, int tailCol) {
+        return Math.sqrt(Math.pow(tailRow - headRow, 2) + Math.pow(tailCol - headCol, 2));
+    }
 
 
     private int[] getSnakeCounts(String selectedLevel) {
@@ -437,6 +510,152 @@ public class GameBoardController extends GridPane {
         }
         return false;
     }
+
+
+    ImageView adjustSnake(ImageView snakeImage, Snake snake, double cellSize, int headRow, int headCol, int tailRow, int tailCol) {
+        switch (snake.getColor()) {
+            case YELLOW:
+                    int colDiffirence = Math.abs(headCol-tailCol);
+                int rowDiffirence = Math.abs(headRow-tailRow);
+                    if(headCol >= tailCol) {
+                        if (colDiffirence == 0) { ///done
+                            snakeImage.setRotate(25);
+                            snakeImage.setTranslateY(50);
+
+                        }
+                        if (colDiffirence == 1) { // done
+                            snakeImage.setRotate(82.1);
+                            snakeImage.setTranslateX(-((cellSize * (colDiffirence))/2));
+                            snakeImage.setTranslateY(-5);
+
+                        }
+                        if (colDiffirence == 2 ) {
+                            snakeImage.setRotate(85.2);
+                            snakeImage.setTranslateY(-(cellSize / 2));
+                            snakeImage.setTranslateX(-(cellSize * (colDiffirence - 1)));
+                        }
+                        if ( colDiffirence == 3) {
+                            snakeImage.setRotate(85.2);
+                            snakeImage.setTranslateY(-(cellSize / 5));
+                            snakeImage.setTranslateX(-((cellSize * (colDiffirence - 1))));
+                        }
+                        if (colDiffirence == 4) {
+                            snakeImage.setRotate(85.2);
+                            snakeImage.setTranslateY(cellSize);
+                            snakeImage.setTranslateX(-((cellSize/2) * (colDiffirence - 1)));
+                        }
+
+
+                        if (colDiffirence == 5) {
+                            snakeImage.setRotate(85);
+                            snakeImage.setTranslateY(-(2*cellSize)); //sample
+                            snakeImage.setTranslateX(-((cellSize * (colDiffirence - 1))/2));
+                        }
+                        if (colDiffirence == 6) {
+                            snakeImage.setRotate(90);
+                            snakeImage.setTranslateY(-(cellSize / 2));
+                            snakeImage.setTranslateX(-(cellSize * (colDiffirence - 1))/2);
+                        }
+                        if (colDiffirence == 7) {
+                            snakeImage.setRotate(40);
+                        }
+                        if (colDiffirence == 8) {
+                            snakeImage.setRotate(70);
+                        }
+                        if (colDiffirence == 9) {
+                            snakeImage.setRotate(75);
+                        }
+                        if (colDiffirence == 10) {
+                            snakeImage.setRotate(-80);
+                        }
+                        if (colDiffirence == 11) {
+                            snakeImage.setRotate(85);
+                        }
+                        if (colDiffirence == 12) {
+                            snakeImage.setRotate(90);
+                        }
+                    }
+                    else if (headCol < tailCol){
+
+                        if (colDiffirence == 1) {
+                            snakeImage.setRotate(-25);
+                            snakeImage.setTranslateX((cellSize * (colDiffirence)/2));
+
+                        }
+                        if (colDiffirence == 2 ) {
+                            snakeImage.setRotate(-40);
+                            snakeImage.setTranslateY(1.5*cellSize);
+                            snakeImage.setTranslateX((cellSize * (colDiffirence - 1))/2);
+                        }
+                        if ( colDiffirence == 3 ) { //finla
+                            snakeImage.setRotate(-55);
+                            snakeImage.setTranslateY(25);
+                            snakeImage.setTranslateX((cellSize * (colDiffirence - 1)));
+                        }
+                        if (colDiffirence == 4) { //sample
+                            snakeImage.setRotate(-60);
+                            snakeImage.setTranslateY(-(cellSize));
+                            snakeImage.setTranslateX((cellSize * (colDiffirence - 1)));
+                        }
+                        if (colDiffirence == 5) {
+                            snakeImage.setRotate(-70);
+                            snakeImage.setTranslateY((cellSize / 4));
+
+                            snakeImage.setTranslateX((cellSize * (colDiffirence - 1)));
+                        }
+                        if (colDiffirence == 6) {
+                            snakeImage.setRotate(-71);
+                            snakeImage.setTranslateY(-(cellSize / 2));
+                            snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
+                        }
+                        if (colDiffirence == 7) {
+                            snakeImage.setRotate(-72);
+                            snakeImage.setTranslateY(-(cellSize / 2));
+                            snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/4));
+                        }
+                        if (colDiffirence == 8) {
+                            snakeImage.setRotate(-73);
+                            snakeImage.setTranslateY(-(cellSize / 2));
+                            snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
+                        }
+                        if (colDiffirence == 9) {
+                            snakeImage.setRotate(-74);
+                            snakeImage.setTranslateY(-(cellSize / 2));
+                            snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
+                        }
+                        if (colDiffirence == 10) {
+                            snakeImage.setRotate(-75);
+                            snakeImage.setTranslateY(-(cellSize / 2));
+                            snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
+                        }
+                        if (colDiffirence == 11) {
+                            snakeImage.setRotate(-76);
+                            snakeImage.setTranslateY(-(cellSize / 2));
+                            snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
+                        }
+                        if (colDiffirence == 12) {
+                            snakeImage.setRotate(-77);
+                            snakeImage.setTranslateY(-(cellSize / 2));
+                            snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
+                        }
+                    }
+                break;
+            case GREEN:
+                // Add adjustments for green snake if needed
+                break;
+            case BLUE:
+                // Add adjustments for blue snake if needed
+                break;
+            case RED:
+                // Add adjustments for red snake if needed
+                break;
+            default:
+                break;
+        }
+
+        return snakeImage;
+    }
+
 
     private void updateLadderUI(int ladderTop, int ladderBottom) {
         int gridSize = gameBoard.getSize();
