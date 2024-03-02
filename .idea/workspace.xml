@@ -9,21 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="Merge remote-tracking branch 'origin/main' into main">
+    <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/EditQuestionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/EditQuestionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/MainPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/MainPageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/PlayerSettingsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/PlayerSettingsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Question.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Question.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/questions_scheme.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/questions_scheme.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/AddQuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AddQuestionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/EditQuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EditQuestionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PlayerSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PlayerSettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/SystemData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/SystemData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/questions_scheme.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/questions_scheme.json" afterDir="false" />
     </list>
     <list id="4eab7431-56fc-4d74-abc0-9c4782af3869" name="Changes by noura" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,21 +32,21 @@
         <option value="package.json" />
         <option value="Enum" />
         <option value="Class" />
-        <option value="FxmlFile" />
       </list>
     </option>
-  </component>
-  <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="main" />
   </component>
   <component name="Git.Settings">
     <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
+    {
+      &quot;state&quot;: &quot;OPEN&quot;
+    }
+  ],
   &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;Ahmad-khatib&quot;
+    &quot;state&quot;: &quot;OPEN&quot;
   }
 }</component>
   <component name="GithubPullRequestsUISettings">
@@ -71,18 +58,11 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/Controller/GamesHistoryController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/Controller/PlayerSelectionsController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Controller/PlayerSettingsController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Model/QuestionObserver.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/Model/SystemData.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/Model/questions_scheme.json" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/View/GamesHistory.fxml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/View/MainPage.fxml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/View/PlayerSelections.fxml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/View/PlayerSettings.fxml" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/View/PorcupineStyle.css" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Controller/AddQuestionController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Model/Difficulty.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Model/Question.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Model/SystemData.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -134,7 +114,7 @@
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_directory_selection&quot;: &quot;C:/Users/more_/Documents/GitHub/SnakesAndLadders-Porcupine/src&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/noura/Documents/java-json.jar&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/97252/Documents/GitHub/SnakesAndLadders-Porcupine&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -146,22 +126,26 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;module&quot;,
+      &quot;repository&quot;
+    ]
   }
 }</component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="Controller" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\Model" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\noura\Documents\GitHub\SnakesAndLadders-Porcupine\src\View\Photos" />
-      <recent name="C:\Users\noura\Documents\GitHub\SnakesAndLadders-Porcupine\src\View" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View\Photos\dice" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View\Photos" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\Model" />
+      <recent name="C:\Users\97252\Documents\GitHub\SnakesAndLadders-Porcupine" />
+      <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-PorcupineNew\SnakesAndLadders--Porcupine\src\View" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -254,9 +238,9 @@
     <list>
       <item itemvalue="Application.Start" />
       <item itemvalue="JUnit.CorrectAnswerTest" />
-      <item itemvalue="JUnit.LoadingQuestionsTest" />
-      <item itemvalue="JUnit.QuestionsSort.testSortButton" />
       <item itemvalue="JUnit.testMovePlayerForward" />
+      <item itemvalue="JUnit.QuestionsSort.testSortButton" />
+      <item itemvalue="JUnit.LoadingQuestionsTest" />
     </list>
     <recent_temporary>
       <list>
@@ -315,16 +299,10 @@
       <workItem from="1708347974981" duration="276000" />
       <workItem from="1708348439952" duration="179000" />
       <workItem from="1708348857823" duration="616000" />
-      <workItem from="1708363325836" duration="113000" />
-      <workItem from="1708529567532" duration="21555000" />
-      <workItem from="1708936743626" duration="5600000" />
-      <workItem from="1708953514029" duration="2349000" />
-      <workItem from="1709154030545" duration="460000" />
-      <workItem from="1709220277724" duration="14535000" />
-      <workItem from="1709289049946" duration="1842000" />
-      <workItem from="1709291327186" duration="3000" />
-      <workItem from="1709311984637" duration="20586000" />
-      <workItem from="1709379935022" duration="3211000" />
+      <workItem from="1708353125928" duration="249000" />
+      <workItem from="1708687622997" duration="12566000" />
+      <workItem from="1709286271501" duration="1704000" />
+      <workItem from="1709288335453" duration="355000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <option name="closed" value="true" />
@@ -478,55 +456,103 @@
       <option name="project" value="LOCAL" />
       <updated>1708348608005</updated>
     </task>
-    <task id="LOCAL-00020" summary="...">
+    <task id="LOCAL‎-00020" summary="...">
       <option name="closed" value="true" />
-      <created>1708943677613</created>
+      <created>1708780547564</created>
       <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1708943677613</updated>
+      <option name="presentableId" value="LOCAL‎-00020" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1708780547565</updated>
     </task>
-    <task id="LOCAL-00021" summary="...">
+    <task id="LOCAL‎-00021" summary="...">
       <option name="closed" value="true" />
-      <created>1708943876021</created>
+      <created>1708780563510</created>
       <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1708943876021</updated>
+      <option name="presentableId" value="LOCAL‎-00021" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1708780563510</updated>
     </task>
-    <task id="LOCAL-00022" summary="...">
+    <task id="LOCAL‎-00022" summary="factor pattern">
       <option name="closed" value="true" />
-      <created>1709250675899</created>
+      <created>1708780578377</created>
       <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1709250675899</updated>
+      <option name="presentableId" value="LOCAL‎-00022" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1708780578377</updated>
     </task>
-    <task id="LOCAL-00023" summary="updated the PlayerSettingsController with functionality to choose unique icons for each player added so checks before moving to th next page.">
+    <task id="LOCAL‎-00023" summary="managecontroller">
       <option name="closed" value="true" />
-      <created>1709251238905</created>
+      <created>1709147797199</created>
       <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1709251238905</updated>
+      <option name="presentableId" value="LOCAL‎-00023" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709147797200</updated>
     </task>
-    <task id="LOCAL-00024" summary="updated the ManageQuestionsController with the functionalities add delete and edit question also added controllers and fxml for add and delete, updated the SystemData accordingly">
+    <task id="LOCAL‎-00024" summary="managecontroller">
       <option name="closed" value="true" />
-      <created>1709289182187</created>
+      <created>1709147810537</created>
       <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1709289182187</updated>
+      <option name="presentableId" value="LOCAL‎-00024" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709147810537</updated>
     </task>
-    <task id="LOCAL-00025" summary="updated the ManageQuestionsController with the functionalities add delete and edit question also added controllers and fxml for add and delete, updated the SystemData accordingly">
+    <task id="LOCAL‎-00025" summary="managecontroller">
       <option name="closed" value="true" />
-      <created>1709289454257</created>
+      <created>1709150760786</created>
       <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1709289454257</updated>
+      <option name="presentableId" value="LOCAL‎-00025" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709150760787</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL‎-00026" summary="sort by level in the manageQuestionController">
+      <option name="closed" value="true" />
+      <created>1709150828367</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL‎-00026" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709150828367</updated>
+    </task>
+    <task id="LOCAL‎-00027" summary="nothing">
+      <option name="closed" value="true" />
+      <created>1709252120464</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL‎-00027" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709252120465</updated>
+    </task>
+    <task id="LOCAL‎-00028" summary="manageQuestionController">
+      <option name="closed" value="true" />
+      <created>1709252160471</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL‎-00028" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709252160471</updated>
+    </task>
+    <task id="LOCAL‎-00029" summary="manageQuestionController">
+      <option name="closed" value="true" />
+      <created>1709252803414</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL‎-00029" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709252803414</updated>
+    </task>
+    <task id="LOCAL‎-00030" summary="manageQuestionController">
+      <option name="closed" value="true" />
+      <created>1709288541651</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL‎-00030" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709288541651</updated>
+    </task>
+    <task id="LOCAL‎-00031" summary="manageQuestionController">
+      <option name="closed" value="true" />
+      <created>1709288578792</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL‎-00031" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709288578792</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -545,10 +571,13 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="..." />
-    <MESSAGE value="updated the PlayerSettingsController with functionality to choose unique icons for each player added so checks before moving to th next page." />
-    <MESSAGE value="updated the ManageQuestionsController with the functionalities add delete and edit question also added controllers and fxml for add and delete, updated the SystemData accordingly" />
-    <MESSAGE value="Merge remote-tracking branch 'origin/main' into main" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main' into main" />
+    <MESSAGE value="factor pattern" />
+    <MESSAGE value="Random" />
+    <MESSAGE value="managecontroller" />
+    <MESSAGE value="sort by level in the manageQuestionController" />
+    <MESSAGE value="nothing" />
+    <MESSAGE value="manageQuestionController" />
+    <option name="LAST_COMMIT_MESSAGE" value="manageQuestionController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -561,6 +590,11 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Model/GameBoard.java</url>
+          <line>15</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

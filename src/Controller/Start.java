@@ -17,6 +17,10 @@ import static javafx.fxml.FXMLLoader.load;
 
 public class Start extends Application {
 
+
+
+
+
     public static void main(String[] args) {
         launch(args);
         SystemData systemData = SystemData.getInstance();
@@ -65,4 +69,5 @@ public class Start extends Application {
             System.err.println("Error loading MainPage.fxml: " + e.getMessage());
         }
     }
+
 }
