@@ -39,15 +39,15 @@ public class SnakeAndLaddersPlacment {
             }
         }
 */
-        for (int greenCount = 0; greenCount < 2; greenCount++) {
+       /* for (int greenCount = 0; greenCount < 2; greenCount++) {
             Snake greenSnake = generateUniqueSnake(Snake.SnakeColor.GREEN, usedHeadPositions, usedTailPositions, gridSize, selectedLevel,gameBoard);
             if (greenSnake != null) {
                 updateSnakeUI(greenSnake, selectedLevel,gameBoard.getSize(),gameBoard,gridPane);
                 usedHeadPositions.add(greenSnake.getHeadPosition());
                 usedTailPositions.add(greenSnake.getTailPosition());
             }
-        }
-/*
+        }*/
+
         for (int blueCount = 0; blueCount < snakeCounts[2]; blueCount++) {
             Snake blueSnake = generateUniqueSnake(Snake.SnakeColor.BLUE, usedHeadPositions, usedTailPositions, gridSize, selectedLevel,gameBoard);
             if (blueSnake != null) {
@@ -108,7 +108,7 @@ public class SnakeAndLaddersPlacment {
                     upperBound = ((headRow - 1) * gridSize);
                     tailPosition = random.nextInt(upperBound - lowerBound) + lowerBound;
                     break;*/
-                  case GREEN:
+                 /* case GREEN:
                     if (headPosition <= gridSize * 2) {
                         System.out.print("Green\n");
                         continue;
@@ -119,7 +119,7 @@ public class SnakeAndLaddersPlacment {
                         lowerBound = ((headRow - 3) * gridSize) + 1; //formula to calulate the valid range for the green snake tail (2 row below the head)
                     upperBound = ((headRow - 2) * gridSize);
                     tailPosition = random.nextInt(upperBound - lowerBound) + lowerBound;
-                    break;/*
+                    break; */
                 case BLUE:
                     if (headPosition <= gridSize * 3) {
                         System.out.print("Blue\n");// Blue snake head cannot be in the first three rows
@@ -132,7 +132,7 @@ public class SnakeAndLaddersPlacment {
                     upperBound = ((headRow - 3) * gridSize);
                     tailPosition = random.nextInt(upperBound - lowerBound) + lowerBound;
                     break;
-                case RED:
+              /*  case RED:
                     tailPosition = headPosition;
 
                     if (headPosition == gridSize || headPosition == 0) {
@@ -150,7 +150,7 @@ public class SnakeAndLaddersPlacment {
             int snakeTailCol = tailPosition % gridSize == 0 ? gridSize - 1 : ((tailPosition % gridSize) - 1);
 
             Tile[][] tiles = gameBoard.getTiles();
-            if (snakeHeadCol-snakeTailCol  == 4) {
+            if (snakeHeadCol-snakeTailCol  == 0) {
                 if (!(tiles[snakeHeadRow][snakeHeadCol].isSpecialTile() || tiles[snakeTailRow][snakeTailCol].isSpecialTile())) {
 
                     Snake snake = new Snake(snakeId, color, headPosition, tailPosition);
@@ -413,15 +413,15 @@ public class SnakeAndLaddersPlacment {
                         snakeImage.setTranslateY(-cellSize/8);
                     }
                     if (colDiffirence == 2 ) {
-                        snakeImage.setRotate(85.2);
-                        snakeImage.setTranslateX(-cellSize);
-                        snakeImage.setTranslateY(-cellSize/2);
+                        snakeImage.setRotate(68);  // Done
+                        snakeImage.setTranslateX(-cellSize/1);
+                        snakeImage.setTranslateY(-cellSize/30);
 
                     }
                     if ( colDiffirence == 3) {
-                        snakeImage.setRotate(85.2);
-                        snakeImage.setTranslateX(-cellSize*1.5);
-                        snakeImage.setTranslateY(-cellSize);
+                        snakeImage.setRotate(69);   // Done
+                        snakeImage.setTranslateX(-cellSize/0.8);
+                        snakeImage.setTranslateY(-cellSize/1.4);
 
 
                     }
@@ -433,26 +433,26 @@ public class SnakeAndLaddersPlacment {
 
 
                     if (colDiffirence == 5) {
-                        snakeImage.setRotate(85);
-                        snakeImage.setTranslateX(-cellSize*2.4);
-                        snakeImage.setTranslateY(-cellSize*1.7);
+                        snakeImage.setRotate(77);  // Done
+                        snakeImage.setTranslateX(-cellSize/0.4);
+                        snakeImage.setTranslateY(-cellSize/0.8);
 
                     }
                     if (colDiffirence == 6) {
-                        snakeImage.setRotate(88);
-                        snakeImage.setTranslateX(-cellSize*3);
-                        snakeImage.setTranslateY(-cellSize*2.2);
+                        snakeImage.setRotate(73);  // Done
+                        snakeImage.setTranslateX(-cellSize*2.5);
+                        snakeImage.setTranslateY(-cellSize*1.5);
 
                     }
                     if (colDiffirence == 7) {
-                        snakeImage.setRotate(88);
-                        snakeImage.setTranslateX(-cellSize*3.4);
-                        snakeImage.setTranslateY(-cellSize*2.8);
+                        snakeImage.setRotate(60);  // not done
+                        snakeImage.setTranslateX(-cellSize*0.4);
+                        snakeImage.setTranslateY(-cellSize*0.8);
                     }
                     if (colDiffirence == 8) {
-                        snakeImage.setRotate(89);
-                        snakeImage.setTranslateX(-cellSize*4);
-                        snakeImage.setTranslateY(-cellSize*3.4);
+                        snakeImage.setRotate(70);
+                        snakeImage.setTranslateX(-cellSize*1);
+                        snakeImage.setTranslateY(-cellSize*0.8);
                     }
                     if (colDiffirence == 9) {
                         snakeImage.setRotate(90);
@@ -477,39 +477,39 @@ public class SnakeAndLaddersPlacment {
                 else if (headCol < tailCol){
 
                     if (colDiffirence == 1) {
-                        snakeImage.setRotate(-25);
+                        snakeImage.setRotate(-25); // done
                         snakeImage.setTranslateX(cellSize/2);
                         snakeImage.setTranslateY(cellSize/8);
 
                     }
                     if (colDiffirence == 2 ) {
-                        snakeImage.setRotate(-40);
+                        snakeImage.setRotate(-30); // done
                         snakeImage.setTranslateX(cellSize);
                         snakeImage.setTranslateY(-cellSize/3);
 
                     }
                     if ( colDiffirence == 3 ) {
-                        snakeImage.setRotate(-55);
-                        snakeImage.setTranslateX(cellSize*1.5);
-                        snakeImage.setTranslateY(-cellSize);
+                        snakeImage.setRotate(-35); // done
+                        snakeImage.setTranslateX(cellSize*1.3);
+                        snakeImage.setTranslateY(-cellSize*0.8);
                     }
                     if (colDiffirence == 4) {
-                        snakeImage.setRotate(-60);
+                        snakeImage.setRotate(-60); // done
                         snakeImage.setTranslateX(cellSize*1.8);
-                        snakeImage.setTranslateY(-cellSize*1.4);
+                        snakeImage.setTranslateY(-cellSize*0.8);
                     }
                     if (colDiffirence == 5) {
-                        snakeImage.setRotate(-70);
-                        snakeImage.setTranslateX(cellSize*2.4);
-                        snakeImage.setTranslateY(-cellSize*1.7);
+                        snakeImage.setRotate(-60);  // done
+                        snakeImage.setTranslateX(cellSize*2.2);
+                        snakeImage.setTranslateY(-cellSize*1.5);
                     }
                     if (colDiffirence == 6) {
-                        snakeImage.setRotate(-71);
-                        snakeImage.setTranslateX(cellSize*3);
-                        snakeImage.setTranslateY(-cellSize*2.2);
+                        snakeImage.setRotate(-50);  // done
+                        snakeImage.setTranslateX(cellSize*1.8);
+                        snakeImage.setTranslateY(-cellSize*1.2);
                     }
                     if (colDiffirence == 7) {
-                        snakeImage.setRotate(-72);
+                        snakeImage.setRotate(-50);  // not done
                         snakeImage.setTranslateY((cellSize / 2));
                         snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/4));
                     }
@@ -541,7 +541,144 @@ public class SnakeAndLaddersPlacment {
                 }
                 break;
             case BLUE:
-                // Add adjustments for blue snake if needed
+                colDiffirence = Math.abs(headCol-tailCol);
+                if(headCol >= tailCol) {
+                    if (colDiffirence == 0) {
+                        snakeImage.setRotate(30);
+                        snakeImage.setTranslateY(-cellSize/200);
+                    }
+                    if (colDiffirence == 1) {
+                        snakeImage.setRotate(65);
+                        snakeImage.setTranslateX(-cellSize/2);
+                        snakeImage.setTranslateY(-cellSize/8);
+                    }
+                    if (colDiffirence == 2 ) {
+                        snakeImage.setRotate(68);
+                        snakeImage.setTranslateX(-cellSize/1);
+                        snakeImage.setTranslateY(-cellSize/30);
+
+                    }
+                    if ( colDiffirence == 3) {
+                        snakeImage.setRotate(69);
+                        snakeImage.setTranslateX(-cellSize/0.8);
+                        snakeImage.setTranslateY(-cellSize/1.4);
+
+
+                    }
+                    if (colDiffirence == 4) {
+                        snakeImage.setRotate(68);
+                        snakeImage.setTranslateX(-cellSize*2);
+                        snakeImage.setTranslateY(-cellSize*1);
+                    }
+
+
+                    if (colDiffirence == 5) {
+                        snakeImage.setRotate(77);
+                        snakeImage.setTranslateX(-cellSize/0.4);
+                        snakeImage.setTranslateY(-cellSize/0.8);
+
+                    }
+                    if (colDiffirence == 6) {
+                        snakeImage.setRotate(73);
+                        snakeImage.setTranslateX(-cellSize*2.5);
+                        snakeImage.setTranslateY(-cellSize*1.5);
+
+                    }
+                    if (colDiffirence == 7) {
+                        snakeImage.setRotate(60);
+                        snakeImage.setTranslateX(-cellSize*0.4);
+                        snakeImage.setTranslateY(-cellSize*0.8);
+                    }
+                    if (colDiffirence == 8) {
+                        snakeImage.setRotate(70);
+                        snakeImage.setTranslateX(-cellSize*1);
+                        snakeImage.setTranslateY(-cellSize*0.8);
+                    }
+                    if (colDiffirence == 9) {
+                        snakeImage.setRotate(90);
+                        snakeImage.setTranslateX(-cellSize*4.15);
+                        snakeImage.setTranslateY(-cellSize*3.7);
+                    }
+                    if (colDiffirence == 10) {
+                        snakeImage.setRotate(85);
+                        snakeImage.setTranslateX(-cellSize*4.3);
+                        snakeImage.setTranslateY(-cellSize*3.7);
+                    }
+                    if (colDiffirence == 11) {
+                        snakeImage.setRotate(85);
+                        snakeImage.setTranslateX(-cellSize*4.3);
+                        snakeImage.setTranslateY(-cellSize*3.7);                    }
+                    if (colDiffirence == 12) {
+                        snakeImage.setRotate(85);
+                        snakeImage.setTranslateX(-cellSize*4.3);
+                        snakeImage.setTranslateY(-cellSize*3.7);
+                    }
+                }
+                else if (headCol < tailCol){
+
+                    if (colDiffirence == 1) {
+                        snakeImage.setRotate(-25); // done
+                        snakeImage.setTranslateX(cellSize/2);
+                        snakeImage.setTranslateY(cellSize/8);
+
+                    }
+                    if (colDiffirence == 2 ) {
+                        snakeImage.setRotate(-30); // done
+                        snakeImage.setTranslateX(cellSize);
+                        snakeImage.setTranslateY(-cellSize/3);
+
+                    }
+                    if ( colDiffirence == 3 ) {
+                        snakeImage.setRotate(-35); // done
+                        snakeImage.setTranslateX(cellSize*1.3);
+                        snakeImage.setTranslateY(-cellSize*0.8);
+                    }
+                    if (colDiffirence == 4) {
+                        snakeImage.setRotate(-60); // done
+                        snakeImage.setTranslateX(cellSize*1.8);
+                        snakeImage.setTranslateY(-cellSize*0.8);
+                    }
+                    if (colDiffirence == 5) {
+                        snakeImage.setRotate(-60);  // done
+                        snakeImage.setTranslateX(cellSize*2.2);
+                        snakeImage.setTranslateY(-cellSize*1.5);
+                    }
+                    if (colDiffirence == 6) {
+                        snakeImage.setRotate(-50);  // done
+                        snakeImage.setTranslateX(cellSize*1.8);
+                        snakeImage.setTranslateY(-cellSize*1.2);
+                    }
+                    if (colDiffirence == 7) {
+                        snakeImage.setRotate(-50);  // not done
+                        snakeImage.setTranslateY((cellSize / 2));
+                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/4));
+                    }
+                    if (colDiffirence == 8) {
+                        snakeImage.setRotate(-73);
+                        snakeImage.setTranslateY(-(cellSize / 2));
+                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
+                    }
+                    if (colDiffirence == 9) {
+                        snakeImage.setRotate(-74);
+                        snakeImage.setTranslateY(-(cellSize / 2));
+                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
+                    }
+                    if (colDiffirence == 10) {
+                        snakeImage.setRotate(-75);
+                        snakeImage.setTranslateY(-(cellSize / 2));
+                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
+                    }
+                    if (colDiffirence == 11) {
+                        snakeImage.setRotate(-76);
+                        snakeImage.setTranslateY(-(cellSize / 2));
+                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
+                    }
+                    if (colDiffirence == 12) {
+                        snakeImage.setRotate(-77);
+                        snakeImage.setTranslateY(-(cellSize / 2));
+                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
+                    }
+                }
                 break;
             case RED:
                 // Add adjustments for red snake if needed
