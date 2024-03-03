@@ -26,7 +26,7 @@ public class PlayerSelectionsController {
     @FXML
     private Button nextButton;
     @FXML
-    private Button backButton;   // Hello
+    private Button backButton;
     @FXML
     private HBox playerBox1;
     @FXML
