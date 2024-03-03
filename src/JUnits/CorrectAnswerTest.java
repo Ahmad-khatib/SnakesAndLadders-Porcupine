@@ -1,4 +1,4 @@
-/*package JUnits;
+package JUnits;
 
 import Model.Difficulty;
 import Model.Question;
@@ -17,4 +17,4 @@ public class CorrectAnswerTest {
         assertFalse(question.checkCorrect("Option2"));
 
     }
-}*/
+}

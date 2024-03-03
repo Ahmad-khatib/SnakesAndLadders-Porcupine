@@ -4,6 +4,7 @@ import Model.Difficulty;
 import Model.Question;
 import Model.SystemData;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
@@ -63,15 +64,19 @@ public class AddQuestionController {
         // Validate input
         if (questionText.isEmpty() || answer1.isEmpty() || answer2.isEmpty() || answer3.isEmpty() || answer4.isEmpty()) {
             // Show error message if any field is empty
-            System.out.println("Please fill in all fields.");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Error");
+            alert.setHeaderText("Empty Fields");
+            alert.setContentText("Please fill in all fields and select a correct answer and a level.");
+            alert.showAndWait();
+
             return;
         }
 
         // Generate a unique ID for the question
-        int questionId = SystemData.getInstance().generateUniqueId();
 
         // Create a new Question object with the generated ID
-         newQuestion = new Question(questionId, questionText, answer1, answer2, answer3, answer4, correctAnswer, Difficulty.valueOf(selectedLevel));
+         newQuestion = new Question( questionText, answer1, answer2, answer3, answer4, correctAnswer, Difficulty.valueOf(selectedLevel));
 
         // Save the question using SystemData model
         success = SystemData.getInstance().addQuestion(newQuestion);

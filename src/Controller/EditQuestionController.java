@@ -1,9 +1,9 @@
 package Controller;
 
-import Model.Difficulty;
 import Model.Question;
 import Model.SystemData;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
@@ -66,7 +66,16 @@ public class EditQuestionController {
         String newAnswer4 = answer4TextArea.getText();
 
         String newCorrectAnswer = correctAnswerChoiceBox.getValue();
-
+        if (newText.isEmpty() || newAnswer1.isEmpty() || newAnswer2.isEmpty() ||
+                newAnswer3.isEmpty() || newAnswer4.isEmpty() || newCorrectAnswer == null) {
+            // Show an alert to inform the user
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Empty Fields");
+            alert.setHeaderText(null);
+            alert.setContentText("Please fill in all fields and select a correct answer.");
+            alert.showAndWait();
+            return;
+        }
         try {
             // Update the question object with edited data
             questionToEdit.setText(newText);

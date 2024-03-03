@@ -9,7 +9,7 @@
 
 <StackPane prefHeight="724.0" prefWidth="864.0" styleClass="manageQ" stylesheets="@PorcupineStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ManageQuestionsController">
     <children>
-        <VBox layoutX="20" layoutY="20" spacing="10" alignment="CENTER">
+        <VBox alignment="CENTER" layoutX="20" layoutY="20" spacing="10">
             <children>
                 <Label style="-fx-font-family: 'Jokerman'; -fx-font-size: 36px;" text="Manage Questions" textFill="#b5531b" />
                 <Button fx:id="backButton" onAction="#goBack" prefHeight="42.0" prefWidth="225.0" style="-fx-background-color: transparent; -fx-background-radius: 30;" text=" &lt;- Back To Main Page" textFill="#bf6018" underline="true">
@@ -56,7 +56,13 @@
                         <Font name="Jokerman" size="18.0" />
                     </font>
                 </Button>
+                <Label fx:id="totalQuestionsLabel" text="Total Questions: ">
+               <font>
+                  <Font name="Jokerman" size="24.0" />
+               </font></Label>
+
                 <ListView fx:id="questionListView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="389.0" prefWidth="568.0" style="-fx-background-color: transparent; -fx-border-radius: 30; -fx-background-radius: 10px;" styleClass="transparent-list-view" />
+                <Label fx:id="questionCountLabel" text="" />
 
             </children>
         </VBox>

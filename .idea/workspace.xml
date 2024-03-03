@@ -9,28 +9,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="1.Created Suprise jump and question tiles&#10;2.Created model.game class and Controller.GameController class and started with the actual logic of the game">
-      <change afterPath="$PROJECT_DIR$/src/Model/Game.java" afterDir="false" />
+    <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/AddQuestionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/AddQuestionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/EditQuestionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/EditQuestionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/ManageQuestionsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/ManageQuestionsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/PlayerSettingsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/PlayerSettingsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/JUnits/PlayerEqualsTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/JUnits/testMovePlayerForward.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Snake$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Snake$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Snake.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Snake.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/production/SnakesAndLadders-Porcupine/.idea/SnakesAndLadders-Porcupine.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/production/SnakesAndLadders-Porcupine/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/production/SnakesAndLadders-Porcupine/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/Start.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/Start.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Question.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Question.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/SystemData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/SystemData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/questions_scheme.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/questions_scheme.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/AddQuestion.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/AddQuestion.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/BoardGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/BoardGame.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/EditQuestion.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/EditQuestion.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/ManageQuestions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/ManageQuestions.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AddQuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AddQuestionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/EditQuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EditQuestionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/GameBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PlayerSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PlayerSettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JUnits/PlayerEqualsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JUnits/PlayerEqualsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JUnits/testMovePlayerForward.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JUnits/testMovePlayerForward.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Snake.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Start.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Start.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JUnits/CorrectAnswerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JUnits/CorrectAnswerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JUnits/QuestionEqualsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JUnits/QuestionEqualsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/SystemData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/SystemData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/questions_scheme.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/questions_scheme.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/AddQuestion.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/AddQuestion.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/BoardGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/BoardGame.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/EditQuestion.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/EditQuestion.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/ManageQuestions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ManageQuestions.fxml" afterDir="false" />
     </list>
     <list id="4eab7431-56fc-4d74-abc0-9c4782af3869" name="Changes by noura" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -319,6 +326,7 @@
       <workItem from="1708687622997" duration="12566000" />
       <workItem from="1709306337355" duration="31681000" />
       <workItem from="1709381858247" duration="17469000" />
+      <workItem from="1709421934132" duration="2417000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <option name="closed" value="true" />
@@ -576,7 +584,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709399580623</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="...">
+      <option name="closed" value="true" />
+      <created>1709403828265</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1709403828265</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -597,10 +613,10 @@
     <MESSAGE value="factor pattern" />
     <MESSAGE value="Random" />
     <MESSAGE value="managecontroller" />
-    <MESSAGE value="..." />
     <MESSAGE value="Yellow snakes placed in the right positions and saved accordingly !" />
     <MESSAGE value="1.Created Suprise jump and question tiles&#10;2.Created model.game class and Controller.GameController class and started with the actual logic of the game" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.Created Suprise jump and question tiles&#10;2.Created model.game class and Controller.GameController class and started with the actual logic of the game" />
+    <MESSAGE value="..." />
+    <option name="LAST_COMMIT_MESSAGE" value="..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -613,6 +629,11 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Controller/GameBoardController.java</url>
+          <line>520</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

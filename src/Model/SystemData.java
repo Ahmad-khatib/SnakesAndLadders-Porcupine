@@ -5,10 +5,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class SystemData implements QuestionObserver {
     private static SystemData instance;
@@ -46,10 +43,9 @@ public class SystemData implements QuestionObserver {
 
                 Difficulty enumDifficulty = getQuestionDifficulty(difficulty);
 
-                // Generate a unique ID for the question
-                int questionId = generateUniqueId();
 
-                Question questionToAdd = new Question(questionId, text, answer1, answer2, answer3, answer4, correctAnswer, enumDifficulty);
+
+                Question questionToAdd = new Question( text, answer1, answer2, answer3, answer4, correctAnswer, enumDifficulty);
                 questions.computeIfAbsent(enumDifficulty, k -> new ArrayList<>()).add(questionToAdd);
             }
             return true;
@@ -59,17 +55,7 @@ public class SystemData implements QuestionObserver {
         }
     }
 
-    public int generateUniqueId() {
-        int lastGeneratedId = Integer.MIN_VALUE; // Initialize with the lowest possible integer value
-        for (ArrayList<Question> list : questions.values()) {
-            if (list != null) {
-                for (Question question : list) {
-                    lastGeneratedId = Math.max(lastGeneratedId, question.getQuestionId());
-                }
-            }
-        }
-        return lastGeneratedId == Integer.MIN_VALUE ? 1 : lastGeneratedId + 1;
-    }
+
 
 
     private Difficulty getQuestionDifficulty(int difficulty) {
@@ -138,11 +124,7 @@ public class SystemData implements QuestionObserver {
         return allQuestions;
     }
 
-    public List<Question> getAllQuestionsSortedById() {
-        List<Question> allQuestions = getAllQuestions();
-        allQuestions.sort(Comparator.comparingInt(Question::getQuestionId));
-        return allQuestions;
-    }
+
 
     public void deleteQuestion(Question question) {
         for (ArrayList<Question> list : questions.values()) {
@@ -177,7 +159,11 @@ public class SystemData implements QuestionObserver {
         // Get the list of questions for the given difficulty level
         ArrayList<Question> questionList = questions.getOrDefault(difficulty, new ArrayList<>());
 
-        // Add the new question to the list
+        if (questionList.contains(newQuestion)) {
+            // If the question already exists, return false to indicate that it was not added
+            return false;
+        }
+        else // Add the new question to the list
         questionList.add(newQuestion);
 
         // Update the HashMap with the modified list
@@ -210,6 +196,14 @@ public class SystemData implements QuestionObserver {
         // If the question is not found in the old difficulty list, return false
         return false;
     }
+    public Question popQuestion(Difficulty level) {
+        ArrayList<Question> array = questions.get(level);
+        Question q = array.get(new Random().nextInt(array.size()));
+        return q;
+    }
+
+
+
 
 
 

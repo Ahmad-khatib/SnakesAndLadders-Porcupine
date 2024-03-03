@@ -7,9 +7,9 @@ import java.util.Objects;
 
 public class Question {
 
-    private static int lastGeneratedId = 0;
+
     private final ArrayList<Question> questionList;
-    private int questionId;
+
     private String text;
     private String answer1;
     private String answer2;
@@ -18,8 +18,7 @@ public class Question {
     private String correctAnswer;
     private Difficulty level;
 
-    public Question(int questionId, String text, String answer1, String answer2, String answer3, String answer4, String correctAnswer, Difficulty level) {
-        this.questionId = questionId;
+    public Question(String text, String answer1, String answer2, String answer3, String answer4, String correctAnswer, Difficulty level) {
         this.text = text;
         this.answer1 = answer1;
         this.answer2 = answer2;
@@ -36,13 +35,7 @@ public class Question {
         return null;
     }
 
-    public int getQuestionId() {
-        return questionId;
-    }
 
-    public void setQuestionId(int questionId) {
-        this.questionId = questionId;
-    }
 
     public String getText() {
         return text;
