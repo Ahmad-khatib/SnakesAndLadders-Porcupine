@@ -47,19 +47,25 @@ public class GameBoard extends GridPane {
         preferredTileSize = Math.min(600 / size, 700 / size);
         List<Integer> supriseJumpTiles = new ArrayList<>();
         List<Integer> questionTiles = new ArrayList<>();
-        while( supriseJumpTiles.size() < supriseJump){
-           int random =new Random().nextInt(size*size) + 1;
-            if(random != size*size){
-                supriseJumpTiles.add(random);
+
+
+
+        while( questionTiles.size() < 45){
+            int random =new Random().nextInt(size*size) ;
+            if(random != size*size &&  random != 1){
+                questionTiles.add(random);
+                System.out.println(questionTiles.size());
             }
-            while(questionTiles.size()<3){
-                random =new Random().nextInt(size*size) + 1;
-                if(!(supriseJumpTiles.contains(random)) && random !=1 ){
-                    questionTiles.add(random);
+            while(supriseJumpTiles.size() < supriseJump){
+                random =new Random().nextInt(size*size);
+                if(!(questionTiles.contains(random)) && random != 1 && random != size*size ){
+                    supriseJumpTiles.add(random);
                 }
             }
         }
-            questionTiles = generateRandomNumbers(size);
+
+
+
         tiles = new Tile[size][size];
         int count = 1;
 
@@ -77,9 +83,6 @@ public class GameBoard extends GridPane {
             }
         }
         displayBoard();
-    }
-    private static List<Integer> generateRandomNumbers(int gridSize) {
-        return new Random().ints(1, gridSize * gridSize + 1).distinct().limit(3).boxed().collect(Collectors.toList());
     }
 
     public void displayBoard() {
@@ -152,6 +155,7 @@ public class GameBoard extends GridPane {
     }
 
     public void setSize(int size) {
-        this.size = size;
-    }
+        this.size =size;
+}
+
 }
