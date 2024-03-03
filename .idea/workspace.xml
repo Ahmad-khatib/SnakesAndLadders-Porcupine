@@ -119,7 +119,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "create.test.in.the.same.root": "true",
-    "git-widget-placeholder": "Reverting in main",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "1.8",
     "kotlin-language-version-configured": "true",
@@ -590,7 +590,23 @@
       <option name="project" value="LOCAL" />
       <updated>1709431478414</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL‎-00035" summary="Revert &quot;Yellow Snakes ready!&quot;&#10;&#10;This reverts commit b3a6e304">
+      <option name="closed" value="true" />
+      <created>1709491246870</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL‎-00035" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709491246870</updated>
+    </task>
+    <task id="LOCAL‎-00036" summary="Revert &quot;Yellow Snakes ready!&quot;&#10;&#10;This reverts commit b3a6e304">
+      <option name="closed" value="true" />
+      <created>1709491298894</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL‎-00036" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709491298894</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -615,7 +631,8 @@
     <MESSAGE value="Yellow snakes placed in the right positions and saved accordingly !" />
     <MESSAGE value="1.Created Suprise jump and question tiles&#10;2.Created model.game class and Controller.GameController class and started with the actual logic of the game" />
     <MESSAGE value="The game is playable !!!" />
-    <option name="LAST_COMMIT_MESSAGE" value="The game is playable !!!" />
+    <MESSAGE value="Revert &quot;Yellow Snakes ready!&quot;&#10;&#10;This reverts commit b3a6e304" />
+    <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;Yellow Snakes ready!&quot;&#10;&#10;This reverts commit b3a6e304" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
