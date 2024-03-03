@@ -1,5 +1,8 @@
 package Controller;
 
+import Model.Difficulty;
+import Model.Question;
+import Model.SystemData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +13,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class MainPageController {
 
@@ -26,12 +36,12 @@ public class MainPageController {
     @FXML
     private Label errorMessage;
 
-    // Predefined password (you can store this securely)
-    private static final String CORRECT_PASSWORD = "your_password_here";
+
     @FXML
     private void initialize() {
 
     }
+
 
 
     @FXML
