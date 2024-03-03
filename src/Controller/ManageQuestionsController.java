@@ -50,6 +50,7 @@ public class ManageQuestionsController implements QuestionObserver {
             return;
         }
 
+
         List<Question> allQuestions = systemData.getAllQuestionsSortedById(); // Sort by ID
         ObservableList<String> questionTexts = FXCollections.observableArrayList();
         for (Question question : allQuestions) {

@@ -48,6 +48,7 @@ public class SystemData implements QuestionObserver {
 
                 Question questionToAdd = new Question(text, answer1, answer2, answer3, answer4, correctAnswer, enumDifficulty);
                 questions.computeIfAbsent(enumDifficulty, k -> new ArrayList<>()).add(questionToAdd);
+
             }
             return true;
         } catch (Exception e) {

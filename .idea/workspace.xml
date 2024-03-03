@@ -9,7 +9,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="..." />
+    <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="game board controller">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/MainPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/MainPageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/ManageQuestionsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/ManageQuestionsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/Start.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/Start.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/JUnits/CorrectAnswerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/JUnits/CorrectAnswerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/JUnits/QuestionEqualsTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/JUnits/QuestionEqualsTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/JsonParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/JsonParser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/SystemData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/SystemData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/questions_scheme.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/questions_scheme.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/SystemData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/SystemData.java" afterDir="false" />
+    </list>
     <list id="4eab7431-56fc-4d74-abc0-9c4782af3869" name="Changes by noura" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
