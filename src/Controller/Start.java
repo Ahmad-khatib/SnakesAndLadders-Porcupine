@@ -27,8 +27,7 @@ public class Start extends Application {
         boolean loadSuccess = systemData.loadQuestions();
 
         if (loadSuccess) {
-            // Print loaded questions
-            printLoadedQuestions(systemData);
+            System.out.println("Succsed to load questions from JSON.");
         } else {
             System.out.println("Failed to load questions from JSON.");
         }

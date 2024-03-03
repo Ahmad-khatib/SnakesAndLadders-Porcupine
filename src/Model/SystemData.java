@@ -1,15 +1,11 @@
 package Model;
 
-import Controller.ManageQuestionsController;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class SystemData implements QuestionObserver {
     private static SystemData instance;
@@ -27,6 +23,7 @@ public class SystemData implements QuestionObserver {
 
     public boolean loadQuestions() {
         JSONParser parser = new JSONParser();
+        questions.clear(); // Clear existing questions
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("src/Model/questions_scheme.json")))) {
             Object obj = parser.parse(reader);
@@ -46,7 +43,9 @@ public class SystemData implements QuestionObserver {
 
                 Difficulty enumDifficulty = getQuestionDifficulty(difficulty);
 
-                Question questionToAdd = new Question(text, answer1, answer2, answer3, answer4, correctAnswer, enumDifficulty);
+
+
+                Question questionToAdd = new Question( text, answer1, answer2, answer3, answer4, correctAnswer, enumDifficulty);
                 questions.computeIfAbsent(enumDifficulty, k -> new ArrayList<>()).add(questionToAdd);
 
             }
@@ -56,6 +55,9 @@ public class SystemData implements QuestionObserver {
             return false;
         }
     }
+
+
+
 
     private Difficulty getQuestionDifficulty(int difficulty) {
         switch (difficulty) {
@@ -109,7 +111,6 @@ public class SystemData implements QuestionObserver {
         }
     }
 
-
     public HashMap<Difficulty, ArrayList<Question>> getQuestions() {
         return questions;
     }
@@ -124,11 +125,7 @@ public class SystemData implements QuestionObserver {
         return allQuestions;
     }
 
-    public List<Question> getAllQuestionsSortedById() {
-        List<Question> allQuestions = getAllQuestions();
-        allQuestions.sort(Comparator.comparingInt(Question::getQuestionId));
-        return allQuestions;
-    }
+
 
     public void deleteQuestion(Question question) {
         for (ArrayList<Question> list : questions.values()) {
@@ -136,31 +133,24 @@ public class SystemData implements QuestionObserver {
                 list.removeIf(q -> q.equals(question));
             }
         }
+        saveQuestions(); // Save changes after deleting a question
     }
 
     @Override
     public void onQuestionAdded(Question question) {
-
+        // Not used in this context
     }
 
     @Override
     public void onQuestionEdited(Question oldQuestion, Question newQuestion) {
-
+        // Not used in this context
     }
 
     @Override
     public void onQuestionDeleted(Question deletedQuestion) {
         // Implement logic to handle deletion of questions
         // Remove the deleted question from the HashMap and save the changes to the JSON file
-        for (ArrayList<Question> list : questions.values()) {
-            if (list != null) {
-                list.removeIf(q -> q.equals(deletedQuestion));
-            }
-        }
-        saveQuestions();
-    }
-
-    public void registerObserver(ManageQuestionsController manageQuestionsController) {
+        deleteQuestion(deletedQuestion);
     }
 
     public boolean addQuestion(Question newQuestion) {
@@ -170,7 +160,11 @@ public class SystemData implements QuestionObserver {
         // Get the list of questions for the given difficulty level
         ArrayList<Question> questionList = questions.getOrDefault(difficulty, new ArrayList<>());
 
-        // Add the new question to the list
+        if (questionList.contains(newQuestion)) {
+            // If the question already exists, return false to indicate that it was not added
+            return false;
+        }
+        else // Add the new question to the list
         questionList.add(newQuestion);
 
         // Update the HashMap with the modified list
@@ -182,38 +176,36 @@ public class SystemData implements QuestionObserver {
         // Return true to indicate that the question was successfully added
         return true;
     }
+
     public boolean editQuestion(Question editedQuestion) {
-        // Get the difficulty of the edited question
-        Difficulty difficulty = editedQuestion.getLevel();
+        // Get the old difficulty of the edited question
+        Difficulty oldDifficulty = editedQuestion.getLevel();
 
-        // Get the list of questions for the given difficulty level
-        ArrayList<Question> questionList = questions.getOrDefault(difficulty, new ArrayList<>());
-
-        // Find the index of the edited question in the list
-        int index = -1;
-        for (int i = 0; i < questionList.size(); i++) {
-            if (questionList.get(i).getQuestionId() == editedQuestion.getQuestionId()) {
-                index = i;
-                break;
-            }
-        }
-
-        // If the question is found, replace it with the edited question
-        if (index != -1) {
+        // Check if the question exists in the old difficulty list
+        ArrayList<Question> questionList = questions.get(oldDifficulty);
+        if (questionList != null && questionList.contains(editedQuestion)) {
+            // Update the question in the old difficulty list
+            int index = questionList.indexOf(editedQuestion);
             questionList.set(index, editedQuestion);
-
-            // Update the HashMap with the modified list
-            questions.put(difficulty, questionList);
 
             // Save the updated questions to the JSON file
             saveQuestions();
 
-            // Return true to indicate that the question was successfully edited
             return true;
-        } else {
-            // If the question is not found, return false
-            return false;
         }
+
+        // If the question is not found in the old difficulty list, return false
+        return false;
     }
+    public Question popQuestion(Difficulty level) {
+        ArrayList<Question> array = questions.get(level);
+        Question q = array.get(new Random().nextInt(array.size()));
+        return q;
+    }
+
+
+
+
+
 
 }

@@ -65,6 +65,7 @@ public class MainPageController {
 
     @FXML
     private void manageQuestions() {
+
         // Add functionality to navigate to the ManageQuestions.fxml screen
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ManageQuestions.fxml"));

@@ -1,22 +1,50 @@
 package Model;
 
+import javafx.scene.image.ImageView;
+
 import java.util.List;
 import java.util.Objects;
 
 public class Player {
     private int playerId;
     private String playerName;
-    private String playerColor;
-    private int playerPosition;
+    private ImageView Icon;
+    private int playerPosition=1;
+    private int rowIndex =0;
+    private int colIndex =0;
 
-    public Player(int playerId, String playerName, String playerColor, int playerPosition) {
+    public int getRowIndex() {
+        return rowIndex;
+    }
+
+    public void setRowIndex(int rowIndex) {
+        this.rowIndex = rowIndex;
+    }
+
+    public int getColIndex() {
+        return colIndex;
+    }
+
+    public void setColIndex(int colIndex) {
+        this.colIndex = colIndex;
+    }
+
+
+    public Player(int playerId, String playerName, ImageView icon, int playerPosition) {
         this.playerId = playerId;
         this.playerName = playerName;
-        this.playerColor = playerColor;
+        this.Icon = icon;
         this.playerPosition = playerPosition;
     }
 
-    // Getters and Setters
+    public ImageView getIcon() {
+        return Icon;
+    }
+
+    public void setIcon(ImageView icon) {
+        Icon = icon;
+    }
+// Getters and Setters
 
     public int getPlayerId() {
         return playerId;
@@ -34,13 +62,7 @@ public class Player {
         this.playerName = playerName;
     }
 
-    public String getPlayerColor() {
-        return playerColor;
-    }
 
-    public void setPlayerColor(String playerColor) {
-        this.playerColor = playerColor;
-    }
 
     public int getPlayerPosition() {
         return playerPosition;
@@ -55,7 +77,7 @@ public class Player {
         return "Player{" +
                 "playerId=" + playerId +
                 ", playerName='" + playerName + '\'' +
-                ", playerColor='" + playerColor + '\'' +
+
                 ", playerPosition=" + playerPosition +
                 '}';
     }
@@ -68,18 +90,23 @@ public class Player {
         return playerId == player.playerId &&
                 playerPosition == player.playerPosition &&
                 Objects.equals(playerName, player.playerName) &&
-                Objects.equals(playerColor, player.playerColor);
+                Objects.equals(Icon, player.Icon);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(playerId, playerName, playerColor, playerPosition);
+        return Objects.hash(playerId, playerName, Icon, playerPosition);
     }
 
     // Move player to a new position
-    public void movePlayerTo(int newPosition) {
+    public void movePlayerTo(int newPosition, int gridSize) {
+        if(newPosition<gridSize*gridSize){
         if (newPosition >= 0) {
             this.playerPosition = newPosition;
+        }}
+        else if (newPosition>=gridSize*gridSize) {
+            this.playerPosition=gridSize*gridSize;
+
         } else {
             throw new IllegalArgumentException("Invalid position");
         }
@@ -115,5 +142,5 @@ public class Player {
         } else {
             throw new IllegalArgumentException("Invalid number of steps");
         }
-    }
+}
 }

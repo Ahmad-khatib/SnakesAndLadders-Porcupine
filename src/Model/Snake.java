@@ -31,12 +31,14 @@ public class Snake {
     private int snakeId;
     private SnakeColor color;
     private int headPosition;
+    private int tailPosition;
     private static final int GRID_SIZE = 13; // Example grid size
 
-    public Snake(int snakeId, SnakeColor color, int headPosition) {
+    public Snake(int snakeId, SnakeColor color, int headPosition,int tailPosition) {
         this.snakeId = snakeId;
         this.color = color;
-        this.headPosition = validatePosition(headPosition);
+        this.headPosition = headPosition;
+        this.tailPosition=tailPosition;
     }
 
     // Getters and setters
@@ -71,8 +73,8 @@ public class Snake {
     }
 
     // Calculate the tail position based on the head position and snake length
-    public int getTailPosition(String selectedLevel) {
-        return Math.max(0, headPosition - getSnakeLength(selectedLevel) + 1);
+    public int getTailPosition() {
+        return tailPosition;
     }
 
 
@@ -91,13 +93,13 @@ public class Snake {
     }
 
     // Generate a random snake based on the selected game level
-    public static Snake generateRandomSnake(int snakeId, String selectedLevel) {
+  /* public static Snake generateRandomSnake(int snakeId, String selectedLevel) {
         Random random = new Random();
         SnakeColor color = generateRandomColor(random);
         int validRange = GRID_SIZE * (GRID_SIZE - 2); // Exclude the first and last rows
         int headPosition = random.nextInt(validRange) + GRID_SIZE; // Add an offset of GRID_SIZE for the first row
         return new Snake(snakeId, color, headPosition);
-    }
+    }*/
 
     // Generate a random color for the snake
     private static SnakeColor generateRandomColor(Random random) {
@@ -131,7 +133,7 @@ public class Snake {
                 "snakeId=" + snakeId +
                 ", color=" + color +
                 ", headPosition=" + headPosition +
-                ", tailPosition=" + getTailPosition(selectedLevel) +
+                ", tailPosition=" + getTailPosition() +
                 '}';
     }
 
@@ -149,7 +151,5 @@ public class Snake {
     @Override
     public int hashCode() {
         return Objects.hash(snakeId, color, headPosition);
-    }
 }
-
-
+}

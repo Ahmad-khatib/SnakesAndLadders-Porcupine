@@ -1,5 +1,6 @@
 package Model;
 
+
 import Controller.ManageQuestionsController;
 
 import java.util.ArrayList;
@@ -7,8 +8,9 @@ import java.util.Objects;
 
 public class Question {
 
+
     private final ArrayList<Question> questionList;
-    private int questionId;
+
     private String text;
     private String answer1;
     private String answer2;
@@ -17,10 +19,7 @@ public class Question {
     private String correctAnswer;
     private Difficulty level;
 
-    private static int lastGeneratedId = 0;
-
     public Question(String text, String answer1, String answer2, String answer3, String answer4, String correctAnswer, Difficulty level) {
-        this.questionId = generateUniqueId();
         this.text = text;
         this.answer1 = answer1;
         this.answer2 = answer2;
@@ -31,18 +30,13 @@ public class Question {
         this.questionList = new ArrayList<>();
     }
 
-    public static String getQuestion(Difficulty randomDifficulty) {
 
+
+    public static String getQuestion(Difficulty randomDifficulty) {
         return null;
     }
 
-    public int getQuestionId() {
-        return questionId;
-    }
 
-    public void setQuestionId(int questionId) {
-        this.questionId = questionId;
-    }
 
     public String getText() {
         return text;
@@ -123,9 +117,5 @@ public class Question {
     }
 
     public void registerObserver(ManageQuestionsController manageQuestionsController) {
-    }
-
-    private static int generateUniqueId() {
-        return ++lastGeneratedId;
     }
 }

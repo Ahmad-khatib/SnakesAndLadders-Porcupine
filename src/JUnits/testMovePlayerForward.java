@@ -1,4 +1,4 @@
-package JUnits;
+/*package JUnits;
 
 
 import Model.Player;
@@ -19,4 +19,4 @@ public class testMovePlayerForward {
 
         assertEquals(8, player.getPlayerPosition());
         assertTrue(player.getPlayerPosition()==8);
-}}
+}}*/

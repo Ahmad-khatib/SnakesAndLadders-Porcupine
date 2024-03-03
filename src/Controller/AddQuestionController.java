@@ -4,9 +4,11 @@ import Model.Difficulty;
 import Model.Question;
 import Model.SystemData;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 
 public class AddQuestionController {
     @FXML
@@ -32,11 +34,8 @@ public class AddQuestionController {
 
     @FXML
     private Button saveButton;
-
-    private boolean success = false; // Track success status
-    private Question existingQuestion;
     private Question newQuestion;
-    // Track existing question for editing
+    private boolean success = false; // Track success status
 
     @FXML
     private void initialize() {
@@ -52,18 +51,6 @@ public class AddQuestionController {
         saveButton.setOnAction(event -> saveQuestion());
     }
 
-    public void setExistingQuestion(Question question) {
-        // Set existing question data into the fields for editing
-        existingQuestion = question;
-        questionTextArea.setText(question.getText());
-        answer1TextArea.setText(question.getAnswer1());
-        answer2TextArea.setText(question.getAnswer2());
-        answer3TextArea.setText(question.getAnswer3());
-        answer4TextArea.setText(question.getAnswer4());
-        levelChoiceBox.setValue(question.getLevel().toString());
-        correctAnswerChoiceBox.setValue(question.getCorrectAnswer());
-    }
-
     private void saveQuestion() {
         // Retrieve entered data
         String questionText = questionTextArea.getText();
@@ -77,27 +64,33 @@ public class AddQuestionController {
         // Validate input
         if (questionText.isEmpty() || answer1.isEmpty() || answer2.isEmpty() || answer3.isEmpty() || answer4.isEmpty()) {
             // Show error message if any field is empty
-            System.out.println("Please fill in all fields.");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Error");
+            alert.setHeaderText("Empty Fields");
+            alert.setContentText("Please fill in all fields and select a correct answer and a level.");
+            alert.showAndWait();
+
             return;
         }
 
-        // Create a new Question object
-        Question newQuestion = new Question(questionText, answer1, answer2, answer3, answer4, correctAnswer, Difficulty.valueOf(selectedLevel));
+        // Generate a unique ID for the question
 
-        // Check if it's an existing question being edited
+        // Create a new Question object with the generated ID
+         newQuestion = new Question( questionText, answer1, answer2, answer3, answer4, correctAnswer, Difficulty.valueOf(selectedLevel));
 
-            // Save the question using SystemData model
-            success = SystemData.getInstance().addQuestion(newQuestion);
-
+        // Save the question using SystemData model
+        success = SystemData.getInstance().addQuestion(newQuestion);
 
         if (success) {
             System.out.println("Question saved successfully.");
             // Clear fields after saving
             clearFields();
+            // Close the window
+            Stage stage = (Stage) saveButton.getScene().getWindow();
+            stage.close();
         } else {
             System.out.println("Failed to save question.");
         }
-
     }
 
     private void clearFields() {

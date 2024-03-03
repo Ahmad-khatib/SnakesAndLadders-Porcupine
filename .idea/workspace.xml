@@ -9,19 +9,75 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="game board controller">
+    <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="1.Created Suprise jump and question tiles&#10;2.Created model.game class and Controller.GameController class and started with the actual logic of the game">
+      <change afterPath="$PROJECT_DIR$/src/Controller/SnakeAndLaddersPlacment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/JUnits/CorrectAnswerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/JUnits/testMovePlayerForward.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/Photos/Snakes/Yellow/difference0yellow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/Photos/Snakes/Yellow/difference1yellow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/Photos/Snakes/Yellow/difference2yellow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/Photos/Snakes/Yellow/difference3yellow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/Photos/Snakes/Yellow/difference4yellow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/Photos/Snakes/Yellow/difference5yellow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/Photos/Snakes/Yellow/difference6yellow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/SnakesAndLadders_Porcupine_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/SnakesAndLadders_Porcupine_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SnakesAndLadders_Porcupine_jar/SnakesAndLadders-Porcupine.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/workspace_xml_jar/workspace.xml.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/.idea/SnakesAndLadders-Porcupine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/.idea/SnakesAndLadders-Porcupine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/AddQuestionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/AddQuestionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/EditQuestionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/EditQuestionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/MainPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/MainPageController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/ManageQuestionsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/ManageQuestionsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/PlayerSettingsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/PlayerSettingsController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/Start.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/Start.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/JUnits/CorrectAnswerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/JUnits/CorrectAnswerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/JUnits/QuestionEqualsTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/JUnits/QuestionEqualsTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/JUnits/QuestionEqualsTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/GameBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/GameBoard.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/JsonParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/JsonParser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Model.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Model.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Question.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/Question.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/SystemData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/SystemData.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/questions_scheme.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/questions_scheme.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/BoardGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/BoardGame.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/EditQuestion.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/EditQuestion.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/Photos/Example.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/Photos/Timer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/View.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/View.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/SnakesAndLadders-Porcupine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/SnakesAndLadders-Porcupine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AddQuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AddQuestionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/EditQuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EditQuestionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/GameBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/PlayerSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PlayerSettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Start.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Start.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JUnits/PlayerEqualsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JUnits/PlayerEqualsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JUnits/QuestionEqualsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JUnits/QuestionEqualsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/JsonParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/JsonParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Model.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Model.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Snake.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/SystemData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/SystemData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/questions_scheme.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/questions_scheme.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/BoardGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/BoardGame.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/EditQuestion.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/EditQuestion.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/Photos/Example.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/Photos/Timer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/View.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/View.iml" afterDir="false" />
     </list>
     <list id="4eab7431-56fc-4d74-abc0-9c4782af3869" name="Changes by noura" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,6 +98,7 @@
         <option value="JUnit5 Test Class" />
         <option value="package.json" />
         <option value="Enum" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -49,6 +106,7 @@
   <component name="Git.Settings">
     <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;history&quot;: [
@@ -68,13 +126,6 @@
       </UrlAndAccount>
     </option>
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/Controller/AddQuestionController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Model/Difficulty.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Model/Question.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Model/SystemData.java" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -93,67 +144,69 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Application.Main (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Start (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.Start .executor&quot;: &quot;Run&quot;,
-    &quot;Application.Start.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.CorrectAnswerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LoadingQuestionsTest.LoadQuestionsTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LoadingQuestionsTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlayerEqualsTest.CheckTwoEqualPlayers.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlayerEqualsTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.QuestionEqualsTest.CheckEqualQuestions.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.QuestionEqualsTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.QuestionsSort.testSortButton.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.testMovePlayerForward.executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/more_/Documents/GitHub/SnakesAndLadders-Porcupine/src&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/97252/Documents/GitHub/SnakesAndLadders-Porcupine&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/more_/Documents/GitHub/SnakesAndLadders-PorcupineNew/SnakesAndLadders--Porcupine/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.Main (1).executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.Start (1).executor": "Run",
+    "Application.Start .executor": "Run",
+    "Application.Start.executor": "Run",
+    "Attach to process.pid 13196.executor": "ProcessAttachDebug",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.CorrectAnswerTest.executor": "Run",
+    "JUnit.LoadingQuestionsTest.LoadQuestionsTest.executor": "Run",
+    "JUnit.LoadingQuestionsTest.executor": "Run",
+    "JUnit.PlayerEqualsTest.CheckTwoEqualPlayers.executor": "Run",
+    "JUnit.PlayerEqualsTest.executor": "Run",
+    "JUnit.QuestionEqualsTest.CheckEqualQuestions.executor": "Run",
+    "JUnit.QuestionEqualsTest.executor": "Run",
+    "JUnit.QuestionsSort.testSortButton.executor": "Run",
+    "JUnit.testMovePlayerForward.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "true",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "1.8",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/Users/more_/Documents/GitHub/SnakesAndLadders-Porcupine/src",
+    "last_opened_file_path": "C:/Users/more_/Documents/GitHub/SnakesAndLadders-Porcupine/src/View/Photos/Snakes/Yellow",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/more_/Documents/GitHub/SnakesAndLadders-PorcupineNew/SnakesAndLadders--Porcupine/src/Main.java",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "editor.preferences.tabs",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;,
-      &quot;module&quot;,
-      &quot;repository&quot;
+  "keyToStringList": {
+    "GitStage.ChangesTree.GroupingKeys": [
+      "directory",
+      "module",
+      "repository"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View\Photos\Snakes\Yellow" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\Model" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View\Photos\dice" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View\Photos" />
+      <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\View\Photos\dice" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-Porcupine\src\Model" />
       <recent name="C:\Users\97252\Documents\GitHub\SnakesAndLadders-Porcupine" />
       <recent name="C:\Users\more_\Documents\GitHub\SnakesAndLadders-PorcupineNew\SnakesAndLadders--Porcupine\src\View" />
@@ -267,6 +320,7 @@
     <attachedChunks>
       <set>
         <option value="jdk-1.8.0_402-corretto-1.8.0_402-4caba194b151-ae57be32" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
       </set>
     </attachedChunks>
   </component>
@@ -312,8 +366,9 @@
       <workItem from="1708348857823" duration="616000" />
       <workItem from="1708353125928" duration="249000" />
       <workItem from="1708687622997" duration="12566000" />
-      <workItem from="1709286271501" duration="1704000" />
-      <workItem from="1709288335453" duration="355000" />
+      <workItem from="1709306337355" duration="31681000" />
+      <workItem from="1709381858247" duration="14151000" />
+      <workItem from="1709426351495" duration="5048000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <option name="closed" value="true" />
@@ -515,55 +570,63 @@
       <option name="project" value="LOCAL‎" />
       <updated>1709150760787</updated>
     </task>
-    <task id="LOCAL‎-00026" summary="sort by level in the manageQuestionController">
+    <task id="LOCAL-00026" summary="...">
       <option name="closed" value="true" />
-      <created>1709150828367</created>
+      <created>1709319463737</created>
       <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL‎-00026" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1709150828367</updated>
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1709319463737</updated>
     </task>
-    <task id="LOCAL‎-00027" summary="nothing">
+    <task id="LOCAL-00027" summary="...">
       <option name="closed" value="true" />
-      <created>1709252120464</created>
+      <created>1709319507203</created>
       <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL‎-00027" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1709252120465</updated>
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1709319507203</updated>
     </task>
-    <task id="LOCAL‎-00028" summary="manageQuestionController">
+    <task id="LOCAL-00028" summary="...">
       <option name="closed" value="true" />
-      <created>1709252160471</created>
+      <created>1709319528765</created>
       <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL‎-00028" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1709252160471</updated>
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1709319528765</updated>
     </task>
-    <task id="LOCAL‎-00029" summary="manageQuestionController">
+    <task id="LOCAL-00029" summary="Yellow snakes placed in the right positions and saved accordingly !">
       <option name="closed" value="true" />
-      <created>1709252803414</created>
+      <created>1709382306617</created>
       <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL‎-00029" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1709252803414</updated>
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1709382306617</updated>
     </task>
-    <task id="LOCAL‎-00030" summary="manageQuestionController">
+    <task id="LOCAL-00030" summary="1.Created Suprise jump and question tiles&#10;2.Created model.game class and Controller.GameController class and started with the actual logic of the game">
       <option name="closed" value="true" />
-      <created>1709288541651</created>
+      <created>1709402429463</created>
       <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL‎-00030" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1709288541651</updated>
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1709402429463</updated>
     </task>
-    <task id="LOCAL‎-00031" summary="manageQuestionController">
+    <task id="LOCAL-00031" summary="1.Created Suprise jump and question tiles&#10;2.Created model.game class and Controller.GameController class and started with the actual logic of the game">
       <option name="closed" value="true" />
-      <created>1709288578792</created>
+      <created>1709402481830</created>
       <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL‎-00031" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1709288578792</updated>
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1709402481830</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="1.Created Suprise jump and question tiles&#10;2.Created model.game class and Controller.GameController class and started with the actual logic of the game">
+      <option name="closed" value="true" />
+      <created>1709404095356</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1709404095356</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -581,14 +644,13 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="..." />
     <MESSAGE value="factor pattern" />
     <MESSAGE value="Random" />
     <MESSAGE value="managecontroller" />
-    <MESSAGE value="sort by level in the manageQuestionController" />
-    <MESSAGE value="nothing" />
-    <MESSAGE value="manageQuestionController" />
-    <option name="LAST_COMMIT_MESSAGE" value="manageQuestionController" />
+    <MESSAGE value="..." />
+    <MESSAGE value="Yellow snakes placed in the right positions and saved accordingly !" />
+    <MESSAGE value="1.Created Suprise jump and question tiles&#10;2.Created model.game class and Controller.GameController class and started with the actual logic of the game" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.Created Suprise jump and question tiles&#10;2.Created model.game class and Controller.GameController class and started with the actual logic of the game" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -601,17 +663,8 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Model/GameBoard.java</url>
-          <line>15</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SnakesAndLadders_Porcupine$Start_.ic" NAME="Start  Coverage Results" MODIFIED="1707150033525" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
