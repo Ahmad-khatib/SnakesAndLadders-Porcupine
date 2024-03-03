@@ -362,7 +362,7 @@ public class GameBoardController extends GridPane {
 
 
 
-        dynamicGridPane.add(headTile,headCol,headRow);
+        dynamicGridPane.add(headTile,headCol ,headRow);
 
         // Ensure the row spans properly to accommodate the snake height
         GridPane.setRowSpan(headTile, (int) Math.ceil(snakeHeight / cellHeight));
@@ -545,7 +545,7 @@ public class GameBoardController extends GridPane {
                     }
                     if (colDiffirence == 4) {
                         snakeImage.setRotate(85.2);
-                        snakeImage.setTranslateY(cellSize);
+                        snakeImage.setTranslateY(-(2*cellSize));
                         snakeImage.setTranslateX(-((cellSize/2) * (colDiffirence - 1)));
                     }
 
@@ -553,7 +553,7 @@ public class GameBoardController extends GridPane {
                     if (colDiffirence == 5) {
                         snakeImage.setRotate(85);
                         snakeImage.setTranslateY(-(2*cellSize)); //sample
-                        snakeImage.setTranslateX(-((cellSize * (colDiffirence - 1))/2));
+                        snakeImage.setTranslateX(-((cellSize * (colDiffirence - 1))));
                     }
                     if (colDiffirence == 6) {
                         snakeImage.setRotate(90);
@@ -599,18 +599,18 @@ public class GameBoardController extends GridPane {
                     if (colDiffirence == 4) { //sample
                         snakeImage.setRotate(-60);
                         snakeImage.setTranslateY(-(cellSize));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)));
+                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
                     }
                     if (colDiffirence == 5) {
                         snakeImage.setRotate(-70);
-                        snakeImage.setTranslateY((cellSize / 4));
+                        snakeImage.setTranslateY((cellSize / 6));
 
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)));
+                        snakeImage.setTranslateX((cellSize * (colDiffirence - 2)));
                     }
                     if (colDiffirence == 6) {
                         snakeImage.setRotate(-71);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
+                        snakeImage.setTranslateY(-(cellSize *1.5));
+                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/10));
                     }
                     if (colDiffirence == 7) {
                         snakeImage.setRotate(-72);
@@ -623,22 +623,22 @@ public class GameBoardController extends GridPane {
                         snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
                     }
                     if (colDiffirence == 9) {
-                        snakeImage.setRotate(-74);
+                        snakeImage.setRotate(-70);
                         snakeImage.setTranslateY(-(cellSize / 2));
                         snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
                     }
                     if (colDiffirence == 10) {
-                        snakeImage.setRotate(-75);
+                        snakeImage.setRotate(-60);
                         snakeImage.setTranslateY(-(cellSize / 2));
                         snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
                     }
                     if (colDiffirence == 11) {
-                        snakeImage.setRotate(-76);
+                        snakeImage.setRotate(-60);
                         snakeImage.setTranslateY(-(cellSize / 2));
                         snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
                     }
                     if (colDiffirence == 12) {
-                        snakeImage.setRotate(-77);
+                        snakeImage.setRotate(-60);
                         snakeImage.setTranslateY(-(cellSize / 2));
                         snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
                     }

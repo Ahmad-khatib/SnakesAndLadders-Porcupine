@@ -43,7 +43,7 @@ public class GameBoard {
 
     private void initializeBoard(int supriseJump) {
         // Calculate preferred dimensions for the tiles
-        preferredTileSize = Math.min(823 / size, 800 / size);
+        preferredTileSize = Math.min(600 / size, 600 / size);
         List<Integer> supriseJumpTiles = new ArrayList<>();
         List<Integer> questionTiles = new ArrayList<>();
         while( supriseJumpTiles.size() < supriseJump){
