@@ -1,6 +1,10 @@
 package Controller;
 
 import Model.*;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -8,27 +12,25 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
-import javafx.scene.shape.Rectangle;
+
+import static java.lang.Thread.sleep;
 
 
 public class GameBoardController extends GridPane {
-
+    private static final double ANIMATION_DURATION = 1000;
     @FXML
     private GridPane dynamicGridPane;
     @FXML
@@ -38,22 +40,45 @@ public class GameBoardController extends GridPane {
     @FXML
     private Text timerLabel;
     @FXML
-    Button rollButton;
-
+   private  Button rollButton;
+    @FXML
+    private Button startNow;
+    private CountDownLatch rollLatch;
     private final Random random = new Random();
     private double tileSize;
     private GameBoard gameBoard;
     private int gridSize;
     private static int snakeIdCounter = 0;
+    private Game game = new Game();
+    private ArrayList<Player> players= new ArrayList<>();
+    private int diceResult = 0 ;
+    private boolean rollButtonClicked = false;
+    private static boolean isGameRunning = false;
+    private static volatile boolean waitFlag = false;
+    private int currentPlayerIndex = 0;
 
-    public void initialize(String selectedLevel , ArrayList <Player> players) throws IOException {
+
+    public void initialize(String selectedLevel , ArrayList <Player> playersN) throws IOException {
         gameBoard = new GameBoard(selectedLevel);
         initializeBoardUI();
-        placeSnakes(selectedLevel);
         initializeTimer();
-        //  placeLadders(selectedLevel);
-        Game game = new Game(gameBoard.getGameId(),gameBoard,players, SystemData.getInstance().getQuestions());
-        GameController.Start(game,dynamicGridPane);
+        players.clear();
+        players=playersN;
+        game = new Game(gameBoard.getGameId(),gameBoard,players, SystemData.getInstance().getQuestions());
+        rollButton.setVisible(false);
+        SnakeAndLaddersPlacment.placeSnakes(selectedLevel,gameBoard,dynamicGridPane);
+        // SnakeAndLaddersPlacment.placeLadders(selectedLevel);
+
+
+        for( int i=0 ; i < players.size();i++){
+            dynamicGridPane.add(players.get(i).getIcon(),0,gridSize-1);
+            players.get(i).setRowIndex(gridSize-1);
+            players.get(i).setColIndex(0);
+            players.get(i).getIcon().setTranslateX(20);
+        }
+
+
+
     }
 
     private void initializeBoardUI() {
@@ -100,603 +125,94 @@ public class GameBoardController extends GridPane {
     }
 
     @FXML
-    public void  handlerolButtonClicked(){
-        int rollresult = roll();
+    private void handlerolButtonClicked() throws InterruptedException {
+        if (!isGameRunning) {
+            startGame();
+        } else {
+            int diceSum = roll();
+            movePlayer(players.get(currentPlayerIndex), diceSum);
+
+            // Check for game completion
+            if (game.isGameFinished()) {
+                System.out.println("Game Over!");
+                // Handle game-over logic (e.g., display winner)
+            } else {
+                // Update to the next player's turn
+                currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+            }
+        }
     }
+    private void startGame() {
+        // Additional setup for starting the game if needed
+        isGameRunning = true;
+        rollButton.setVisible(true);
+        currentPlayerIndex = 0;
+        // Additional setup for the first player's turn
+        // (if any specific actions need to be taken at the beginning)
+    }
+    private void movePlayer(Player player ,int moves) {
+        player.movePlayerTo(player.getPlayerPosition()+moves,gameBoard.getSize());
+        int newRow = player.getPlayerPosition() % gameBoard.getSize() == 0 ? (gameBoard.getSize() - (player.getPlayerPosition()/gameBoard.getSize())):gameBoard.getSize() - ((player.getPlayerPosition()/gameBoard.getSize())+1);
+        int newCol = player.getPlayerPosition() % gameBoard.getSize() == 0 ? gameBoard.getSize()-1 : ((player.getPlayerPosition() % gameBoard.getSize())-1);
+        movePlayerWithAnimation(player, newCol, newRow , gameBoard.getCellHeight());
+        if(player.getPlayerPosition()==gridSize*gridSize){
+            game.setGameFinished(true);
+        }
+
+    }
+    private static void movePlayerWithAnimation(Player player, int newColumnIndex, int newRowIndex, double move) {
+        TranslateTransition transition = new TranslateTransition(Duration.millis(ANIMATION_DURATION), player.getIcon());
+        transition.setToX((newColumnIndex - player.getColIndex()) * move);
+        transition.setToY((newRowIndex - player.getRowIndex()) * move);
+
+        transition.play();
+    }
+
+    @FXML
+    private void handleStartNow(){
+        rollButton.setVisible(true);
+        startNow.setVisible(false);
+    }
+    @FXML
     public int roll() {
         rollButton.setDisable(true);
 
-        Task<Integer> task = new Task<Integer>() {
-            @Override
-            protected Integer call() throws Exception {
-                int totalSum = 0;
+        int totalSum = 0;
+        int finalDice1Value = 0;
+        int finalDice2Value = 0;
 
-                int dice1Value = 0;
-                int dice2Value = 0;
-                for (int i = 0; i < 20; i++) {
-                    dice1Value = (random.nextInt(5) + 1);
-                    dice2Value = (random.nextInt(5) + 1);
+        Timeline timeline = new Timeline();
 
-                    File file = new File("src/View/photos/dice/dice" + dice1Value + ".png");
-                    File file2 = new File("src/View/photos/dice/dice" + dice2Value + ".png");
-                    Image image1 = new Image(file.toURI().toString());
-                    Image image2 = new Image(file2.toURI().toString());
+        for (int i = 0; i < 20; i++) {
+            int dice1Value = (random.nextInt(5) + 1);
+            int dice2Value = (random.nextInt(5) + 1);
 
-                    Platform.runLater(() -> {
+            File file = new File("src/View/photos/dice/dice" + dice1Value + ".png");
+            File file2 = new File("src/View/photos/dice/dice" + dice2Value + ".png");
+
+            Image image1 = new Image(file.toURI().toString());
+            Image image2 = new Image(file2.toURI().toString());
+
+            finalDice1Value = dice1Value;
+            finalDice2Value = dice2Value;
+
+            int finalI = i;
+            timeline.getKeyFrames().add(
+                    new KeyFrame(Duration.millis(100 * finalI), event -> {
                         diceImage.setImage(image1);
                         diceImage2.setImage(image2);
-                    });
+                    })
+            );
 
-                    Thread.sleep(50);
-                }
-
-                totalSum = dice1Value + dice2Value;
-
-                Platform.runLater(() -> rollButton.setDisable(false));
-
-                return totalSum;
-            }
-        };
-
-        new Thread(task).start();
-        return 0; // Return a default value if needed
-    }
-
-
-    private void placeSnakes(String selectedLevel) {
-        int gridSize = gameBoard.getSize();
-        tileSize = gameBoard.getPreferredTileSize();
-
-        Set<Integer> usedHeadPositions = new HashSet<>();
-        Set<Integer> usedTailPositions = new HashSet<>();
-
-        int[] snakeCounts = getSnakeCounts(selectedLevel);
-
-        // Iterate over the snake counts for each color individually
-        for (int yellowCount = 0; yellowCount < snakeCounts[0]; yellowCount++) {
-            Snake yellowSnake = generateUniqueSnake(Snake.SnakeColor.YELLOW, usedHeadPositions, usedTailPositions, gridSize, selectedLevel);
-            if (yellowSnake != null) {
-                updateSnakeUI(yellowSnake, selectedLevel);
-                usedHeadPositions.add(yellowSnake.getHeadPosition());
-                usedTailPositions.add(yellowSnake.getTailPosition());
-            }
-        }
-/*
-        for (int greenCount = 0; greenCount < snakeCounts[1]; greenCount++) {
-            Snake greenSnake = generateUniqueSnake(Snake.SnakeColor.GREEN, usedHeadPositions, usedTailPositions, gridSize, selectedLevel);
-            if (greenSnake != null) {
-                updateSnakeUI(greenSnake, selectedLevel);
-                usedHeadPositions.add(greenSnake.getHeadPosition());
-                usedTailPositions.add(greenSnake.getTailPosition());
-            }
+            totalSum = finalDice1Value + finalDice2Value;
         }
 
-        for (int blueCount = 0; blueCount < snakeCounts[2]; blueCount++) {
-            Snake blueSnake = generateUniqueSnake(Snake.SnakeColor.BLUE, usedHeadPositions, usedTailPositions, gridSize, selectedLevel);
-            if (blueSnake != null) {
-                updateSnakeUI(blueSnake, selectedLevel);
-                usedHeadPositions.add(blueSnake.getHeadPosition());
-                usedTailPositions.add(blueSnake.getTailPosition());
-            }
-        }
+        timeline.setOnFinished(event -> {
+            // Update UI after animation is complete
+            rollButton.setDisable(false);
+        });
 
-        for (int redCount = 0; redCount < snakeCounts[3]; redCount++) {
-            Snake redSnake = generateUniqueSnake(Snake.SnakeColor.RED, usedHeadPositions, usedTailPositions, gridSize, selectedLevel);
-            if (redSnake != null) {
-                updateSnakeUI(redSnake, selectedLevel);
-                usedHeadPositions.add(redSnake.getHeadPosition());
-                usedTailPositions.add(redSnake.getTailPosition());
-            }
-        }
-*/
-        System.out.print("Heads" +usedHeadPositions+"\n");
-        System.out.print("Tails" +usedTailPositions);
+        timeline.play();
+        return totalSum;
     }
-
-
-    private int determineNumberOfSnakes(String selectedLevel) {
-        switch (selectedLevel) {
-            case "Easy":
-                return 4;
-            case "Medium":
-                return 6;
-            case "Hard":
-                return 8;
-            default:
-                throw new IllegalArgumentException("Invalid game level: " + selectedLevel);
-        }
-    }
-
-    private Snake generateUniqueSnake(Snake.SnakeColor color, Set<Integer> usedHeadPositions, Set<Integer> usedTailPositions, int gridSize, String selectedLevel) {
-        Random random = new Random();
-        int k = 0;
-        while (true) {
-            k++;
-            int headPosition = random.nextInt(gridSize * gridSize);
-            int tailPosition = 0;
-            int snakeId = generateUniqueSnakeId();
-            int upperBound = 0;
-            int lowerBound = 0;
-            int headRow = headPosition % gridSize == 0 ? headPosition / gridSize  : (headPosition / gridSize) +1; // calulates the head position row while the botton row is 1
-
-
-            // Check if the head position meets the color-specific criteria
-            switch (color) {
-                case YELLOW:
-                    if (headPosition <= gridSize) {  // Yellow snake head cannot be in the first row, and its tail can be only one row apart from below
-                        continue;
-                    }
-                    if (headRow == 2) {
-                        lowerBound = gridSize - 1;
-                    } else
-                        lowerBound = ((headRow - 2) * gridSize) + 1;       //formula to calulate the valid range for the yellow snake tail (1 row below the head)
-                    upperBound = ((headRow - 1) * gridSize);
-                    tailPosition = random.nextInt(upperBound - lowerBound) + lowerBound;
-                    break;
-                 /* case GREEN:
-                    if (headPosition <= gridSize * 2) {
-                        System.out.print("Green\n");
-                        continue;
-                    }
-                    if (headRow == 3) {
-                        lowerBound = gridSize - 1;
-                    } else
-                        lowerBound = ((headRow - 3) * gridSize) + 1; //formula to calulate the valid range for the green snake tail (2 row below the head)
-                    upperBound = ((headRow - 2) * gridSize);
-                    tailPosition = random.nextInt(upperBound - lowerBound) + lowerBound;
-                    break;
-                case BLUE:
-                    if (headPosition <= gridSize * 3) {
-                        System.out.print("Blue\n");// Blue snake head cannot be in the first three rows
-                        continue;
-                    }
-                    if (headRow == 4) {
-                        lowerBound = gridSize - 1;
-                    } else
-                        lowerBound = ((headRow - 4) * gridSize) + 1; //formula to calulate the valid range for the blue snake tail (3 row below the head)
-                    upperBound = ((headRow - 3) * gridSize);
-                    tailPosition = random.nextInt(upperBound - lowerBound) + lowerBound;
-                    break;
-                case RED:
-                    tailPosition = headPosition;
-
-                    if (headPosition == gridSize || headPosition == 0) {
-                        System.out.print("Im the error\n");
-                        break;
-                    }
-                    break;
-*/
-                default:
-                    break;
-            }
-            int snakeHeadRow = headPosition % gridSize ==0 ? (gridSize - (headPosition/gridSize)):gridSize - ((headPosition/gridSize)+1);
-            int snakeHeadCol = headPosition % gridSize == 0 ? gridSize-1 : ((headPosition % gridSize)-1);
-            int snakeTailRow = tailPosition % gridSize ==0 ? (gridSize - (tailPosition/gridSize)):gridSize - ((tailPosition/gridSize)+1);
-            int snakeTailCol = tailPosition % gridSize == 0 ? gridSize-1 : ((tailPosition % gridSize)-1);
-
-            Tile[][] tiles= gameBoard.getTiles();
-
-            if(!(tiles[snakeHeadRow][snakeHeadCol].isSpecialTile() || tiles[snakeTailRow][snakeTailCol].isSpecialTile())) {
-
-                Snake snake = new Snake(snakeId, color, headPosition, tailPosition);
-                if (color == Snake.SnakeColor.RED) {
-                    if (!usedHeadPositions.contains(headPosition) &&
-                            !usedTailPositions.contains(tailPosition))
-                        gameBoard.getSnakes().add(snake);
-                    return snake;
-
-                } else if (!usedHeadPositions.contains(headPosition) &&
-                        !usedTailPositions.contains(tailPosition) &&
-                        !usedHeadPositions.contains(tailPosition) &&
-                        !usedTailPositions.contains(headPosition) &&
-                        headPosition != tailPosition &&
-                        isValidSnakePosition(snake, usedHeadPositions, usedTailPositions, gridSize, selectedLevel)) {
-                    gameBoard.getSnakes().add(snake);
-                    return snake;
-                }
-            }
-        }
-        // return null;
-    }
-
-
-    private int generateUniqueSnakeId () {
-        return snakeIdCounter++;
-    }
-
-    private boolean isValidSnakePosition (Snake
-                                                  snake, Set < Integer > usedHeadPositions, Set < Integer > usedTailPositions,int gridSize, String selectedLevel){
-        if (!(snake.getColor().equals("RED"))) {
-            if (usedHeadPositions.contains(snake.getHeadPosition()) ||
-                    usedTailPositions.contains(snake.getHeadPosition()) ||
-                    usedHeadPositions.contains(snake.getTailPosition()) ||
-                    usedTailPositions.contains(snake.getTailPosition())) {
-                return false;
-            }
-        }
-
-        if (snake.getHeadPosition() >= gridSize * gridSize ||
-                snake.getTailPosition() >= gridSize * gridSize) {
-            return false;
-        }
-
-        return true;
-    }
-
-    private void updateSnakeUI(Snake snake, String selectedLevel) {
-        // Get the positions of the snake head and tail, row 0 is the first row
-        int headRow = snake.getHeadPosition() % gridSize ==0 ? (gridSize - (snake.getHeadPosition()/gridSize)):gridSize - ((snake.getHeadPosition()/gridSize)+1);
-        int headCol = snake.getHeadPosition() % gridSize == 0 ? gridSize-1 : ((snake.getHeadPosition() % gridSize)-1);
-        int tailRow = snake.getTailPosition() % gridSize ==0 ? (gridSize - (snake.getTailPosition()/gridSize)):gridSize - ((snake.getTailPosition()/gridSize)+1);
-        int tailCol = snake.getTailPosition() % gridSize == 0 ? gridSize-1 : ((snake.getTailPosition() % gridSize)-1);
-
-        // Calculate the height of the snake image based on the number of rows it occupies
-        double cellHeight = gameBoard.getPreferredTileSize();
-        double snakeHeight = 1.0;
-
-
-        // Create custom tiles for the snake head and tail
-        Tile headTile = new Tile();
-        double distance = 1.0;
-        if (!(snake.getColor().equals("RED"))) {
-            distance = calculateDistance(headRow, headCol, tailRow, tailCol) ;
-            snakeHeight = ((Math.abs(distance)) * cellHeight);
-        }
-
-        //Tile tailTile = new Tile();
-        // Load the snake image based on the snake color
-        String imagePath = "/View/Photos/" + snake.getColor().toString().toLowerCase() + "Snake.png";
-        Image snakeImage = new Image(getClass().getResourceAsStream(imagePath));
-        ImageView snakeHeadImageView = new ImageView(snakeImage);
-        ImageView adjustSnakesnakeImage  =(adjustSnake(snakeHeadImageView,snake, cellHeight, headRow, headCol,  tailRow,  tailCol)) ;
-        snakeHeadImageView.setFitWidth(cellHeight);
-        snakeHeadImageView.setFitHeight(snakeHeight);
-        snakeHeadImageView.setPreserveRatio(false);
-        snakeHeadImageView.setSmooth(false);
-        snakeHeadImageView.smoothProperty();
-
-        // Add snake head and tail images to custom tiles
-        headTile.addSnakeHeadImage(adjustSnakesnakeImage);
-
-        // Rotate the image based on the calculated angle
-
-
-
-        dynamicGridPane.add(headTile,headCol ,headRow);
-
-        // Ensure the row spans properly to accommodate the snake height
-        GridPane.setRowSpan(headTile, (int) Math.ceil(snakeHeight / cellHeight));
-    }
-    public static double calculateDistance(int headRow, int headCol, int tailRow, int tailCol) {
-        return Math.sqrt(Math.pow(tailRow - headRow, 2) + Math.pow(tailCol - headCol, 2));
-    }
-
-
-    private int[] getSnakeCounts(String selectedLevel) {
-        switch (selectedLevel) {
-            case "Easy":
-                return new int[]{1, 1, 1, 1};
-            case "Medium":
-                return new int[]{2, 1, 1, 2}; // One snake for each color, except for yellow which has two
-            case "Hard":
-                return new int[]{2, 2, 2, 2};
-            default:
-                throw new IllegalArgumentException("Invalid game level: " + selectedLevel);
-        }
-    }
-
-
-    private void placeLadders(String selectedLevel) {
-        int gridSize = gameBoard.getSize();
-        tileSize = gameBoard.getPreferredTileSize();
-
-        int[] ladderCounts = getLadderCounts(selectedLevel);
-
-        // Initialize sets to track used ladder positions
-        Set<Integer> usedTopPositions = new HashSet<>();
-        Set<Integer> usedBottomPositions = new HashSet<>();
-
-        // Iterate over ladder counts for each level
-        for (int i = 0; i < ladderCounts.length; i++) {
-            // Generate ladders for each ladder count
-            for (int j = 0; j < ladderCounts[i]; j++) {
-                int ladderTop = generateUniqueLadderTopPosition(usedTopPositions, gridSize, i);
-                int ladderBottom = generateUniqueLadderBottomPosition(usedBottomPositions, ladderTop, gridSize, i);
-                updateLadderUI(ladderTop, ladderBottom);
-                usedTopPositions.add(ladderTop);
-                usedBottomPositions.add(ladderBottom);
-            }
-        }
-    }
-
-    private int[] getLadderCounts(String selectedLevel) {
-        switch (selectedLevel) {
-            case "Easy":
-                return new int[]{1,1,1,1,0,0,0,0}; // Easy level has 4 ladders
-            case "Medium":
-                return new int[]{1,1,1,1,1,1,0,0}; // Medium level has 6 ladders
-            case "Hard":
-                return new int[]{1,1,1,1,1,1,1,1}; // Hard level has 8 ladders
-            default:
-                throw new IllegalArgumentException("Invalid game level: " + selectedLevel);
-        }
-    }
-
-    private int generateUniqueLadderTopPosition(Set<Integer> usedTopPositions, int gridSize, int ladderIndex) {
-        Random random = new Random();
-        int ladderTop;
-        do {
-            ladderTop = random.nextInt(gridSize * gridSize);
-        } while (usedTopPositions.contains(ladderTop) || isInvalidLadderTopPosition(ladderTop, ladderIndex, gridSize));
-        return ladderTop;
-    }
-
-    private boolean isInvalidLadderTopPosition(int ladderTop, int ladderIndex, int gridSize) {
-        // Implement specific rules for ladder top position based on ladder index and game level
-        switch (ladderIndex) {
-            case 0:
-                // Additional rules for the first ladder type (if any)
-                break;
-            case 1:
-                // Additional rules for the second ladder type (if any)
-                break;
-            case 2:
-                // Additional rules for the third ladder type (if any)
-                break;
-            default:
-                break;
-        }
-        return false;
-    }
-
-    private int generateUniqueLadderBottomPosition(Set<Integer> usedBottomPositions, int ladderTop, int gridSize, int ladderIndex) {
-        Random random = new Random();
-        int ladderBottom;
-        do {
-            int ladderHeight = calculateLadderHeight(ladderIndex);
-            ladderBottom = ladderTop - ladderHeight;
-        } while (ladderBottom < 0 || usedBottomPositions.contains(ladderBottom) || isInvalidLadderBottomPosition(ladderBottom, ladderIndex, gridSize));
-        return ladderBottom;
-    }
-
-    private int calculateLadderHeight(int ladderIndex) {
-        // Calculate ladder height based on ladder index
-        // Adjust the height as needed for each ladder type
-        switch (ladderIndex) {
-            case 0:
-                return 2; // Example: First ladder type has a height of 2 rows
-            case 1:
-                return 3; // Example: Second ladder type has a height of 3 rows
-            case 2:
-                return 4; // Example: Third ladder type has a height of 4 rows
-            case 3:
-                return 5;
-            case 4:
-                return 6;
-            case 5:
-                return 7;
-            case 6:
-                return 8;
-            default:
-                return 0;
-        }
-    }
-
-    private boolean isInvalidLadderBottomPosition(int ladderBottom, int ladderIndex, int gridSize) {
-        // Implement specific rules for ladder bottom position based on ladder index and game level
-        switch (ladderIndex) {
-            case 0:
-                // Additional rules for the first ladder type (if any)
-                break;
-            case 1:
-                // Additional rules for the second ladder type (if any)
-                break;
-            case 2:
-                // Additional rules for the third ladder type (if any)
-                break;
-            case 3:
-                // Additional rules for the third ladder type (if any)
-                break;
-            case 4:
-                // Additional rules for the third ladder type (if any)
-                break;
-            case 5:
-                // Additional rules for the third ladder type (if any)
-                break;
-            case 6:
-                // Additional rules for the third ladder type (if any)
-                break;
-            case 7:
-                // Additional rules for the third ladder type (if any)
-                break;
-            default:
-                break;
-        }
-        return false;
-    }
-
-
-    ImageView adjustSnake(ImageView snakeImage, Snake snake, double cellSize, int headRow, int headCol, int tailRow, int tailCol) {
-        switch (snake.getColor()) {
-            case YELLOW:
-                int colDiffirence = Math.abs(headCol-tailCol);
-                int rowDiffirence = Math.abs(headRow-tailRow);
-                if(headCol >= tailCol) {
-                    if (colDiffirence == 0) { ///done
-                        snakeImage.setRotate(25);
-                        snakeImage.setTranslateY(50);
-
-                    }
-                    if (colDiffirence == 1) { // done
-                        snakeImage.setRotate(82.1);
-                        snakeImage.setTranslateX(-((cellSize * (colDiffirence))/2));
-                        snakeImage.setTranslateY(-5);
-
-                    }
-                    if (colDiffirence == 2 ) {
-                        snakeImage.setRotate(85.2);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX(-(cellSize * (colDiffirence - 1)));
-                    }
-                    if ( colDiffirence == 3) {
-                        snakeImage.setRotate(85.2);
-                        snakeImage.setTranslateY(-(cellSize / 5));
-                        snakeImage.setTranslateX(-((cellSize * (colDiffirence - 1))));
-                    }
-                    if (colDiffirence == 4) {
-                        snakeImage.setRotate(85.2);
-                        snakeImage.setTranslateY(-(2*cellSize));
-                        snakeImage.setTranslateX(-((cellSize/2) * (colDiffirence - 1)));
-                    }
-
-
-                    if (colDiffirence == 5) {
-                        snakeImage.setRotate(85);
-                        snakeImage.setTranslateY(-(2*cellSize)); //sample
-                        snakeImage.setTranslateX(-((cellSize * (colDiffirence - 1))));
-                    }
-                    if (colDiffirence == 6) {
-                        snakeImage.setRotate(90);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX(-(cellSize * (colDiffirence - 1))/2);
-                    }
-                    if (colDiffirence == 7) {
-                        snakeImage.setRotate(40);
-                    }
-                    if (colDiffirence == 8) {
-                        snakeImage.setRotate(70);
-                    }
-                    if (colDiffirence == 9) {
-                        snakeImage.setRotate(75);
-                    }
-                    if (colDiffirence == 10) {
-                        snakeImage.setRotate(-80);
-                    }
-                    if (colDiffirence == 11) {
-                        snakeImage.setRotate(85);
-                    }
-                    if (colDiffirence == 12) {
-                        snakeImage.setRotate(90);
-                    }
-                }
-                else if (headCol < tailCol){
-
-                    if (colDiffirence == 1) {
-                        snakeImage.setRotate(-25);
-                        snakeImage.setTranslateX((cellSize * (colDiffirence)/2));
-
-                    }
-                    if (colDiffirence == 2 ) {
-                        snakeImage.setRotate(-40);
-                        snakeImage.setTranslateY(1.5*cellSize);
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1))/2);
-                    }
-                    if ( colDiffirence == 3 ) { //finla
-                        snakeImage.setRotate(-55);
-                        snakeImage.setTranslateY(25);
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)));
-                    }
-                    if (colDiffirence == 4) { //sample
-                        snakeImage.setRotate(-60);
-                        snakeImage.setTranslateY(-(cellSize));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
-                    }
-                    if (colDiffirence == 5) {
-                        snakeImage.setRotate(-70);
-                        snakeImage.setTranslateY((cellSize / 6));
-
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 2)));
-                    }
-                    if (colDiffirence == 6) {
-                        snakeImage.setRotate(-71);
-                        snakeImage.setTranslateY(-(cellSize *1.5));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/10));
-                    }
-                    if (colDiffirence == 7) {
-                        snakeImage.setRotate(-72);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/4));
-                    }
-                    if (colDiffirence == 8) {
-                        snakeImage.setRotate(-73);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
-                    }
-                    if (colDiffirence == 9) {
-                        snakeImage.setRotate(-70);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
-                    }
-                    if (colDiffirence == 10) {
-                        snakeImage.setRotate(-60);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
-                    }
-                    if (colDiffirence == 11) {
-                        snakeImage.setRotate(-60);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
-                    }
-                    if (colDiffirence == 12) {
-                        snakeImage.setRotate(-60);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/2));
-                    }
-                }
-                break;
-            case GREEN:
-                // Add adjustments for green snake if needed
-                break;
-            case BLUE:
-                // Add adjustments for blue snake if needed
-                break;
-            case RED:
-                // Add adjustments for red snake if needed
-                break;
-            default:
-                break;
-        }
-
-        return snakeImage;
-    }
-
-
-    private void updateLadderUI(int ladderTop, int ladderBottom) {
-        int gridSize = gameBoard.getSize();
-        double cellHeight = gameBoard.getPreferredTileSize();
-
-        // Calculate grid row and column indices for ladder top and bottom
-        int topRow = gridSize - 1 - ladderTop / gridSize;
-        int topCol = ladderTop % gridSize;
-        int bottomRow = gridSize - 1 - ladderBottom / gridSize;
-        int bottomCol = ladderBottom % gridSize;
-
-        // Calculate ladder height based on the difference between top and bottom positions
-        double ladderHeight = Math.abs(bottomRow - topRow + 1) * cellHeight;
-
-        // Load ladder image
-        String imagePath = "/View/Photos/ladder1.png"; // Assuming ladder.png is in the specified path
-        Image ladderImage = new Image(getClass().getResourceAsStream(imagePath));
-
-        // Create ImageView for ladder
-        ImageView ladderImageView = new ImageView(ladderImage);
-
-        // Set width and height of ladder image
-        ladderImageView.setFitWidth(cellHeight);
-        ladderImageView.setFitHeight(ladderHeight);
-
-        // Add ladder image to custom tile
-        Tile ladderTile = new Tile();
-        ladderTile.addLadderImage(ladderImageView);
-
-        // Add custom tile to grid pane at ladder top position
-        dynamicGridPane.add(ladderTile, topCol, topRow);
-
-        // Ensure ladder spans multiple rows
-        GridPane.setRowSpan(ladderTile, (int) Math.ceil(ladderHeight / cellHeight));
-}
-
-
-
-
 }

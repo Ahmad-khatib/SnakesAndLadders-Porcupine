@@ -9,7 +9,26 @@ public class Player {
     private int playerId;
     private String playerName;
     private ImageView Icon;
-    private int playerPosition;
+    private int playerPosition=1;
+    private int rowIndex =0;
+    private int colIndex =0;
+
+    public int getRowIndex() {
+        return rowIndex;
+    }
+
+    public void setRowIndex(int rowIndex) {
+        this.rowIndex = rowIndex;
+    }
+
+    public int getColIndex() {
+        return colIndex;
+    }
+
+    public void setColIndex(int colIndex) {
+        this.colIndex = colIndex;
+    }
+
 
     public Player(int playerId, String playerName, ImageView icon, int playerPosition) {
         this.playerId = playerId;
@@ -80,9 +99,14 @@ public class Player {
     }
 
     // Move player to a new position
-    public void movePlayerTo(int newPosition) {
+    public void movePlayerTo(int newPosition, int gridSize) {
+        if(newPosition<gridSize*gridSize){
         if (newPosition >= 0) {
             this.playerPosition = newPosition;
+        }}
+        else if (newPosition>=gridSize*gridSize) {
+            this.playerPosition=gridSize*gridSize;
+
         } else {
             throw new IllegalArgumentException("Invalid position");
         }

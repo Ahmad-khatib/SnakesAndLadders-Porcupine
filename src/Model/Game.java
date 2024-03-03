@@ -18,6 +18,9 @@ public class Game {
 
     }
 
+    public Game() {
+    }
+
     public boolean isGameFinished() {
         return gameFinished;
     }

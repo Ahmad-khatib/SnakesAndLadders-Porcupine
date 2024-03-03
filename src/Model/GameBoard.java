@@ -1,5 +1,6 @@
 package Model;
 
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class GameBoard {
+public class GameBoard extends GridPane {
     private int gameId;
     private int difficultyLevel;
     private Tile[][] tiles;
@@ -43,7 +44,7 @@ public class GameBoard {
 
     private void initializeBoard(int supriseJump) {
         // Calculate preferred dimensions for the tiles
-        preferredTileSize = Math.min(600 / size, 600 / size);
+        preferredTileSize = Math.min(600 / size, 700 / size);
         List<Integer> supriseJumpTiles = new ArrayList<>();
         List<Integer> questionTiles = new ArrayList<>();
         while( supriseJumpTiles.size() < supriseJump){
