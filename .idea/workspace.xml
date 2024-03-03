@@ -623,7 +623,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1709498307856</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL‎-00039" summary="checking not to enter the same question twice">
+      <option name="closed" value="true" />
+      <created>1709505626002</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL‎-00039" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709505626002</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -650,7 +658,8 @@
     <MESSAGE value="The game is playable !!!" />
     <MESSAGE value="Revert &quot;Yellow Snakes ready!&quot;&#10;&#10;This reverts commit b3a6e304" />
     <MESSAGE value="factory pattern" />
-    <option name="LAST_COMMIT_MESSAGE" value="factory pattern" />
+    <MESSAGE value="checking not to enter the same question twice" />
+    <option name="LAST_COMMIT_MESSAGE" value="checking not to enter the same question twice" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
