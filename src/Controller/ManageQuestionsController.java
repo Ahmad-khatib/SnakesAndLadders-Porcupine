@@ -9,10 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,7 +17,8 @@ import java.util.List;
 
 public class ManageQuestionsController implements QuestionObserver {
 
-
+    @FXML
+    private Label totalQuestionsLabel;
     @FXML
     private ListView<String> questionListView;
 
@@ -54,12 +52,11 @@ public class ManageQuestionsController implements QuestionObserver {
             return;
         }
 
-        List<Question> allQuestions = systemData.getAllQuestionsSortedById(); // Sort by ID
+        List<Question> allQuestions = systemData.getAllQuestions();
         ObservableList<String> questionTexts = FXCollections.observableArrayList();
         for (Question question : allQuestions) {
             StringBuilder questionWithAnswers = new StringBuilder();
-            questionWithAnswers.append("ID: ").append(question.getQuestionId()).append("\n"); // Add question ID
-            questionWithAnswers.append(question.getText()).append("\n");
+            questionWithAnswers.append("Question: ").append(question.getText()).append("\n");
             questionWithAnswers.append("Answers:\n");
             questionWithAnswers.append("1. ").append(question.getAnswer1()).append("\n");
             questionWithAnswers.append("2. ").append(question.getAnswer2()).append("\n");
@@ -74,7 +71,7 @@ public class ManageQuestionsController implements QuestionObserver {
         questionListView.getItems().clear();
 
         questionListView.setItems(questionTexts);
-
+refreshQuestionList();
         for (Question question : allQuestions) {
             question.registerObserver(this);
         }
@@ -120,7 +117,10 @@ public class ManageQuestionsController implements QuestionObserver {
                 Question newQuestion = addQuestionController.getNewQuestion();
                 questions.add(newQuestion);
                 questionListView.getItems().add(newQuestion.getText());
-
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Conformation");
+                alert.setContentText("Question was saved successfully");
+                alert.showAndWait();
                 refreshQuestionList();
             }
         } catch (IOException e) {
@@ -153,8 +153,7 @@ public class ManageQuestionsController implements QuestionObserver {
         Question selectedQuestion = null;
         for (Question question : allQuestions) {
             StringBuilder questionWithAnswers = new StringBuilder();
-            questionWithAnswers.append("ID: ").append(question.getQuestionId()).append("\n"); // Add question ID
-            questionWithAnswers.append(question.getText()).append("\n");
+            questionWithAnswers.append("Question: ").append(question.getText()).append("\n");
             questionWithAnswers.append("Answers:\n");
             questionWithAnswers.append("1. ").append(question.getAnswer1()).append("\n");
             questionWithAnswers.append("2. ").append(question.getAnswer2()).append("\n");
@@ -189,6 +188,10 @@ public class ManageQuestionsController implements QuestionObserver {
 
                 // If the question was edited, refresh the question list
                 if (editQuestionController.isQuestionEdited()) {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Conformation");
+                    alert.setContentText("Question was edited successfully");
+                    alert.showAndWait();
                     refreshQuestionList();
                 }
             } catch (IOException e) {
@@ -239,8 +242,7 @@ public class ManageQuestionsController implements QuestionObserver {
 
                 for (Question question : allQuestions) {
                     StringBuilder questionWithAnswers = new StringBuilder();
-                    questionWithAnswers.append("ID: ").append(question.getQuestionId()).append("\n"); // Add question ID
-                    questionWithAnswers.append(question.getText()).append("\n");
+                    questionWithAnswers.append("Question: ").append(question.getText()).append("\n");
                     questionWithAnswers.append("Answers:\n");
                     questionWithAnswers.append("1. ").append(question.getAnswer1()).append("\n");
                     questionWithAnswers.append("2. ").append(question.getAnswer2()).append("\n");
@@ -256,6 +258,11 @@ public class ManageQuestionsController implements QuestionObserver {
                         // Remove the question from the UI
                         questions.remove(question);
                         questionListView.getItems().remove(selectedQuestionText);
+                        Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert1.setTitle("Conformation");
+                        alert1.setContentText("Question was deleted successfully");
+                        alert1.showAndWait();
+                        refreshQuestionList();
                         // Print confirmation
                         System.out.println("Question deleted: " + selectedQuestionText);
                         return;
@@ -278,8 +285,8 @@ public class ManageQuestionsController implements QuestionObserver {
         ObservableList<String> questionTexts = FXCollections.observableArrayList();
         for (Question question : allQuestions) {
             StringBuilder questionWithAnswers = new StringBuilder();
-            questionWithAnswers.append("ID: ").append(question.getQuestionId()).append("\n"); // Add question ID
-            questionWithAnswers.append(question.getText()).append("\n");
+
+            questionWithAnswers.append("Question: ").append(question.getText()).append("\n");
             questionWithAnswers.append("Answers:\n");
             questionWithAnswers.append("1. ").append(question.getAnswer1()).append("\n");
             questionWithAnswers.append("2. ").append(question.getAnswer2()).append("\n");
@@ -322,15 +329,15 @@ public class ManageQuestionsController implements QuestionObserver {
             return;
         }
 
-        // Get all questions sorted by ID
-        List<Question> allQuestions = systemData.getAllQuestionsSortedById();
+
+        List<Question> allQuestions = systemData.getAllQuestions();
 
         // Update the UI with the refreshed question list
         ObservableList<String> questionTexts = FXCollections.observableArrayList();
         for (Question question : allQuestions) {
             StringBuilder questionWithAnswers = new StringBuilder();
-            questionWithAnswers.append("ID: ").append(question.getQuestionId()).append("\n"); // Add question ID
-            questionWithAnswers.append(question.getText()).append("\n");
+
+            questionWithAnswers.append("Question: ").append(question.getText()).append("\n");
             questionWithAnswers.append("Answers:\n");
             questionWithAnswers.append("1. ").append(question.getAnswer1()).append("\n");
             questionWithAnswers.append("2. ").append(question.getAnswer2()).append("\n");
@@ -346,6 +353,8 @@ public class ManageQuestionsController implements QuestionObserver {
 
         // Add the refreshed question list to the ListView
         questionListView.setItems(questionTexts);
-}
+        totalQuestionsLabel.setText("Total Questions: " + allQuestions.size());
+
+    }
 
 }

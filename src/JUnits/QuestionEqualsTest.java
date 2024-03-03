@@ -1,4 +1,4 @@
-/*package JUnits;
+package JUnits;
 
 import Model.Difficulty;
 import Model.Question;
@@ -24,4 +24,4 @@ public class QuestionEqualsTest {
         assertFalse(q.equals(q3));
 
     }
-}*/
+}
