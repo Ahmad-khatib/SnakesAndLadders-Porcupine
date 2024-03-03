@@ -135,7 +135,7 @@ public class PlayerSettingsController {
                     int id=0;
                     players.add(new Player(++id,playerName, selectedIcon,1));
                 }}
-}
+        }
 
         // Determine the board size based on the chosen level
         int boardSize = 0;
@@ -338,7 +338,7 @@ public class PlayerSettingsController {
         }
         // All players are ready
         return true;
-}
+    }
 
 
 

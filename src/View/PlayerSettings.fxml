@@ -9,62 +9,62 @@
 <StackPane prefHeight="449.0" prefWidth="705.0" styleClass="PlayerSet" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PlayerSettingsController">
     <children>
         <VBox fx:id="playerBoxContainer" alignment="CENTER" prefHeight="289.0" prefWidth="672.0" spacing="10">
-         <children>
-      
-                        <!-- Back Button -->
-               <Button fx:id="backButton" onAction="#handleBackButtonClicked" prefHeight="41.0" prefWidth="104.0" style="-fx-background-color: green; -fx-background-radius: 30;" text="&lt;- BACK">
-                   <font>
-                       <Font name="Jokerman" size="18.0" />
-                   </font>
-               <VBox.margin>
-                  <Insets left="490.0" />
-               </VBox.margin>
-               <effect>
-                  <InnerShadow>
-                     <input>
-                        <DropShadow />
-                     </input>
-                  </InnerShadow>
-               </effect>
-               </Button>
-             <!-- Reset Button -->
-             <Button fx:id="resetButton" onAction="#handleResetButtonClicked" prefHeight="33.0" prefWidth="187.0" style="-fx-background-color: green; -fx-background-radius: 30;" text="Reset Icon Selection" visible="false">
-                 <font>
-                     <Font name="Jokerman" size="16.0" />
-                 </font>
-                 <StackPane.margin>
-                     <Insets top="10.0" />
-                 </StackPane.margin>
-                 <effect>
-                     <InnerShadow>
-                         <input>
-                             <DropShadow />
-                         </input>
-                     </InnerShadow>
-                 </effect>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-             </Button>
-         </children>
-        </VBox>
-         <!-- Additional player fields will be added dynamically based on player selection -->
+            <children>
 
-            <!-- Start Button -->
-         <Button fx:id="startButton" onAction="#handleStartButtonClicked" prefHeight="47.0" prefWidth="183.0" style="-fx-background-color: green; -fx-background-radius: 30;" text="Start Game">
-             <font>
-                 <Font name="Jokerman" size="24.0" />
-             </font>
-             <effect>
-                 <InnerShadow blurType="GAUSSIAN" choke="0.33" height="20.02" radius="11.215" width="26.84">
-                     <input>
-                         <DropShadow />
-                     </input>
-                 </InnerShadow>
-             </effect>
-         <StackPane.margin>
-            <Insets top="350.0" />
-         </StackPane.margin>
-         </Button>
+                <!-- Back Button -->
+                <Button fx:id="backButton" onAction="#handleBackButtonClicked" prefHeight="41.0" prefWidth="104.0" style="-fx-background-color: green; -fx-background-radius: 30;" text="&lt;- BACK">
+                    <font>
+                        <Font name="Jokerman" size="18.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets left="490.0" />
+                    </VBox.margin>
+                    <effect>
+                        <InnerShadow>
+                            <input>
+                                <DropShadow />
+                            </input>
+                        </InnerShadow>
+                    </effect>
+                </Button>
+                <!-- Reset Button -->
+                <Button fx:id="resetButton" onAction="#handleResetButtonClicked" prefHeight="33.0" prefWidth="187.0" style="-fx-background-color: green; -fx-background-radius: 30;" text="Reset Icon Selection" visible="false">
+                    <font>
+                        <Font name="Jokerman" size="16.0" />
+                    </font>
+                    <StackPane.margin>
+                        <Insets top="10.0" />
+                    </StackPane.margin>
+                    <effect>
+                        <InnerShadow>
+                            <input>
+                                <DropShadow />
+                            </input>
+                        </InnerShadow>
+                    </effect>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+        <!-- Additional player fields will be added dynamically based on player selection -->
+
+        <!-- Start Button -->
+        <Button fx:id="startButton" onAction="#handleStartButtonClicked" prefHeight="47.0" prefWidth="183.0" style="-fx-background-color: green; -fx-background-radius: 30;" text="Start Game">
+            <font>
+                <Font name="Jokerman" size="24.0" />
+            </font>
+            <effect>
+                <InnerShadow blurType="GAUSSIAN" choke="0.33" height="20.02" radius="11.215" width="26.84">
+                    <input>
+                        <DropShadow />
+                    </input>
+                </InnerShadow>
+            </effect>
+            <StackPane.margin>
+                <Insets top="350.0" />
+            </StackPane.margin>
+        </Button>
     </children>
 </StackPane>

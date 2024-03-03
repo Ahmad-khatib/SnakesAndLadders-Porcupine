@@ -3,6 +3,7 @@ package Model;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import javafx.scene.control.Alert;
 
 import java.io.*;
 import java.util.*;
@@ -154,17 +155,31 @@ public class SystemData implements QuestionObserver {
     }
 
     public boolean addQuestion(Question newQuestion) {
+        // Check if the new question's text already exists in any of the existing questions
+        for (ArrayList<Question> questionList : questions.values()) {
+            if (questionList != null) {
+                for (Question existingQuestion : questionList) {
+                    if (existingQuestion.getText().equals(newQuestion.getText())) {
+                        // If the question text already exists, show an alert and return false
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error");
+                        alert.setHeaderText("Question Already Exists");
+                        alert.setContentText("This question already exists. Please try another one.");
+                        alert.showAndWait();
+                        return false;
+                    }
+                }
+            }
+        }
+
+        // If the question text does not exist, proceed with adding the question
         // Get the difficulty of the new question
         Difficulty difficulty = newQuestion.getLevel();
 
         // Get the list of questions for the given difficulty level
         ArrayList<Question> questionList = questions.getOrDefault(difficulty, new ArrayList<>());
 
-        if (questionList.contains(newQuestion)) {
-            // If the question already exists, return false to indicate that it was not added
-            return false;
-        }
-        else // Add the new question to the list
+        // Add the new question to the list
         questionList.add(newQuestion);
 
         // Update the HashMap with the modified list
@@ -176,6 +191,8 @@ public class SystemData implements QuestionObserver {
         // Return true to indicate that the question was successfully added
         return true;
     }
+
+
 
     public boolean editQuestion(Question editedQuestion) {
         // Get the old difficulty of the edited question

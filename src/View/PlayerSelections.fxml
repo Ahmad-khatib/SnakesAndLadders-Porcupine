@@ -95,7 +95,7 @@
             </HBox>
             <Button fx:id="nextButton" mnemonicParsing="false" onAction="#handleNextButtonClicked" style="-fx-background-color: chocolate; -fx-background-radius: 30;" text="NEXT -&gt; " textFill="WHITE">
 
-                        <font>
+               <font>
                   <Font name="Jokerman" size="18.0" />
                </font>
                <VBox.margin>

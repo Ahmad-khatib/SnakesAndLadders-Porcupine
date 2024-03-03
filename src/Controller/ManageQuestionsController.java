@@ -71,7 +71,7 @@ public class ManageQuestionsController implements QuestionObserver {
         questionListView.getItems().clear();
 
         questionListView.setItems(questionTexts);
-refreshQuestionList();
+        refreshQuestionList();
         for (Question question : allQuestions) {
             question.registerObserver(this);
         }

@@ -1,5 +1,7 @@
 package Model;
 //
 public enum Type {
-    QUESTIONS;
+    EASY_QUESTIONS,
+    MEDIUM_QUESTIONS,
+    HARD_QUESTIONS
 }
