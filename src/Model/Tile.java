@@ -126,5 +126,4 @@ public class Tile extends StackPane {
         Random random = new Random();
         int randomDifficultyIndex = random.nextInt(Difficulty.values().length);
         return Difficulty.values()[randomDifficultyIndex];
-    }
-}
+    }}

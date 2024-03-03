@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.util.List;
 
 public class ManageQuestionsController implements QuestionObserver {
+
+
     @FXML
     private ListView<String> questionListView;
 
@@ -39,8 +41,10 @@ public class ManageQuestionsController implements QuestionObserver {
 
     private ObservableList<Question> questions = FXCollections.observableArrayList();
 
+
     @FXML
     private void initialize() {
+
         System.out.println("ManageQuestionsController initialized.");
 
         SystemData systemData = SystemData.getInstance();
@@ -70,7 +74,6 @@ public class ManageQuestionsController implements QuestionObserver {
         questionListView.getItems().clear();
 
         questionListView.setItems(questionTexts);
-        System.out.println("Initialized with " + allQuestions.size() + " questions.");
 
         for (Question question : allQuestions) {
             question.registerObserver(this);
@@ -117,6 +120,8 @@ public class ManageQuestionsController implements QuestionObserver {
                 Question newQuestion = addQuestionController.getNewQuestion();
                 questions.add(newQuestion);
                 questionListView.getItems().add(newQuestion.getText());
+
+                refreshQuestionList();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -129,6 +134,18 @@ public class ManageQuestionsController implements QuestionObserver {
     private void editQuestion() {
         // Get the selected question text
         String selectedQuestionText = questionListView.getSelectionModel().getSelectedItem();
+
+
+        // Check if a question is selected
+        if (selectedQuestionText == null) {
+            // If no question is selected, display an error message
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("No Question Selected");
+            alert.setContentText("Please select a question to edit.");
+            alert.showAndWait();
+            return;
+        }
 
         // Find the corresponding question object
         SystemData systemData = SystemData.getInstance();
@@ -169,6 +186,11 @@ public class ManageQuestionsController implements QuestionObserver {
 
                 // Show the stage and wait for it to be closed
                 stage.showAndWait();
+
+                // If the question was edited, refresh the question list
+                if (editQuestionController.isQuestionEdited()) {
+                    refreshQuestionList();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -181,7 +203,20 @@ public class ManageQuestionsController implements QuestionObserver {
 
     @FXML
     private void deleteQuestion() {
+
         String selectedQuestionText = questionListView.getSelectionModel().getSelectedItem();
+
+        // Check if a question is selected
+        if (selectedQuestionText == null) {
+            // If no question is selected, display an error message
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("No Question Selected");
+            alert.setContentText("Please select a question to delete.");
+            alert.showAndWait();
+            return;
+        }
+
         System.out.println("Selected question: " + selectedQuestionText);
 
         // Create a confirmation dialog
@@ -311,6 +346,6 @@ public class ManageQuestionsController implements QuestionObserver {
 
         // Add the refreshed question list to the ListView
         questionListView.setItems(questionTexts);
-    }
+}
 
 }

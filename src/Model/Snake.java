@@ -151,7 +151,5 @@ public class Snake {
     @Override
     public int hashCode() {
         return Objects.hash(snakeId, color, headPosition);
-    }
 }
-
-
+}

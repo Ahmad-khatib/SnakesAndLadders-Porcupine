@@ -18,12 +18,6 @@
                     </children>
                 </HBox>
                 <HBox spacing="10.0">
-                    <Label text="Level:" />
-                    <ChoiceBox fx:id="levelChoiceBox" prefWidth="150.0">
-
-                    </ChoiceBox>
-                </HBox>
-                <HBox spacing="10.0">
                     <Label text="Correct Answer:" />
                     <ChoiceBox fx:id="correctAnswerChoiceBox" prefWidth="150.0">
 

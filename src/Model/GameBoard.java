@@ -1,5 +1,6 @@
 package Model;
 
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class GameBoard {
+public class GameBoard extends GridPane {
     private int gameId;
     private int difficultyLevel;
     private Tile[][] tiles;
@@ -43,7 +44,7 @@ public class GameBoard {
 
     private void initializeBoard(int supriseJump) {
         // Calculate preferred dimensions for the tiles
-        preferredTileSize = Math.min(823 / size, 800 / size);
+        preferredTileSize = Math.min(600 / size, 700 / size);
         List<Integer> supriseJumpTiles = new ArrayList<>();
         List<Integer> questionTiles = new ArrayList<>();
         while( supriseJumpTiles.size() < supriseJump){
@@ -66,11 +67,9 @@ public class GameBoard {
             for (int col = 0; col < size; col++) {
                 if (supriseJumpTiles.contains(count)) {
                     tiles[row][col] = new Tile(count, Tile.TileType.SURPRISE_JUMP, col * preferredTileSize, row * preferredTileSize, preferredTileSize, preferredTileSize);
-                    System.out.print("this is the row "+row + " this is the col :" +col + " \n");
                 }
                 else if (questionTiles.contains(count)) {
                     tiles[row][col] = new Tile(count, Tile.TileType.QUESTION, col * preferredTileSize, row * preferredTileSize, preferredTileSize, preferredTileSize);
-                    System.out.print("this is the row "+row + " this is the col :" +col + " \n");
                 } else {
                     tiles[row][col] = new Tile(count, Tile.TileType.NORMAL, col * preferredTileSize, row * preferredTileSize, preferredTileSize, preferredTileSize);
                 }
@@ -86,9 +85,8 @@ public class GameBoard {
     public void displayBoard() {
         for (int row = size - 1; row >= 0; row--) {
             for (int col = 0; col < size; col++) {
-                System.out.print(tiles[row][col].getTileType() + "\t");
             }
-            System.out.println();
+
         }
     }
 

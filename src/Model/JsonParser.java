@@ -1,4 +1,3 @@
-
 package Model;
 
 import org.json.simple.JSONArray;
@@ -8,7 +7,7 @@ import org.json.simple.parser.ParseException;
 
 import java.util.ArrayList;
 import java.util.List;
-//
+
 public class JsonParser<T> {
 
     private static JsonParser instance;
@@ -21,7 +20,7 @@ public class JsonParser<T> {
         return instance;
     }
 
-    public List<T> parseToList(String json, T prototype) {
+    public List<T> parseToList(String json, Class<T> type) {
         List<T> resultList = new ArrayList<>();
         JSONParser parser = new JSONParser();
 
@@ -40,11 +39,14 @@ public class JsonParser<T> {
                 String correctAnswer = (String) questionJson.get("correct_ans");
                 Difficulty level = Difficulty.valueOf(questionJson.get("difficulty").toString());
 
-                // Create a new Question object with the parsed data
-                Question question = new Question(text, answers[0], answers[1], answers[2], answers[3], correctAnswer, level);
-                resultList.add((T) question);
+                // Create a new instance of the specified type with the parsed data
+                T instance = type.getDeclaredConstructor(String.class, String.class, String.class, String.class, String.class, Difficulty.class)
+                        .newInstance(text, answers[0], answers[1], answers[2], answers[3], level);
+                resultList.add(instance);
             }
         } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (ReflectiveOperationException e) {
             e.printStackTrace();
         }
 

@@ -81,12 +81,12 @@ public class PlayerSettingsController {
                 iconImageView.setOnMouseClicked(event -> handleIconSelection(iconImageView, playerBox));
                 // Add the icon image view to the player's HBox
                 playerBox.getChildren().add(iconImageView);
-                players.add(new Player(i,playerNameField.getText(),iconImageView,1));
             }
 
             // Add the player's HBox to the player box container
             playerBoxContainer.getChildren().add(playerBox);
         }
+
     }
 
 
@@ -111,6 +111,32 @@ public class PlayerSettingsController {
     private void handleStartButtonClicked() {
 
         startButton.setDisable(true);
+        // Collect player details
+        for (Node playerBox : playerBoxContainer.getChildren()) {
+            if (playerBox instanceof HBox) {
+                HBox hbox = (HBox) playerBox;
+                String playerName = "";
+                ImageView selectedIcon = null;
+
+                // Iterate through each node in the player's HBox
+                for (Node node : hbox.getChildren()) {
+                    if (node instanceof TextField) {
+                        // Get the player's name
+                        TextField playerNameField = (TextField) node;
+                        playerName = playerNameField.getText();
+                    } else if (node instanceof ImageView && selectedIcons.contains(node)) {
+                        // Get the selected icon
+                        selectedIcon = (ImageView) node;
+                    }
+                }
+
+                // If both name and icon are selected, create a Player object and add it to the list
+                if (!playerName.isEmpty() && selectedIcon != null) {
+                    int id=0;
+                    players.add(new Player(++id,playerName, selectedIcon,1));
+                }}
+}
+
         // Determine the board size based on the chosen level
         int boardSize = 0;
 
@@ -142,6 +168,7 @@ public class PlayerSettingsController {
             Stage stage = (Stage) startButton.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -311,10 +338,7 @@ public class PlayerSettingsController {
         }
         // All players are ready
         return true;
-    }
-
-
-
+}
 
 
 

@@ -16,62 +16,63 @@
 <?import javafx.scene.text.Text?>
 
 <VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameBoardController">
-   <children>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1342.0">
-          <left>
-              <VBox prefHeight="800.0" prefWidth="153.0" BorderPane.alignment="CENTER" />
-          </left>
-          <right>
-              <VBox prefHeight="800.0" prefWidth="185.0" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox prefHeight="150.0" prefWidth="300.0">
-                     <children>
-                         <ImageView fx:id="diceImage" fitHeight="150.0" fitWidth="150.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-                             <image>
-                                 <Image url="@/View/Photos/dice/dice1.png" />
-                             </image>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </ImageView>
-                         <ImageView fx:id="diceImage2" fitHeight="150.0" fitWidth="150.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-                             <image>
-                                 <Image url="@/View/Photos/dice/dice1.png" />
-                             </image>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </ImageView>
-                     </children>
-                  </HBox>
-                   <Button fx:id="rollButton" alignment="CENTER" mnemonicParsing="false" onAction="#handlerolButtonClicked" prefHeight="92.0" prefWidth="300.0" text="Roll">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin></Button>
-                   <Text fx:id="timerLabel" text="       Timer                    0 seconds" wrappingWidth="225.17840576171875">
-                     <font>
-                        <Font name="System Bold Italic" size="30.0" />
-                     </font>
-                     <effect>
-                        <Lighting>
-                           <bumpInput>
-                              <Shadow />
-                           </bumpInput>
-                           <light>
-                              <Light.Distant />
-                           </light>
-                        </Lighting>
-                     </effect></Text>
-               </children>
-            </VBox>
-          </right>
-          <center>
-              <StackPane>
-                  <GridPane fx:id="dynamicGridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="823.0" BorderPane.alignment="CENTER">
-            </GridPane>
-      
-              </StackPane>
-          </center>
-      </BorderPane>
-   </children>
+    <children>
+        <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1342.0">
+            <left>
+                <VBox prefHeight="800.0" prefWidth="153.0" BorderPane.alignment="CENTER" />
+            </left>
+            <right>
+                <VBox prefHeight="800.0" prefWidth="185.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <HBox prefHeight="150.0" prefWidth="300.0">
+                            <children>
+                                <ImageView fx:id="diceImage" fitHeight="150.0" fitWidth="150.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@/View/Photos/dice/dice1.png" />
+                                    </image>
+                                    <HBox.margin>
+                                        <Insets />
+                                    </HBox.margin>
+                                </ImageView>
+                                <ImageView fx:id="diceImage2" fitHeight="150.0" fitWidth="150.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@/View/Photos/dice/dice1.png" />
+                                    </image>
+                                    <HBox.margin>
+                                        <Insets />
+                                    </HBox.margin>
+                                </ImageView>
+                            </children>
+                        </HBox>
+                        <Button fx:id="rollButton" alignment="CENTER" mnemonicParsing="false" onAction="#handlerolButtonClicked" prefHeight="92.0" prefWidth="300.0" text="Roll">
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin></Button>
+                        <Text fx:id="timerLabel" text="       Timer                    0 seconds" wrappingWidth="225.17840576171875">
+                            <font>
+                                <Font name="System Bold Italic" size="30.0" />
+                            </font>
+                            <effect>
+                                <Lighting>
+                                    <bumpInput>
+                                        <Shadow />
+                                    </bumpInput>
+                                    <light>
+                                        <Light.Distant />
+                                    </light>
+                                </Lighting>
+                            </effect></Text>
+                  <Button fx:id="startNow" mnemonicParsing="false" onAction="#handleStartNow" prefHeight="68.0" prefWidth="131.0" text="Start Now!" />
+                    </children>
+                </VBox>
+            </right>
+            <center>
+                <StackPane>
+                    <GridPane fx:id="dynamicGridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="823.0" BorderPane.alignment="CENTER">
+                    </GridPane>
+
+                </StackPane>
+            </center>
+        </BorderPane>
+    </children>
 </VBox>

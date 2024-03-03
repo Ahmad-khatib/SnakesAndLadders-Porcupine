@@ -10,12 +10,15 @@ public class Game {
     private  HashMap<Difficulty, ArrayList<Question>> Questions;
     private boolean gameFinished = new Boolean(false);
 
-   public Game(int id,GameBoard gameBoard,ArrayList<Player> players,HashMap<Difficulty, ArrayList<Question>> questions){
+    public Game(int id,GameBoard gameBoard,ArrayList<Player> players,HashMap<Difficulty, ArrayList<Question>> questions){
         this.Id=id;
         this.gameBoard=gameBoard;
         this.Players=players;
         this.Questions=questions;
 
+    }
+
+    public Game() {
     }
 
     public boolean isGameFinished() {
@@ -56,5 +59,5 @@ public class Game {
 
     public void setQuestions(HashMap<Difficulty, ArrayList<Question>> questions) {
         Questions = questions;
-    }
+}
 }
