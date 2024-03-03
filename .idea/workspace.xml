@@ -606,7 +606,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1709491298894</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL‎-00037" summary="factory pattern">
+      <option name="closed" value="true" />
+      <created>1709491424097</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL‎-00037" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709491424097</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -632,7 +640,8 @@
     <MESSAGE value="1.Created Suprise jump and question tiles&#10;2.Created model.game class and Controller.GameController class and started with the actual logic of the game" />
     <MESSAGE value="The game is playable !!!" />
     <MESSAGE value="Revert &quot;Yellow Snakes ready!&quot;&#10;&#10;This reverts commit b3a6e304" />
-    <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;Yellow Snakes ready!&quot;&#10;&#10;This reverts commit b3a6e304" />
+    <MESSAGE value="factory pattern" />
+    <option name="LAST_COMMIT_MESSAGE" value="factory pattern" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
