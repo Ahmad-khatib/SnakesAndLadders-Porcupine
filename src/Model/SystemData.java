@@ -3,21 +3,17 @@ package Model;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import javafx.scene.control.Alert;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class SystemData implements QuestionObserver {
     private static SystemData instance;
     private final HashMap<Difficulty, ArrayList<Question>> questions;
-    private final ArrayList<Game> gamesForHistory;
 
     private SystemData() {
         questions = new HashMap<>();
-        gamesForHistory = new ArrayList<>();
     }
 
     public static SystemData getInstance() {
@@ -49,8 +45,10 @@ public class SystemData implements QuestionObserver {
                 Difficulty enumDifficulty = getQuestionDifficulty(difficulty);
 
 
-                Question questionToAdd = new Question(text, answer1, answer2, answer3, answer4, correctAnswer, enumDifficulty);
+
+                Question questionToAdd = new Question( text, answer1, answer2, answer3, answer4, correctAnswer, enumDifficulty);
                 questions.computeIfAbsent(enumDifficulty, k -> new ArrayList<>()).add(questionToAdd);
+
             }
             return true;
         } catch (Exception e) {
@@ -58,6 +56,8 @@ public class SystemData implements QuestionObserver {
             return false;
         }
     }
+
+
 
 
     private Difficulty getQuestionDifficulty(int difficulty) {
@@ -113,7 +113,6 @@ public class SystemData implements QuestionObserver {
     }
 
     public HashMap<Difficulty, ArrayList<Question>> getQuestions() {
-
         return questions;
     }
 
@@ -125,6 +124,17 @@ public class SystemData implements QuestionObserver {
             }
         }
         return allQuestions;
+    }
+
+
+
+    public void deleteQuestion(Question question) {
+        for (ArrayList<Question> list : questions.values()) {
+            if (list != null) {
+                list.removeIf(q -> q.equals(question));
+            }
+        }
+        saveQuestions(); // Save changes after deleting a question
     }
 
     @Override
@@ -145,17 +155,32 @@ public class SystemData implements QuestionObserver {
     }
 
     public boolean addQuestion(Question newQuestion) {
+        // Check if the new question's text already exists in any of the existing questions
+        for (ArrayList<Question> questionList : questions.values()) {
+            if (questionList != null) {
+                for (Question existingQuestion : questionList) {
+                    if (existingQuestion.getText().equals(newQuestion.getText())) {
+                        // If the question text already exists, show an alert and return false
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error");
+                        alert.setHeaderText("Question Already Exists");
+                        alert.setContentText("This question already exists. Please try another one.");
+                        alert.showAndWait();
+                        return false;
+                    }
+                }
+            }
+        }
+
+        // If the question text does not exist, proceed with adding the question
         // Get the difficulty of the new question
         Difficulty difficulty = newQuestion.getLevel();
 
         // Get the list of questions for the given difficulty level
         ArrayList<Question> questionList = questions.getOrDefault(difficulty, new ArrayList<>());
 
-        if (questionList.contains(newQuestion)) {
-            // If the question already exists, return false to indicate that it was not added
-            return false;
-        } else // Add the new question to the list
-            questionList.add(newQuestion);
+        // Add the new question to the list
+        questionList.add(newQuestion);
 
         // Update the HashMap with the modified list
         questions.put(difficulty, questionList);
@@ -167,14 +192,7 @@ public class SystemData implements QuestionObserver {
         return true;
     }
 
-    public void deleteQuestion(Question question) {
-        for (ArrayList<Question> list : questions.values()) {
-            if (list != null) {
-                list.removeIf(q -> q.equals(question));
-            }
-        }
-        saveQuestions(); // Save changes after deleting a question
-    }
+
 
     public boolean editQuestion(Question editedQuestion) {
         // Get the old difficulty of the edited question
@@ -196,22 +214,15 @@ public class SystemData implements QuestionObserver {
         // If the question is not found in the old difficulty list, return false
         return false;
     }
-
     public Question popQuestion(Difficulty level) {
-        // Get the list of questions for the specified difficulty
-        ArrayList<Question> questionList = questions.get(level);
-
-        // Check if the list is not null and not empty
-        if (questionList != null && !questionList.isEmpty()) {
-            Question q = questionList.get(new Random().nextInt(questionList.size()));
-
-            // Select a random question from the list
-            return q;
-        } else {
-            // Handle the case where questions for the specified level are not available
-            return null;
-        }
+        ArrayList<Question> array = questions.get(level);
+        Question q = array.get(new Random().nextInt(array.size()));
+        return q;
     }
+
+
+
+
 
 
 }
