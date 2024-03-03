@@ -21,7 +21,7 @@ public class PlayerSelectionsController {
     private ChoiceBox<String> gameLevelChoiceBox = new ChoiceBox<>();
 
     @FXML
-    private ChoiceBox<String> playersNumberChoiceBox= new ChoiceBox<String>();
+    private ChoiceBox<String> playersNumberChoiceBox = new ChoiceBox<String>();
 
     @FXML
     private Button nextButton;
@@ -29,6 +29,7 @@ public class PlayerSelectionsController {
     private Button backButton;
     @FXML
     private HBox playerBox1;
+
     @FXML
     private void initialize() {
         ObservableList<String> gameLevelChoiceBoxlist = FXCollections.observableArrayList("Easy", "Medium", "Hard");
@@ -39,6 +40,7 @@ public class PlayerSelectionsController {
         // Add event handler for the nextButton
         nextButton.setOnAction(event -> handleNextButtonClicked());
     }
+
     @FXML
     private void handleNextButtonClicked() {
         // Check if both choice boxes have a selection
@@ -53,7 +55,7 @@ public class PlayerSelectionsController {
         }
         // Add functionality to move to the next page(playersettings) when clicking on next and also maintaining the level selected by player because we will be using it in the game board
         String selectedLevel = gameLevelChoiceBox.getValue();
-        this.chosenLevel=selectedLevel;
+        this.chosenLevel = selectedLevel;
         int boardSize = 0;
 
         switch (selectedLevel) {

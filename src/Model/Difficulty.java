@@ -6,10 +6,12 @@ public enum Difficulty {
     EASY("1");
 
     private String level;
+    private String levelWords;
 
     Difficulty(String  level) {
         this.level = level;
     }
+
 
     public String toString() {
         return level;

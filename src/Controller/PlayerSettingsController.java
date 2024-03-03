@@ -132,10 +132,11 @@ public class PlayerSettingsController {
 
                 // If both name and icon are selected, create a Player object and add it to the list
                 if (!playerName.isEmpty() && selectedIcon != null) {
-                    int id=0;
-                    players.add(new Player(++id,playerName, selectedIcon,1));
-                }}
-}
+                    int id = 0;
+                    players.add(new Player(++id, playerName, selectedIcon, 1));
+                }
+            }
+        }
 
         // Determine the board size based on the chosen level
         int boardSize = 0;
@@ -161,7 +162,7 @@ public class PlayerSettingsController {
             root = loader.load();
             // Initialize the board game controller
             GameBoardController boardGameController = loader.getController();
-            boardGameController.initialize(chosenLevel,players); // Pass board size to the controller
+            boardGameController.initialize(chosenLevel, players); // Pass board size to the controller
             // Set the stylesheet for the scene
             root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/View/PorcupineStyle.css")).toExternalForm());
             // Get the current stage and set the scene to the board game scene
@@ -191,47 +192,9 @@ public class PlayerSettingsController {
             e.printStackTrace();
         }
     }
-    // Method to handle the selection of an icon
-    private void handleIconSelection(ImageView selectedIconImageView) {
 
 
-        // Add the selected icon to the set of chosen icons
-        selectedIcons.add(selectedIconImageView);
-
-        // Disable the selected icon for all other players
-        for (Node playerBox : playerBoxContainer.getChildren()) {
-            if (playerBox instanceof HBox) {
-                HBox hbox = (HBox) playerBox;
-                // Find the index of the selected icon in this player's HBox
-                int iconIndex = hbox.getChildren().indexOf(selectedIconImageView);
-                if (iconIndex != -1) { // If the selected icon exists in this player's HBox
-                    // Iterate through each player's HBox and disable the same icon
-                    for (Node otherPlayerBox : playerBoxContainer.getChildren()) {
-                        if (otherPlayerBox instanceof HBox && otherPlayerBox != playerBox) {
-                            HBox otherHBox = (HBox) otherPlayerBox;
-                            Node otherIconNode = otherHBox.getChildren().get(iconIndex);
-                            if (otherIconNode instanceof ImageView) {
-                                ImageView otherIconImageView = (ImageView) otherIconNode;
-                                otherIconImageView.setDisable(true);
-                                otherIconImageView.setStyle("-fx-opacity: 0.5;"); // Optionally, reduce opacity to indicate disabled state
-                            }
-                        }
-                    }
-                    break; // Break out of the loop once the selected icon is found
-                }
-            }
-        }
-
-        // Add a visual indication of selection
-        DropShadow dropShadow = new DropShadow();
-        dropShadow.setColor(Color.BLACK); // Change the color as desired
-        dropShadow.setRadius(10); // Adjust the radius as desired
-        selectedIconImageView.setEffect(dropShadow); // Apply drop shadow effect
-
-
-    }
-
-    // Method to handle the selection of an icon
+    // Method to handle the selection of an icon by a player within a player box
     private void handleIconSelection(ImageView selectedIconImageView, HBox playerBox) {
 
 
@@ -289,6 +252,7 @@ public class PlayerSettingsController {
 
         startButton.setDisable(!areAllPlayersReady());
     }
+
     // Method to handle the reset button being clicked
     @FXML
     private void handleResetButtonClicked() {
@@ -311,6 +275,7 @@ public class PlayerSettingsController {
             }
         }
     }
+
     private boolean areAllPlayersReady() {
         // Loop through each player
         for (Node playerBox : playerBoxContainer.getChildren()) {
@@ -338,9 +303,7 @@ public class PlayerSettingsController {
         }
         // All players are ready
         return true;
-}
-
-
+    }
 
 
 }

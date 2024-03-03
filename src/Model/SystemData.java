@@ -197,10 +197,18 @@ public class SystemData implements QuestionObserver {
         return false;
     }
     public Question popQuestion(Difficulty level) {
+        loadQuestions();
         ArrayList<Question> array = questions.get(level);
-        Question q = array.get(new Random().nextInt(array.size()));
-        return q;
+        System.out.println(array);
+        if (array != null && !array.isEmpty()) {
+            Question q = array.get(new Random().nextInt(array.size()));
+            return q;
+        } else {
+            // Handle the case where questions for the specified level are not available
+            return null;
+        }
     }
+
 
 
 

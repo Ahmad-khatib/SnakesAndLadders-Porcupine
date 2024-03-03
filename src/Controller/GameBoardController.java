@@ -1,36 +1,50 @@
 package Controller;
 
-import Model.*;
+import Model.Difficulty;
+import Model.Game;
+import Model.GameBoard;
+import Model.Player;
+import Model.Question;
+import Model.SystemData;
+import Model.Tile;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import static java.lang.Thread.sleep;
+import Controller.PopUpQuestionController;
 
 
 public class GameBoardController extends GridPane {
     private static final double ANIMATION_DURATION = 1000;
+    private static int snakeIdCounter = 0;
+    private static boolean isGameRunning = false;
+    private static volatile boolean waitFlag = false;
+    private final Random random = new Random();
     @FXML
     private GridPane dynamicGridPane;
     @FXML
@@ -40,43 +54,47 @@ public class GameBoardController extends GridPane {
     @FXML
     private Text timerLabel;
     @FXML
-   private  Button rollButton;
+    private Button rollButton;
     @FXML
     private Button startNow;
     private CountDownLatch rollLatch;
-    private final Random random = new Random();
     private double tileSize;
     private GameBoard gameBoard;
     private int gridSize;
-    private static int snakeIdCounter = 0;
     private Game game = new Game();
-    private ArrayList<Player> players= new ArrayList<>();
-    private int diceResult = 0 ;
+    private ArrayList<Player> players = new ArrayList<>();
+    private int diceResult = 0;
     private boolean rollButtonClicked = false;
-    private static boolean isGameRunning = false;
-    private static volatile boolean waitFlag = false;
     private int currentPlayerIndex = 0;
+    private int gameLevel =0;
 
+    private static void movePlayerWithAnimation(Player player, int newColumnIndex, int newRowIndex, double move) {
+        TranslateTransition transition = new TranslateTransition(Duration.millis(ANIMATION_DURATION), player.getIcon());
+        transition.setToX((newColumnIndex - player.getColIndex()) * move);
+        transition.setToY((newRowIndex - player.getRowIndex()) * move);
 
-    public void initialize(String selectedLevel , ArrayList <Player> playersN) throws IOException {
+        transition.play();
+    }
+
+    public void initialize(String selectedLevel, ArrayList<Player> playersN) throws IOException {
         gameBoard = new GameBoard(selectedLevel);
+        gameLevel = gameBoard.getDifficultyLevel();
         initializeBoardUI();
         initializeTimer();
         players.clear();
-        players=playersN;
-        game = new Game(gameBoard.getGameId(),gameBoard,players, SystemData.getInstance().getQuestions());
+        players = playersN;
+        game = new Game(gameBoard.getGameId(), gameBoard, players, SystemData.getInstance().getQuestions());
         rollButton.setVisible(false);
-        SnakeAndLaddersPlacment.placeSnakes(selectedLevel,gameBoard,dynamicGridPane);
+        SnakeAndLaddersPlacment.placeSnakes(selectedLevel, gameBoard, dynamicGridPane);
         // SnakeAndLaddersPlacment.placeLadders(selectedLevel);
 
 
-        for( int i=0 ; i < players.size();i++){
-            dynamicGridPane.add(players.get(i).getIcon(),0,gridSize-1);
-            players.get(i).setRowIndex(gridSize-1);
+        for (int i = 0; i < players.size(); i++) {
+            dynamicGridPane.add(players.get(i).getIcon(), 0, gridSize - 1);
+            players.get(i).setRowIndex(gridSize - 1);
             players.get(i).setColIndex(0);
             players.get(i).getIcon().setTranslateX(20);
         }
-
 
 
     }
@@ -90,13 +108,12 @@ public class GameBoardController extends GridPane {
                 // Access the Rectangle object within each Tile
                 Rectangle tileRectangle = tiles[i][j].getTileRectangle();
                 // Set properties of the Rectangle object
-                if(tiles[i][j].getTileType().equals(Tile.TileType.QUESTION)){
+                if (tiles[i][j].getTileType().equals(Tile.TileType.QUESTION)) {
                     tileRectangle.setFill(Color.RED);
                 }
-                if(tiles[i][j].getTileType().equals(Tile.TileType.SURPRISE_JUMP)){
+                if (tiles[i][j].getTileType().equals(Tile.TileType.SURPRISE_JUMP)) {
                     tileRectangle.setFill(Color.YELLOW);
-                }
-                else if (tiles[i][j].getTileType().equals(Tile.TileType.NORMAL)) {
+                } else if (tiles[i][j].getTileType().equals(Tile.TileType.NORMAL)) {
                     tileRectangle.setFill(Color.WHITE);
                 }
                 tileRectangle.setStroke(Color.BLACK);
@@ -142,6 +159,7 @@ public class GameBoardController extends GridPane {
             }
         }
     }
+
     private void startGame() {
         // Additional setup for starting the game if needed
         isGameRunning = true;
@@ -150,29 +168,107 @@ public class GameBoardController extends GridPane {
         // Additional setup for the first player's turn
         // (if any specific actions need to be taken at the beginning)
     }
-    private void movePlayer(Player player ,int moves) {
-        player.movePlayerTo(player.getPlayerPosition()+moves,gameBoard.getSize());
-        int newRow = player.getPlayerPosition() % gameBoard.getSize() == 0 ? (gameBoard.getSize() - (player.getPlayerPosition()/gameBoard.getSize())):gameBoard.getSize() - ((player.getPlayerPosition()/gameBoard.getSize())+1);
-        int newCol = player.getPlayerPosition() % gameBoard.getSize() == 0 ? gameBoard.getSize()-1 : ((player.getPlayerPosition() % gameBoard.getSize())-1);
-        movePlayerWithAnimation(player, newCol, newRow , gameBoard.getCellHeight());
-        if(player.getPlayerPosition()==gridSize*gridSize){
+
+    private void movePlayer(Player player, int moves) {
+        player.movePlayerTo(player.getPlayerPosition() + moves, gameBoard.getSize());
+        int newRow = player.getPlayerPosition() % gameBoard.getSize() == 0 ? (gameBoard.getSize() - (player.getPlayerPosition() / gameBoard.getSize())) : gameBoard.getSize() - ((player.getPlayerPosition() / gameBoard.getSize()) + 1);
+        int newCol = player.getPlayerPosition() % gameBoard.getSize() == 0 ? gameBoard.getSize() - 1 : ((player.getPlayerPosition() % gameBoard.getSize()) - 1);
+        movePlayerWithAnimation(player, newCol, newRow, gameBoard.getCellHeight());
+        // Check the type of tile the player is moving to
+        Tile.TileType tileType = gameBoard.getTiles()[newRow][newCol].getTileType();
+        switch (tileType) {
+            case NORMAL:
+                // Perform actions for a normal tile (if any)
+                break;
+            case QUESTION:
+                // Perform actions for a question tile (if any)
+                handleQuestionTile(player);
+                break;
+            case SURPRISE_JUMP:
+                // Perform actions for a surprise jump tile (if any)
+                handleSurpriseJumpTile(player);
+                break;
+            default:
+                break;
+        }
+        if (player.getPlayerPosition() == gridSize * gridSize) {
             game.setGameFinished(true);
         }
 
     }
-    private static void movePlayerWithAnimation(Player player, int newColumnIndex, int newRowIndex, double move) {
-        TranslateTransition transition = new TranslateTransition(Duration.millis(ANIMATION_DURATION), player.getIcon());
-        transition.setToX((newColumnIndex - player.getColIndex()) * move);
-        transition.setToY((newRowIndex - player.getRowIndex()) * move);
 
-        transition.play();
+    public void handleQuestionTile(Player player) {
+
+        switch (gameLevel) {
+            case 1:
+                movePlayer(player,loadQuestionPopUp(Difficulty.EASY));
+                break;
+            case 2:
+                movePlayer(player,loadQuestionPopUp(Difficulty.MEDIUM));
+                break;
+            case 3:
+                movePlayer(player,loadQuestionPopUp(Difficulty.HARD));
+                break;
+            default:
+                break;
+        }
+
+
+    }
+
+    private int loadQuestionPopUp(Difficulty d) {
+        int stepsToMove = 0;
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"ok", ButtonType.OK);
+        alert.show();
+        // Load the FXML for the question window
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("src/View/PopUpQuestion.fxml")); //ihave aproblem here
+
+            Parent root = loader.load();
+            // Create the scene and show the window
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Question");
+            stage.initModality(Modality.APPLICATION_MODAL); // Ensure the window is modal
+            stage.showAndWait(); // Wait for the user to close the window
+            // Get the controller instance
+            PopUpQuestionController controller = loader.getController();
+
+            // Retrieve the question based on the difficulty and set it in the controller
+            Question question = SystemData.getInstance().popQuestion(d);
+            controller.setQuestion(question.getText(), question.getAnswer1(), question.getAnswer2(), question.getAnswer3(), question.getAnswer4(), question.getCorrectAnswer());
+
+
+
+            // Get the steps to move from the controller
+            stepsToMove = controller.getStepsToMove();
+            // Handle the steps to move based on the game logic
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return stepsToMove;
+    }
+
+    private void movePlayerBack(Player player, int steps) {
+        int newPosition = player.getPlayerPosition() - steps;
+        if (newPosition < 1) {
+            newPosition = 1; // Ensure the player doesn't go beyond the start position
+        }
+        movePlayer(player, newPosition - player.getPlayerPosition());
+    }
+
+    private void handleSurpriseJumpTile(Player player) {
+        // Add logic to handle actions when a player lands on a surprise jump tile
+        // For example, move the player to a different position on the board
     }
 
     @FXML
-    private void handleStartNow(){
+    private void handleStartNow() {
         rollButton.setVisible(true);
         startNow.setVisible(false);
     }
+
     @FXML
     public int roll() {
         rollButton.setDisable(true);
