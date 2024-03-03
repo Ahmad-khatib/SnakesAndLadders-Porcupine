@@ -5,14 +5,19 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 public class SystemData implements QuestionObserver {
     private static SystemData instance;
     private final HashMap<Difficulty, ArrayList<Question>> questions;
+    private final ArrayList<Game> gamesForHistory;
 
     private SystemData() {
         questions = new HashMap<>();
+        gamesForHistory = new ArrayList<>();
     }
 
     public static SystemData getInstance() {
@@ -44,8 +49,7 @@ public class SystemData implements QuestionObserver {
                 Difficulty enumDifficulty = getQuestionDifficulty(difficulty);
 
 
-
-                Question questionToAdd = new Question( text, answer1, answer2, answer3, answer4, correctAnswer, enumDifficulty);
+                Question questionToAdd = new Question(text, answer1, answer2, answer3, answer4, correctAnswer, enumDifficulty);
                 questions.computeIfAbsent(enumDifficulty, k -> new ArrayList<>()).add(questionToAdd);
             }
             return true;
@@ -54,8 +58,6 @@ public class SystemData implements QuestionObserver {
             return false;
         }
     }
-
-
 
 
     private Difficulty getQuestionDifficulty(int difficulty) {
@@ -111,6 +113,7 @@ public class SystemData implements QuestionObserver {
     }
 
     public HashMap<Difficulty, ArrayList<Question>> getQuestions() {
+
         return questions;
     }
 
@@ -122,17 +125,6 @@ public class SystemData implements QuestionObserver {
             }
         }
         return allQuestions;
-    }
-
-
-
-    public void deleteQuestion(Question question) {
-        for (ArrayList<Question> list : questions.values()) {
-            if (list != null) {
-                list.removeIf(q -> q.equals(question));
-            }
-        }
-        saveQuestions(); // Save changes after deleting a question
     }
 
     @Override
@@ -162,9 +154,8 @@ public class SystemData implements QuestionObserver {
         if (questionList.contains(newQuestion)) {
             // If the question already exists, return false to indicate that it was not added
             return false;
-        }
-        else // Add the new question to the list
-        questionList.add(newQuestion);
+        } else // Add the new question to the list
+            questionList.add(newQuestion);
 
         // Update the HashMap with the modified list
         questions.put(difficulty, questionList);
@@ -174,6 +165,15 @@ public class SystemData implements QuestionObserver {
 
         // Return true to indicate that the question was successfully added
         return true;
+    }
+
+    public void deleteQuestion(Question question) {
+        for (ArrayList<Question> list : questions.values()) {
+            if (list != null) {
+                list.removeIf(q -> q.equals(question));
+            }
+        }
+        saveQuestions(); // Save changes after deleting a question
     }
 
     public boolean editQuestion(Question editedQuestion) {
@@ -196,23 +196,22 @@ public class SystemData implements QuestionObserver {
         // If the question is not found in the old difficulty list, return false
         return false;
     }
+
     public Question popQuestion(Difficulty level) {
-        loadQuestions();
-        ArrayList<Question> array = questions.get(level);
-        System.out.println(array);
-        if (array != null && !array.isEmpty()) {
-            Question q = array.get(new Random().nextInt(array.size()));
+        // Get the list of questions for the specified difficulty
+        ArrayList<Question> questionList = questions.get(level);
+
+        // Check if the list is not null and not empty
+        if (questionList != null && !questionList.isEmpty()) {
+            Question q = questionList.get(new Random().nextInt(questionList.size()));
+
+            // Select a random question from the list
             return q;
         } else {
             // Handle the case where questions for the specified level are not available
             return null;
         }
     }
-
-
-
-
-
 
 
 }
