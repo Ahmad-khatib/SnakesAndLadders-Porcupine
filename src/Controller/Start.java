@@ -36,7 +36,6 @@ public class Start extends Application {
         HashMap<Difficulty, ArrayList<Question>> questions = systemData.getQuestions();
         for (ArrayList<Question> questionList : questions.values()) {
             for (Question question : questionList) {
-
                 System.out.println("Text: " + question.getText());
                 System.out.println("Answer 1: " + question.getAnswer1());
                 System.out.println("Answer 2: " + question.getAnswer2());

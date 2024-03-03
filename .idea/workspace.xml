@@ -9,7 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="." />
+    <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="The game is playable !!!">
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/SnakeAndLaddersPlacment$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/SnakeAndLaddersPlacment$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/PlayerSelectionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PlayerSelectionsController.java" afterDir="false" />
+    </list>
     <list id="4eab7431-56fc-4d74-abc0-9c4782af3869" name="Changes by noura" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -299,7 +302,8 @@
       <workItem from="1708687622997" duration="12566000" />
       <workItem from="1709306337355" duration="31681000" />
       <workItem from="1709381858247" duration="14151000" />
-      <workItem from="1709426351495" duration="5048000" />
+      <workItem from="1709426351495" duration="10566000" />
+      <workItem from="1709480742722" duration="3333000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <option name="closed" value="true" />
@@ -557,23 +561,31 @@
       <option name="project" value="LOCAL" />
       <updated>1709404095356</updated>
     </task>
-    <task id="LOCAL‎-00033" summary=".">
+    <task id="LOCAL-00033" summary="The game is playable !!!">
       <option name="closed" value="true" />
-      <created>1709459404848</created>
+      <created>1709431472211</created>
       <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL‎-00033" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1709459404848</updated>
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1709431472211</updated>
     </task>
-    <task id="LOCAL‎-00034" summary=".">
+    <task id="LOCAL-00034" summary="The game is playable !!!">
       <option name="closed" value="true" />
-      <created>1709484295087</created>
+      <created>1709431478414</created>
       <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL‎-00034" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1709484295087</updated>
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1709431478414</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="The game is playable !!!">
+      <option name="closed" value="true" />
+      <created>1709484009410</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1709484009410</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -597,9 +609,8 @@
     <MESSAGE value="..." />
     <MESSAGE value="Yellow snakes placed in the right positions and saved accordingly !" />
     <MESSAGE value="1.Created Suprise jump and question tiles&#10;2.Created model.game class and Controller.GameController class and started with the actual logic of the game" />
-    <MESSAGE value="game board controller" />
-    <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <MESSAGE value="The game is playable !!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="The game is playable !!!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -614,10 +625,6 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SnakesAndLadders_Porcupine$Start_.ic" NAME="Start  Coverage Results" MODIFIED="1707150033525" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
