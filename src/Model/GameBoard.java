@@ -1,12 +1,9 @@
 package Model;
 
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
 
 public class GameBoard extends GridPane {
     private int gameId;
@@ -45,40 +42,17 @@ public class GameBoard extends GridPane {
     private void initializeBoard(int supriseJump) {
         // Calculate preferred dimensions for the tiles
         preferredTileSize = Math.min(600 / size, 700 / size);
-        List<Integer> supriseJumpTiles = new ArrayList<>();
-        List<Integer> questionTiles = new ArrayList<>();
-
-
-
-        while( questionTiles.size() < 3){
-            int random =new Random().nextInt(size*size) ;
-            if(random != size*size &&  random != 1){
-                questionTiles.add(random);
-                System.out.println(questionTiles.size());
-            }
-            while(supriseJumpTiles.size() < supriseJump){
-                random =new Random().nextInt(size*size);
-                if(!(questionTiles.contains(random)) && random != 1 && random != size*size ){
-                    supriseJumpTiles.add(random);
-                }
-            }
-        }
-
-
+        int[] supriseJumpIndices = TileFactory.generateRandomNumbers(size, supriseJump);
+        int[] questionIndices = TileFactory.generateRandomNumbers(size, 3);
 
         tiles = new Tile[size][size];
         int count = 1;
 
         for (int row = size - 1; row >= 0; row--) {
             for (int col = 0; col < size; col++) {
-                if (supriseJumpTiles.contains(count)) {
-                    tiles[row][col] = new Tile(count, Tile.TileType.SURPRISE_JUMP, col * preferredTileSize, row * preferredTileSize, preferredTileSize, preferredTileSize);
-                }
-                else if (questionTiles.contains(count)) {
-                    tiles[row][col] = new Tile(count, Tile.TileType.QUESTION, col * preferredTileSize, row * preferredTileSize, preferredTileSize, preferredTileSize);
-                } else {
-                    tiles[row][col] = new Tile(count, Tile.TileType.NORMAL, col * preferredTileSize, row * preferredTileSize, preferredTileSize, preferredTileSize);
-                }
+                tiles[row][col] = TileFactory.createTile(count, col * preferredTileSize,
+                        row * preferredTileSize, preferredTileSize, preferredTileSize, supriseJumpIndices, questionIndices);
+
                 count++;
             }
         }
