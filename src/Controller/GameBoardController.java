@@ -85,7 +85,7 @@ public class GameBoardController extends GridPane {
         game = new Game(gameBoard.getGameId(), gameBoard, players, SystemData.getInstance().getQuestions());
         rollButton.setVisible(false);
         SnakeAndLaddersPlacment.placeSnakes(selectedLevel, gameBoard, dynamicGridPane);
-        // SnakeAndLaddersPlacment.placeLadders(selectedLevel);
+         //SnakeAndLaddersPlacment.placeLadders(selectedLevel, gameBoard, dynamicGridPane);
         usedHeadPositions = SnakeAndLaddersPlacment.usedHeadPositions;
         usedTailPositions = SnakeAndLaddersPlacment.usedTailPositions;
         currentPlayer.setText("Welcome to Game Snakes and Ladders\n by Porcupine");
@@ -151,7 +151,6 @@ public class GameBoardController extends GridPane {
             int diceSum = roll();
             playedMyTurn = false;
             movePlayer(players.get(currentPlayerIndex), diceSum);
-            System.out.print((currentPlayerIndex + 1) % players.size()+"  LADFADS");
 
             // Check for game completion
             if (game.isGameFinished()) {
@@ -231,11 +230,13 @@ public class GameBoardController extends GridPane {
         if (usedHeadPositions.contains(player.getPlayerPosition())) {
 
             for (int i = 0; i < gameBoard.getSnakes().size(); i++) {
+
                 if (gameBoard.getSnakes().get(i).getHeadPosition() == player.getPlayerPosition() && gameBoard.getSnakes().get(i).getColor() != RED) {
                     int stepsBack = gameBoard.getSnakes().get(i).getTailPosition() - gameBoard.getSnakes().get(i).getHeadPosition();
                     movePlayer(player, stepsBack);
-                } else if (gameBoard.getSnakes().get(i).getColor() == RED) {
-                    int stepsBack = player.getPlayerPosition() - 1;
+                }
+                if (gameBoard.getSnakes().get(i).getHeadPosition() == player.getPlayerPosition() && gameBoard.getSnakes().get(i).getColor().equals(RED)) {
+                    int stepsBack =-( player.getPlayerPosition() - 1);
                     movePlayer(player, stepsBack);
                 }
                 finishedTurn(player);
@@ -247,7 +248,6 @@ public class GameBoardController extends GridPane {
                 finishedTurn(player);
                 break;
             case QUESTION:
-                System.out.println("imhere");
                 handleQuestionTile(player);
                 break;
             case SURPRISE_JUMP:

@@ -50,7 +50,7 @@ public class GameBoard extends GridPane {
 
 
 
-        while( questionTiles.size() < 45){
+        while( questionTiles.size() < 3){
             int random =new Random().nextInt(size*size) ;
             if(random != size*size &&  random != 1){
                 questionTiles.add(random);

@@ -5,7 +5,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 public class SystemData implements QuestionObserver {
     private static SystemData instance;
@@ -44,10 +47,8 @@ public class SystemData implements QuestionObserver {
                 Difficulty enumDifficulty = getQuestionDifficulty(difficulty);
 
 
-
-                Question questionToAdd = new Question( text, answer1, answer2, answer3, answer4, correctAnswer, enumDifficulty);
+                Question questionToAdd = new Question(text, answer1, answer2, answer3, answer4, correctAnswer, enumDifficulty);
                 questions.computeIfAbsent(enumDifficulty, k -> new ArrayList<>()).add(questionToAdd);
-
             }
             return true;
         } catch (Exception e) {
@@ -55,8 +56,6 @@ public class SystemData implements QuestionObserver {
             return false;
         }
     }
-
-
 
 
     private Difficulty getQuestionDifficulty(int difficulty) {
@@ -126,7 +125,6 @@ public class SystemData implements QuestionObserver {
     }
 
 
-
     public void deleteQuestion(Question question) {
         for (ArrayList<Question> list : questions.values()) {
             if (list != null) {
@@ -163,9 +161,8 @@ public class SystemData implements QuestionObserver {
         if (questionList.contains(newQuestion)) {
             // If the question already exists, return false to indicate that it was not added
             return false;
-        }
-        else // Add the new question to the list
-        questionList.add(newQuestion);
+        } else // Add the new question to the list
+            questionList.add(newQuestion);
 
         // Update the HashMap with the modified list
         questions.put(difficulty, questionList);
@@ -197,15 +194,22 @@ public class SystemData implements QuestionObserver {
         // If the question is not found in the old difficulty list, return false
         return false;
     }
+
     public Question popQuestion(Difficulty level) {
-        ArrayList<Question> array = questions.get(level);
-        Question q = array.get(new Random().nextInt(array.size()));
-        return q;
-    }
+        // Get the list of questions for the specified difficulty
+        ArrayList<Question> questionList = questions.get(level);
 
-
-
-
+        // Check if the list is not null and not empty
+        if (questionList != null && !questionList.isEmpty()) {
+            Question q = questionList.get(new Random().nextInt(questionList.size()));
+            System.out.println(q);
+            // Select a random question from the list
+            return q;
+        } else {
+            // Handle the case where questions for the specified level are not available
+            return null;
+   }
+}
 
 
 }
