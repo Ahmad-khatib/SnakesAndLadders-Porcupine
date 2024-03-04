@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.GameBoard;
-import Model.Ladder;
 import Model.Snake;
 import Model.Tile;
 import javafx.scene.image.Image;
@@ -19,8 +18,6 @@ public class SnakeAndLaddersPlacment {
     private static GameBoard gameBoard;
     static Set<Integer> usedHeadPositions = new HashSet<>();
     static Set<Integer> usedTailPositions = new HashSet<>();
-   static Set<Integer> usedTopPositions = new HashSet<>();
-    static Set<Integer> usedBottomPositions = new HashSet<>();
 
     static void placeSnakes(String selectedLevel, GameBoard gameBoard1, GridPane gridPane) {
         dynamicGridPane = gridPane;
@@ -33,7 +30,7 @@ public class SnakeAndLaddersPlacment {
 
         // Iterate over the snake counts for each color individually
 
-        for (int yellowCount = 0; yellowCount < snakeCounts[0]; yellowCount++) {
+      for (int yellowCount = 0; yellowCount < snakeCounts[0]; yellowCount++) {
             Snake yellowSnake = generateUniqueSnake(Snake.SnakeColor.YELLOW, usedHeadPositions, usedTailPositions, gridSize, selectedLevel,gameBoard);
             if (yellowSnake != null) {
                 updateSnakeUI(yellowSnake, selectedLevel,gameBoard.getSize(),gameBoard,gridPane);
@@ -70,7 +67,7 @@ public class SnakeAndLaddersPlacment {
         }
 
         System.out.print("Heads" +usedHeadPositions+"\n");
-        System.out.print("Tails" +usedTailPositions+"\n");
+        System.out.print("Tails" +usedTailPositions);
     }
 
 
@@ -111,7 +108,7 @@ public class SnakeAndLaddersPlacment {
                     upperBound = ((headRow - 1) * gridSize);
                     tailPosition = random.nextInt(upperBound - lowerBound) + lowerBound;
                     break;
-                 case GREEN:
+               case GREEN:
                     if (headPosition <= gridSize * 2) {
                         System.out.print("Green\n");
                         continue;
@@ -135,7 +132,7 @@ public class SnakeAndLaddersPlacment {
                     upperBound = ((headRow - 3) * gridSize);
                     tailPosition = random.nextInt(upperBound - lowerBound) + lowerBound;
                     break;
-                case RED:
+               case RED:
                     tailPosition = headPosition;
 
                     if (headPosition == gridSize || headPosition == 0) {
@@ -153,7 +150,7 @@ public class SnakeAndLaddersPlacment {
             int snakeTailCol = tailPosition % gridSize == 0 ? gridSize - 1 : ((tailPosition % gridSize) - 1);
 
             Tile[][] tiles = gameBoard.getTiles();
-          //  if (snakeHeadCol-snakeTailCol  == 0) {
+          //  if ( snakeHeadCol- snakeTailCol  == 0) {
                 if (!(tiles[snakeHeadRow][snakeHeadCol].isSpecialTile() || tiles[snakeTailRow][snakeTailCol].isSpecialTile())) {
 
                     Snake snake = new Snake(snakeId, color, headPosition, tailPosition);
@@ -173,7 +170,7 @@ public class SnakeAndLaddersPlacment {
                         return snake;
                     }
                 }
-        //    }
+          // }
         }
         // return null;
     }
@@ -211,13 +208,13 @@ public class SnakeAndLaddersPlacment {
 
         // Calculate the height of the snake image based on the number of rows it occupies
         double cellHeight = gameBoard.getPreferredTileSize();
-        double snakeHeight = 1.0;
+        double snakeHeight = cellHeight/2;
 
 
         // Create custom tiles for the snake head and tail
         Tile headTile = new Tile();
         double distance = 1.0;
-        if (!(snake.getColor().equals("RED"))) {
+        if (!(snake.getColor().equals(Snake.SnakeColor.RED))){
             distance = calculateDistance(headRow, headCol, tailRow, tailCol) ;
             snakeHeight = ((Math.abs(distance)) * cellHeight);
         }
@@ -242,7 +239,7 @@ public class SnakeAndLaddersPlacment {
 
         // Ensure the row spans properly to accommodate the snake height
         if (!(snake.getColor().equals(Snake.SnakeColor.RED)))
-        GridPane.setRowSpan(headTile, (int) Math.ceil(snakeHeight / cellHeight));
+            GridPane.setRowSpan(headTile, (int) Math.ceil(snakeHeight / cellHeight));
     }
     public static double calculateDistance(int headRow, int headCol, int tailRow, int tailCol) {
         return Math.sqrt(Math.pow(tailRow - headRow, 2) + Math.pow(tailCol - headCol, 2));
@@ -449,33 +446,34 @@ public class SnakeAndLaddersPlacment {
 
                     }
                     if (colDiffirence == 7) {
-                        snakeImage.setRotate(60);  // not done
-                        snakeImage.setTranslateX(-cellSize*0.4);
-                        snakeImage.setTranslateY(-cellSize*0.8);
+                        snakeImage.setRotate(80);  //  done
+                        snakeImage.setTranslateX(-cellSize*3.5);
+                        snakeImage.setTranslateY(-cellSize*2.4);
                     }
-                    if (colDiffirence == 8) {
-                        snakeImage.setRotate(70);
-                        snakeImage.setTranslateX(-cellSize*1);
-                        snakeImage.setTranslateY(-cellSize*0.8);
+                    if (colDiffirence == 8) {//done
+                        snakeImage.setRotate(80);
+                        snakeImage.setTranslateX(-cellSize*3.9);
+                        snakeImage.setTranslateY(-cellSize*2.55);
                     }
-                    if (colDiffirence == 9) {
-                        snakeImage.setRotate(90);
-                        snakeImage.setTranslateX(-cellSize*4.15);
-                        snakeImage.setTranslateY(-cellSize*3.7);
-                    }
-                    if (colDiffirence == 10) {
+                    if (colDiffirence == 9) { //done
                         snakeImage.setRotate(85);
-                        snakeImage.setTranslateX(-cellSize*4.3);
-                        snakeImage.setTranslateY(-cellSize*3.7);
+                        snakeImage.setTranslateX(-cellSize*4.4);
+                        snakeImage.setTranslateY(-cellSize*3.22);
                     }
-                    if (colDiffirence == 11) {
+                    if (colDiffirence == 10) {//done
+                        snakeImage.setRotate(82);
+                        snakeImage.setTranslateX(-cellSize*4.79);
+                        snakeImage.setTranslateY(-cellSize*3.88);
+                    }
+                    if (colDiffirence == 11) {//done
+                        snakeImage.setRotate(83);
+                        snakeImage.setTranslateX(-cellSize*5.1);
+                        snakeImage.setTranslateY(-cellSize*3.80);
+                    }
+                    if (colDiffirence == 12) {//done
                         snakeImage.setRotate(85);
-                        snakeImage.setTranslateX(-cellSize*4.3);
-                        snakeImage.setTranslateY(-cellSize*3.7);                    }
-                    if (colDiffirence == 12) {
-                        snakeImage.setRotate(85);
-                        snakeImage.setTranslateX(-cellSize*4.3);
-                        snakeImage.setTranslateY(-cellSize*3.7);
+                        snakeImage.setTranslateX(-cellSize*6);
+                        snakeImage.setTranslateY(-cellSize*4.2);
                     }
                 }
                 else if (headCol < tailCol){
@@ -513,9 +511,9 @@ public class SnakeAndLaddersPlacment {
                         snakeImage.setTranslateY(-cellSize*1.2);
                     }
                     if (colDiffirence == 7) {
-                        snakeImage.setRotate(-50);  // not done
-                        snakeImage.setTranslateY((cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1)/4));
+                        snakeImage.setRotate(-80);  //  done
+                        snakeImage.setTranslateX(cellSize*3.5);
+                        snakeImage.setTranslateY(cellSize*2.4);
                     }
                     if (colDiffirence == 8) {
                         snakeImage.setRotate(-73);
@@ -547,44 +545,44 @@ public class SnakeAndLaddersPlacment {
             case BLUE:
                 colDiffirence = Math.abs(headCol-tailCol);
                 if(headCol >= tailCol) {
-                    if (colDiffirence == 0) {
+                    if (colDiffirence == 0) {//done
                         snakeImage.setRotate(30);
-                        snakeImage.setTranslateY(-cellSize/200);
+                        snakeImage.setTranslateY(cellSize/2);
                     }
-                    if (colDiffirence == 1) {
-                        snakeImage.setRotate(65);
+                    if (colDiffirence == 1) {//done
+                        snakeImage.setRotate(45);
                         snakeImage.setTranslateX(-cellSize/2);
                         snakeImage.setTranslateY(-cellSize/8);
                     }
-                    if (colDiffirence == 2 ) {
-                        snakeImage.setRotate(68);
+                    if (colDiffirence == 2 ) {//done
+                        snakeImage.setRotate(55);
                         snakeImage.setTranslateX(-cellSize/1);
                         snakeImage.setTranslateY(-cellSize/30);
 
                     }
-                    if ( colDiffirence == 3) {
-                        snakeImage.setRotate(69);
+                    if ( colDiffirence == 3) { //done
+                        snakeImage.setRotate(60);
                         snakeImage.setTranslateX(-cellSize/0.8);
-                        snakeImage.setTranslateY(-cellSize/1.4);
+                        snakeImage.setTranslateY(-cellSize/1.7);
 
 
                     }
-                    if (colDiffirence == 4) {
+                    if (colDiffirence == 4) { //done
                         snakeImage.setRotate(68);
                         snakeImage.setTranslateX(-cellSize*2);
-                        snakeImage.setTranslateY(-cellSize*1);
+                        snakeImage.setTranslateY(-cellSize*0.5);
                     }
 
 
-                    if (colDiffirence == 5) {
-                        snakeImage.setRotate(77);
+                    if (colDiffirence == 5) { //done
+                        snakeImage.setRotate(70);
                         snakeImage.setTranslateX(-cellSize/0.4);
-                        snakeImage.setTranslateY(-cellSize/0.8);
+                        snakeImage.setTranslateY(-cellSize/1);
 
                     }
-                    if (colDiffirence == 6) {
+                    if (colDiffirence == 6) { //done
                         snakeImage.setRotate(73);
-                        snakeImage.setTranslateX(-cellSize*2.5);
+                        snakeImage.setTranslateX(-cellSize*3);
                         snakeImage.setTranslateY(-cellSize*1.5);
 
                     }
@@ -621,7 +619,7 @@ public class SnakeAndLaddersPlacment {
                 else if (headCol < tailCol){
 
                     if (colDiffirence == 1) {
-                        snakeImage.setRotate(-25); // done
+                        snakeImage.setRotate(-20); // done
                         snakeImage.setTranslateX(cellSize/2);
                         snakeImage.setTranslateY(cellSize/8);
 
@@ -629,23 +627,23 @@ public class SnakeAndLaddersPlacment {
                     if (colDiffirence == 2 ) {
                         snakeImage.setRotate(-30); // done
                         snakeImage.setTranslateX(cellSize);
-                        snakeImage.setTranslateY(-cellSize/3);
+                        snakeImage.setTranslateY(-cellSize/7);
 
                     }
                     if ( colDiffirence == 3 ) {
                         snakeImage.setRotate(-35); // done
                         snakeImage.setTranslateX(cellSize*1.3);
-                        snakeImage.setTranslateY(-cellSize*0.8);
+                        snakeImage.setTranslateY(-cellSize*0.3);
                     }
                     if (colDiffirence == 4) {
-                        snakeImage.setRotate(-60); // done
+                        snakeImage.setRotate(-40); // done
                         snakeImage.setTranslateX(cellSize*1.8);
                         snakeImage.setTranslateY(-cellSize*0.8);
                     }
                     if (colDiffirence == 5) {
-                        snakeImage.setRotate(-60);  // done
+                        snakeImage.setRotate(-50);  // done
                         snakeImage.setTranslateX(cellSize*2.2);
-                        snakeImage.setTranslateY(-cellSize*1.5);
+                        snakeImage.setTranslateY(-cellSize*1);
                     }
                     if (colDiffirence == 6) {
                         snakeImage.setRotate(-50);  // done
@@ -705,21 +703,20 @@ public class SnakeAndLaddersPlacment {
         int[] ladderCounts = getLadderCounts(selectedLevel);
 
         // Initialize sets to track used ladder positions
+        Set<Integer> usedTopPositions = new HashSet<>();
+        Set<Integer> usedBottomPositions = new HashSet<>();
+
         // Iterate over ladder counts for each level
         for (int i = 0; i < ladderCounts.length; i++) {
             // Generate ladders for each ladder count
             for (int j = 0; j < ladderCounts[i]; j++) {
                 int ladderTop = generateUniqueLadderTopPosition(usedTopPositions, gridSize, i);
-                int ladderTopRow = ladderTop % gridSize == 0 ? (gridSize - (ladderTop / gridSize)) : gridSize - ((ladderTop / gridSize) + 1);
-                int ladderBottom = generateUniqueLadderBottomPosition(usedBottomPositions, ladderTop,ladderTopRow, gridSize, i);
+                int ladderBottom = generateUniqueLadderBottomPosition(usedBottomPositions, ladderTop, gridSize, i);
                 updateLadderUI(ladderTop, ladderBottom);
                 usedTopPositions.add(ladderTop);
                 usedBottomPositions.add(ladderBottom);
-                gameBoard.getLadders().add(new Ladder(ladderTop,ladderBottom));
             }
         }
-        System.out.print("top" +usedTopPositions+"\n");
-        System.out.print("Bottom" +usedBottomPositions+"\n");
     }
 
     private static int[] getLadderCounts(String selectedLevel) {
@@ -755,140 +752,54 @@ public class SnakeAndLaddersPlacment {
         // Implement specific rules for ladder top position based on ladder index and game level
         switch (ladderIndex) {
             case 0:
-                    if (ladderTop <= gridSize*2){
-                        return true;
-                    }
+                // Additional rules for the first ladder type (if any)
                 break;
             case 1:
-                if (ladderTop <= gridSize*3){
-                    return true;
-                }
+                // Additional rules for the second ladder type (if any)
                 break;
             case 2:
-                if (ladderTop <= gridSize*4){
-                    return true;
-                }
-                break;
-            case 3:
-                if (ladderTop <= gridSize*5){
-                    return true;
-                }
-                break;
-            case 4:
-                if (ladderTop <= gridSize*6){
-                    return true;
-                }
-                break;
-            case 5:
-                if (ladderTop <= gridSize*7){
-                    return true;
-                }
-                break;
-            case 6:
-                if (ladderTop <= gridSize*8){
-                    return true;
-                }
-                break;
-            case 7:
-                if (ladderTop <= gridSize*9){
-                    return true;
-                }
+                // Additional rules for the third ladder type (if any)
                 break;
             default:
                 break;
         }
-
         return false;
     }
 
-
-    /*private static int generateUniqueLadderBottomPosition(Set<Integer> usedBottomPositions, int ladderTop,int ladderTopRow, int gridSize, int ladderIndex) {
+    private static int generateUniqueLadderBottomPosition(Set<Integer> usedBottomPositions, int ladderTop, int gridSize, int ladderIndex) {
         Random random = new Random();
         int ladderBottom;
-        int ladderHight = calculateLadderHeight(ladderIndex,ladderTopRow,gridSize);
         do {
-           int lowerBound = ((ladderTopRow - 2) * gridSize) + 1;
-            int upperBound = ((ladderTopRow - 1) * gridSize);
-            ladderBottom = random.nextInt((upperBound - lowerBound) + lowerBound);
+            int ladderHeight = calculateLadderHeight(ladderIndex);
+            ladderBottom = ladderTop - ladderHeight;
         } while (ladderBottom < 0 || usedBottomPositions.contains(ladderBottom) || isInvalidLadderBottomPosition(ladderBottom, ladderIndex, gridSize));
         return ladderBottom;
     }
-*/
-    private static int generateUniqueLadderBottomPosition(Set<Integer> usedBottomPositions, int ladderTop, int ladderTopRow, int gridSize, int ladderIndex) {
-        Random random = new Random();
-        Tile[][] tiles = gameBoard.getTiles();
-        ladderTopRow=ladderTop % gridSize == 0 ? ladderTop / gridSize : (ladderTop / gridSize) + 1;
-        int ladderBotoomRow;
-        int ladderBottomCol;
-        int rowsBelow = ladderIndex + 1;
-        int ladderBottom = ladderTop + rowsBelow * gridSize;
-        int lowerBound;
-        int upperBound;
+
+    private static int calculateLadderHeight(int ladderIndex) {
+        // Calculate ladder height based on ladder index
+        // Adjust the height as needed for each ladder type
         switch (ladderIndex) {
             case 0:
-                do {
-                    lowerBound = ((ladderTopRow - 2) * gridSize) + 1;       //formula to calulate the valid range for the yellow snake tail (1 row below the head)
-                    upperBound = ((ladderTopRow - 1) * gridSize);
-                    System.out.print("lower Bound = " +lowerBound+"             "+ "upper bound = " +upperBound+"\n");
-                    ladderBottom = random.nextInt((upperBound - lowerBound) + lowerBound);
-                    ladderBotoomRow = ladderTop % gridSize == 0 ? (gridSize - (ladderTop / gridSize)) : gridSize - ((ladderTop / gridSize) + 1);
-                    ladderBottomCol = ladderTop % gridSize == 0 ? gridSize - 1 : ((ladderTop % gridSize) - 1);
-                } while (ladderBottom <= 0 || usedBottomPositions.contains(ladderBottom) ||
-                        usedHeadPositions.contains(ladderBottom) || usedTailPositions.contains(ladderBottom) || tiles[ladderBotoomRow][ladderBottomCol].isSpecialTile());
-                break;
+                return 2; // Example: First ladder type has a height of 2 rows
             case 1:
-                do{
-                lowerBound = ((ladderTopRow - 3) * gridSize) + 1;       //formula to calulate the valid range for the yellow snake tail (1 row below the head)
-                upperBound = ((ladderTopRow - 2) * gridSize);
-                    System.out.print("lower Bound = " +lowerBound+"             "+ "upper bound = " +upperBound+"\n  ");                ladderBottom = random.nextInt((upperBound - lowerBound) + lowerBound);
-                ladderBotoomRow = ladderTop % gridSize == 0 ? (gridSize - (ladderTop / gridSize)) : gridSize - ((ladderTop / gridSize) + 1);
-                ladderBottomCol = ladderTop % gridSize == 0 ? gridSize - 1 : ((ladderTop % gridSize) - 1);
-        } while (ladderBottom <= 0 || usedBottomPositions.contains(ladderBottom) ||
-                usedHeadPositions.contains(ladderBottom) || usedTailPositions.contains(ladderBottom) || tiles[ladderBotoomRow][ladderBottomCol].isSpecialTile());
-                break;
+                return 3; // Example: Second ladder type has a height of 3 rows
             case 2:
-                do{
-                    lowerBound = ((ladderTopRow - 4) * gridSize) + 1;       //formula to calulate the valid range for the yellow snake tail (1 row below the head)
-                    upperBound = ((ladderTopRow - 3) * gridSize);
-                    System.out.print("lower Bound = " +lowerBound+"             "+ "upper bound = " +upperBound+"\n  ");
-                    ladderBottom = random.nextInt(upperBound - lowerBound + 1) + lowerBound;
-                    ladderBotoomRow = ladderTop % gridSize == 0 ? (gridSize - (ladderTop / gridSize)) : gridSize - ((ladderTop / gridSize) + 1);
-                    ladderBottomCol = ladderTop % gridSize == 0 ? gridSize - 1 : ((ladderTop % gridSize) - 1);
-                } while (ladderBottom <= 0 || usedBottomPositions.contains(ladderBottom) ||
-                        usedHeadPositions.contains(ladderBottom) || usedTailPositions.contains(ladderBottom) || tiles[ladderBotoomRow][ladderBottomCol].isSpecialTile());
-                break;
+                return 4; // Example: Third ladder type has a height of 4 rows
             case 3:
-                do{
-                    lowerBound = ((ladderTopRow - 5) * gridSize) + 1;       //formula to calulate the valid range for the yellow snake tail (1 row below the head)
-                    upperBound = ((ladderTopRow - 4) * gridSize);
-                    System.out.print("lower Bound = " +lowerBound+"             "+ "upper bound = " +upperBound+"\n  ");
-                    ladderBottom = random.nextInt((upperBound - lowerBound) + lowerBound);
-                    ladderBotoomRow = ladderTop % gridSize == 0 ? (gridSize - (ladderTop / gridSize)) : gridSize - ((ladderTop / gridSize) + 1);
-                    ladderBottomCol = ladderTop % gridSize == 0 ? gridSize - 1 : ((ladderTop % gridSize) - 1);
-                } while (ladderBottom <= 0 || usedBottomPositions.contains(ladderBottom) ||
-                        usedHeadPositions.contains(ladderBottom) || usedTailPositions.contains(ladderBottom) || tiles[ladderBotoomRow][ladderBottomCol].isSpecialTile());
-                break;
+                return 5;
             case 4:
-                // Additional rules for the fifth ladder type (if any)
-                break;
+                return 6;
             case 5:
-                // Additional rules for the sixth ladder type (if any)
-                break;
+                return 7;
             case 6:
-                // Additional rules for the seventh ladder type (if any)
-                break;
-            case 7:
-                // Additional rules for the eighth ladder type (if any)
-                break;
+                return 8;
             default:
-                // Additional rules for the default case (if any)
-                break;
+                return 0;
         }
-
-        System.out.print("the random number is : "+ladderTop+"  \n");
-        return ladderBottom;
     }
-  /*  private static boolean isInvalidLadderBottomPosition(int ladderBottom, int ladderIndex, int gridSize) {
+
+    private static boolean isInvalidLadderBottomPosition(int ladderBottom, int ladderIndex, int gridSize) {
         // Implement specific rules for ladder bottom position based on ladder index and game level
         switch (ladderIndex) {
             case 0:
@@ -920,56 +831,40 @@ public class SnakeAndLaddersPlacment {
         }
         return false;
     }
-*/
-  private static void updateLadderUI(int ladderTop, int ladderBottom) {
-      int gridSize = gameBoard.getSize();
-      double cellHeight = gameBoard.getPreferredTileSize();
 
-      // Calculate grid row and column indices for ladder top and bottom
-      int topRow = calculateRowIndex(ladderTop, gridSize);
-      int topCol = calculateColIndex(ladderTop, gridSize);
-      int bottomRow = calculateRowIndex(ladderBottom, gridSize);
-      int bottomCol = calculateColIndex(ladderBottom, gridSize);
+    private static void updateLadderUI(int ladderTop, int ladderBottom) {
+        int gridSize = gameBoard.getSize();
+        double cellHeight = gameBoard.getPreferredTileSize();
 
-      // Calculate ladder height based on the difference between top and bottom positions
-      double distance = calculateDistance1(topRow, topCol, bottomRow, bottomCol);
-      double ladderHeight = Math.abs(distance) * cellHeight;
+        // Calculate grid row and column indices for ladder top and bottom
+        int topRow = gridSize - 1 - ladderTop / gridSize;
+        int topCol = ladderTop % gridSize;
+        int bottomRow = gridSize - 1 - ladderBottom / gridSize;
+        int bottomCol = ladderBottom % gridSize;
 
-      // Load ladder image
-      String imagePath = "/View/Photos/ladder1.png"; // Assuming ladder1.png is in the specified path
-      Image ladderImage = new Image(SnakeAndLaddersPlacment.class.getResourceAsStream(imagePath));
+        // Calculate ladder height based on the difference between top and bottom positions
+        double ladderHeight = Math.abs(bottomRow - topRow + 1) * cellHeight;
 
-      // Create ImageView for ladder
-      ImageView ladderImageView = new ImageView(ladderImage);
+        // Load ladder image
+        String imagePath = "/View/Photos/ladder1.png"; // Assuming ladder.png is in the specified path
+        Image ladderImage = new Image(SnakeAndLaddersPlacment.class.getResourceAsStream(imagePath));
 
-      // Set width and height of ladder image
-      ladderImageView.setFitWidth(cellHeight);
-      ladderImageView.setFitHeight(ladderHeight);
+        // Create ImageView for ladder
+        ImageView ladderImageView = new ImageView(ladderImage);
 
-      // Add ladder image to custom tile
-      Tile ladderTile = new Tile();
-      ladderTile.addLadderImage(ladderImageView);
+        // Set width and height of ladder image
+        ladderImageView.setFitWidth(cellHeight);
+        ladderImageView.setFitHeight(ladderHeight);
 
-      // Add custom tile to grid pane at ladder top position
-      dynamicGridPane.add(ladderTile, topCol, topRow);
+        // Add ladder image to custom tile
+        Tile ladderTile = new Tile();
+        ladderTile.addLadderImage(ladderImageView);
 
-      // Ensure ladder spans multiple rows
-      GridPane.setRowSpan(ladderTile, (int) Math.ceil(ladderHeight / cellHeight));
-  }
+        // Add custom tile to grid pane at ladder top position
+        dynamicGridPane.add(ladderTile, topCol, topRow);
 
-    private static int calculateRowIndex(int position, int gridSize) {
-        return position % gridSize == 0 ? (gridSize - (position / gridSize)) : gridSize - ((position / gridSize) + 1);
-    }
-
-    private static int calculateColIndex(int position, int gridSize) {
-        return position % gridSize == 0 ? gridSize - 1 : ((position % gridSize) - 1);
-    }
-
-    private static double calculateDistance1(int row1, int col1, int row2, int col2) {
-        // Implement your distance calculation logic here
-        // This could be Euclidean distance or any other distance measure based on your requirements.
-        // For simplicity, assuming Euclidean distance here.
-        return Math.sqrt(Math.pow(row2 - row1, 2) + Math.pow(col2 - col1, 2));
+        // Ensure ladder spans multiple rows
+        GridPane.setRowSpan(ladderTile, (int) Math.ceil(ladderHeight / cellHeight));
     }
 
 

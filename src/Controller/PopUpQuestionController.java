@@ -151,5 +151,5 @@ public class PopUpQuestionController {
     // Method to get the steps to move
     public int getStepsToMove() {
         return stepsToMove;
-}
+    }
 }

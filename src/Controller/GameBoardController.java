@@ -11,7 +11,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -35,6 +37,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static Model.Snake.SnakeColor.RED;
+import static Model.SystemData.saveGamesHistoryToCsv;
 
 
 public class GameBoardController extends GridPane {
@@ -85,7 +88,7 @@ public class GameBoardController extends GridPane {
         game = new Game(gameBoard.getGameId(), gameBoard, players, SystemData.getInstance().getQuestions());
         rollButton.setVisible(false);
         SnakeAndLaddersPlacment.placeSnakes(selectedLevel, gameBoard, dynamicGridPane);
-         //SnakeAndLaddersPlacment.placeLadders(selectedLevel, gameBoard, dynamicGridPane);
+        // SnakeAndLaddersPlacment.placeLadders(selectedLevel, gameBoard, dynamicGridPane);
         usedHeadPositions = SnakeAndLaddersPlacment.usedHeadPositions;
         usedTailPositions = SnakeAndLaddersPlacment.usedTailPositions;
         currentPlayer.setText("Welcome to Game Snakes and Ladders\n by Porcupine");
@@ -154,7 +157,12 @@ public class GameBoardController extends GridPane {
 
             // Check for game completion
             if (game.isGameFinished()) {
+                Game gameToSave = new Game(players.get(currentPlayerIndex).getPlayerName(),timerLabel.getText(), game.getGAMELEVEL());
+                SystemData.getInstance().addGameToHistory(gameToSave);
+                showGameOverDialog(players.get(currentPlayerIndex).getPlayerName());
+
                 currentPlayer.setText("The game is over and the winner is : "+players.get(currentPlayerIndex).getPlayerName());
+
                 currentPlayerIcon.setImage(players.get(currentPlayerIndex).getIcon().getImage());
 
             } else {
@@ -182,12 +190,12 @@ public class GameBoardController extends GridPane {
         int newCol = player.getPlayerPosition() % gameBoard.getSize() == 0 ? gameBoard.getSize() - 1 : ((player.getPlayerPosition() % gameBoard.getSize()) - 1);
 
         movePlayerWithAnimation(player, newCol, newRow, gameBoard.getCellHeight(), () -> {
-           if(playedMyTurn == false)
-            handleAfterMove(player);
+            if(playedMyTurn == false)
+                handleAfterMove(player);
         });
-       // Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5)));
-       // timeline.play();
-        }
+        // Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5)));
+        // timeline.play();
+    }
 
     private void finishedTurn(Player player) {
         currentPlayer.setText("Current Player: " + players.get((currentPlayerIndex) % players.size()).getPlayerName());
@@ -248,6 +256,7 @@ public class GameBoardController extends GridPane {
                 finishedTurn(player);
                 break;
             case QUESTION:
+
                 handleQuestionTile(player);
                 break;
             case SURPRISE_JUMP:
@@ -417,5 +426,21 @@ public class GameBoardController extends GridPane {
 
         timeline.play();
         return totalSum;
-}
+    }
+    public static void showGameOverDialog(String winnerName) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Game Over");
+        alert.setHeaderText("The game has ended.");
+        alert.setContentText("Winner: " + winnerName + "\nThank you for playing!");
+
+        // Add a button to close the application
+        ButtonType exitButtonType = new ButtonType("Exit");
+        alert.getButtonTypes().setAll(exitButtonType);
+
+        // Handle the exit button action
+        alert.setOnCloseRequest(event -> System.exit(0));
+
+        // Show the alert and wait for the user's response
+        alert.showAndWait();
+    }
 }

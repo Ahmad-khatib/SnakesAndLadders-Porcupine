@@ -63,23 +63,23 @@
                                     </light>
                                 </Lighting>
                             </effect></Text>
-                  <Button fx:id="startNow" mnemonicParsing="false" onAction="#handleStartNow" prefHeight="68.0" prefWidth="131.0" text="Start Now!">
-                     <VBox.margin>
-                        <Insets left="60.0" />
-                     </VBox.margin></Button>
-                  <HBox>
-                     <children>
-                        <Label fx:id="currentPlayer" prefHeight="66.0" prefWidth="147.0" text="Label">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
-                        <ImageView fx:id="currentPlayerIcon" fitHeight="64.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" />
-                     </children>
-                     <VBox.margin>
-                        <Insets top="100.0" />
-                     </VBox.margin>
-                  </HBox>
+                        <Button fx:id="startNow" mnemonicParsing="false" onAction="#handleStartNow" prefHeight="68.0" prefWidth="131.0" text="Start Now!">
+                            <VBox.margin>
+                                <Insets left="60.0" />
+                            </VBox.margin></Button>
+                        <HBox>
+                            <children>
+                                <Label fx:id="currentPlayer" prefHeight="66.0" prefWidth="147.0" text="Label">
+                                    <HBox.margin>
+                                        <Insets />
+                                    </HBox.margin>
+                                </Label>
+                                <ImageView fx:id="currentPlayerIcon" fitHeight="64.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" />
+                            </children>
+                            <VBox.margin>
+                                <Insets top="100.0" />
+                            </VBox.margin>
+                        </HBox>
                     </children>
                 </VBox>
             </right>

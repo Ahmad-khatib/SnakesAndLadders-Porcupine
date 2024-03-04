@@ -104,10 +104,12 @@ public class AddQuestionController {
     }
 
     public boolean isQuestionAdded() {
+
         return success;
     }
 
     public Question getNewQuestion() {
+
         return newQuestion;
     }
 }

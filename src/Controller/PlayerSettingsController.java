@@ -6,7 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -49,9 +51,13 @@ public class PlayerSettingsController {
         for (int i = 1; i <= numPlayers; i++) {
             // Create a new HBox for each player
             HBox playerBox = new HBox();
+            // Create a label to indicate the player number
+            Label playerLabel = new Label("Player " + i + ": ");
+            playerLabel.setStyle(" -fx-text-fill: #173f02;  -fx-border-radius: 24px;");
+            playerBox.getChildren().add(playerLabel);
             // Create a text field for the player's name
             TextField playerNameField = new TextField();
-            playerNameField.setPromptText("Player " + i + " Name");
+            playerNameField.setPromptText("Enter name");
             playerBox.getChildren().add(playerNameField);
             // Styling for the text field
             playerNameField.setStyle("-fx-background-color: #173f02; -fx-text-fill: #77d472;  -fx-border-radius: 19px;");
@@ -86,7 +92,6 @@ public class PlayerSettingsController {
             // Add the player's HBox to the player box container
             playerBoxContainer.getChildren().add(playerBox);
         }
-
     }
 
 
@@ -112,6 +117,8 @@ public class PlayerSettingsController {
 
         startButton.setDisable(true);
         // Collect player details
+        players.clear(); // Clear previous player list
+        ArrayList<String> enteredNames = new ArrayList<>();
         for (Node playerBox : playerBoxContainer.getChildren()) {
             if (playerBox instanceof HBox) {
                 HBox hbox = (HBox) playerBox;
@@ -124,6 +131,7 @@ public class PlayerSettingsController {
                         // Get the player's name
                         TextField playerNameField = (TextField) node;
                         playerName = playerNameField.getText();
+                        enteredNames.add(playerName);
                     } else if (node instanceof ImageView && selectedIcons.contains(node)) {
                         // Get the selected icon
                         selectedIcon = (ImageView) node;
@@ -132,10 +140,21 @@ public class PlayerSettingsController {
 
                 // If both name and icon are selected, create a Player object and add it to the list
                 if (!playerName.isEmpty() && selectedIcon != null) {
-                    int id = 0;
-                    players.add(new Player(++id, playerName, selectedIcon, 1));
+                    players.add(new Player(players.size() + 1, playerName, selectedIcon, 1));
                 }
             }
+        }
+
+        // Check for duplicate names
+        Set<String> uniqueNames = new HashSet<>(enteredNames);
+        if (enteredNames.size() != uniqueNames.size()) {
+            // Display an alert for duplicate names
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Duplicate Names");
+            alert.setHeaderText("Please enter unique name for each player.");
+            alert.showAndWait();
+            startButton.setDisable(false); // Re-enable the start button
+            return;
         }
 
         // Determine the board size based on the chosen level
@@ -190,6 +209,29 @@ public class PlayerSettingsController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    // Method to handle the reset button being clicked
+    @FXML
+    private void handleResetButtonClicked() {
+        // Clear the set of chosen icons
+        selectedIcons.clear();
+        startButton.setDisable(true);
+
+        // Enable all icons for all players
+        for (Node playerBox : playerBoxContainer.getChildren()) {
+            if (playerBox instanceof HBox) {
+                HBox hbox = (HBox) playerBox;
+                for (Node node : hbox.getChildren()) {
+                    if (node instanceof ImageView) {
+                        ImageView iconImageView = (ImageView) node;
+                        iconImageView.setDisable(false);
+                        iconImageView.setStyle(""); // Clear any previous styles
+                        iconImageView.setEffect(null); // Clear any effects
+                    }
+                }
+            }
         }
     }
 
@@ -253,28 +295,6 @@ public class PlayerSettingsController {
         startButton.setDisable(!areAllPlayersReady());
     }
 
-    // Method to handle the reset button being clicked
-    @FXML
-    private void handleResetButtonClicked() {
-        // Clear the set of chosen icons
-        selectedIcons.clear();
-        startButton.setDisable(true);
-
-        // Enable all icons for all players
-        for (Node playerBox : playerBoxContainer.getChildren()) {
-            if (playerBox instanceof HBox) {
-                HBox hbox = (HBox) playerBox;
-                for (Node node : hbox.getChildren()) {
-                    if (node instanceof ImageView) {
-                        ImageView iconImageView = (ImageView) node;
-                        iconImageView.setDisable(false);
-                        iconImageView.setStyle(""); // Clear any previous styles
-                        iconImageView.setEffect(null); // Clear any effects
-                    }
-                }
-            }
-        }
-    }
 
     private boolean areAllPlayersReady() {
         // Loop through each player
@@ -303,7 +323,7 @@ public class PlayerSettingsController {
         }
         // All players are ready
         return true;
-}
+    }
 
 
 }

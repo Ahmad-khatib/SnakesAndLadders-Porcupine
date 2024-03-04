@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static Model.SystemData.saveGamesHistoryToCsv;
 import static javafx.fxml.FXMLLoader.load;
 
 public class Start extends Application {
@@ -22,14 +23,25 @@ public class Start extends Application {
 
 
     public static void main(String[] args) {
+
         SystemData systemData = SystemData.getInstance();
         boolean loadSuccess = systemData.loadQuestions();
+Question q = SystemData.getInstance().popQuestion(Difficulty.EASY);
+System.out.println(q.getText());
+        System.out.println(q.getAnswer1());
+        System.out.println(q.getAnswer2());
+        System.out.println(q.getText());
+        System.out.println(q.getText());
+
         if (loadSuccess) {
+
             System.out.println("Succsed to load questions from JSON.");
         } else {
             System.out.println("Failed to load questions from JSON.");
         }
+
         launch(args);
+
     }
     private static void printLoadedQuestions(SystemData systemData) {
         HashMap<Difficulty, ArrayList<Question>> questions = systemData.getQuestions();

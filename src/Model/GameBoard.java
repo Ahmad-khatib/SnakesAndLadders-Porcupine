@@ -129,7 +129,7 @@ public class GameBoard extends GridPane {
     }
 
     public void setSize(int size) {
-        this.size =size;
-}
+        this.size = size;
+    }
 
 }

@@ -350,6 +350,6 @@ public class ManageQuestionsController implements QuestionObserver {
     public void onQuestionDeleted(Question deletedQuestion) {
         questions.remove(deletedQuestion);
         questionListView.getItems().remove(deletedQuestion.getText());
-}
+    }
 
 }
