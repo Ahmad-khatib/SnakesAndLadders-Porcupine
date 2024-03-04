@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static Model.SystemData.saveGamesHistoryToCsv;
 import static javafx.fxml.FXMLLoader.load;
 
 public class Start extends Application {
@@ -38,7 +39,9 @@ System.out.println(q.getText());
         } else {
             System.out.println("Failed to load questions from JSON.");
         }
+
         launch(args);
+
     }
     private static void printLoadedQuestions(SystemData systemData) {
         HashMap<Difficulty, ArrayList<Question>> questions = systemData.getQuestions();

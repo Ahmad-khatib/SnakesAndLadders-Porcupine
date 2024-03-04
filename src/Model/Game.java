@@ -1,7 +1,5 @@
 package Model;
 
-import javafx.scene.image.ImageView;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -13,7 +11,7 @@ public class Game {
     private boolean gameFinished = new Boolean(false);
     private String WINNERNAME;
     private String GAMETIME;
-   private int GAMELEVEL;
+   private String GAMELEVEL;
 
     public Game(int id,GameBoard gameBoard,ArrayList<Player> players,HashMap<Difficulty, ArrayList<Question>> questions){
         this.Id=id;
@@ -25,11 +23,12 @@ public class Game {
 
     public Game() {
     }
-    public Game(String winnerName, String time, int gameLevel){
-        this.WINNERNAME=winnerName;
-        this.GAMETIME=time;
-        this.GAMELEVEL=gameLevel;
 
+
+    public Game(String winnerName, String duration, String level) {
+        this.WINNERNAME=winnerName;
+        this.GAMETIME=duration;
+        this.GAMELEVEL=level;
     }
 
     public String getWINNERNAME() {
@@ -40,9 +39,7 @@ public class Game {
         return GAMETIME;
     }
 
-    public int getGAMELEVEL() {
-        return GAMELEVEL;
-    }
+
 
     public void setWINNERNAME(String WINNERNAME) {
         this.WINNERNAME = WINNERNAME;
@@ -52,7 +49,11 @@ public class Game {
         this.GAMETIME = GAMETIME;
     }
 
-    public void setGAMELEVEL(int GAMELEVEL) {
+    public String getGAMELEVEL() {
+        return GAMELEVEL;
+    }
+
+    public void setGAMELEVEL(String GAMELEVEL) {
         this.GAMELEVEL = GAMELEVEL;
     }
 

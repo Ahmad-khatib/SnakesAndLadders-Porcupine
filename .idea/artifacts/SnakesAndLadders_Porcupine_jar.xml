@@ -4,14 +4,6 @@
     <root id="archive" name="SnakesAndLadders-Porcupine.jar">
       <element id="module-output" name="SnakesAndLadders-Porcupine" />
       <element id="library" level="project" name="jdk-1" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../Program Files/JavaFX/javafx-sdk-21.0.2/lib/javafx-swt.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../Program Files/JavaFX/javafx-sdk-21.0.2/lib/javafx.web.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../Program Files/JavaFX/javafx-sdk-21.0.2/lib/javafx.base.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../Program Files/JavaFX/javafx-sdk-21.0.2/lib/javafx.fxml.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../Program Files/JavaFX/javafx-sdk-21.0.2/lib/javafx.media.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../Program Files/JavaFX/javafx-sdk-21.0.2/lib/javafx.swing.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../Program Files/JavaFX/javafx-sdk-21.0.2/lib/javafx.controls.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../Program Files/JavaFX/javafx-sdk-21.0.2/lib/javafx.graphics.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/testng/testng/7.1.0/testng-7.1.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/beust/jcommander/1.72/jcommander-1.72.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/inject/guice/4.1.0/guice-4.1.0-no_aop.jar" path-in-jar="/" />
@@ -19,8 +11,16 @@
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/guava/guava/19.0/guava-19.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/yaml/snakeyaml/1.21/snakeyaml-1.21.jar" path-in-jar="/" />
-      <element id="library" level="project" name="JavaFX" />
-      <element id="extracted-dir" path="$USER_HOME$/Downloads/json-lib-2.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../Program Files/JavaFx/javafx-sdk-21.0.2/lib/javafx-swt.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../Program Files/JavaFx/javafx-sdk-21.0.2/lib/javafx.web.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../Program Files/JavaFx/javafx-sdk-21.0.2/lib/javafx.base.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../Program Files/JavaFx/javafx-sdk-21.0.2/lib/javafx.fxml.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../Program Files/JavaFx/javafx-sdk-21.0.2/lib/javafx.media.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../Program Files/JavaFx/javafx-sdk-21.0.2/lib/javafx.swing.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../Program Files/JavaFx/javafx-sdk-21.0.2/lib/javafx.controls.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../Program Files/JavaFx/javafx-sdk-21.0.2/lib/javafx.graphics.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/junit/junit/4.13.1/junit-4.13.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter/5.8.1/junit-jupiter-5.8.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.8.1/junit-jupiter-api-5.8.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar" path-in-jar="/" />
@@ -29,10 +29,10 @@
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-params/5.8.1/junit-jupiter-params-5.8.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-engine/5.8.1/junit-jupiter-engine-5.8.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-engine/1.8.1/junit-platform-engine-1.8.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Desktop/json-simple-1.1.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/junit/junit/4.13.1/junit-4.13.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Desktop/java-json.jar" path-in-jar="/" />
+      <element id="library" level="project" name="JavaFX" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../json-simple-1.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../java-json.jar" path-in-jar="/" />
+      <element id="dir-copy" path="$PROJECT_DIR$" />
     </root>
   </artifact>
 </component>

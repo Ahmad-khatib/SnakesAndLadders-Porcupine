@@ -4,7 +4,6 @@
     <exclude-output />
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="json-simple-1.1.1.wso2v2" level="project" />
     <orderEntry type="library" exported="" name="Java" level="project" />
   </component>
 </module>
