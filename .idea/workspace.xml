@@ -10,19 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="the now the game handles the snakes and the Question tiles">
-      <change afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/SnakesAndLadders_Porcupine_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/SnakesAndLadders_Porcupine_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/SnakeAndLaddersPlacment$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/SnakeAndLaddersPlacment$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/SnakeAndLaddersPlacment.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/SnakeAndLaddersPlacment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/GameBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/GameBoard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/SystemData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Model/SystemData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GameBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SnakeAndLaddersPlacment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SnakeAndLaddersPlacment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/SystemData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/SystemData.java" afterDir="false" />
     </list>
     <list id="4eab7431-56fc-4d74-abc0-9c4782af3869" name="Changes by noura" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +85,7 @@
     "Application.Main.executor": "Run",
     "Application.Start (1).executor": "Run",
     "Application.Start .executor": "Run",
-    "Application.Start.executor": "Run",
+    "Application.Start.executor": "Coverage",
     "Attach to process.pid 13196.executor": "ProcessAttachDebug",
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.CorrectAnswerTest.executor": "Run",
@@ -122,14 +111,14 @@
     "jdk.selected.JAVA_MODULE": "1.8",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "C:/Users/more_/Documents/GitHub/SnakesAndLadders-Porcupine/src",
-    "last_opened_file_path": "C:/Users/more_/Documents/GitHub/SnakesAndLadders-Porcupine/src/View/Photos/Snakes/Yellow",
+    "last_opened_file_path": "C:/Users/more_/Documents/GitHub/SnakesAndLadders-Porcupine/out/artifacts",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/more_/Documents/GitHub/SnakesAndLadders-PorcupineNew/SnakesAndLadders--Porcupine/src/Main.java",
-    "project.structure.last.edited": "Facets",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "editor.preferences.tabs",
@@ -314,6 +303,8 @@
       <workItem from="1709306337355" duration="31681000" />
       <workItem from="1709381858247" duration="14151000" />
       <workItem from="1709426351495" duration="5048000" />
+      <workItem from="1709524005637" duration="138000" />
+      <workItem from="1709524154790" duration="949000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <option name="closed" value="true" />
@@ -579,7 +570,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709506420204</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="the now the game handles the snakes and the Question tiles">
+      <option name="closed" value="true" />
+      <created>1709523942820</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1709523942820</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -623,6 +622,9 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SnakesAndLadders_Porcupine$Start_.ic" NAME="Start  Coverage Results" MODIFIED="1707150033525" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/workspace_xml$Start.ic" NAME="Start Coverage Results" MODIFIED="1709524557560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Controller.*</FILTER>
     </SUITE>
   </component>
