@@ -20,6 +20,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -37,7 +40,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static Model.Snake.SnakeColor.RED;
-import static Model.SystemData.saveGamesHistoryToCsv;
 
 
 public class GameBoardController extends GridPane {
@@ -50,8 +52,6 @@ public class GameBoardController extends GridPane {
     private GridPane dynamicGridPane;
     @FXML
     private ImageView diceImage;
-    @FXML
-    private ImageView diceImage2;
     @FXML
     private Text timerLabel;
     @FXML
@@ -76,13 +76,16 @@ public class GameBoardController extends GridPane {
     private int currentPlayerIndex = 0;
     static Set<Integer> usedHeadPositions = new HashSet<>();
     static Set<Integer> usedTailPositions = new HashSet<>();
+    static Set<Integer> usedTopPositions = new HashSet<>();
+    static Set<Integer> usedBottomPositions = new HashSet<>();
+
     boolean playedMyTurn;
 
 
     public void initialize(String selectedLevel, ArrayList<Player> playersN) throws IOException {
         gameBoard = new GameBoard(selectedLevel);
         initializeBoardUI();
-        initializeTimer();
+
         players.clear();
         players = playersN;
         game = new Game(gameBoard.getGameId(), gameBoard, players, SystemData.getInstance().getQuestions());
@@ -91,6 +94,9 @@ public class GameBoardController extends GridPane {
         // SnakeAndLaddersPlacment.placeLadders(selectedLevel, gameBoard, dynamicGridPane);
         usedHeadPositions = SnakeAndLaddersPlacment.usedHeadPositions;
         usedTailPositions = SnakeAndLaddersPlacment.usedTailPositions;
+        usedTopPositions = SnakeAndLaddersPlacment.usedTopPositions;
+        usedBottomPositions = SnakeAndLaddersPlacment.usedBottomPositions;
+
         currentPlayer.setText("Welcome to Game Snakes and Ladders\n by Porcupine");
 
 
@@ -119,8 +125,35 @@ public class GameBoardController extends GridPane {
                 if (tiles[i][j].getTileType().equals(Tile.TileType.SURPRISE_JUMP)) {
                     tileRectangle.setFill(Color.YELLOW);
                 } else if (tiles[i][j].getTileType().equals(Tile.TileType.NORMAL)) {
-                    tileRectangle.setFill(Color.WHITE);
+                    // Define the base color
+                    double hue = 120; // Green hue
+                    double saturation = 0.5; // Adjust the saturation level as needed
+                    double opacity = 1.0; // Adjust the opacity as needed
+
+                    // Calculate the distance from the center of the grid
+                    double centerX = (tiles.length - 1) / 2.0;
+                    double centerY = (tiles[i].length - 1) / 2.0;
+                    double distance = Math.sqrt(Math.pow(i - centerX, 2) + Math.pow(j - centerY, 2));
+
+                    // Normalize the distance to range from 0 to 1
+                    double maxDistance = Math.sqrt(Math.pow(centerX, 2) + Math.pow(centerY, 2));
+                    double normalizedDistance = distance / maxDistance;
+
+                    // Use a smoother function to calculate brightness (e.g., quadratic)
+                    double brightness = 1 - Math.pow(normalizedDistance, 4);
+
+                    // Avoid reaching zero brightness to prevent black color
+                    brightness = Math.max(brightness, 0.4);
+
+                    // Set the fill color based on the brightness with gradient effect
+                    LinearGradient gradient = new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE,
+                            new Stop(0, Color.hsb(hue, saturation, brightness, opacity)),
+                            new Stop(1, Color.hsb(hue, saturation, brightness * 0.8, opacity)));
+                    tileRectangle.setFill(gradient);
                 }
+                double arcSize = 10; // Adjust the arc size as needed
+                tileRectangle.setArcWidth(arcSize);
+                tileRectangle.setArcHeight(arcSize);
                 tileRectangle.setStroke(Color.BLACK);
                 tileRectangle.setWidth(gameBoard.getPreferredTileSize());
                 tileRectangle.setHeight(gameBoard.getPreferredTileSize());
@@ -128,13 +161,15 @@ public class GameBoardController extends GridPane {
                 tiles[i][j].setId("cell_" + i + "_" + j);
                 Text tileIdText = new Text(Integer.toString(tiles[i][j].getTileId()));
                 tileIdText.setFill(Color.BLACK);
-                tileIdText.setFont(Font.font(12));
+                tileIdText.setFont(Font.font("Jokerman", 12));
+
                 StackPane.setAlignment(tileIdText, Pos.CENTER);
                 StackPane tileStackPane = new StackPane(tiles[i][j], tileIdText);
                 dynamicGridPane.add(tileStackPane, j, i);
             }
         }
     }
+
 
     private void initializeTimer() {
         AtomicInteger timerSeconds = new AtomicInteger();
@@ -147,13 +182,41 @@ public class GameBoardController extends GridPane {
     }
 
     @FXML
-    private void handlerolButtonClicked() throws InterruptedException {
+    private void handleStartNow() {
+        initializeTimer();
+        rollButton.setVisible(true);
+        startNow.setVisible(false);
+        isGameRunning = true;
+        currentPlayerIndex = 0;
+        currentPlayer.setText("Current Player: "+players.get(currentPlayerIndex).getPlayerName());
+        currentPlayerIcon.setImage(players.get(currentPlayerIndex).getIcon().getImage());
+
+
+    }
+
+    @FXML
+    private void handlerollButtonClicked() throws InterruptedException {
         if (!isGameRunning) {
             handleStartNow();
         } else {
-            int diceSum = roll();
+            int result = roll(gameBoard.getDifficultyLevel());
+            switch (result) {
+                case 7:
+                    loadQuestionPopUp(Difficulty.EASY,players.get(currentPlayerIndex), () -> {});
+                    break;
+                case 8:
+                    loadQuestionPopUp(Difficulty.MEDIUM,players.get(currentPlayerIndex), () -> {});
+                    break;
+                case 9:
+                    loadQuestionPopUp(Difficulty.HARD,players.get(currentPlayerIndex), () -> {});
+                    break;
+                default:
+                    movePlayer(players.get(currentPlayerIndex), result);
+                    break;
+            }
+
             playedMyTurn = false;
-            movePlayer(players.get(currentPlayerIndex), diceSum);
+
 
             // Check for game completion
             if (game.isGameFinished()) {
@@ -183,7 +246,6 @@ public class GameBoardController extends GridPane {
         // (if any specific actions need to be taken at the beginning)
     }*/
 
-
     private void movePlayer(Player player, int moves) {
         player.movePlayerTo(player.getPlayerPosition() + moves, gameBoard.getSize());
         int newRow = player.getPlayerPosition() % gameBoard.getSize() == 0 ? (gameBoard.getSize() - (player.getPlayerPosition() / gameBoard.getSize())) : gameBoard.getSize() - ((player.getPlayerPosition() / gameBoard.getSize()) + 1);
@@ -197,19 +259,6 @@ public class GameBoardController extends GridPane {
         // timeline.play();
     }
 
-    private void finishedTurn(Player player) {
-        currentPlayer.setText("Current Player: " + players.get((currentPlayerIndex) % players.size()).getPlayerName());
-        currentPlayerIcon.setImage(players.get((currentPlayerIndex) % players.size()).getIcon().getImage());
-
-        // Create a Timeline with a KeyFrame to wait for three seconds
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), event -> {
-            // Code to be executed after three seconds
-            // (If there's anything specific you want to do, you can add it here)
-        }));
-
-        // Play the timeline
-        timeline.play();
-    }
 
     private static void movePlayerWithAnimation(Player player, int newColumnIndex, int newRowIndex, double move, Runnable callback) {
         TranslateTransition horizontalTransition = new TranslateTransition(Duration.millis(ANIMATION_DURATION), player.getIcon());
@@ -257,7 +306,7 @@ public class GameBoardController extends GridPane {
                 break;
             case QUESTION:
 
-                handleQuestionTile(player);
+                handleQuestionTile(player,Difficulty.EASY); //example
                 break;
             case SURPRISE_JUMP:
                 handleSurpriseJumpTile(player);
@@ -272,9 +321,31 @@ public class GameBoardController extends GridPane {
     }
 
 
+    private void movePlayerBack(Player player, int steps) {
+        int newPosition = player.getPlayerPosition() - steps;
+        if (newPosition < 1) {
+            newPosition = 1; // Ensure the player doesn't go beyond the start position
+        }
+        movePlayer(player, newPosition - player.getPlayerPosition());
+    }
 
 
-    public void handleQuestionTile(Player player) {
+    private void finishedTurn(Player player) {
+        currentPlayer.setText("Current Player: " + players.get((currentPlayerIndex) % players.size()).getPlayerName());
+        currentPlayerIcon.setImage(players.get((currentPlayerIndex) % players.size()).getIcon().getImage());
+
+        // Create a Timeline with a KeyFrame to wait for three seconds
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), event -> {
+            // Code to be executed after three seconds
+            // (If there's anything specific you want to do, you can add it here)
+        }));
+
+        // Play the timeline
+        timeline.play();
+    }
+
+
+    public void handleQuestionTile(Player player,Difficulty d) {
         int stepsToMove = 0;
 
         switch (gameBoard.getDifficultyLevel()) {
@@ -298,8 +369,12 @@ public class GameBoardController extends GridPane {
     }
 
 
+    private void handleSurpriseJumpTile(Player player) {
+        // Add logic to handle actions when a player lands on a surprise jump tile
+        // For example, move the player to a different position on the board
+    }
 
-    @FXML
+   /* @FXML
     private void handlebutton(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("src/View/EditQuestion.fxml"));
@@ -313,7 +388,7 @@ public class GameBoardController extends GridPane {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     @FXML
     private int loadQuestionPopUp(Difficulty difficulty, Player player, Runnable callback) {
@@ -360,63 +435,41 @@ public class GameBoardController extends GridPane {
         return stepsToMove[0];
     }
 
-    private void movePlayerBack(Player player, int steps) {
-        int newPosition = player.getPlayerPosition() - steps;
-        if (newPosition < 1) {
-            newPosition = 1; // Ensure the player doesn't go beyond the start position
-        }
-        movePlayer(player, newPosition - player.getPlayerPosition());
-    }
 
-    private void handleSurpriseJumpTile(Player player) {
-        // Add logic to handle actions when a player lands on a surprise jump tile
-        // For example, move the player to a different position on the board
-    }
+    private int getRandomNumber(int[] numbers) {
 
+        return numbers[random.nextInt(numbers.length)];
+    }
     @FXML
-    private void handleStartNow() {
-        rollButton.setVisible(true);
-        startNow.setVisible(false);
-        isGameRunning = true;
-        currentPlayerIndex = 0;
-        currentPlayer.setText("Current Player: "+players.get(currentPlayerIndex).getPlayerName());
-        currentPlayerIcon.setImage(players.get(currentPlayerIndex).getIcon().getImage());
-
-
-    }
-
-    @FXML
-    public int roll() {
+    public int roll(int difficulty) {
+        int diceValue = 0;
         rollButton.setDisable(true);
-
-        int totalSum = 0;
-        int finalDice1Value = 0;
-        int finalDice2Value = 0;
+        switch (difficulty) {
+            case 1:
+                diceValue= getRandomNumber(new int[]{1, 2, 3, 4, 7, 8, 9});
+            case 2:
+                diceValue= getRandomNumber(new int[]{1, 2, 3, 4, 5, 6, 7, 7, 8, 8, 9, 9});
+            case 3:
+                diceValue= getRandomNumber(new int[]{1, 2, 3, 4, 5, 6, 7, 7, 8, 8, 9, 9, 9, 9});
+        }
 
         Timeline timeline = new Timeline();
 
         for (int i = 0; i < 20; i++) {
-            int dice1Value = (random.nextInt(5) + 1);
-            int dice2Value = (random.nextInt(5) + 1);
 
-            File file = new File("src/View/photos/dice/dice" + dice1Value + ".png");
-            File file2 = new File("src/View/photos/dice/dice" + dice2Value + ".png");
+            File file = new File("src/View/photos/dice/dice" + diceValue + ".png");
 
             Image image1 = new Image(file.toURI().toString());
-            Image image2 = new Image(file2.toURI().toString());
 
-            finalDice1Value = dice1Value;
-            finalDice2Value = dice2Value;
+
 
             int finalI = i;
             timeline.getKeyFrames().add(
                     new KeyFrame(Duration.millis(100 * finalI), event -> {
                         diceImage.setImage(image1);
-                        diceImage2.setImage(image2);
                     })
             );
 
-            totalSum = finalDice1Value + finalDice2Value;
         }
 
         timeline.setOnFinished(event -> {
@@ -425,8 +478,9 @@ public class GameBoardController extends GridPane {
         });
 
         timeline.play();
-        return totalSum;
+        return diceValue;
     }
+
     public static void showGameOverDialog(String winnerName) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Game Over");
@@ -442,5 +496,5 @@ public class GameBoardController extends GridPane {
 
         // Show the alert and wait for the user's response
         alert.showAndWait();
-    }
+}
 }

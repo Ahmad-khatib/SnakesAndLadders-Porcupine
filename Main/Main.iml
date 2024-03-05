@@ -4,8 +4,5 @@
     <exclude-output />
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="JavaFx" level="project" />
-    <orderEntry type="library" exported="" name="json-lib-2.4-jdk15" level="project" />
-    <orderEntry type="library" exported="" name="json-simple-1.1.1" level="project" />
   </component>
 </module>

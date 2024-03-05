@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static Model.SystemData.saveGamesHistoryToCsv;
 import static javafx.fxml.FXMLLoader.load;
 
 public class Start extends Application {
@@ -26,8 +25,8 @@ public class Start extends Application {
 
         SystemData systemData = SystemData.getInstance();
         boolean loadSuccess = systemData.loadQuestions();
-Question q = SystemData.getInstance().popQuestion(Difficulty.EASY);
-System.out.println(q.getText());
+        Question q = SystemData.getInstance().popQuestion(Difficulty.EASY);
+        System.out.println(q.getText());
         System.out.println(q.getAnswer1());
         System.out.println(q.getAnswer2());
         System.out.println(q.getText());
@@ -67,7 +66,7 @@ System.out.println(q.getText());
 
             // Create the scene
             Scene scene = new Scene(root);
-            primaryStage.getIcons().add(new Image("src/View/Photos/SnakeLadders2.png", 100, 100, true, true));
+            primaryStage.getIcons().add(new Image("/View/Photos/SnakeLadders2.png", 100, 100, true, true));
             // Set the scene and show the stage
             primaryStage.setScene(scene);
             primaryStage.setTitle("Snake and Ladders Game"); // Set the title of the window
@@ -76,7 +75,7 @@ System.out.println(q.getText());
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("Error loading MainPage.fxml: " + e.getMessage());
-        }
-    }
+  }
+}
 
 }

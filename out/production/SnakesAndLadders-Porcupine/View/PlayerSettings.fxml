@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane prefHeight="449.0" prefWidth="705.0" styleClass="PlayerSet" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PlayerSettingsController">
+<StackPane prefHeight="449.0" prefWidth="705.0" styleClass="PlayerSet" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PlayerSettingsController">
     <children>
         <VBox fx:id="playerBoxContainer" alignment="CENTER" prefHeight="289.0" prefWidth="672.0" spacing="10">
             <children>

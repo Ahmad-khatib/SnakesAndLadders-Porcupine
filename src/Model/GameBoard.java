@@ -56,16 +56,10 @@ public class GameBoard extends GridPane {
                 count++;
             }
         }
-        displayBoard();
+
     }
 
-    public void displayBoard() {
-        for (int row = size - 1; row >= 0; row--) {
-            for (int col = 0; col < size; col++) {
-            }
 
-        }
-    }
 
     // Getters for preferredTileSize and other fields
     public double getPreferredTileSize() {
@@ -92,9 +86,7 @@ public class GameBoard extends GridPane {
         return difficultyLevel;
     }
 
-    public void setDifficultyLevel(int difficultyLevel) {
-        this.difficultyLevel = difficultyLevel;
-    }
+
 
     public Tile[][] getTiles() {
         return tiles;
