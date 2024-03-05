@@ -69,7 +69,6 @@ public class PlayerSettingsController {
                 // If the new value differs from the old value due to space removal, update the text field
                 if (!newValue.equals(newValueWithoutSpaces)) {
                     playerNameField.setText(newValueWithoutSpaces);
-                }
                 // Enable/disable start button based on other conditions
                 startButton.setDisable(!areAllPlayersReady());
             });
@@ -334,4 +333,5 @@ public class PlayerSettingsController {
     }
 
 
+    }
 }
