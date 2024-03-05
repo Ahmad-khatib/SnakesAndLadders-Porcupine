@@ -182,20 +182,29 @@ public class SystemData implements QuestionObserver {
         for (ArrayList<Question> questionList : questions.values()) {
             if (questionList != null) {
                 for (Question existingQuestion : questionList) {
+                    // Check if the question text is the same
                     if (existingQuestion.getText().equals(newQuestion.getText())) {
                         // If the question text already exists, show an alert and return false
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Error");
-                        alert.setHeaderText("Question Already Exists");
-                        alert.setContentText("This question already exists. Please try another one.");
-                        alert.showAndWait();
+                        showAlert("Question Already Exists", "This question already exists. Please try another one.");
                         return false;
                     }
                 }
             }
         }
 
-        // If the question text does not exist, proceed with adding the question
+        // Check if any of the answers are the same
+        if (newQuestion.getAnswer1().equals(newQuestion.getAnswer2()) ||
+                newQuestion.getAnswer1().equals(newQuestion.getAnswer3()) ||
+                newQuestion.getAnswer1().equals(newQuestion.getAnswer4()) ||
+                newQuestion.getAnswer2().equals(newQuestion.getAnswer3()) ||
+                newQuestion.getAnswer2().equals(newQuestion.getAnswer4()) ||
+                newQuestion.getAnswer3().equals(newQuestion.getAnswer4())) {
+            // If any of the answers are the same, show an alert and return false
+            showAlert("Duplicate Answers", "There are duplicate answers. Please try another one.");
+            return false;
+        }
+
+        // If the question text and answers do not exist, proceed with adding the question
         // Get the difficulty of the new question
         Difficulty difficulty = newQuestion.getLevel();
 
@@ -273,5 +282,13 @@ public class SystemData implements QuestionObserver {
     }
     public ArrayList<Game> getGamesHistory() {
         return GamesHistory;
+    }
+
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 }

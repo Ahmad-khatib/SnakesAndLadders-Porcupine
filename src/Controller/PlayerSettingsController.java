@@ -57,15 +57,23 @@ public class PlayerSettingsController {
             playerBox.getChildren().add(playerLabel);
             // Create a text field for the player's name
             TextField playerNameField = new TextField();
-            playerNameField.setPromptText("Enter name");
+            playerNameField.setPromptText("Enter Nick Name");
             playerBox.getChildren().add(playerNameField);
             // Styling for the text field
             playerNameField.setStyle("-fx-background-color: #173f02; -fx-text-fill: #77d472;  -fx-border-radius: 19px;");
 
             // Add listener for text field changes
             playerNameField.textProperty().addListener((observable, oldValue, newValue) -> {
+                // Remove any spaces from the new value
+                String newValueWithoutSpaces = newValue.replaceAll("\\s", "");
+                // If the new value differs from the old value due to space removal, update the text field
+                if (!newValue.equals(newValueWithoutSpaces)) {
+                    playerNameField.setText(newValueWithoutSpaces);
+                }
+                // Enable/disable start button based on other conditions
                 startButton.setDisable(!areAllPlayersReady());
             });
+
 
             // Add listener for focus loss
             playerNameField.focusedProperty().addListener((observable, oldValue, newValue) -> {
