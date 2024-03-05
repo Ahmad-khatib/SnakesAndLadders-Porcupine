@@ -11,9 +11,11 @@ import java.util.*;
 public class SystemData implements QuestionObserver {
     private static SystemData instance;
     private final HashMap<Difficulty, ArrayList<Question>> questions;
+    private static ArrayList<Game> GamesHistory;
 
     private SystemData() {
         questions = new HashMap<>();
+        GamesHistory = new ArrayList<>();
     }
 
     public static SystemData getInstance() {
@@ -57,8 +59,29 @@ public class SystemData implements QuestionObserver {
         }
     }
 
+    public static void addGameToHistory(Game game) {
+        GamesHistory.add(game);
+        saveGamesHistoryToCsv("src/Model/GamesHistory.csv");
+    }
 
 
+    public static void saveGamesHistoryToCsv(String filename) {
+        try (FileWriter writer = new FileWriter(filename)) {
+            // Write header
+            writer.append("Winner,Duration,Level\n");
+
+            // Write data for each game
+            for (Game game : GamesHistory) {
+                writer.append(game.getWINNERNAME()).append(",");
+                writer.append(game.getGAMETIME()).append(",");
+                writer.append(game.getGAMELEVEL()).append("\n");
+            }
+
+            System.out.println("Games history saved to " + "src/Model/GamesHistory.csv");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private Difficulty getQuestionDifficulty(int difficulty) {
         switch (difficulty) {
@@ -220,9 +243,35 @@ public class SystemData implements QuestionObserver {
         return q;
     }
 
+    public static ArrayList<Game> loadGamesHistoryFromCsv(String filename) {
+        ArrayList<Game> gamesHistory = new ArrayList<>();
 
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            // Skip header
+            String line = reader.readLine();
 
+            // Read each line from the CSV file
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
 
+                // Parse the data from the CSV line
+                String winnerName = parts[0];
+                String duration = parts[1];
+                String level = parts[2];
 
+                // Create a new Game object
+                Game game = new Game(winnerName, duration, level);
 
+                // Add the game to the list
+                gamesHistory.add(game);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return gamesHistory;
+    }
+    public ArrayList<Game> getGamesHistory() {
+        return GamesHistory;
+    }
 }

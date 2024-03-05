@@ -109,6 +109,7 @@ public class EditQuestionController {
     }
 
     public boolean isQuestionEdited() {
+
         return questionEdited;
     }
 }

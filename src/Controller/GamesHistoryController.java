@@ -1,70 +1,52 @@
-package Controller;
-
-import Model.Player;
-import javafx.event.ActionEvent;
+import Model.Game;
+import Model.SystemData;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class GamesHistoryController {
+public class GamesHistoryController implements Initializable {
+@FXML
+private Button backButton;
+    @FXML
+    private AnchorPane rootPane;
 
     @FXML
-    private TableColumn<Player, String> avatarHistory;
+    private TableView<Game> historyTable;
 
     @FXML
-    private Button backButton;
+    private TableColumn<Game, String> playerNameColumn;
 
     @FXML
-    private TableView<Player> historyTable;
+    private TableColumn<Game, String> durationColumn;
 
     @FXML
-    private TableColumn<Player, Integer> scoreHistory;
+    private TableColumn<Game, String> levelColumn;
 
-    @FXML
-    private TableColumn<Player, String> userNameHistory;
 
-    private ArrayList<Player> Players;
-
-    @FXML
-    void back(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("src/View/GamesHistory.fxml")));
-            Scene customerScene = new Scene(root);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(customerScene);
-            window.show();
-        } catch (IOException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("FXML");
-            alert.setHeaderText("Load failure");
-            alert.setContentText("Failed to load the FXML file.");
-            alert.showAndWait();
-        }
-    }
-
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
-        userNameHistory.setCellValueFactory(new PropertyValueFactory<>("nickname"));
-        avatarHistory.setCellValueFactory(new PropertyValueFactory<>("Icon"));
-        scoreHistory.setCellValueFactory(new PropertyValueFactory<>("GameHighScore"));
-        setHistoryTable();
-    }
+        playerNameColumn.setCellValueFactory(new PropertyValueFactory<>("playerName"));
+        durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        levelColumn.setCellValueFactory(new PropertyValueFactory<>("level"));
 
-    private void setHistoryTable() {
+        // Load games history from CSV file
+        ArrayList<Game> gamesHistory = SystemData.loadGamesHistoryFromCsv("src/Model/GamesHistory.csv");
 
+        // Add loaded games to the table
+        historyTable.getItems().addAll(gamesHistory);
     }
     @FXML
     private void goBack() {
@@ -76,11 +58,11 @@ public class GamesHistoryController {
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setTitle("Main Page");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
 }

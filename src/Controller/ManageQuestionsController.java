@@ -94,6 +94,67 @@ public class ManageQuestionsController implements QuestionObserver {
     }
 
     @FXML
+    private void sortByLevel() {
+        SystemData systemData = SystemData.getInstance();
+        List<Question> allQuestions = systemData.getAllQuestions();
+        allQuestions.sort((q1, q2) -> Integer.compare(q2.getLevel().ordinal(), q1.getLevel().ordinal()));
+
+        ObservableList<String> questionTexts = FXCollections.observableArrayList();
+        for (Question question : allQuestions) {
+            StringBuilder questionWithAnswers = new StringBuilder();
+
+            questionWithAnswers.append("Question: ").append(question.getText()).append("\n");
+            questionWithAnswers.append("Answers:\n");
+            questionWithAnswers.append("1. ").append(question.getAnswer1()).append("\n");
+            questionWithAnswers.append("2. ").append(question.getAnswer2()).append("\n");
+            questionWithAnswers.append("3. ").append(question.getAnswer3()).append("\n");
+            questionWithAnswers.append("4. ").append(question.getAnswer4()).append("\n");
+            questionWithAnswers.append("Correct Answer: ").append(question.getCorrectAnswer()).append("\n"); // Add correct answer information
+            questionWithAnswers.append("Level: ").append(question.getLevel()).append("\n"); // Add level information
+            questionTexts.add(questionWithAnswers.toString());
+        }
+
+        questionListView.setItems(questionTexts);
+    }
+
+    private void refreshQuestionList() {
+        // Reload questions from SystemData
+        SystemData systemData = SystemData.getInstance();
+        boolean success = systemData.loadQuestions();
+        if (!success) {
+            System.out.println("Failed to load questions from JSON file.");
+            return;
+        }
+
+
+        List<Question> allQuestions = systemData.getAllQuestions();
+
+        // Update the UI with the refreshed question list
+        ObservableList<String> questionTexts = FXCollections.observableArrayList();
+        for (Question question : allQuestions) {
+            StringBuilder questionWithAnswers = new StringBuilder();
+
+            questionWithAnswers.append("Question: ").append(question.getText()).append("\n");
+            questionWithAnswers.append("Answers:\n");
+            questionWithAnswers.append("1. ").append(question.getAnswer1()).append("\n");
+            questionWithAnswers.append("2. ").append(question.getAnswer2()).append("\n");
+            questionWithAnswers.append("3. ").append(question.getAnswer3()).append("\n");
+            questionWithAnswers.append("4. ").append(question.getAnswer4()).append("\n");
+            questionWithAnswers.append("Correct Answer: ").append(question.getCorrectAnswer()).append("\n"); // Add correct answer information
+            questionWithAnswers.append("Level: ").append(question.getLevel()).append("\n"); // Add level information
+            questionTexts.add(questionWithAnswers.toString());
+        }
+
+        // Clear the existing items in the ListView
+        questionListView.getItems().clear();
+
+        // Add the refreshed question list to the ListView
+        questionListView.setItems(questionTexts);
+        totalQuestionsLabel.setText("Total Questions: " + allQuestions.size());
+
+    }
+
+    @FXML
     private void addQuestion() {
         try {
             // Load the FXML file for adding a question
@@ -127,8 +188,6 @@ public class ManageQuestionsController implements QuestionObserver {
             e.printStackTrace();
         }
     }
-
-
 
     @FXML
     private void editQuestion() {
@@ -202,8 +261,6 @@ public class ManageQuestionsController implements QuestionObserver {
         }
     }
 
-
-
     @FXML
     private void deleteQuestion() {
 
@@ -274,32 +331,6 @@ public class ManageQuestionsController implements QuestionObserver {
         });
     }
 
-
-
-    @FXML
-    private void sortByLevel() {
-        SystemData systemData = SystemData.getInstance();
-        List<Question> allQuestions = systemData.getAllQuestions();
-        allQuestions.sort((q1, q2) -> Integer.compare(q2.getLevel().ordinal(), q1.getLevel().ordinal()));
-
-        ObservableList<String> questionTexts = FXCollections.observableArrayList();
-        for (Question question : allQuestions) {
-            StringBuilder questionWithAnswers = new StringBuilder();
-
-            questionWithAnswers.append("Question: ").append(question.getText()).append("\n");
-            questionWithAnswers.append("Answers:\n");
-            questionWithAnswers.append("1. ").append(question.getAnswer1()).append("\n");
-            questionWithAnswers.append("2. ").append(question.getAnswer2()).append("\n");
-            questionWithAnswers.append("3. ").append(question.getAnswer3()).append("\n");
-            questionWithAnswers.append("4. ").append(question.getAnswer4()).append("\n");
-            questionWithAnswers.append("Correct Answer: ").append(question.getCorrectAnswer()).append("\n"); // Add correct answer information
-            questionWithAnswers.append("Level: ").append(question.getLevel()).append("\n"); // Add level information
-            questionTexts.add(questionWithAnswers.toString());
-        }
-
-        questionListView.setItems(questionTexts);
-    }
-
     @Override
     public void onQuestionAdded(Question question) {
         questions.add(question);
@@ -319,42 +350,6 @@ public class ManageQuestionsController implements QuestionObserver {
     public void onQuestionDeleted(Question deletedQuestion) {
         questions.remove(deletedQuestion);
         questionListView.getItems().remove(deletedQuestion.getText());
-    }
-    private void refreshQuestionList() {
-        // Reload questions from SystemData
-        SystemData systemData = SystemData.getInstance();
-        boolean success = systemData.loadQuestions();
-        if (!success) {
-            System.out.println("Failed to load questions from JSON file.");
-            return;
-        }
-
-
-        List<Question> allQuestions = systemData.getAllQuestions();
-
-        // Update the UI with the refreshed question list
-        ObservableList<String> questionTexts = FXCollections.observableArrayList();
-        for (Question question : allQuestions) {
-            StringBuilder questionWithAnswers = new StringBuilder();
-
-            questionWithAnswers.append("Question: ").append(question.getText()).append("\n");
-            questionWithAnswers.append("Answers:\n");
-            questionWithAnswers.append("1. ").append(question.getAnswer1()).append("\n");
-            questionWithAnswers.append("2. ").append(question.getAnswer2()).append("\n");
-            questionWithAnswers.append("3. ").append(question.getAnswer3()).append("\n");
-            questionWithAnswers.append("4. ").append(question.getAnswer4()).append("\n");
-            questionWithAnswers.append("Correct Answer: ").append(question.getCorrectAnswer()).append("\n"); // Add correct answer information
-            questionWithAnswers.append("Level: ").append(question.getLevel()).append("\n"); // Add level information
-            questionTexts.add(questionWithAnswers.toString());
-        }
-
-        // Clear the existing items in the ListView
-        questionListView.getItems().clear();
-
-        // Add the refreshed question list to the ListView
-        questionListView.setItems(questionTexts);
-        totalQuestionsLabel.setText("Total Questions: " + allQuestions.size());
-
     }
 
 }

@@ -9,6 +9,9 @@ public class Game {
     private  ArrayList<Player> Players;
     private  HashMap<Difficulty, ArrayList<Question>> Questions;
     private boolean gameFinished = new Boolean(false);
+    private String WINNERNAME;
+    private String GAMETIME;
+   private String GAMELEVEL;
 
     public Game(int id,GameBoard gameBoard,ArrayList<Player> players,HashMap<Difficulty, ArrayList<Question>> questions){
         this.Id=id;
@@ -19,6 +22,39 @@ public class Game {
     }
 
     public Game() {
+    }
+
+
+    public Game(String winnerName, String duration, String level) {
+        this.WINNERNAME=winnerName;
+        this.GAMETIME=duration;
+        this.GAMELEVEL=level;
+    }
+
+    public String getWINNERNAME() {
+        return WINNERNAME;
+    }
+
+    public String getGAMETIME() {
+        return GAMETIME;
+    }
+
+
+
+    public void setWINNERNAME(String WINNERNAME) {
+        this.WINNERNAME = WINNERNAME;
+    }
+
+    public void setGAMETIME(String GAMETIME) {
+        this.GAMETIME = GAMETIME;
+    }
+
+    public String getGAMELEVEL() {
+        return GAMELEVEL;
+    }
+
+    public void setGAMELEVEL(String GAMELEVEL) {
+        this.GAMELEVEL = GAMELEVEL;
     }
 
     public boolean isGameFinished() {
