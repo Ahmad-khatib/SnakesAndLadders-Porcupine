@@ -64,23 +64,19 @@ public class PlayerSettingsController {
 
             // Add listener for text field changes
             playerNameField.textProperty().addListener((observable, oldValue, newValue) -> {
-                // Remove any spaces from the new value
-                String newValueWithoutSpaces = newValue.replaceAll("\\s", "");
-                // If the new value differs from the old value due to space removal, update the text field
-                if (!newValue.equals(newValueWithoutSpaces)) {
-                    playerNameField.setText(newValueWithoutSpaces);
-                // Enable/disable start button based on other conditions
+                // Remove spaces from the input
+                playerNameField.setText(newValue.replaceAll("\\s", ""));
                 startButton.setDisable(!areAllPlayersReady());
             });
-
 
             // Add listener for focus loss
             playerNameField.focusedProperty().addListener((observable, oldValue, newValue) -> {
                 if (!newValue) { // If focus lost
+                    // Remove spaces from the input
+                    playerNameField.setText(playerNameField.getText().replaceAll("\\s", ""));
                     startButton.setDisable(!areAllPlayersReady());
                 }
             });
-
             // Inside initializePlayerFields method
             for (int j = 0; j < 4; j++) {
                 // Load the icon image
@@ -333,5 +329,4 @@ public class PlayerSettingsController {
     }
 
 
-    }
 }
