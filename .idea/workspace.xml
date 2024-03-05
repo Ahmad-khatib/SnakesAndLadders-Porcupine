@@ -322,39 +322,7 @@
       <workItem from="1709482595574" duration="21665000" />
       <workItem from="1709523683186" duration="1559000" />
       <workItem from="1709643134101" duration="12105000" />
-      <workItem from="1709656420515" duration="12248000" />
-    </task>
-    <task id="LOCAL-00001" summary="...">
-      <option name="closed" value="true" />
-      <created>1707077446730</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1707077446730</updated>
-    </task>
-    <task id="LOCAL-00002" summary="...">
-      <option name="closed" value="true" />
-      <created>1707078029798</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1707078029798</updated>
-    </task>
-    <task id="LOCAL-00003" summary="...">
-      <option name="closed" value="true" />
-      <created>1707078053086</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1707078053086</updated>
-    </task>
-    <task id="LOCAL-00004" summary="...">
-      <option name="closed" value="true" />
-      <created>1707121824119</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1707121824119</updated>
+      <workItem from="1709656420515" duration="12598000" />
     </task>
     <task id="LOCAL-00005" summary="...">
       <option name="closed" value="true" />
@@ -716,7 +684,39 @@
       <option name="project" value="LOCAL‎" />
       <updated>1709675846487</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL‎-00050" summary="handleSurpriseJumpTile">
+      <option name="closed" value="true" />
+      <created>1709681578237</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL‎-00050" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709681578243</updated>
+    </task>
+    <task id="LOCAL‎-00051" summary="handleSurpriseJumpTile">
+      <option name="closed" value="true" />
+      <created>1709681583217</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL‎-00051" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709681583217</updated>
+    </task>
+    <task id="LOCAL‎-00052" summary="game instructions">
+      <option name="closed" value="true" />
+      <created>1709681631220</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL‎-00052" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709681631220</updated>
+    </task>
+    <task id="LOCAL‎-00053" summary="game instructions">
+      <option name="closed" value="true" />
+      <created>1709681666714</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL‎-00053" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709681666715</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -746,7 +746,8 @@
     <MESSAGE value="managecontroller alert when sorted" />
     <MESSAGE value="PlayerSettingsController no space" />
     <MESSAGE value="handleSurpriseJumpTile" />
-    <option name="LAST_COMMIT_MESSAGE" value="handleSurpriseJumpTile" />
+    <MESSAGE value="game instructions" />
+    <option name="LAST_COMMIT_MESSAGE" value="game instructions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
