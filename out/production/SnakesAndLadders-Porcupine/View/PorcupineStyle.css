@@ -48,3 +48,13 @@
     -fx-text-fill: black !important;
 }
 
+.explanationButton {
+        -fx-background-color: #cdc8b0; /* Set background color to gold */
+        -fx-text-fill: black; /* Set text color to black */
+        -fx-font-size: 18px; /* Set font size */
+        -fx-font-weight: bold; /* Set font weight to bold */
+        -fx-background-radius: 50%; /* Set border radius to make it a circle */
+            -fx-alignment: top-right; /* Align content to the top right */
+            -fx-translate-x: -300px; /* Move the button to the left by 10px */
+            -fx-translate-y: 10px; /* Move the button down by 10px */
+}

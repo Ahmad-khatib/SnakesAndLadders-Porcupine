@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           prefHeight="600.0" prefWidth="800.0"
+           fx:controller="Controller.GameInstructionsController">
+    <VBox fx:id="gameInstructionsVBox" alignment="CENTER" spacing="20">
+        <Label text="Game Instructions: Sneaks and Ladders with Added Challenges">
+            <font>
+                <Font size="24"/>
+            </font>
+        </Label>
+        <VBox style="-fx-background-color: white; -fx-padding: 20; -fx-border-color: black; -fx-border-width: 2;">
+            <Label text="Welcome to Sneaks and Ladders, the classic game with a twist! In this digital version, you'll navigate through a game board filled with surprises, challenges, and of course, ladders and sneaks. Get ready for an exciting journey with your friends as you race to the top!"/>
+            <Label text="Objective:" style="-fx-font-weight: bold;"/>
+            <Label text="The objective of Sneaks and Ladders is to be the first player to reach the final square on the game board. Players will roll a dice and move their tokens accordingly, climbing ladders and avoiding sneaks along the way."/>
+            <Label text="Setup:" style="-fx-font-weight: bold;"/>
+            <Label text="1. Choose your preferred difficulty level: Easy, Medium, or Hard.
+2. Select the number of players (2-4).
+3. Each player selects a token and places it on the starting square."/>
+            <Label text="Gameplay:" style="-fx-font-weight: bold;"/>
+            <Label text="1. The player with the highest roll goes first. Play proceeds clockwise.
+2. Roll the dice to determine the number of squares to move.
+3. Move your token forward the number of squares indicated on the dice.
+4. If you land on a ladder, climb up to the corresponding square. If you land on a sneak, slide down to the corresponding square.
+5. Along the way, you'll encounter two special types of tiles: Question Tiles and Surprise Tiles."/>
+            <Label text="Question Tiles:" style="-fx-font-weight: bold;"/>
+            <Label text="- When you land on a Question Tile, you'll be presented with a question.
+- Answer the question correctly to advance as usual.
+- Answer incorrectly, and face the consequences! Depending on the difficulty level, you might slide down a few squares on Easy, Medium might result in a minor setback, while Hard could send you tumbling down the board significantly."/>
+            <Label text="Surprise Tiles:" style="-fx-font-weight: bold;"/>
+            <Label text="- These tiles add an element of randomness to the game.
+- When you land on a Surprise Tile, you'll either move forward 10 squares or backward 10 squares, determined randomly.
+- Brace yourself for unexpected twists and turns!"/>
+            <Label text="Difficulty Levels:" style="-fx-font-weight: bold;"/>
+            <Label text="1. Easy: Questions are simpler, and consequences for incorrect answers are less severe.
+2. Medium: Questions are moderately challenging, and consequences for incorrect answers are moderate.
+3. Hard: Questions are more difficult, and consequences for incorrect answers are significant."/>
+            <Label text="Winning the Game:" style="-fx-font-weight: bold;"/>
+            <Label text="The first player to reach the final square on the game board is the winner! Celebrate your victory and prepare for a rematch!"/>
+            <Label text="Get ready to test your luck, knowledge, and strategy in this thrilling digital adaptation of Sneaks and Ladders! Are you ready to climb to the top?"/>
+        </VBox>
+        <Button fx:id="CloseButton" text="Close" onAction="#handleCloseButtonClicked"/>
+    </VBox>
+</StackPane>

@@ -1,8 +1,5 @@
 package Controller;
 
-import Model.Difficulty;
-import Model.Question;
-import Model.SystemData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,18 +10,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import javafx.stage.Modality;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 public class MainPageController {
 
+    public Button explanationButton;
     @FXML
     private Button startGameButton;
     @FXML
@@ -36,13 +28,10 @@ public class MainPageController {
     @FXML
     private Label errorMessage;
 
-
     @FXML
     private void initialize() {
 
     }
-
-
 
     @FXML
     private void startGame(ActionEvent event) {
@@ -62,10 +51,8 @@ public class MainPageController {
         }
     }
 
-
     @FXML
     private void manageQuestions() {
-
         // Add functionality to navigate to the ManageQuestions.fxml screen
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ManageQuestions.fxml"));
@@ -99,5 +86,24 @@ public class MainPageController {
         }
     }
 
+    @FXML
+    private void showGameExplanation() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/GameInstructions.fxml"));
+            Parent root = loader.load();
 
+            // Create a new stage for the game explanation page
+            Stage stage = new Stage();
+            stage.setTitle("Game Explanation");
+            stage.setScene(new Scene(root));
+
+            // Set the modality to APPLICATION_MODAL
+            stage.initModality(Modality.APPLICATION_MODAL);
+
+            // Show the game explanation page
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
