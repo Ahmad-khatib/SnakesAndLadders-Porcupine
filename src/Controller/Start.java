@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static Model.SystemData.saveGamesHistoryToCsv;
 import static javafx.fxml.FXMLLoader.load;
 
 public class Start extends Application {

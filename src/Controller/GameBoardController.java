@@ -37,7 +37,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static Model.Snake.SnakeColor.RED;
-import static Model.SystemData.saveGamesHistoryToCsv;
 
 
 public class GameBoardController extends GridPane {
@@ -158,8 +157,7 @@ public class GameBoardController extends GridPane {
             // Check for game completion
             if (game.isGameFinished()) {
                 Game gameToSave = new Game(players.get(currentPlayerIndex).getPlayerName(),timerLabel.getText(), game.getGAMELEVEL());
-                SystemData.getInstance().addGameToHistory(gameToSave);
-                showGameOverDialog(players.get(currentPlayerIndex).getPlayerName());
+                showGameOverDialog(players.get(currentPlayerIndex).getPlayerName(), (Stage) rollButton.getScene().getWindow());
 
                 currentPlayer.setText("The game is over and the winner is : "+players.get(currentPlayerIndex).getPlayerName());
 
@@ -369,9 +367,15 @@ public class GameBoardController extends GridPane {
     }
 
     private void handleSurpriseJumpTile(Player player) {
-        // Add logic to handle actions when a player lands on a surprise jump tile
-        // For example, move the player to a different position on the board
+        boolean moveForward = random.nextBoolean();
+        int steps = moveForward ? 10 : -10;
+
+        movePlayer(player, steps);
+
+        String direction = moveForward ? "forward" : "backward";
+        System.out.println("Player moved " + direction + " by 10 steps.");
     }
+
 
     @FXML
     private void handleStartNow() {
@@ -427,20 +431,43 @@ public class GameBoardController extends GridPane {
         timeline.play();
         return totalSum;
     }
-    public static void showGameOverDialog(String winnerName) {
+
+    public static void showGameOverDialog(String winnerName, Stage primaryStage) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Game Over");
         alert.setHeaderText("The game has ended.");
         alert.setContentText("Winner: " + winnerName + "\nThank you for playing!");
 
+        // Add a button to go back to the main page
+        ButtonType backButtonType = new ButtonType("Back to Main Page");
         // Add a button to close the application
         ButtonType exitButtonType = new ButtonType("Exit");
-        alert.getButtonTypes().setAll(exitButtonType);
+        alert.getButtonTypes().setAll(backButtonType, exitButtonType);
 
-        // Handle the exit button action
-        alert.setOnCloseRequest(event -> System.exit(0));
+        // Handle the back button action
+        alert.setOnCloseRequest(event -> {
+            if (alert.getResult() == backButtonType) {
+                goBack(primaryStage);
+            } else if (alert.getResult() == exitButtonType) {
+                System.exit(0);
+            }
+        });
 
         // Show the alert and wait for the user's response
         alert.showAndWait();
     }
+
+    private static void goBack(Stage primaryStage) {
+        try {
+            FXMLLoader loader = new FXMLLoader(GameBoardController.class.getResource("/View/MainPage.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

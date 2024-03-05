@@ -1,3 +1,5 @@
+package  Controller;
+
 import Model.Game;
 import Model.SystemData;
 import javafx.fxml.FXML;
@@ -18,8 +20,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class GamesHistoryController implements Initializable {
-@FXML
-private Button backButton;
+    @FXML
+    private Button backButton;
     @FXML
     private AnchorPane rootPane;
 

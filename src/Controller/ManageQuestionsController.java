@@ -97,10 +97,41 @@ public class ManageQuestionsController implements QuestionObserver {
     private void sortByLevel() {
         SystemData systemData = SystemData.getInstance();
         List<Question> allQuestions = systemData.getAllQuestions();
+
+        // Check if questions are already sorted by level
+        if (isSortedByLevel(allQuestions)) {
+            showAlert("The questions are already sorted by level!");
+            return; // Exit the method
+        }
+
+        // Sort the questions by level
         allQuestions.sort((q1, q2) -> Integer.compare(q2.getLevel().ordinal(), q1.getLevel().ordinal()));
 
+        // Update the ListView with sorted questions
+        updateQuestionListView(allQuestions);
+    }
+
+    private boolean isSortedByLevel(List<Question> questions) {
+        // Check if the questions are already sorted by level
+        for (int i = 0; i < questions.size() - 1; i++) {
+            if (questions.get(i).getLevel().ordinal() < questions.get(i + 1).getLevel().ordinal()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void updateQuestionListView(List<Question> questions) {
         ObservableList<String> questionTexts = FXCollections.observableArrayList();
-        for (Question question : allQuestions) {
+        for (Question question : questions) {
             StringBuilder questionWithAnswers = new StringBuilder();
 
             questionWithAnswers.append("Question: ").append(question.getText()).append("\n");
@@ -116,6 +147,7 @@ public class ManageQuestionsController implements QuestionObserver {
 
         questionListView.setItems(questionTexts);
     }
+
 
     private void refreshQuestionList() {
         // Reload questions from SystemData

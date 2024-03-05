@@ -11,7 +11,7 @@ public class Game {
     private boolean gameFinished = new Boolean(false);
     private String WINNERNAME;
     private String GAMETIME;
-   private String GAMELEVEL;
+    private String GAMELEVEL;
 
     public Game(int id,GameBoard gameBoard,ArrayList<Player> players,HashMap<Difficulty, ArrayList<Question>> questions){
         this.Id=id;
@@ -95,5 +95,5 @@ public class Game {
 
     public void setQuestions(HashMap<Difficulty, ArrayList<Question>> questions) {
         Questions = questions;
-}
+    }
 }

@@ -59,30 +59,7 @@ public class SystemData implements QuestionObserver {
         }
     }
 
-    public static void addGameToHistory(Game game) {
-        GamesHistory.add(game);
-        saveGamesHistoryToCsv("src/Model/GamesHistory.csv");
-    }
-
-
-    public static void saveGamesHistoryToCsv(String filename) {
-        try (FileWriter writer = new FileWriter(filename)) {
-            // Write header
-            writer.append("Winner,Duration,Level\n");
-
-            // Write data for each game
-            for (Game game : GamesHistory) {
-                writer.append(game.getWINNERNAME()).append(",");
-                writer.append(game.getGAMETIME()).append(",");
-                writer.append(game.getGAMELEVEL()).append("\n");
-            }
-
-            System.out.println("Games history saved to " + "src/Model/GamesHistory.csv");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
+    
     private Difficulty getQuestionDifficulty(int difficulty) {
         switch (difficulty) {
             case 1:
