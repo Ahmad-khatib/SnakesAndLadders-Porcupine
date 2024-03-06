@@ -306,7 +306,7 @@ public class GameBoardController extends GridPane {
                 finishedTurn(player);
                 break;
             case QUESTION:
-                handleQuestionTile(player, tile.getDifficulty()); //example
+                handleQuestionTile(player, tile.getDifficulty());
                 break;
             case SURPRISE_JUMP:
                 handleSurpriseJumpTile(player);

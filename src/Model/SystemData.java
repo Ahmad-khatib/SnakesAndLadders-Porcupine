@@ -61,16 +61,21 @@ public class SystemData implements QuestionObserver {
 
     public void addGameToHistory(Game game) {
         GamesHistory.add(game);
-        saveGamesHistoryToJson("src/Model/History.json");
+        saveGamesHistoryToJson("src/Model/History.json",game);
     }
 
 
-    public void saveGamesHistoryToJson(String filename) {
-        try (FileWriter fileWriter = new FileWriter(filename)) {
-            JSONArray gamesArray = new JSONArray();
+    public void saveGamesHistoryToJson(String filename, Game newGame) {
+        try {
+            // Load existing games from the JSON file
+            ArrayList<Game> existingGames = loadGamesHistoryFromJson(filename);
 
-            // Convert each Game object to JSON and add it to the array
-            for (Game game : GamesHistory) {
+            // Add the new game to the existing list
+            existingGames.add(newGame);
+
+            // Convert the list of games to a JSON array
+            JSONArray gamesArray = new JSONArray();
+            for (Game game : existingGames) {
                 JSONObject gameObj = new JSONObject();
                 gameObj.put("winnerName", game.getWINNERNAME());
                 gameObj.put("duration", game.getGAMETIME());
@@ -79,8 +84,10 @@ public class SystemData implements QuestionObserver {
             }
 
             // Write the JSON array to the file
-            fileWriter.write(gamesArray.toJSONString());
-            System.out.println("Games history saved to " + filename);
+            try (FileWriter fileWriter = new FileWriter(filename)) {
+                fileWriter.write(gamesArray.toJSONString());
+                System.out.println("Games history saved to " + filename);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

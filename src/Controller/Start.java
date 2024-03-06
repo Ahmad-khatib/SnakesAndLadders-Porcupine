@@ -42,21 +42,7 @@ public class Start extends Application {
         launch(args);
 
     }
-    private static void printLoadedQuestions(SystemData systemData) {
-        HashMap<Difficulty, ArrayList<Question>> questions = systemData.getQuestions();
-        for (ArrayList<Question> questionList : questions.values()) {
-            for (Question question : questionList) {
-                System.out.println("Text: " + question.getText());
-                System.out.println("Answer 1: " + question.getAnswer1());
-                System.out.println("Answer 2: " + question.getAnswer2());
-                System.out.println("Answer 3: " + question.getAnswer3());
-                System.out.println("Answer 4: " + question.getAnswer4());
-                System.out.println("Correct Answer: " + question.getCorrectAnswer());
-                System.out.println("Difficulty Level: " + question.getLevel());
-                System.out.println("-------------------------");
-            }
-        }
-    }
+
 
     @Override
     public void start(Stage primaryStage) {

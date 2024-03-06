@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
-import javafx.stage.Modality;
 
 import java.io.IOException;
 
@@ -85,27 +84,4 @@ public class MainPageController {
         }
     }
 
-    @FXML
-    private void showGameExplanation() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/GameInstructions.fxml"));
-            Parent root = loader.load();
-
-            // Create a new stage for the game explanation page
-            Stage stage = new Stage();
-            stage.setTitle("Game Explanation");
-            stage.setScene(new Scene(root));
-
-            // Set the modality to APPLICATION_MODAL
-            stage.initModality(Modality.APPLICATION_MODAL);
-
-            // Show the game explanation page
-            stage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void showManageQuestions () {
-    }
 }
