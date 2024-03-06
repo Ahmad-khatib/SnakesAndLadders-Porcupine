@@ -8,7 +8,7 @@ public class TileFactory {
         int count = 0;
 
         while (count < limit) {
-            int random = (int) (Math.random() * (gridSize * gridSize)) + 1;
+            int random = (int) (Math.random() * (gridSize * gridSize - 1)) + 2;
             if (!used[random - 1]) {
                 randomNumbers[count++] = random;
                 used[random - 1] = true;

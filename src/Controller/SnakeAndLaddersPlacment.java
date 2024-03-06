@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.GameBoard;
+import Model.Ladder;
 import Model.Snake;
 import Model.Tile;
 import javafx.scene.image.Image;
@@ -33,7 +34,7 @@ public class SnakeAndLaddersPlacment {
         // Iterate over the snake counts for each color individually
 
         for (int yellowCount = 0; yellowCount < snakeCounts[0]; yellowCount++) {
-            Snake yellowSnake = generateUniqueSnake(Snake.SnakeColor.YELLOW,  gridSize, selectedLevel);
+            Snake yellowSnake = generateUniqueSnake(Snake.SnakeColor.YELLOW, gridSize, selectedLevel);
             if (yellowSnake != null) {
                 updateSnakeUI(yellowSnake, selectedLevel, gameBoard.getSize(), gameBoard, gridPane);
                 usedHeadPositions.add(yellowSnake.getHeadPosition());
@@ -75,11 +76,11 @@ public class SnakeAndLaddersPlacment {
     private static Snake generateUniqueSnake(Snake.SnakeColor color, int gridSize, String selectedLevel) {
         Random random = new Random();
         while (true) {
-            int headPosition = random.nextInt(gridSize * gridSize);
+            int headPosition = random.nextInt(gridSize * gridSize - 1) + 1;
             int tailPosition = 0;
             int snakeId = generateUniqueSnakeId();
-            int upperBound ;
-            int lowerBound ;
+            int upperBound;
+            int lowerBound;
             int headRow = headPosition % gridSize == 0 ? headPosition / gridSize : (headPosition / gridSize) + 1; // calulates the head position row while the botton row is 1
 
 
@@ -122,9 +123,8 @@ public class SnakeAndLaddersPlacment {
                     break;
                 case RED:
                     tailPosition = headPosition;
-                    if (headPosition == gridSize || headPosition == 1 || usedHeadPositions.contains(headPosition) || usedTailPositions.contains(tailPosition) ||
-                    usedHeadPositions.contains(tailPosition) || usedTailPositions.contains(headPosition)) {
-                        System.out.print("Im the error\n");
+                    if (headPosition == gridSize * gridSize || tailPosition == 1 || headPosition == 1 || usedHeadPositions.contains(headPosition) || usedTailPositions.contains(tailPosition) ||
+                            usedHeadPositions.contains(tailPosition) || usedTailPositions.contains(headPosition)) {
                         break;
                     }
                     break;
@@ -138,17 +138,19 @@ public class SnakeAndLaddersPlacment {
             int snakeTailCol = tailPosition % gridSize == 0 ? gridSize - 1 : ((tailPosition % gridSize) - 1);
 
             Tile[][] tiles = gameBoard.getTiles();
-            if (Math.abs(snakeHeadCol - snakeTailCol) < 7 ) {
+            if (Math.abs(snakeHeadCol - snakeTailCol) < 6) {
                 if (!(tiles[snakeHeadRow][snakeHeadCol].isSpecialTile() || tiles[snakeTailRow][snakeTailCol].isSpecialTile())) {
 
                     Snake snake = new Snake(snakeId, color, headPosition, tailPosition);
                     if (color == Snake.SnakeColor.RED) {
                         if (!usedHeadPositions.contains(headPosition) &&
                                 !usedTailPositions.contains(tailPosition) &&
-                        !usedHeadPositions.contains(tailPosition) &&
-                        !usedTailPositions.contains(headPosition))
+                                !usedHeadPositions.contains(tailPosition) &&
+                                !usedTailPositions.contains(headPosition) &&
+                                headPosition != 1 && tailPosition != 1) {
                             gameBoard.getSnakes().add(snake);
-                        return snake;
+                            return snake;
+                        }
 
                     } else if (!usedHeadPositions.contains(headPosition) &&
                             !usedTailPositions.contains(tailPosition) &&
@@ -179,12 +181,8 @@ public class SnakeAndLaddersPlacment {
             }
         }
 
-        if (snake.getHeadPosition() >= gridSize * gridSize ||
-                snake.getTailPosition() >= gridSize * gridSize) {
-            return false;
-        }
-
-        return true;
+        return snake.getHeadPosition() < gridSize * gridSize &&
+                snake.getTailPosition() < gridSize * gridSize;
     }
 
     private static void updateSnakeUI(Snake snake, String selectedLevel, int gridSize, GameBoard gameBoard, GridPane dynamicGridPane) {
@@ -293,36 +291,6 @@ public class SnakeAndLaddersPlacment {
                         snakeImage.setTranslateY(-cellSize * 2.2);
 
                     }
-                /*    if (colDiffirence == 7) {   // Done
-                        snakeImage.setRotate(88);
-                        snakeImage.setTranslateX(-cellSize * 3.4);
-                        snakeImage.setTranslateY(-cellSize * 2.8);
-                    }
-                    if (colDiffirence == 8) {  // Done
-                        snakeImage.setRotate(89);
-                        snakeImage.setTranslateX(-cellSize * 4);
-                        snakeImage.setTranslateY(-cellSize * 3.4);
-                    }
-                    if (colDiffirence == 9) {  // Done
-                        snakeImage.setRotate(90);
-                        snakeImage.setTranslateX(-cellSize * 4.15);
-                        snakeImage.setTranslateY(-cellSize * 3.7);
-                    }
-                    if (colDiffirence == 10) {
-                        snakeImage.setRotate(85);
-                        snakeImage.setTranslateX(-cellSize * 4.3);
-                        snakeImage.setTranslateY(-cellSize * 3.7);
-                    }
-                    if (colDiffirence == 11) {
-                        snakeImage.setRotate(85);
-                        snakeImage.setTranslateX(-cellSize * 4.3);
-                        snakeImage.setTranslateY(-cellSize * 3.7);
-                    }
-                    if (colDiffirence == 12) {
-                        snakeImage.setRotate(85);
-                        snakeImage.setTranslateX(-cellSize * 4.3);
-                        snakeImage.setTranslateY(-cellSize * 3.7);
-                    }*/
                 } else {
 
                     if (colDiffirence == 1) { // Done
@@ -357,37 +325,6 @@ public class SnakeAndLaddersPlacment {
                         snakeImage.setTranslateX(cellSize * 3);
                         snakeImage.setTranslateY(-cellSize * 2.2);
                     }
-              /*     if (colDiffirence == 7) {
-                        snakeImage.setRotate(-72);
-                        snakeImage.setTranslateY((cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1) / 4));
-                    }
-                    if (colDiffirence == 8) {
-                        snakeImage.setRotate(-73);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1) / 2));
-                    }
-                    if (colDiffirence == 9) {
-                        snakeImage.setRotate(-74);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1) / 2));
-                    }
-                    if (colDiffirence == 10) {
-                        snakeImage.setRotate(-75);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1) / 2));
-                    }
-                    if (colDiffirence == 11) {
-                        snakeImage.setRotate(-76);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1) / 2));
-                    }
-                    if (colDiffirence == 12) {
-                        snakeImage.setRotate(-77);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1) / 2));
-                    }
-                    */
                 }
                 break;
             case GREEN:
@@ -434,36 +371,6 @@ public class SnakeAndLaddersPlacment {
                         snakeImage.setTranslateY(-cellSize * 1.5);
 
                     }
-                  /*  if (colDiffirence == 7) {
-                        snakeImage.setRotate(80);  //  done
-                        snakeImage.setTranslateX(-cellSize * 3.5);
-                        snakeImage.setTranslateY(-cellSize * 2.4);
-                    }
-                    if (colDiffirence == 8) {//done
-                        snakeImage.setRotate(80);
-                        snakeImage.setTranslateX(-cellSize * 3.9);
-                        snakeImage.setTranslateY(-cellSize * 2.55);
-                    }
-                    if (colDiffirence == 9) { //done
-                        snakeImage.setRotate(85);
-                        snakeImage.setTranslateX(-cellSize * 4.4);
-                        snakeImage.setTranslateY(-cellSize * 3.22);
-                    }
-                    if (colDiffirence == 10) {//done
-                        snakeImage.setRotate(82);
-                        snakeImage.setTranslateX(-cellSize * 4.79);
-                        snakeImage.setTranslateY(-cellSize * 3.88);
-                    }
-                    if (colDiffirence == 11) {//done
-                        snakeImage.setRotate(83);
-                        snakeImage.setTranslateX(-cellSize * 5.1);
-                        snakeImage.setTranslateY(-cellSize * 3.80);
-                    }
-                    if (colDiffirence == 12) {//done
-                        snakeImage.setRotate(85);
-                        snakeImage.setTranslateX(-cellSize * 6);
-                        snakeImage.setTranslateY(-cellSize * 4.2);
-                    }*/
                 } else {
 
                     if (colDiffirence == 1) {
@@ -498,37 +405,7 @@ public class SnakeAndLaddersPlacment {
                         snakeImage.setTranslateX(cellSize * 1.8);
                         snakeImage.setTranslateY(-cellSize * 1.2);
                     }
-                  /*  if (colDiffirence == 7) {
-                        snakeImage.setRotate(-80);  //  done
-                        snakeImage.setTranslateX(cellSize * 3.5);
-                        snakeImage.setTranslateY(cellSize * 2.4);
-                    }
-                    if (colDiffirence == 8) {
-                        snakeImage.setRotate(-73);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1) / 2));
-                    }
-                    if (colDiffirence == 9) {
-                        snakeImage.setRotate(-74);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1) / 2));
-                    }
-                    if (colDiffirence == 10) {
-                        snakeImage.setRotate(-75);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1) / 2));
-                    }
-                    if (colDiffirence == 11) {
-                        snakeImage.setRotate(-76);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1) / 2));
-                    }
-                    if (colDiffirence == 12) {
-                        snakeImage.setRotate(-77);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1) / 2));
-                    }
-              */  }
+                }
                 break;
             case BLUE:
                 colDiffirence = Math.abs(headCol - tailCol);
@@ -574,36 +451,6 @@ public class SnakeAndLaddersPlacment {
                         snakeImage.setTranslateY(-cellSize * 1.5);
 
                     }
-                  /*  if (colDiffirence == 7) {
-                        snakeImage.setRotate(60);
-                        snakeImage.setTranslateX(-cellSize * 0.4);
-                        snakeImage.setTranslateY(-cellSize * 0.8);
-                    }
-                    if (colDiffirence == 8) {
-                        snakeImage.setRotate(70);
-                        snakeImage.setTranslateX(-cellSize * 1);
-                        snakeImage.setTranslateY(-cellSize * 0.8);
-                    }
-                    if (colDiffirence == 9) {
-                        snakeImage.setRotate(90);
-                        snakeImage.setTranslateX(-cellSize * 4.15);
-                        snakeImage.setTranslateY(-cellSize * 3.7);
-                    }
-                    if (colDiffirence == 10) {
-                        snakeImage.setRotate(85);
-                        snakeImage.setTranslateX(-cellSize * 4.3);
-                        snakeImage.setTranslateY(-cellSize * 3.7);
-                    }
-                    if (colDiffirence == 11) {
-                        snakeImage.setRotate(85);
-                        snakeImage.setTranslateX(-cellSize * 4.3);
-                        snakeImage.setTranslateY(-cellSize * 3.7);
-                    }
-                    if (colDiffirence == 12) {
-                        snakeImage.setRotate(85);
-                        snakeImage.setTranslateX(-cellSize * 4.3);
-                        snakeImage.setTranslateY(-cellSize * 3.7);
-                    }*/
                 } else {
 
                     if (colDiffirence == 1) {
@@ -638,37 +485,7 @@ public class SnakeAndLaddersPlacment {
                         snakeImage.setTranslateX(cellSize * 1.8);
                         snakeImage.setTranslateY(-cellSize * 1.2);
                     }
-                 /*   if (colDiffirence == 7) {
-                        snakeImage.setRotate(-50);  // not done
-                        snakeImage.setTranslateY((cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1) / 4));
-                    }
-                    if (colDiffirence == 8) {
-                        snakeImage.setRotate(-73);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1) / 2));
-                    }
-                    if (colDiffirence == 9) {
-                        snakeImage.setRotate(-74);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1) / 2));
-                    }
-                    if (colDiffirence == 10) {
-                        snakeImage.setRotate(-75);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1) / 2));
-                    }
-                    if (colDiffirence == 11) {
-                        snakeImage.setRotate(-76);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1) / 2));
-                    }
-                    if (colDiffirence == 12) {
-                        snakeImage.setRotate(-77);
-                        snakeImage.setTranslateY(-(cellSize / 2));
-                        snakeImage.setTranslateX((cellSize * (colDiffirence - 1) / 2));
-                    }
-                */}
+                }
                 break;
             case RED:
                 // Add adjustments for red snake if needed
@@ -688,24 +505,22 @@ public class SnakeAndLaddersPlacment {
 
         int[] ladderCounts = getLadderCounts(selectedLevel);
 
-        // Initialize sets to track used ladder positions
-
-
         // Iterate over ladder counts for each level
         for (int i = 0; i < ladderCounts.length; i++) {
             // Generate ladders for each ladder count
-            for (int j = 0; j <ladderCounts[i]; j++) {
+            for (int j = 0; j < ladderCounts[i]; j++) {
 
                 int ladderTop = generateUniqueLadderTopPosition(gridSize, i);
                 int ladderBottom = generateUniqueLadderBottomPosition(ladderTop, gridSize, i);
                 updateLadderUI(ladderTop, ladderBottom);
                 usedTopPositions.add(ladderTop);
                 usedBottomPositions.add(ladderBottom);
-
+                Ladder ladder = new Ladder(ladderTop, ladderBottom);
+                gameBoard.getLadders().add(ladder);
             }
         }
         System.out.print(" top = " + usedTopPositions);
-        System.out.print("Bottom = "  + usedBottomPositions);
+        System.out.print("Bottom = " + usedBottomPositions);
     }
 
     private static int[] getLadderCounts(String selectedLevel) {
@@ -729,7 +544,7 @@ public class SnakeAndLaddersPlacment {
         int ladderTopRow;
         int ladderTopCol;
         do {
-            ladderTop = random.nextInt(gridSize * gridSize);
+            ladderTop = random.nextInt(gridSize * gridSize - 1) + 1;
             ladderTopRow = ladderTop % gridSize == 0 ? (gridSize - (ladderTop / gridSize)) : gridSize - ((ladderTop / gridSize) + 1);
             ladderTopCol = ladderTop % gridSize == 0 ? gridSize - 1 : ((ladderTop % gridSize) - 1);
         } while (usedTopPositions.contains(ladderTop) || usedBottomPositions.contains(ladderTop) || isInvalidLadderTopPosition(ladderTop, ladderIndex, gridSize) || usedHeadPositions.contains(ladderTop)
@@ -793,12 +608,10 @@ public class SnakeAndLaddersPlacment {
         int ladderBottom;
         int lower_bound;
         int upper_bound;
-        int topCol =ladderTop % gridSize == 0 ? gridSize - 1 : ((ladderTop % gridSize) - 1);
-        int i = 0;
+        int topCol = ladderTop % gridSize == 0 ? gridSize - 1 : ((ladderTop % gridSize) - 1);
         int bottomCol;
         int ladderBottomRow;
         do {
-            i++;
             int ladderHeight = calculateLadderHeight(ladderIndex);
             int ladderTopRow = ladderTop % gridSize == 0 ? ladderTop / gridSize : (ladderTop / gridSize) + 1;
             if (ladderTopRow - ladderHeight == 0) {
@@ -811,8 +624,8 @@ public class SnakeAndLaddersPlacment {
             ladderBottomRow = ladderBottom % gridSize == 0 ? (gridSize - (ladderBottom / gridSize)) : gridSize - ((ladderBottom / gridSize) + 1);
 
         } while (ladderBottom <= 1 || usedBottomPositions.contains(ladderBottom) || usedTopPositions.contains(ladderBottom) || isInvalidLadderBottomPosition(ladderBottom, ladderIndex, gridSize)
-                || usedHeadPositions.contains(ladderBottom) || usedTailPositions.contains(ladderBottom)||
-                Math.abs(topCol-bottomCol) > 5   || tiles[ladderBottomRow][bottomCol].isSpecialTile());
+                || usedHeadPositions.contains(ladderBottom) || usedTailPositions.contains(ladderBottom) ||
+                Math.abs(topCol - bottomCol) > 5 || tiles[ladderBottomRow][bottomCol].isSpecialTile());
         return ladderBottom;
     }
 
@@ -881,10 +694,7 @@ public class SnakeAndLaddersPlacment {
         int topCol = ladderTop % gridSize == 0 ? gridSize - 1 : ((ladderTop % gridSize) - 1);
         int bottomRow = ladderBottom % gridSize == 0 ? (gridSize - (ladderBottom / gridSize)) : gridSize - ((ladderBottom / gridSize) + 1);
         int bottomCol = ladderBottom % gridSize == 0 ? gridSize - 1 : ((ladderBottom % gridSize) - 1);
-        //int topRow = gridSize - 1 - ladderTop / gridSize;
-        //int topCol = ladderTop % gridSize;
-        //int bottomRow = gridSize - 1 - ladderBottom / gridSize;
-        //int bottomCol = ladderBottom % gridSize;
+
 
         // Calculate ladder height based on the difference between top and bottom positions
         double distance = calculateDistance(topRow, topCol, bottomRow, bottomCol);
@@ -899,7 +709,7 @@ public class SnakeAndLaddersPlacment {
         ImageView ladderImageView = new ImageView(ladderImage);
 
         // Set width and height of ladder image
-        ladderImageView.setFitWidth(cellHeight);
+        ladderImageView.setFitWidth(cellHeight / 3);
         ladderImageView.setFitHeight(ladderHeight);
         ImageView adjustedLadder = (adjustLadder(ladderImageView, cellHeight, topCol, bottomCol, topRow, bottomRow));
 
@@ -915,8 +725,8 @@ public class SnakeAndLaddersPlacment {
     }
 
     static ImageView adjustLadder(ImageView ladderImage, double cellSize, int topCol, int bottomCol, int topRow, int bottomRow) {
-        int colDifferenceTopBottom = topCol - bottomCol;
-        int colDifferenceBottomTop = bottomCol - topCol;
+        int colDifferenceTopBottom = Math.abs(topCol - bottomCol);
+        int colDifferenceBottomTop = Math.abs(bottomCol - topCol);
         int rowDiffrence = Math.abs(topRow - bottomRow);
         switch (rowDiffrence) {
             case 1:                                                  // 1 step ladder
@@ -940,7 +750,7 @@ public class SnakeAndLaddersPlacment {
                         case 3:
                             ladderImage.setRotate(70); // Done
                             ladderImage.setTranslateX(-cellSize * 1.4);
-                            ladderImage.setTranslateY(-cellSize / 1);
+                            ladderImage.setTranslateY(-cellSize);
                             break;
 
                         case 4:
@@ -983,7 +793,7 @@ public class SnakeAndLaddersPlacment {
                         case 3:
                             ladderImage.setRotate(-70); // Done
                             ladderImage.setTranslateX(cellSize * 1.4);
-                            ladderImage.setTranslateY(-cellSize / 1);
+                            ladderImage.setTranslateY(-cellSize);
                             break;
 
                         case 4:
@@ -1015,7 +825,8 @@ public class SnakeAndLaddersPlacment {
                     switch (colDifferenceTopBottom) {
                         case 0:
                             ladderImage.setRotate(0);   // Done
-                            ladderImage.setTranslateY(cellSize/2);
+                            ladderImage.setTranslateY(cellSize / 2);
+                            break;
                         case 1:
                             ladderImage.setRotate(45);  // Done
                             ladderImage.setTranslateX(-cellSize / 2.1);
@@ -1103,7 +914,8 @@ public class SnakeAndLaddersPlacment {
                     switch (colDifferenceTopBottom) {
                         case 0:
                             ladderImage.setRotate(0);     // Done
-                            ladderImage.setTranslateY(cellSize/2);
+                            ladderImage.setTranslateY(cellSize / 2);
+                            break;
                         case 1:
                             ladderImage.setRotate(38);    // Done
                             ladderImage.setTranslateX(-cellSize / 1.8);
@@ -1147,13 +959,13 @@ public class SnakeAndLaddersPlacment {
                 } else
                     switch (colDifferenceBottomTop) {
                         case 1:
-                            ladderImage.setRotate(38);    // Done
-                            ladderImage.setTranslateX(cellSize / 1.8);
+                            ladderImage.setRotate(-38);    // Done
+                            ladderImage.setTranslateX(-(cellSize / 1.8));
                             break;
 
                         case 2:
-                            ladderImage.setRotate(40);   // Done
-                            ladderImage.setTranslateX(cellSize / 1.5);
+                            ladderImage.setRotate(-40);   // Done
+                            ladderImage.setTranslateX((cellSize / 1.5));
                             break;
 
                         case 3:
@@ -1192,6 +1004,7 @@ public class SnakeAndLaddersPlacment {
                         case 0:
                             ladderImage.setRotate(0);   // Done
                             ladderImage.setTranslateY(-cellSize / -2);
+                            break;
                         case 1:
                             ladderImage.setRotate(26);  // Done
                             ladderImage.setTranslateX(-cellSize / 2);
@@ -1280,6 +1093,7 @@ public class SnakeAndLaddersPlacment {
                         case 0:
                             ladderImage.setRotate(0);      // Done
                             ladderImage.setTranslateY(cellSize / 2);
+                            break;
                         case 1:
                             ladderImage.setRotate(20);  // Done
                             ladderImage.setTranslateX(-cellSize / 2);
@@ -1368,6 +1182,7 @@ public class SnakeAndLaddersPlacment {
                         case 0:
                             ladderImage.setRotate(0);     // Done
                             ladderImage.setTranslateY(cellSize / 2);
+                            break;
                         case 1:
                             ladderImage.setRotate(18);   // Done
                             ladderImage.setTranslateX(-cellSize / 1.5);
@@ -1432,7 +1247,6 @@ public class SnakeAndLaddersPlacment {
                             break;
 
 
-
                         case 5:
                             ladderImage.setRotate(-40);       // not Done
                             ladderImage.setTranslateX(cellSize * 2.5);
@@ -1456,6 +1270,7 @@ public class SnakeAndLaddersPlacment {
                         case 0:
                             ladderImage.setRotate(0);
                             ladderImage.setTranslateY(cellSize / 2);
+                            break;
                         case 1:
                             ladderImage.setRotate(25);
                             ladderImage.setTranslateX(-cellSize / 1.5);
@@ -1538,6 +1353,6 @@ public class SnakeAndLaddersPlacment {
                 return ladderImage;
         }
         return ladderImage;
-}
+    }
 }
 

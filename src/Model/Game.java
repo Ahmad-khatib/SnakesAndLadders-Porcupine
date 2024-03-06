@@ -96,4 +96,13 @@ public class Game {
     public void setQuestions(HashMap<Difficulty, ArrayList<Question>> questions) {
         Questions = questions;
 }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "winnerName='" + WINNERNAME + '\'' +
+                ", duration='" +GAMETIME  + '\'' +
+                ", level='" + GAMELEVEL + '\'' +
+                '}';
+    }
 }

@@ -14,6 +14,15 @@ public class GameBoard extends GridPane {
     private int size;
     private double preferredTileSize;
     static int []supriseJumpIndices;
+    static String Level;
+
+    public static String getLevel() {
+        return Level;
+    }
+
+    public static void setLevel(String level) {
+        Level = level;
+    }
 
     public GameBoard(String level) {
         int supriseJump = 0;
@@ -21,16 +30,19 @@ public class GameBoard extends GridPane {
             case "Easy":
                 size = 7; // Easy level, number of rows/cols in the grid
                 difficultyLevel = 1;
+                Level = "Easy";
                 break;
             case "Medium":
                 size = 10; // Medium level, number of rows/cols in the grid
                 difficultyLevel = 2;
                 supriseJump = 1;
+                Level = "Medium";
                 break;
             case "Hard":
                 size = 13; // Hard level, number of rows/cols in the grid
                 difficultyLevel = 3;
                 supriseJump = 2 ;
+                Level = "Hard";
                 break;
             default:
                 throw new IllegalArgumentException("Invalid difficulty level");

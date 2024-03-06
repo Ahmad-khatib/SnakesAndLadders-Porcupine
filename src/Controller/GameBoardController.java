@@ -1,10 +1,7 @@
 package Controller;
 
 import Model.*;
-import javafx.animation.KeyFrame;
-import javafx.animation.ParallelTransition;
-import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,10 +41,15 @@ import static Model.Snake.SnakeColor.RED;
 
 public class GameBoardController extends GridPane {
     private static final double ANIMATION_DURATION = 1000;
-    private static int snakeIdCounter = 0;
+    static Set<Integer> usedHeadPositions = new HashSet<>();
+    static Set<Integer> usedTailPositions = new HashSet<>();
+    static Set<Integer> usedTopPositions = new HashSet<>();
+    static Set<Integer> usedBottomPositions = new HashSet<>();
+    private static final int snakeIdCounter = 0;
     private static boolean isGameRunning = false;
-    private static volatile boolean waitFlag = false;
+    private static final boolean waitFlag = false;
     private final Random random = new Random();
+    boolean playedMyTurn;
     @FXML
     private ImageView supriseJump;
     @FXML
@@ -61,28 +63,51 @@ public class GameBoardController extends GridPane {
     @FXML
     private Button startNow;
     @FXML
-    private Button backButton;
-    @FXML
     private Label currentPlayer;
     @FXML
     private ImageView currentPlayerIcon;
-
     private CountDownLatch rollLatch;
     private double tileSize;
     private GameBoard gameBoard;
     private int gridSize;
     private Game game = new Game();
     private ArrayList<Player> players = new ArrayList<>();
-    private int diceResult = 0;
-    private boolean rollButtonClicked = false;
+    private final int diceResult = 0;
+    private final boolean rollButtonClicked = false;
     private int currentPlayerIndex = 0;
-    static Set<Integer> usedHeadPositions = new HashSet<>();
-    static Set<Integer> usedTailPositions = new HashSet<>();
-    static Set<Integer> usedTopPositions = new HashSet<>();
-    static Set<Integer> usedBottomPositions = new HashSet<>();
 
-    boolean playedMyTurn;
+    private static void movePlayerWithAnimation(Player player, int newColumnIndex, int newRowIndex, double move, Runnable callback) {
+        TranslateTransition horizontalTransition = new TranslateTransition(Duration.millis(ANIMATION_DURATION), player.getIcon());
+        horizontalTransition.setToX((newColumnIndex - player.getColIndex()) * move);
 
+        TranslateTransition verticalTransition = new TranslateTransition(Duration.millis(ANIMATION_DURATION), player.getIcon());
+        verticalTransition.setToY((newRowIndex - player.getRowIndex()) * move);
+
+        ParallelTransition parallelTransition = new ParallelTransition(horizontalTransition, verticalTransition);
+        parallelTransition.play();
+        // Set up a callback to be executed after the animation is complete
+        parallelTransition.setOnFinished(event -> {
+            callback.run();
+        });
+
+    }
+
+    public static void showGameOverDialog(String winnerName) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Game Over");
+        alert.setHeaderText("The game has ended.");
+        alert.setContentText("Winner: " + winnerName + "\nThank you for playing!");
+
+        // Add a button to close the application
+        ButtonType exitButtonType = new ButtonType("Exit");
+        alert.getButtonTypes().setAll(exitButtonType);
+
+        // Handle the exit button action
+        alert.setOnCloseRequest(event -> System.exit(0));
+
+        // Show the alert and wait for the user's response
+        alert.show();
+    }
 
     public void initialize(String selectedLevel, ArrayList<Player> playersN) throws IOException {
         gameBoard = new GameBoard(selectedLevel);
@@ -93,14 +118,13 @@ public class GameBoardController extends GridPane {
         game = new Game(gameBoard.getGameId(), gameBoard, players, SystemData.getInstance().getQuestions());
         rollButton.setVisible(false);
         SnakeAndLaddersPlacment.placeSnakes(selectedLevel, gameBoard, dynamicGridPane);
-         SnakeAndLaddersPlacment.placeLadders(selectedLevel, gameBoard, dynamicGridPane);
+        SnakeAndLaddersPlacment.placeLadders(selectedLevel, gameBoard, dynamicGridPane);
         usedHeadPositions = SnakeAndLaddersPlacment.usedHeadPositions;
         usedTailPositions = SnakeAndLaddersPlacment.usedTailPositions;
         usedTopPositions = SnakeAndLaddersPlacment.usedTopPositions;
         usedBottomPositions = SnakeAndLaddersPlacment.usedBottomPositions;
 
         currentPlayer.setText("Welcome to Game Snakes and Ladders\n by Porcupine");
-
 
 
         for (int i = 0; i < players.size(); i++) {
@@ -173,7 +197,6 @@ public class GameBoardController extends GridPane {
         }
     }
 
-
     private void initializeTimer() {
         AtomicInteger timerSeconds = new AtomicInteger();
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
@@ -191,7 +214,7 @@ public class GameBoardController extends GridPane {
         startNow.setVisible(false);
         isGameRunning = true;
         currentPlayerIndex = 0;
-        currentPlayer.setText("Current Player: "+players.get(currentPlayerIndex).getPlayerName());
+        currentPlayer.setText("Current Player: " + players.get(currentPlayerIndex).getPlayerName());
         currentPlayerIcon.setImage(players.get(currentPlayerIndex).getIcon().getImage());
 
 
@@ -205,13 +228,16 @@ public class GameBoardController extends GridPane {
             int result = roll();
             switch (result) {
                 case 7:
-                    loadQuestionPopUp(Difficulty.EASY,players.get(currentPlayerIndex), () -> {});
+                    loadQuestionPopUp(Difficulty.EASY, players.get(currentPlayerIndex), () -> {
+                    });
                     break;
                 case 8:
-                    loadQuestionPopUp(Difficulty.MEDIUM,players.get(currentPlayerIndex), () -> {});
+                    loadQuestionPopUp(Difficulty.MEDIUM, players.get(currentPlayerIndex), () -> {
+                    });
                     break;
                 case 9:
-                    loadQuestionPopUp(Difficulty.HARD,players.get(currentPlayerIndex), () -> {});
+                    loadQuestionPopUp(Difficulty.HARD, players.get(currentPlayerIndex), () -> {
+                    });
                     break;
                 default:
                     movePlayer(players.get(currentPlayerIndex), result);
@@ -220,72 +246,35 @@ public class GameBoardController extends GridPane {
 
             playedMyTurn = false;
 
+            // Update to the next player's turn
+            currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
 
-            // Check for game completion
-            if (game.isGameFinished()) {
-                Game gameToSave = new Game(players.get(currentPlayerIndex).getPlayerName(),timerLabel.getText(), game.getGAMELEVEL());
-                SystemData.getInstance().addGameToHistory(gameToSave);
-                showGameOverDialog(players.get(currentPlayerIndex).getPlayerName());
-
-                currentPlayer.setText("The game is over and the winner is : "+players.get(currentPlayerIndex).getPlayerName());
-
-                currentPlayerIcon.setImage(players.get(currentPlayerIndex).getIcon().getImage());
-
-            } else {
-                // Update to the next player's turn
-                currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
-
-            }
         }
     }
-
-    /*private void startGame() {
-        // Additional setup for starting the game if needed
-        isGameRunning = true;
-        currentPlayerIndex = 0;
-        currentPlayer.setText("Current Player: "+players.get(currentPlayerIndex).getPlayerName());
-        currentPlayerIcon.setImage(players.get(currentPlayerIndex).getIcon().getImage());
-        // Additional setup for the first player's turn
-        // (if any specific actions need to be taken at the beginning)
-    }*/
 
     private void movePlayer(Player player, int moves) {
         player.movePlayerTo(player.getPlayerPosition() + moves, gameBoard.getSize());
         int newRow = player.getPlayerPosition() % gameBoard.getSize() == 0 ? (gameBoard.getSize() - (player.getPlayerPosition() / gameBoard.getSize())) : gameBoard.getSize() - ((player.getPlayerPosition() / gameBoard.getSize()) + 1);
         int newCol = player.getPlayerPosition() % gameBoard.getSize() == 0 ? gameBoard.getSize() - 1 : ((player.getPlayerPosition() % gameBoard.getSize()) - 1);
 
-        movePlayerWithAnimation(player, newCol, newRow, gameBoard.getCellHeight(), () -> {
-            if(playedMyTurn == false)
-                handleAfterMove(player);
-        });
-        // Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5)));
-        // timeline.play();
-    }
+        // Introduce a 3-second delay using PauseTransition
+        PauseTransition pause = new PauseTransition(Duration.seconds(3));
+        pause.setOnFinished(event -> {
+            movePlayerWithAnimation(player, newCol, newRow, gameBoard.getCellHeight(), () -> {
+                if (!playedMyTurn) {
+                    handleAfterMove(player);
+                }
+            });
 
-
-    private static void movePlayerWithAnimation(Player player, int newColumnIndex, int newRowIndex, double move, Runnable callback) {
-        TranslateTransition horizontalTransition = new TranslateTransition(Duration.millis(ANIMATION_DURATION), player.getIcon());
-        horizontalTransition.setToX((newColumnIndex - player.getColIndex()) * move);
-
-        TranslateTransition verticalTransition = new TranslateTransition(Duration.millis(ANIMATION_DURATION), player.getIcon());
-        verticalTransition.setToY((newRowIndex - player.getRowIndex()) * move);
-
-        ParallelTransition parallelTransition = new ParallelTransition(horizontalTransition, verticalTransition);
-        parallelTransition.play();
-        // Set up a callback to be executed after the animation is complete
-        parallelTransition.setOnFinished(event -> {
-            callback.run();
         });
 
+        pause.play();
     }
 
     private void handleAfterMove(Player player) {
-        playedMyTurn =true;
+        playedMyTurn = true;
         int newRow = player.getPlayerPosition() % gameBoard.getSize() == 0 ? (gameBoard.getSize() - (player.getPlayerPosition() / gameBoard.getSize())) : gameBoard.getSize() - ((player.getPlayerPosition() / gameBoard.getSize()) + 1);
         int newCol = player.getPlayerPosition() % gameBoard.getSize() == 0 ? gameBoard.getSize() - 1 : ((player.getPlayerPosition() % gameBoard.getSize()) - 1);
-        if (player.getPlayerPosition() == gridSize * gridSize) {
-            game.setGameFinished(true);
-        }
 
         if (usedHeadPositions.contains(player.getPlayerPosition())) {
 
@@ -296,10 +285,18 @@ public class GameBoardController extends GridPane {
                     movePlayer(player, stepsBack);
                 }
                 if (gameBoard.getSnakes().get(i).getHeadPosition() == player.getPlayerPosition() && gameBoard.getSnakes().get(i).getColor().equals(RED)) {
-                    int stepsBack =-( player.getPlayerPosition() - 1);
+                    int stepsBack = -(player.getPlayerPosition() - 1);
                     movePlayer(player, stepsBack);
                 }
-                finishedTurn(player);
+            }
+        }
+        if (usedBottomPositions.contains(player.getPlayerPosition())) {
+            for (int i = 0; i < gameBoard.getLadders().size(); i++) {
+                if (gameBoard.getLadders().get(i).getBottomPosition() == player.getPlayerPosition()) {
+                    int stepsForward = gameBoard.getLadders().get(i).getTopPosition() - gameBoard.getLadders().get(i).getBottomPosition();
+                    movePlayer(player, stepsForward);
+                }
+
             }
         }
         Tile tile = gameBoard.getTiles()[newRow][newCol];
@@ -309,8 +306,7 @@ public class GameBoardController extends GridPane {
                 finishedTurn(player);
                 break;
             case QUESTION:
-
-                handleQuestionTile(player,tile.getDifficulty()); //example
+                handleQuestionTile(player, tile.getDifficulty()); //example
                 break;
             case SURPRISE_JUMP:
                 handleSurpriseJumpTile(player);
@@ -318,36 +314,28 @@ public class GameBoardController extends GridPane {
             default:
                 break;
         }
-        if (player.getPlayerPosition() == gridSize * gridSize) {
-            game.setGameFinished(true);
-        }
 
     }
-
-
-    private void movePlayerBack(Player player, int steps) {
-        int newPosition = player.getPlayerPosition() - steps;
-        if (newPosition < 1) {
-            newPosition = 1; // Ensure the player doesn't go beyond the start position
-        }
-        movePlayer(player, newPosition - player.getPlayerPosition());
-    }
-
 
     private void finishedTurn(Player player) {
-        currentPlayer.setText("Current Player: " + players.get((currentPlayerIndex) % players.size()).getPlayerName());
-        currentPlayerIcon.setImage(players.get((currentPlayerIndex) % players.size()).getIcon().getImage());
+        if (player.getPlayerPosition() == gridSize * gridSize) {
+            game.setGameFinished(true);
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
+                Game gameToSave = new Game(players.get(currentPlayerIndex).getPlayerName(), timerLabel.getText(), GameBoard.getLevel());
+                SystemData.getInstance().addGameToHistory(gameToSave);
+                showGameOverDialog(player.getPlayerName());
+                currentPlayer.setText("The game is over and the winner is : " + players.get(currentPlayerIndex).getPlayerName());
+                currentPlayerIcon.setImage(players.get(currentPlayerIndex).getIcon().getImage());
+            }));
 
-        // Create a Timeline with a KeyFrame to wait for three seconds
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), event -> {
-            // Code to be executed after three seconds
-            // (If there's anything specific you want to do, you can add it here)
-        }));
-
-        // Play the timeline
-        timeline.play();
+            // Play the timeline
+            timeline.play();
+        } else {
+            currentPlayer.setText("Current Player: " + players.get((currentPlayerIndex) % players.size()).getPlayerName());
+            currentPlayerIcon.setImage(players.get((currentPlayerIndex) % players.size()).getIcon().getImage());
+            rollButton.setDisable(false);
+        }
     }
-
 
     public void handleQuestionTile(Player player, Difficulty d) {
         loadQuestionPopUp(d, player, () -> {
@@ -355,27 +343,15 @@ public class GameBoardController extends GridPane {
         });
     }
 
-
     private void handleSurpriseJumpTile(Player player) {
-        // Add logic to handle actions when a player lands on a surprise jump tile
-        // For example, move the player to a different position on the board
+        boolean moveForward = random.nextBoolean();
+        int steps = moveForward ? 10 : -10;
+
+        movePlayer(player, steps);
+
+        String direction = moveForward ? "forward" : "backward";
+        System.out.println("Player moved " + direction + " by 10 steps.");
     }
-
-   /* @FXML
-    private void handlebutton(){
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("src/View/EditQuestion.fxml"));
-            Parent root = loader.load();
-
-            Stage stage = (Stage) backButton.getScene().getWindow();
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
 
     @FXML
     private int loadQuestionPopUp(Difficulty difficulty, Player player, Runnable callback) {
@@ -396,7 +372,8 @@ public class GameBoardController extends GridPane {
                 Stage stage = new Stage();
                 stage.setTitle("Question");
                 stage.setScene(new Scene(root));
-
+                // Disable window close button (X)
+                stage.setOnCloseRequest(event -> event.consume());
                 // Set the modality to APPLICATION_MODAL
                 stage.initModality(Modality.APPLICATION_MODAL);
 
@@ -422,24 +399,24 @@ public class GameBoardController extends GridPane {
         return stepsToMove[0];
     }
 
-
     private int getRandomNumber(int[] numbers) {
 
         return numbers[random.nextInt(numbers.length)];
     }
+
     @FXML
     public int roll() {
         int diceValue = 0;
         rollButton.setDisable(true);
         switch (gameBoard.getDifficultyLevel()) {
             case 1:
-                diceValue= getRandomNumber(new int[]{0,1, 2, 3, 4, 7, 8, 9});
+                diceValue = getRandomNumber(new int[]{0, 1, 2, 3, 4, 7, 8, 9});
                 break;
             case 2:
-                diceValue= getRandomNumber(new int[]{0,1, 2, 3, 4, 5, 6, 7, 7, 8, 8, 9, 9});
+                diceValue = getRandomNumber(new int[]{0, 1, 2, 3, 4, 5, 6, 7, 7, 8, 8, 9, 9});
                 break;
             case 3:
-                diceValue= getRandomNumber(new int[]{0,1, 2, 3, 4, 5, 6, 7, 7, 8, 8, 9, 9, 9, 9});
+                diceValue = getRandomNumber(new int[]{0, 1, 2, 3, 4, 5, 6, 7, 7, 8, 8, 9, 9, 9, 9});
                 break;
         }
 
@@ -452,7 +429,6 @@ public class GameBoardController extends GridPane {
             Image image1 = new Image(file.toURI().toString());
 
 
-
             int finalI = i;
             timeline.getKeyFrames().add(
                     new KeyFrame(Duration.millis(100 * finalI), event -> {
@@ -463,28 +439,10 @@ public class GameBoardController extends GridPane {
         }
 
         timeline.setOnFinished(event -> {
-            // Update UI after animation is complete
-            rollButton.setDisable(false);
+
         });
 
         timeline.play();
         return diceValue;
     }
-
-    public static void showGameOverDialog(String winnerName) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Game Over");
-        alert.setHeaderText("The game has ended.");
-        alert.setContentText("Winner: " + winnerName + "\nThank you for playing!");
-
-        // Add a button to close the application
-        ButtonType exitButtonType = new ButtonType("Exit");
-        alert.getButtonTypes().setAll(exitButtonType);
-
-        // Handle the exit button action
-        alert.setOnCloseRequest(event -> System.exit(0));
-
-        // Show the alert and wait for the user's response
-        alert.showAndWait();
-}
 }

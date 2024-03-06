@@ -12,11 +12,10 @@ import java.util.*;
 public class SystemData implements QuestionObserver {
     private static SystemData instance;
     private final HashMap<Difficulty, ArrayList<Question>> questions;
-    private static ArrayList<Game> GamesHistory;
+    private static ArrayList<Game> GamesHistory = new ArrayList<>();
 
     private SystemData() {
         questions = new HashMap<>();
-        GamesHistory = new ArrayList<>();
     }
 
     public static SystemData getInstance() {
@@ -62,7 +61,7 @@ public class SystemData implements QuestionObserver {
 
     public void addGameToHistory(Game game) {
         GamesHistory.add(game);
-        saveGamesHistoryToJson("src/Model/GamesHistory.csv");
+        saveGamesHistoryToJson("src/Model/History.json");
     }
 
 
@@ -256,6 +255,7 @@ public class SystemData implements QuestionObserver {
         Question q = array.get(new Random().nextInt(array.size()));
         return q;
     }
+
 
     public static ArrayList<Game> loadGamesHistoryFromJson(String filename) {
         ArrayList<Game> gamesHistory = new ArrayList<>();

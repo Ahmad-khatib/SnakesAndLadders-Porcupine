@@ -13,6 +13,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -40,16 +43,30 @@ public class GamesHistoryController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        playerNameColumn.setCellValueFactory(new PropertyValueFactory<>("playerName"));
-        durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
-        levelColumn.setCellValueFactory(new PropertyValueFactory<>("level"));
+        playerNameColumn.setCellValueFactory(new PropertyValueFactory<>("WINNERNAME"));
+        durationColumn.setCellValueFactory(new PropertyValueFactory<>("GAMETIME"));
+        levelColumn.setCellValueFactory(new PropertyValueFactory<>("GAMELEVEL"));
+
 
         // Load games history from CSV file
-        ArrayList<Game> gamesHistory = SystemData.loadGamesHistoryFromJson("src/Model/History.json");
+        ArrayList<Game> gamesHistory = null;
+            gamesHistory = SystemData.loadGamesHistoryFromJson("src/Model/History.json");
 
-        // Add loaded games to the table
-        historyTable.getItems().addAll(gamesHistory);
+        // Convert each Game object to a formatted string and add to the table
+        ObservableList<Game> observableGames = FXCollections.observableArrayList(gamesHistory);
+        historyTable.setItems(observableGames);
     }
+
+
+    private String gameToString(Game game) {
+        // Format the Game object as a string
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Player: ").append(game.getWINNERNAME()).append("\n");
+        stringBuilder.append("Duration: ").append(game.getGAMETIME()).append("\n");
+        stringBuilder.append("Level: ").append(game.getGAMELEVEL()).append("\n\n");
+        return stringBuilder.toString();
+    }
+
     @FXML
     private void goBack() {
         try {
