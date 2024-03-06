@@ -2,16 +2,22 @@ package Model;
 
 import javafx.scene.image.ImageView;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Player {
     private int playerId;
     private String playerName;
     private ImageView Icon;
-    private int playerPosition=1;
-    private int rowIndex =0;
-    private int colIndex =0;
+    private int playerPosition = 1;
+    private int rowIndex = 0;
+    private int colIndex = 0;
+
+    public Player(int playerId, String playerName, ImageView icon, int playerPosition) {
+        this.playerId = playerId;
+        this.playerName = playerName;
+        this.Icon = icon;
+        this.playerPosition = playerPosition;
+    }
 
     public int getRowIndex() {
         return rowIndex;
@@ -27,14 +33,6 @@ public class Player {
 
     public void setColIndex(int colIndex) {
         this.colIndex = colIndex;
-    }
-
-
-    public Player(int playerId, String playerName, ImageView icon, int playerPosition) {
-        this.playerId = playerId;
-        this.playerName = playerName;
-        this.Icon = icon;
-        this.playerPosition = playerPosition;
     }
 
     public ImageView getIcon() {
@@ -61,7 +59,6 @@ public class Player {
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
-
 
 
     public int getPlayerPosition() {
@@ -100,17 +97,18 @@ public class Player {
 
     // Move player to a new position
     public void movePlayerTo(int newPosition, int gridSize) {
-        if(newPosition<gridSize*gridSize){
-        if (newPosition >= 0) {
+        if (newPosition >= 1 && newPosition <= gridSize * gridSize) {
             this.playerPosition = newPosition;
-        }}
-        else if (newPosition>=gridSize*gridSize) {
-            this.playerPosition=gridSize*gridSize;
-
+        } else if (newPosition < 1) {
+            this.playerPosition = 1;
+        } else if (newPosition >= gridSize * gridSize) {
+            this.playerPosition = gridSize * gridSize;
         } else {
             throw new IllegalArgumentException("Invalid position");
         }
     }
+
+
 
     // Check if player has reached the end of the game
     public boolean isEndOfGame(int boardSize, Difficulty difficulty) {
@@ -142,5 +140,5 @@ public class Player {
         } else {
             throw new IllegalArgumentException("Invalid number of steps");
         }
-}
+    }
 }

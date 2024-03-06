@@ -138,7 +138,7 @@ public class SnakeAndLaddersPlacment {
             int snakeTailCol = tailPosition % gridSize == 0 ? gridSize - 1 : ((tailPosition % gridSize) - 1);
 
             Tile[][] tiles = gameBoard.getTiles();
-            if (snakeHeadCol - snakeTailCol < 7 || snakeTailCol - snakeHeadCol < 7) {
+            if (Math.abs(snakeHeadCol - snakeTailCol) < 7 ) {
                 if (!(tiles[snakeHeadRow][snakeHeadCol].isSpecialTile() || tiles[snakeTailRow][snakeTailCol].isSpecialTile())) {
 
                     Snake snake = new Snake(snakeId, color, headPosition, tailPosition);
@@ -793,7 +793,7 @@ public class SnakeAndLaddersPlacment {
         int ladderBottom;
         int lower_bound;
         int upper_bound;
-        int topCol;
+        int topCol =ladderTop % gridSize == 0 ? gridSize - 1 : ((ladderTop % gridSize) - 1);
         int i = 0;
         int bottomCol;
         int ladderBottomRow;
@@ -811,8 +811,8 @@ public class SnakeAndLaddersPlacment {
             ladderBottomRow = ladderBottom % gridSize == 0 ? (gridSize - (ladderBottom / gridSize)) : gridSize - ((ladderBottom / gridSize) + 1);
 
         } while (ladderBottom <= 1 || usedBottomPositions.contains(ladderBottom) || usedTopPositions.contains(ladderBottom) || isInvalidLadderBottomPosition(ladderBottom, ladderIndex, gridSize)
-                || usedHeadPositions.contains(ladderBottom) || usedTailPositions.contains(ladderBottom)/*||
-                (!(topCol - bottomCol == 4))  /*|| (!(bottomCol- topCol == 4))  */|| tiles[ladderBottomRow][bottomCol].isSpecialTile());
+                || usedHeadPositions.contains(ladderBottom) || usedTailPositions.contains(ladderBottom)||
+                Math.abs(topCol-bottomCol) > 5   || tiles[ladderBottomRow][bottomCol].isSpecialTile());
         return ladderBottom;
     }
 
@@ -928,7 +928,7 @@ public class SnakeAndLaddersPlacment {
                             break;
                         case 1:                        // Done
                             ladderImage.setRotate(45);
-                            ladderImage.setTranslateX(-cellSize / 2);
+
                             break;
 
                         case 2:
@@ -939,8 +939,8 @@ public class SnakeAndLaddersPlacment {
 
                         case 3:
                             ladderImage.setRotate(70); // Done
-                            ladderImage.setTranslateX(-cellSize*1.4);
-                            ladderImage.setTranslateY(-cellSize);
+                            ladderImage.setTranslateX(-cellSize * 1.4);
+                            ladderImage.setTranslateY(-cellSize / 1);
                             break;
 
                         case 4:
@@ -950,13 +950,15 @@ public class SnakeAndLaddersPlacment {
                             break;
 
                         case 5:
-                            System.out.println("TopRow - BottomRow difference is 5");
-                            // Your logic for topRow - bottomRow difference of 5
+                            ladderImage.setRotate(82);       //  Done
+                            ladderImage.setTranslateX(cellSize * -2.5);
+                            ladderImage.setTranslateY(-cellSize * 1.5);
                             break;
 
                         case 6:
-                            System.out.println("TopRow - BottomRow difference is 6");
-                            // Your logic for topRow - bottomRow difference of 6
+                            ladderImage.setRotate(80);       // not  Done
+                            ladderImage.setTranslateX(cellSize * -2.2);
+                            ladderImage.setTranslateY(-cellSize * 1);
                             break;
 
                         default:
@@ -980,8 +982,8 @@ public class SnakeAndLaddersPlacment {
 
                         case 3:
                             ladderImage.setRotate(-70); // Done
-                            ladderImage.setTranslateX(cellSize*1.4);
-                            ladderImage.setTranslateY(-cellSize);
+                            ladderImage.setTranslateX(cellSize * 1.4);
+                            ladderImage.setTranslateY(-cellSize / 1);
                             break;
 
                         case 4:
@@ -991,11 +993,12 @@ public class SnakeAndLaddersPlacment {
                             break;
 
                         case 5:
-                            System.out.println("BottomRow - TopRow difference is 5");
-                            // Your logic for bottomRow - topRow difference of 5
+                            ladderImage.setRotate(-82);       //  Done
+                            ladderImage.setTranslateX(-cellSize * -2.5);
+                            ladderImage.setTranslateY(-cellSize * 1.5);
                             break;
 
-                        case 6:
+                        case 6:    // not done
                             System.out.println("BottomRow - TopRow difference is 6");
                             // Your logic for bottomRow - topRow difference of 6
                             break;
@@ -1011,36 +1014,40 @@ public class SnakeAndLaddersPlacment {
                 if (topCol >= bottomCol) {
                     switch (colDifferenceTopBottom) {
                         case 0:
-                            ladderImage.setTranslateY(cellSize / 2);
+                            ladderImage.setRotate(0);   // Done
+                            ladderImage.setTranslateY(cellSize/2);
                         case 1:
-                            ladderImage.setRotate(45);
-                            ladderImage.setTranslateX(-cellSize / 2);
+                            ladderImage.setRotate(45);  // Done
+                            ladderImage.setTranslateX(-cellSize / 2.1);
                             break;
 
                         case 2:
-                            ladderImage.setRotate(30);
-                            ladderImage.setTranslateX(-cellSize / 2);
+                            ladderImage.setRotate(45);  // Done
+                            ladderImage.setTranslateX(-cellSize / 1.3);
                             break;
 
                         case 3:
-                            System.out.println("TopRow - BottomRow difference is 3");
-                            // Your logic for topRow - bottomRow difference of 3
+                            ladderImage.setRotate(60);    //  Done
+                            ladderImage.setTranslateX(-cellSize * 1.5);
+                            ladderImage.setTranslateY(-cellSize / 1.5);
                             break;
 
                         case 4:
-                            ladderImage.setRotate(78);       // Done
-                            ladderImage.setTranslateX(-cellSize * 2);
-                            ladderImage.setTranslateY(-cellSize * 1.18);
+                            ladderImage.setRotate(60);       // Done
+                            ladderImage.setTranslateX(-cellSize * 2.2);
+                            ladderImage.setTranslateY(-cellSize / 1.8);
                             break;
 
                         case 5:
-                            System.out.println("TopRow - BottomRow difference is 5");
-                            // Your logic for topRow - bottomRow difference of 5
+                            ladderImage.setRotate(70);       //  Done
+                            ladderImage.setTranslateX(cellSize * -2.5);
+                            ladderImage.setTranslateY(-cellSize * 1.5);
                             break;
 
                         case 6:
-                            System.out.println("TopRow - BottomRow difference is 6");
-                            // Your logic for topRow - bottomRow difference of 6
+                            ladderImage.setRotate(80);       // not  Done
+                            ladderImage.setTranslateX(-cellSize * 1.8);
+                            ladderImage.setTranslateY(-cellSize * 2);
                             break;
 
                         default:
@@ -1052,31 +1059,34 @@ public class SnakeAndLaddersPlacment {
                 } else
                     switch (colDifferenceBottomTop) {
                         case 1:
-                            System.out.println("BottomRow - TopRow difference is 1");
-                            // Your logic for bottomRow - topRow difference of 1
+                            ladderImage.setRotate(-45);  // Done
+                            ladderImage.setTranslateX(cellSize / 2.1);
                             break;
 
                         case 2:
-                            System.out.println("BottomRow - TopRow difference is 2");
-                            // Your logic for bottomRow - topRow difference of 2
+                            ladderImage.setRotate(-45);  // Done
+                            ladderImage.setTranslateX(cellSize / 1.3);
                             break;
 
                         case 3:
-                            System.out.println("BottomRow - TopRow difference is 3");
-                            // Your logic for bottomRow - topRow difference of 3
+                            ladderImage.setRotate(-60);    //  Done
+                            ladderImage.setTranslateX(cellSize * 1.5);
+                            ladderImage.setTranslateY(-cellSize / 1.5);
                             break;
 
                         case 4:
-                            System.out.println("BottomRow - TopRow difference is 4");
-                            // Your logic for bottomRow - topRow difference of 4
+                            ladderImage.setRotate(-60);       // Done
+                            ladderImage.setTranslateX(cellSize * 2.2);
+                            ladderImage.setTranslateY(-cellSize / 1.8);
                             break;
 
                         case 5:
-                            System.out.println("BottomRow - TopRow difference is 5");
-                            // Your logic for bottomRow - topRow difference of 5
+                            ladderImage.setRotate(-70);       //  Done
+                            ladderImage.setTranslateX(-cellSize * -2.5);
+                            ladderImage.setTranslateY(-cellSize * 1.5);
                             break;
 
-                        case 6:
+                        case 6:   // not done
                             System.out.println("BottomRow - TopRow difference is 6");
                             // Your logic for bottomRow - topRow difference of 6
                             break;
@@ -1092,35 +1102,214 @@ public class SnakeAndLaddersPlacment {
                 if (topCol >= bottomCol) {
                     switch (colDifferenceTopBottom) {
                         case 0:
-                            ladderImage.setTranslateY(cellSize / 2);
+                            ladderImage.setRotate(0);     // Done
+                            ladderImage.setTranslateY(cellSize/2);
                         case 1:
-                            ladderImage.setRotate(45);
+                            ladderImage.setRotate(38);    // Done
+                            ladderImage.setTranslateX(-cellSize / 1.8);
+                            break;
+
+                        case 2:
+                            ladderImage.setRotate(40);  // Done
+                            ladderImage.setTranslateX(-cellSize / 1.5);
+                            break;
+
+                        case 3:
+                            ladderImage.setRotate(55);    //  Done
+                            ladderImage.setTranslateX(-cellSize * 1.8);
+                            ladderImage.setTranslateY(-cellSize / 2.2);
+                            break;
+
+                        case 4:
+                            ladderImage.setRotate(58);       // Done
+                            ladderImage.setTranslateX(-cellSize * 2.2);
+                            ladderImage.setTranslateY(-cellSize / 1.8);
+                            break;
+
+                        case 5:
+                            ladderImage.setRotate(63);       //  Done
+                            ladderImage.setTranslateX(cellSize * -2.5);
+                            ladderImage.setTranslateY(-cellSize * 0.8);
+                            break;
+
+                        case 6:
+                            ladderImage.setRotate(60);  // not done
+                            ladderImage.setTranslateX(-cellSize * 2);
+                            ladderImage.setTranslateY(-cellSize * 2);
+                            break;
+
+                        default:
+                            System.out.println("TopRow - BottomRow difference is not within the specified cases");
+                            // Your default logic
+                            break;
+                    }
+                    return ladderImage;
+                } else
+                    switch (colDifferenceBottomTop) {
+                        case 1:
+                            ladderImage.setRotate(38);    // Done
+                            ladderImage.setTranslateX(cellSize / 1.8);
+                            break;
+
+                        case 2:
+                            ladderImage.setRotate(40);   // Done
+                            ladderImage.setTranslateX(cellSize / 1.5);
+                            break;
+
+                        case 3:
+                            ladderImage.setRotate(-55);    //  Done
+                            ladderImage.setTranslateX(cellSize * 1.8);
+                            ladderImage.setTranslateY(-cellSize / 2.2);
+                            break;
+
+                        case 4:
+                            ladderImage.setRotate(-58);       // Done
+                            ladderImage.setTranslateX(cellSize * 2.2);
+                            ladderImage.setTranslateY(-cellSize / 1.8);
+                            break;
+
+                        case 5:
+                            ladderImage.setRotate(-63);       //  Done
+                            ladderImage.setTranslateX(-cellSize * -2.5);
+                            ladderImage.setTranslateY(-cellSize * 0.8);
+                            break;
+
+                        case 6:
+                            ladderImage.setRotate(-85);  // not done
+                            ladderImage.setTranslateX(cellSize * 3);
+                            ladderImage.setTranslateY(-cellSize * 2.8);
+                            break;
+
+                        default:
+                            System.out.println("BottomRow - TopRow difference is not within the specified cases");
+                            // Your default logic
+                            break;
+                    }
+                return ladderImage;
+            case 4:                                // 4 step Ladder
+                if (topCol >= bottomCol) {
+                    switch (colDifferenceTopBottom) {
+                        case 0:
+                            ladderImage.setRotate(0);   // Done
+                            ladderImage.setTranslateY(-cellSize / -2);
+                        case 1:
+                            ladderImage.setRotate(26);  // Done
                             ladderImage.setTranslateX(-cellSize / 2);
                             break;
 
                         case 2:
-                            ladderImage.setRotate(30);
-                            ladderImage.setTranslateX(-cellSize / 2);
+                            ladderImage.setRotate(30);   // Done
+                            ladderImage.setTranslateX(-cellSize / 1.5);
                             break;
 
                         case 3:
-                            System.out.println("TopRow - BottomRow difference is 3");
-                            // Your logic for topRow - bottomRow difference of 3
+                            ladderImage.setRotate(43);    //  Done
+                            ladderImage.setTranslateX(-cellSize * 1.8);
+                            ladderImage.setTranslateY(-cellSize / 6);
                             break;
 
                         case 4:
-                            ladderImage.setRotate(75);       // Done
+                            ladderImage.setRotate(48);       // Done
                             ladderImage.setTranslateX(-cellSize * 2);
-                            ladderImage.setTranslateY(-cellSize * 1.18);
+                            ladderImage.setTranslateY(-cellSize * 0.5);
                             break;
 
                         case 5:
-                            System.out.println("TopRow - BottomRow difference is 5");
-                            // Your logic for topRow - bottomRow difference of 5
+                            ladderImage.setRotate(57);       //  Done
+                            ladderImage.setTranslateX(cellSize * -2.5);
+                            ladderImage.setTranslateY(-cellSize * 0.8);
                             break;
 
                         case 6:
-                            ladderImage.setRotate(85);
+                            ladderImage.setRotate(80);   // not done
+                            ladderImage.setTranslateX(-cellSize * 2);
+                            ladderImage.setTranslateY(-cellSize * 1.8);
+                            break;
+
+                        default:
+                            System.out.println("TopRow - BottomRow difference is not within the specified cases");
+                            // Your default logic
+                            break;
+                    }
+                    return ladderImage;
+                } else
+                    switch (colDifferenceBottomTop) {
+                        case 1:
+                            ladderImage.setRotate(-26);  // Done
+                            ladderImage.setTranslateX(cellSize / 2);
+                            break;
+
+                        case 2:
+                            ladderImage.setRotate(-30);   // Done
+                            ladderImage.setTranslateX(cellSize / 1.5);
+                            break;
+
+                        case 3:
+                            ladderImage.setRotate(-43);    //  Done
+                            ladderImage.setTranslateX(cellSize * 1.8);
+                            ladderImage.setTranslateY(-cellSize / 6);
+                            break;
+
+                        case 4:
+                            ladderImage.setRotate(-48);       // Done
+                            ladderImage.setTranslateX(cellSize * 2);
+                            ladderImage.setTranslateY(-cellSize * 0.5);
+                            break;
+
+                        case 5:
+                            ladderImage.setRotate(-57);       //  Done
+                            ladderImage.setTranslateX(-cellSize * -2.5);
+                            ladderImage.setTranslateY(-cellSize * 0.8);
+                            break;
+
+                        case 6:
+                            ladderImage.setRotate(-85);  // not done
+                            ladderImage.setTranslateX(cellSize * 3);
+                            ladderImage.setTranslateY(-cellSize * 2.8);
+                            break;
+
+                        default:
+                            System.out.println("BottomRow - TopRow difference is not within the specified cases");
+                            // Your default logic
+                            break;
+                    }
+                return ladderImage;
+            case 5:                         // 5 step Ladder
+                if (topCol >= bottomCol) {
+                    switch (colDifferenceTopBottom) {
+                        case 0:
+                            ladderImage.setRotate(0);      // Done
+                            ladderImage.setTranslateY(cellSize / 2);
+                        case 1:
+                            ladderImage.setRotate(20);  // Done
+                            ladderImage.setTranslateX(-cellSize / 2);
+                            break;
+
+                        case 2:
+                            ladderImage.setRotate(28);  // Done
+                            ladderImage.setTranslateX(-cellSize / 1.5);
+                            break;
+
+                        case 3:
+                            ladderImage.setRotate(39);    //  Done
+                            ladderImage.setTranslateX(-cellSize * 1.8);
+                            ladderImage.setTranslateY(-cellSize / 12);
+                            break;
+
+                        case 4:
+                            ladderImage.setRotate(43);       // Done
+                            ladderImage.setTranslateX(-cellSize * 2);
+                            ladderImage.setTranslateY(-cellSize * 0.2);
+                            break;
+
+                        case 5:
+                            ladderImage.setRotate(53);       //  Done
+                            ladderImage.setTranslateX(cellSize * -2.5);
+                            ladderImage.setTranslateY(-cellSize * 0.5);
+                            break;
+
+                        case 6:
+                            ladderImage.setRotate(65);    // not done
                             ladderImage.setTranslateX(-cellSize * 3);
                             ladderImage.setTranslateY(-cellSize * 2.8);
                             break;
@@ -1134,32 +1323,35 @@ public class SnakeAndLaddersPlacment {
                 } else
                     switch (colDifferenceBottomTop) {
                         case 1:
-                            System.out.println("BottomRow - TopRow difference is 1");
-                            // Your logic for bottomRow - topRow difference of 1
+                            ladderImage.setRotate(-20);  // Done
+                            ladderImage.setTranslateX(cellSize / 2);
                             break;
 
                         case 2:
-                            System.out.println("BottomRow - TopRow difference is 2");
-                            // Your logic for bottomRow - topRow difference of 2
+                            ladderImage.setRotate(-28);  // Done
+                            ladderImage.setTranslateX(cellSize / 1.5);
                             break;
 
                         case 3:
-                            System.out.println("BottomRow - TopRow difference is 3");
-                            // Your logic for bottomRow - topRow difference of 3
+                            ladderImage.setRotate(-39);    //  Done
+                            ladderImage.setTranslateX(cellSize * 1.8);
+                            ladderImage.setTranslateY(-cellSize / 12);
                             break;
 
                         case 4:
-                            System.out.println("BottomRow - TopRow difference is 4");
-                            // Your logic for bottomRow - topRow difference of 4
+                            ladderImage.setRotate(-43);       // Done
+                            ladderImage.setTranslateX(cellSize * 2);
+                            ladderImage.setTranslateY(-cellSize * 0.2);
                             break;
 
                         case 5:
-                            System.out.println("BottomRow - TopRow difference is 5");
-                            // Your logic for bottomRow - topRow difference of 5
+                            ladderImage.setRotate(-53);       //  Done
+                            ladderImage.setTranslateX(-cellSize * -2.5);
+                            ladderImage.setTranslateY(-cellSize * 0.5);
                             break;
 
                         case 6:
-                            ladderImage.setRotate(-85);
+                            ladderImage.setRotate(-85);    // not done
                             ladderImage.setTranslateX(cellSize * 3);
                             ladderImage.setTranslateY(-cellSize * 2.8);
                             break;
@@ -1170,45 +1362,47 @@ public class SnakeAndLaddersPlacment {
                             break;
                     }
                 return ladderImage;
-            case 4:                       // 4 step Ladder
+            case 6:                                   // 6 step Ladder
                 if (topCol >= bottomCol) {
                     switch (colDifferenceTopBottom) {
                         case 0:
+                            ladderImage.setRotate(0);     // Done
                             ladderImage.setTranslateY(cellSize / 2);
                         case 1:
-                            ladderImage.setRotate(45);
-                            ladderImage.setTranslateX(-cellSize / 2);
+                            ladderImage.setRotate(18);   // Done
+                            ladderImage.setTranslateX(-cellSize / 1.5);
                             break;
 
                         case 2:
-                            ladderImage.setRotate(30);
-                            ladderImage.setTranslateX(-cellSize / 2);
+                            ladderImage.setRotate(22);   // Done
+                            ladderImage.setTranslateX(-cellSize / 1.6);
                             break;
 
                         case 3:
-                            System.out.println("TopRow - BottomRow difference is 3");
-                            // Your logic for topRow - bottomRow difference of 3
+                            ladderImage.setRotate(30);    //  Done
+                            ladderImage.setTranslateX(-cellSize * 1.8);
+                            ladderImage.setTranslateY(-cellSize / 10);
                             break;
 
                         case 4:
-                            ladderImage.setRotate(75);       // Done
+                            ladderImage.setRotate(38);       // Done
                             ladderImage.setTranslateX(-cellSize * 2);
-                            ladderImage.setTranslateY(-cellSize * 1.18);
+                            ladderImage.setTranslateY(-cellSize * 0.18);
                             break;
 
                         case 5:
-                            System.out.println("TopRow - BottomRow difference is 5");
-                            // Your logic for topRow - bottomRow difference of 5
+                            ladderImage.setRotate(40);       // not Done
+                            ladderImage.setTranslateX(-cellSize * 2.5);
+                            ladderImage.setTranslateY(-cellSize * 2.5);
                             break;
 
                         case 6:
-                            ladderImage.setRotate(85);
-                            ladderImage.setTranslateX(-cellSize * 3);
+                            ladderImage.setRotate(60);   // not done
+                            ladderImage.setTranslateX(-cellSize * 2);
                             ladderImage.setTranslateY(-cellSize * 2.8);
                             break;
-
                         default:
-                            System.out.println("TopRow - BottomRow difference is not within the specified cases");
+                            System.out.println("BottomRow - TopRow difference is not within the specified cases");
                             // Your default logic
                             break;
                     }
@@ -1216,33 +1410,38 @@ public class SnakeAndLaddersPlacment {
                 } else
                     switch (colDifferenceBottomTop) {
                         case 1:
-                            System.out.println("BottomRow - TopRow difference is 1");
-                            // Your logic for bottomRow - topRow difference of 1
+                            ladderImage.setRotate(-18);   // Done
+                            ladderImage.setTranslateX(cellSize / 1.5);
                             break;
 
                         case 2:
-                            System.out.println("BottomRow - TopRow difference is 2");
-                            // Your logic for bottomRow - topRow difference of 2
+                            ladderImage.setRotate(-22);   // Done
+                            ladderImage.setTranslateX(cellSize / 1.6);
                             break;
 
                         case 3:
-                            System.out.println("BottomRow - TopRow difference is 3");
-                            // Your logic for bottomRow - topRow difference of 3
+                            ladderImage.setRotate(-30);    //  Done
+                            ladderImage.setTranslateX(cellSize * 1.8);
+                            ladderImage.setTranslateY(-cellSize / 10);
                             break;
 
                         case 4:
-                            System.out.println("BottomRow - TopRow difference is 4");
-                            // Your logic for bottomRow - topRow difference of 4
+                            ladderImage.setRotate(-38);       // Done
+                            ladderImage.setTranslateX(cellSize * 2);
+                            ladderImage.setTranslateY(-cellSize * 0.18);
                             break;
 
+
+
                         case 5:
-                            System.out.println("BottomRow - TopRow difference is 5");
-                            // Your logic for bottomRow - topRow difference of 5
+                            ladderImage.setRotate(-40);       // not Done
+                            ladderImage.setTranslateX(cellSize * 2.5);
+                            ladderImage.setTranslateY(-cellSize * 2.5);
                             break;
 
                         case 6:
-                            ladderImage.setRotate(-85);
-                            ladderImage.setTranslateX(cellSize * 3);
+                            ladderImage.setRotate(-60);   // not done
+                            ladderImage.setTranslateX(cellSize * 2);
                             ladderImage.setTranslateY(-cellSize * 2.8);
                             break;
 
@@ -1251,200 +1450,38 @@ public class SnakeAndLaddersPlacment {
                             // Your default logic
                             break;
                     }
-                return ladderImage;
-            case 5:                  // 5 step Ladder
+            case 7:                      // not done                // 7 step Ladder
                 if (topCol >= bottomCol) {
                     switch (colDifferenceTopBottom) {
                         case 0:
+                            ladderImage.setRotate(0);
                             ladderImage.setTranslateY(cellSize / 2);
                         case 1:
-                            ladderImage.setRotate(45);
-                            ladderImage.setTranslateX(-cellSize / 2);
+                            ladderImage.setRotate(25);
+                            ladderImage.setTranslateX(-cellSize / 1.5);
                             break;
 
                         case 2:
+                            ladderImage.setRotate(22);
+                            ladderImage.setTranslateX(-cellSize / 1.6);
+                            break;
+
+                        case 3:
                             ladderImage.setRotate(30);
-                            ladderImage.setTranslateX(-cellSize / 2);
-                            break;
-
-                        case 3:
-                            System.out.println("TopRow - BottomRow difference is 3");
-                            // Your logic for topRow - bottomRow difference of 3
+                            ladderImage.setTranslateX(-cellSize * 1.8);
+                            ladderImage.setTranslateY(-cellSize / 10);
                             break;
 
                         case 4:
-                            ladderImage.setRotate(75);       // Done
+                            ladderImage.setRotate(38);
                             ladderImage.setTranslateX(-cellSize * 2);
-                            ladderImage.setTranslateY(-cellSize * 1.18);
+                            ladderImage.setTranslateY(-cellSize * 0.18);
                             break;
 
                         case 5:
-                            System.out.println("TopRow - BottomRow difference is 5");
-                            // Your logic for topRow - bottomRow difference of 5
-                            break;
-
-                        case 6:
-                            ladderImage.setRotate(85);
-                            ladderImage.setTranslateX(-cellSize * 3);
-                            ladderImage.setTranslateY(-cellSize * 2.8);
-                            break;
-
-                        default:
-                            System.out.println("TopRow - BottomRow difference is not within the specified cases");
-                            // Your default logic
-                            break;
-                    }
-                    return ladderImage;
-                } else
-                    switch (colDifferenceBottomTop) {
-                        case 1:
-                            System.out.println("BottomRow - TopRow difference is 1");
-                            // Your logic for bottomRow - topRow difference of 1
-                            break;
-
-                        case 2:
-                            System.out.println("BottomRow - TopRow difference is 2");
-                            // Your logic for bottomRow - topRow difference of 2
-                            break;
-
-                        case 3:
-                            System.out.println("BottomRow - TopRow difference is 3");
-                            // Your logic for bottomRow - topRow difference of 3
-                            break;
-
-                        case 4:
-                            System.out.println("BottomRow - TopRow difference is 4");
-                            // Your logic for bottomRow - topRow difference of 4
-                            break;
-
-                        case 5:
-                            System.out.println("BottomRow - TopRow difference is 5");
-                            // Your logic for bottomRow - topRow difference of 5
-                            break;
-
-                        case 6:
-                            ladderImage.setRotate(-85);
-                            ladderImage.setTranslateX(cellSize * 3);
-                            ladderImage.setTranslateY(-cellSize * 2.8);
-                            break;
-
-                        default:
-                            System.out.println("BottomRow - TopRow difference is not within the specified cases");
-                            // Your default logic
-                            break;
-                    }
-                return ladderImage;
-            case 6:                              // 6 step Ladder
-                if (topCol >= bottomCol) {
-                    switch (colDifferenceTopBottom) {
-                        case 0:
-                            ladderImage.setTranslateY(cellSize / 2);
-                        case 1:
-                            ladderImage.setRotate(45);
-                            ladderImage.setTranslateX(-cellSize / 2);
-                            break;
-
-                        case 2:
-                            ladderImage.setRotate(30);
-                            ladderImage.setTranslateX(-cellSize / 2);
-                            break;
-
-                        case 3:
-                            System.out.println("TopRow - BottomRow difference is 3");
-                            // Your logic for topRow - bottomRow difference of 3
-                            break;
-
-                        case 4:
-                            ladderImage.setRotate(75);       // Done
-                            ladderImage.setTranslateX(-cellSize * 2);
-                            ladderImage.setTranslateY(-cellSize * 1.18);
-                            break;
-
-                        case 5:
-                            System.out.println("TopRow - BottomRow difference is 5");
-                            // Your logic for topRow - bottomRow difference of 5
-                            break;
-
-                        case 6:
-                            ladderImage.setRotate(85);
-                            ladderImage.setTranslateX(-cellSize * 3);
-                            ladderImage.setTranslateY(-cellSize * 2.8);
-                            break;
-
-                        default:
-                            System.out.println("TopRow - BottomRow difference is not within the specified cases");
-                            // Your default logic
-                            break;
-                    }
-                    return ladderImage;
-                } else
-                    switch (colDifferenceBottomTop) {
-                        case 1:
-                            System.out.println("BottomRow - TopRow difference is 1");
-                            // Your logic for bottomRow - topRow difference of 1
-                            break;
-
-                        case 2:
-                            System.out.println("BottomRow - TopRow difference is 2");
-                            // Your logic for bottomRow - topRow difference of 2
-                            break;
-
-                        case 3:
-                            System.out.println("BottomRow - TopRow difference is 3");
-                            // Your logic for bottomRow - topRow difference of 3
-                            break;
-
-                        case 4:
-                            System.out.println("BottomRow - TopRow difference is 4");
-                            // Your logic for bottomRow - topRow difference of 4
-                            break;
-
-                        case 5:
-                            System.out.println("BottomRow - TopRow difference is 5");
-                            // Your logic for bottomRow - topRow difference of 5
-                            break;
-
-                        case 6:
-                            ladderImage.setRotate(-85);
-                            ladderImage.setTranslateX(cellSize * 3);
-                            ladderImage.setTranslateY(-cellSize * 2.8);
-                            break;
-
-                        default:
-                            System.out.println("BottomRow - TopRow difference is not within the specified cases");
-                            // Your default logic
-                            break;
-                    }
-                return ladderImage;
-            case 7:                                           // 7 step Ladder
-                if (topCol >= bottomCol) {
-                    switch (colDifferenceTopBottom) {
-                        case 0:
-                            ladderImage.setTranslateY(cellSize / 2);
-                        case 1:
-                            ladderImage.setRotate(45);
-                            ladderImage.setTranslateX(-cellSize / 2);
-                            break;
-
-                        case 2:
-                            ladderImage.setRotate(30);
-                            ladderImage.setTranslateX(-cellSize / 2);
-                            break;
-
-                        case 3:
-                            System.out.println("TopRow - BottomRow difference is 3");
-                            // Your logic for topRow - bottomRow difference of 3
-                            break;
-
-                        case 4:
-                            ladderImage.setRotate(75);       // Done
-                            ladderImage.setTranslateX(-cellSize * 2);
-                            ladderImage.setTranslateY(-cellSize * 1.18);
-                            break;
-
-                        case 5:
-                            System.out.println("TopRow - BottomRow difference is 5");
-                            // Your logic for topRow - bottomRow difference of 5
+                            ladderImage.setRotate(40);
+                            ladderImage.setTranslateX(cellSize * 2.5);
+                            ladderImage.setTranslateY(-cellSize * 2.5);
                             break;
 
                         case 6:
@@ -1501,7 +1538,6 @@ public class SnakeAndLaddersPlacment {
                 return ladderImage;
         }
         return ladderImage;
-    }
-
-
 }
+}
+

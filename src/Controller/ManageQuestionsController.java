@@ -97,10 +97,32 @@ public class ManageQuestionsController implements QuestionObserver {
     private void sortByLevel() {
         SystemData systemData = SystemData.getInstance();
         List<Question> allQuestions = systemData.getAllQuestions();
-        allQuestions.sort((q1, q2) -> Integer.compare(q2.getLevel().ordinal(), q1.getLevel().ordinal()));
 
+        // Sort the questions by level
+        allQuestions.sort((q1, q2) -> Integer.compare(q2.getLevel().ordinal(), q1.getLevel().ordinal()));
+        // Update the ListView with sorted questions
+        updateQuestionListView(allQuestions);
+
+        // Show alert if the questions were sorted
+        showAlert("Questions have been sorted by level.");
+
+
+
+    }
+
+
+
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void updateQuestionListView(List<Question> questions) {
         ObservableList<String> questionTexts = FXCollections.observableArrayList();
-        for (Question question : allQuestions) {
+        for (Question question : questions) {
             StringBuilder questionWithAnswers = new StringBuilder();
 
             questionWithAnswers.append("Question: ").append(question.getText()).append("\n");
@@ -116,6 +138,7 @@ public class ManageQuestionsController implements QuestionObserver {
 
         questionListView.setItems(questionTexts);
     }
+
 
     private void refreshQuestionList() {
         // Reload questions from SystemData
@@ -350,6 +373,6 @@ public class ManageQuestionsController implements QuestionObserver {
     public void onQuestionDeleted(Question deletedQuestion) {
         questions.remove(deletedQuestion);
         questionListView.getItems().remove(deletedQuestion.getText());
-    }
+}
 
 }

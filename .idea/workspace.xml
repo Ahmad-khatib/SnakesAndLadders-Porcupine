@@ -9,23 +9,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="the now the game handles the snakes and the Question tiles">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/SnakesAndLadders_Porcupine_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/SnakesAndLadders_Porcupine_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/json_lib_2_4_jdk15.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/json_simple_1_1_1.xml" beforeDir="false" />
+    <list default="true" id="3ddba9f9-d80e-444f-97b6-13aa5c9e27a5" name="Changes" comment="complete the logic for the ladders top and bottom">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main/Main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Main/Main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/.idea/SnakesAndLadders-Porcupine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/.idea/SnakesAndLadders-Porcupine.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/Controller/GameBoardController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/PlayerSettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/PlayerSettings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.idea/SnakesAndLadders-Porcupine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/SnakesAndLadders-Porcupine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/BoardGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/BoardGame.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/Photos/boardbackground.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/Photos/boardbackground.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/Photos/redSnake.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/Photos/redSnake.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/PorcupineStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakesAndLadders-Porcupine/View/PorcupineStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/GameBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/GamesHistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GamesHistoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ManageQuestionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/PlayerSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PlayerSettingsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/SnakeAndLaddersPlacment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SnakeAndLaddersPlacment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Start.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Start.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/GamesHistory.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GamesHistory.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/PlayerSettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/PlayerSettings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/SystemData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/SystemData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/TileFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/TileFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/BoardGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/BoardGame.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/Photos/boardbackground.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Photos/boardbackground.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/Photos/redSnake.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Photos/redSnake.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/PorcupineStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/PorcupineStyle.css" afterDir="false" />
     </list>
     <list id="4eab7431-56fc-4d74-abc0-9c4782af3869" name="Changes by noura" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -324,7 +331,8 @@
       <workItem from="1709560411113" duration="13744000" />
       <workItem from="1709666287717" duration="10895000" />
       <workItem from="1709677269677" duration="81000" />
-      <workItem from="1709678980351" duration="732000" />
+      <workItem from="1709678980351" duration="7063000" />
+      <workItem from="1709741374060" duration="882000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <option name="closed" value="true" />
@@ -654,7 +662,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709507556426</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="complete the logic for the ladders top and bottom">
+      <option name="closed" value="true" />
+      <created>1709679749249</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1709679749249</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -681,7 +697,8 @@
     <MESSAGE value="updates on managequestonsss" />
     <MESSAGE value="updated game class with compatible constructor to save history, playersettings to handle uniqe names of players, systemdata updated the popupquestion." />
     <MESSAGE value="updates on boardgame controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="updates on boardgame controller" />
+    <MESSAGE value="complete the logic for the ladders top and bottom" />
+    <option name="LAST_COMMIT_MESSAGE" value="complete the logic for the ladders top and bottom" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

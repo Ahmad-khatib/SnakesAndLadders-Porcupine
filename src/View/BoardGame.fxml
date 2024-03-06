@@ -1,95 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.Light.Distant?>
-<?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.Shadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
-<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameBoardController">
-    <children>
-        <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1342.0">
-            <left>
-                <VBox prefHeight="800.0" prefWidth="153.0" BorderPane.alignment="CENTER" />
-            </left>
-            <right>
-                <VBox prefHeight="800.0" prefWidth="185.0" BorderPane.alignment="CENTER">
+<BorderPane styleClass="Board" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameBoardController">
+    <left>
+        <VBox prefHeight="800.0" prefWidth="204.0" BorderPane.alignment="CENTER" />
+    </left>
+    <right>
+        <VBox prefHeight="750.0" prefWidth="217.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox prefHeight="106.0" prefWidth="193.0">
                     <children>
-                        <HBox prefHeight="150.0" prefWidth="300.0">
-                            <children>
-                                <ImageView fx:id="diceImage" fitHeight="150.0" fitWidth="150.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@/View/Photos/dice/dice1.png" />
-                                    </image>
-                                    <HBox.margin>
-                                        <Insets />
-                                    </HBox.margin>
-                                </ImageView>
-                                <ImageView fx:id="diceImage2" fitHeight="150.0" fitWidth="150.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@/View/Photos/dice/dice1.png" />
-                                    </image>
-                                    <HBox.margin>
-                                        <Insets />
-                                    </HBox.margin>
-                                </ImageView>
-                            </children>
-                        </HBox>
-                        <Button fx:id="rollButton" alignment="CENTER" mnemonicParsing="false" onAction="#handlerolButtonClicked" prefHeight="92.0" prefWidth="300.0" text="Roll">
-                            <VBox.margin>
+                        <ImageView fx:id="diceImage" fitHeight="103.0" fitWidth="85.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@/View/Photos/dice/dice1.png" />
+                            </image>
+                            <HBox.margin>
                                 <Insets />
-                            </VBox.margin></Button>
-                        <Text fx:id="timerLabel" text="       Timer                    0 seconds" wrappingWidth="225.17840576171875">
-                            <font>
-                                <Font name="System Bold Italic" size="30.0" />
-                            </font>
-                            <effect>
-                                <Lighting>
-                                    <bumpInput>
-                                        <Shadow />
-                                    </bumpInput>
-                                    <light>
-                                        <Light.Distant />
-                                    </light>
-                                </Lighting>
-                            </effect></Text>
-                        <Button fx:id="startNow" mnemonicParsing="false" onAction="#handleStartNow" prefHeight="68.0" prefWidth="131.0" text="Start Now!">
-                            <VBox.margin>
-                                <Insets left="60.0" />
-                            </VBox.margin></Button>
-                        <HBox>
-                            <children>
-                                <Label fx:id="currentPlayer" prefHeight="66.0" prefWidth="147.0" text="Label">
-                                    <HBox.margin>
-                                        <Insets />
-                                    </HBox.margin>
-                                </Label>
-                                <ImageView fx:id="currentPlayerIcon" fitHeight="64.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" />
-                            </children>
-                            <VBox.margin>
-                                <Insets top="100.0" />
-                            </VBox.margin>
-                        </HBox>
+                            </HBox.margin>
+                        </ImageView>
                     </children>
-                </VBox>
-            </right>
-            <center>
-                <StackPane>
-                    <GridPane fx:id="dynamicGridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="823.0" BorderPane.alignment="CENTER">
-                    </GridPane>
-
-                </StackPane>
-            </center>
-        </BorderPane>
-    </children>
-</VBox>
+                    <VBox.margin>
+                        <Insets top="50.0" />
+                    </VBox.margin>
+                </HBox>
+                <Button fx:id="rollButton" alignment="CENTER" mnemonicParsing="false" onAction="#handlerollButtonClicked" prefHeight="65.0" prefWidth="150.0" text="Roll">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </Button>
+                <Text fx:id="timerLabel" text="       Timer                    0 seconds" wrappingWidth="225.17840576171875">
+                    <font>
+                        <Font name="Jokerman" size="30.0" />
+                    </font>
+                    <effect>
+                        <Lighting>
+                            <bumpInput>
+                                <Shadow />
+                            </bumpInput>
+                            <light>
+                                <Light.Distant />
+                            </light>
+                        </Lighting>
+                    </effect>
+                </Text>
+                <Button fx:id="startNow" mnemonicParsing="false" onAction="#handleStartNow" prefHeight="68.0" prefWidth="131.0" text="Start Now!">
+                    <VBox.margin>
+                        <Insets left="60.0" />
+                    </VBox.margin>
+                </Button>
+                <HBox>
+                    <children>
+                        <Label fx:id="currentPlayer" prefHeight="66.0" prefWidth="147.0" text="Label">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                            <font>
+                                <Font name="Jokerman" size="20.0" />
+                            </font>
+                        </Label>
+                        <ImageView fx:id="currentPlayerIcon" fitHeight="64.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" />
+                    </children>
+                    <VBox.margin>
+                        <Insets top="100.0" />
+                    </VBox.margin>
+                </HBox>
+            </children>
+        </VBox>
+    </right>
+    <center>
+        <StackPane prefHeight="729.0" prefWidth="773.0">
+            <GridPane  fx:id="dynamicGridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
+            </GridPane>
+            <StackPane.margin>
+                <Insets top="60.0" />
+            </StackPane.margin>
+        </StackPane>
+    </center>
+</BorderPane>

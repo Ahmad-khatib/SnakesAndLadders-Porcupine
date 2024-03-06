@@ -1,3 +1,5 @@
+package  Controller;
+
 import Model.Game;
 import Model.SystemData;
 import javafx.fxml.FXML;
@@ -18,8 +20,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class GamesHistoryController implements Initializable {
-@FXML
-private Button backButton;
+    @FXML
+    private Button backButton;
     @FXML
     private AnchorPane rootPane;
 
@@ -43,7 +45,7 @@ private Button backButton;
         levelColumn.setCellValueFactory(new PropertyValueFactory<>("level"));
 
         // Load games history from CSV file
-        ArrayList<Game> gamesHistory = SystemData.loadGamesHistoryFromCsv("src/Model/GamesHistory.csv");
+        ArrayList<Game> gamesHistory = SystemData.loadGamesHistoryFromJson("src/Model/History.json");
 
         // Add loaded games to the table
         historyTable.getItems().addAll(gamesHistory);
@@ -61,8 +63,8 @@ private Button backButton;
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
+   }
+}
 
 
 }

@@ -49,6 +49,8 @@ public class GameBoardController extends GridPane {
     private static volatile boolean waitFlag = false;
     private final Random random = new Random();
     @FXML
+    private ImageView supriseJump;
+    @FXML
     private GridPane dynamicGridPane;
     @FXML
     private ImageView diceImage;
@@ -91,7 +93,7 @@ public class GameBoardController extends GridPane {
         game = new Game(gameBoard.getGameId(), gameBoard, players, SystemData.getInstance().getQuestions());
         rollButton.setVisible(false);
         SnakeAndLaddersPlacment.placeSnakes(selectedLevel, gameBoard, dynamicGridPane);
-        // SnakeAndLaddersPlacment.placeLadders(selectedLevel, gameBoard, dynamicGridPane);
+         SnakeAndLaddersPlacment.placeLadders(selectedLevel, gameBoard, dynamicGridPane);
         usedHeadPositions = SnakeAndLaddersPlacment.usedHeadPositions;
         usedTailPositions = SnakeAndLaddersPlacment.usedTailPositions;
         usedTopPositions = SnakeAndLaddersPlacment.usedTopPositions;
@@ -112,6 +114,7 @@ public class GameBoardController extends GridPane {
     }
 
     private void initializeBoardUI() {
+
         Tile[][] tiles = gameBoard.getTiles();
         this.gridSize = gameBoard.getSize();
         for (int i = 0; i < gameBoard.getSize(); i++) {
@@ -199,7 +202,7 @@ public class GameBoardController extends GridPane {
         if (!isGameRunning) {
             handleStartNow();
         } else {
-            int result = roll(gameBoard.getDifficultyLevel());
+            int result = roll();
             switch (result) {
                 case 7:
                     loadQuestionPopUp(Difficulty.EASY,players.get(currentPlayerIndex), () -> {});
@@ -299,14 +302,15 @@ public class GameBoardController extends GridPane {
                 finishedTurn(player);
             }
         }
-        Tile.TileType tileType = gameBoard.getTiles()[newRow][newCol].getTileType();
+        Tile tile = gameBoard.getTiles()[newRow][newCol];
+        Tile.TileType tileType = tile.getTileType();
         switch (tileType) {
             case NORMAL:
                 finishedTurn(player);
                 break;
             case QUESTION:
 
-                handleQuestionTile(player,Difficulty.EASY); //example
+                handleQuestionTile(player,tile.getDifficulty()); //example
                 break;
             case SURPRISE_JUMP:
                 handleSurpriseJumpTile(player);
@@ -345,27 +349,10 @@ public class GameBoardController extends GridPane {
     }
 
 
-    public void handleQuestionTile(Player player,Difficulty d) {
-        int stepsToMove = 0;
-
-        switch (gameBoard.getDifficultyLevel()) {
-            case 1:
-                stepsToMove = loadQuestionPopUp(Difficulty.EASY, player, () -> {
-                });
-                break;
-            case 2:
-                stepsToMove = loadQuestionPopUp(Difficulty.MEDIUM, player, () -> {
-                });
-                break;
-            case 3:
-                stepsToMove = loadQuestionPopUp(Difficulty.HARD, player, () -> {
-                });
-                break;
-            default:
-                break;
-        }
-
-        // You can add any additional logic here that should be executed after the callback (outside the switch statement)
+    public void handleQuestionTile(Player player, Difficulty d) {
+        loadQuestionPopUp(d, player, () -> {
+            // Add any logic to execute after the callback if needed
+        });
     }
 
 
@@ -441,16 +428,19 @@ public class GameBoardController extends GridPane {
         return numbers[random.nextInt(numbers.length)];
     }
     @FXML
-    public int roll(int difficulty) {
+    public int roll() {
         int diceValue = 0;
         rollButton.setDisable(true);
-        switch (difficulty) {
+        switch (gameBoard.getDifficultyLevel()) {
             case 1:
-                diceValue= getRandomNumber(new int[]{1, 2, 3, 4, 7, 8, 9});
+                diceValue= getRandomNumber(new int[]{0,1, 2, 3, 4, 7, 8, 9});
+                break;
             case 2:
-                diceValue= getRandomNumber(new int[]{1, 2, 3, 4, 5, 6, 7, 7, 8, 8, 9, 9});
+                diceValue= getRandomNumber(new int[]{0,1, 2, 3, 4, 5, 6, 7, 7, 8, 8, 9, 9});
+                break;
             case 3:
-                diceValue= getRandomNumber(new int[]{1, 2, 3, 4, 5, 6, 7, 7, 8, 8, 9, 9, 9, 9});
+                diceValue= getRandomNumber(new int[]{0,1, 2, 3, 4, 5, 6, 7, 7, 8, 8, 9, 9, 9, 9});
+                break;
         }
 
         Timeline timeline = new Timeline();

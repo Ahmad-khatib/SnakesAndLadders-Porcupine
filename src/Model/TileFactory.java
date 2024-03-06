@@ -1,6 +1,7 @@
 package Model;
 
 public class TileFactory {
+    private static int difficulityCount = 1;
     private static int[] generateRandomIndices(int gridSize, int limit) {
         int[] randomNumbers = new int[limit];
         boolean[] used = new boolean[gridSize * gridSize];
@@ -20,8 +21,15 @@ public class TileFactory {
     public static Tile createTile(int count, double x, double y, double width, double height, int[] supriseJumpTiles, int[] questionTiles) {
         if (contains(supriseJumpTiles, count)) {
             return new Tile(count, Tile.TileType.SURPRISE_JUMP, x, y, width, height);
-        } else if (contains(questionTiles, count)) {
-            return new Tile(count, Tile.TileType.QUESTION, x, y, width, height);
+        } else if (contains(questionTiles, count) && difficulityCount == 1) {
+            difficulityCount++;
+            return new Tile(count, Tile.TileType.QUESTION, x, y, width, height, Difficulty.EASY);
+        } else if (contains(questionTiles, count) && difficulityCount == 2) {
+            difficulityCount++;
+            return new Tile(count, Tile.TileType.QUESTION, x, y, width, height, Difficulty.MEDIUM);
+        } else if (contains(questionTiles, count) && difficulityCount == 3) {
+            difficulityCount++;
+            return new Tile(count, Tile.TileType.QUESTION, x, y, width, height, Difficulty.HARD);
         } else {
             return new Tile(count, Tile.TileType.NORMAL, x, y, width, height);
         }

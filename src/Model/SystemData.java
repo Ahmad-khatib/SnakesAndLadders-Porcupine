@@ -4,6 +4,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import javafx.scene.control.Alert;
+import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.util.*;
@@ -59,29 +60,33 @@ public class SystemData implements QuestionObserver {
         }
     }
 
-    public static void addGameToHistory(Game game) {
+    public void addGameToHistory(Game game) {
         GamesHistory.add(game);
-        saveGamesHistoryToCsv("src/Model/GamesHistory.csv");
+        saveGamesHistoryToJson("src/Model/GamesHistory.csv");
     }
 
 
-    public static void saveGamesHistoryToCsv(String filename) {
-        try (FileWriter writer = new FileWriter(filename)) {
-            // Write header
-            writer.append("Winner,Duration,Level\n");
+    public void saveGamesHistoryToJson(String filename) {
+        try (FileWriter fileWriter = new FileWriter(filename)) {
+            JSONArray gamesArray = new JSONArray();
 
-            // Write data for each game
+            // Convert each Game object to JSON and add it to the array
             for (Game game : GamesHistory) {
-                writer.append(game.getWINNERNAME()).append(",");
-                writer.append(game.getGAMETIME()).append(",");
-                writer.append(game.getGAMELEVEL()).append("\n");
+                JSONObject gameObj = new JSONObject();
+                gameObj.put("winnerName", game.getWINNERNAME());
+                gameObj.put("duration", game.getGAMETIME());
+                gameObj.put("level", game.getGAMELEVEL());
+                gamesArray.add(gameObj);
             }
 
-            System.out.println("Games history saved to " + "src/Model/GamesHistory.csv");
+            // Write the JSON array to the file
+            fileWriter.write(gamesArray.toJSONString());
+            System.out.println("Games history saved to " + filename);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     private Difficulty getQuestionDifficulty(int difficulty) {
         switch (difficulty) {
@@ -136,6 +141,7 @@ public class SystemData implements QuestionObserver {
     }
 
     public HashMap<Difficulty, ArrayList<Question>> getQuestions() {
+
         return questions;
     }
 
@@ -182,20 +188,29 @@ public class SystemData implements QuestionObserver {
         for (ArrayList<Question> questionList : questions.values()) {
             if (questionList != null) {
                 for (Question existingQuestion : questionList) {
+                    // Check if the question text is the same
                     if (existingQuestion.getText().equals(newQuestion.getText())) {
                         // If the question text already exists, show an alert and return false
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Error");
-                        alert.setHeaderText("Question Already Exists");
-                        alert.setContentText("This question already exists. Please try another one.");
-                        alert.showAndWait();
+                        showAlert("Question Already Exists", "This question already exists. Please try another one.");
                         return false;
                     }
                 }
             }
         }
 
-        // If the question text does not exist, proceed with adding the question
+        // Check if any of the answers are the same
+        if (newQuestion.getAnswer1().equals(newQuestion.getAnswer2()) ||
+                newQuestion.getAnswer1().equals(newQuestion.getAnswer3()) ||
+                newQuestion.getAnswer1().equals(newQuestion.getAnswer4()) ||
+                newQuestion.getAnswer2().equals(newQuestion.getAnswer3()) ||
+                newQuestion.getAnswer2().equals(newQuestion.getAnswer4()) ||
+                newQuestion.getAnswer3().equals(newQuestion.getAnswer4())) {
+            // If any of the answers are the same, show an alert and return false
+            showAlert("Duplicate Answers", "There are duplicate answers. Please try another one.");
+            return false;
+        }
+
+        // If the question text and answers do not exist, proceed with adding the question
         // Get the difficulty of the new question
         Difficulty difficulty = newQuestion.getLevel();
 
@@ -214,8 +229,6 @@ public class SystemData implements QuestionObserver {
         // Return true to indicate that the question was successfully added
         return true;
     }
-
-
 
     public boolean editQuestion(Question editedQuestion) {
         // Get the old difficulty of the edited question
@@ -237,41 +250,70 @@ public class SystemData implements QuestionObserver {
         // If the question is not found in the old difficulty list, return false
         return false;
     }
+
     public Question popQuestion(Difficulty level) {
         ArrayList<Question> array = questions.get(level);
         Question q = array.get(new Random().nextInt(array.size()));
         return q;
     }
 
-    public static ArrayList<Game> loadGamesHistoryFromCsv(String filename) {
+    public static ArrayList<Game> loadGamesHistoryFromJson(String filename) {
         ArrayList<Game> gamesHistory = new ArrayList<>();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-            // Skip header
-            String line = reader.readLine();
+        try (FileReader fileReader = new FileReader(filename)) {
+            JSONParser jsonParser = new JSONParser();
+            Object obj = jsonParser.parse(fileReader);
 
-            // Read each line from the CSV file
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
+            if (obj instanceof JSONArray) {
+                JSONArray gamesArray = (JSONArray) obj;
 
-                // Parse the data from the CSV line
-                String winnerName = parts[0];
-                String duration = parts[1];
-                String level = parts[2];
+                // Iterate over JSON array and convert each object to Game
+                for (Object gameObj : gamesArray) {
+                    JSONObject gameJson = (JSONObject) gameObj;
+                    String winnerName = (String) gameJson.get("winnerName");
+                    String duration = (String) gameJson.get("duration");
+                    String level = (String) gameJson.get("level");
+
+                    // Create a new Game object
+                    Game game = new Game(winnerName, duration, level);
+
+                    // Add the game to the list
+                    gamesHistory.add(game);
+                }
+            } else if (obj instanceof JSONObject) {
+                JSONObject gameJson = (JSONObject) obj;
+                String winnerName = (String) gameJson.get("winnerName");
+                String duration = (String) gameJson.get("duration");
+                String level = (String) gameJson.get("level");
 
                 // Create a new Game object
                 Game game = new Game(winnerName, duration, level);
 
-                // Add the game to the list
+                // Add the single game to the list
                 gamesHistory.add(game);
             }
-        } catch (IOException e) {
+
+            System.out.println("Games history loaded from " + filename);
+
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
 
         return gamesHistory;
     }
+
+
+
     public ArrayList<Game> getGamesHistory() {
+
         return GamesHistory;
+    }
+
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 }

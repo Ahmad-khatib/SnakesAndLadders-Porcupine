@@ -13,6 +13,7 @@ public class GameBoard extends GridPane {
     private ArrayList<Ladder> ladders;
     private int size;
     private double preferredTileSize;
+    static int []supriseJumpIndices;
 
     public GameBoard(String level) {
         int supriseJump = 0;
@@ -42,7 +43,7 @@ public class GameBoard extends GridPane {
     private void initializeBoard(int supriseJump) {
         // Calculate preferred dimensions for the tiles
         preferredTileSize = Math.min(600 / size, 700 / size);
-        int[] supriseJumpIndices = TileFactory.generateRandomNumbers(size, supriseJump);
+         supriseJumpIndices = TileFactory.generateRandomNumbers(size, supriseJump);
         int[] questionIndices = TileFactory.generateRandomNumbers(size, 3);
 
         tiles = new Tile[size][size];
@@ -56,8 +57,9 @@ public class GameBoard extends GridPane {
                 count++;
             }
         }
-
     }
+
+
 
 
 

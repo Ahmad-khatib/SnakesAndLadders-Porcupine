@@ -12,11 +12,21 @@ public class Tile extends StackPane {
     private double row;
     private double col;
     private Rectangle tile;
+    private Difficulty difficulty;
+
 
     public enum TileType {
         NORMAL,
         QUESTION,
         SURPRISE_JUMP
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
     }
 
     public Tile(int tileId, TileType tileType, double col, double row, double width, double height) {
@@ -25,6 +35,22 @@ public class Tile extends StackPane {
         this.tileType = tileType;
         this.row = row;
         this.col = col;
+
+        // Create the rectangle representing the tile
+        this.tile = new Rectangle(width, height);
+        // Set the fill and stroke properties for the rectangle
+        this.tile.setFill(Color.WHITE);
+        this.tile.setStroke(Color.BLACK);
+        // Add the rectangle to the StackPane
+        getChildren().add(this.tile);
+    }
+    public Tile(int tileId, TileType tileType, double col, double row, double width, double height, Difficulty difficulty) {
+        super();
+        this.tileId = tileId;
+        this.tileType = tileType;
+        this.row = row;
+        this.col = col;
+        this.difficulty=difficulty;
 
         // Create the rectangle representing the tile
         this.tile = new Rectangle(width, height);

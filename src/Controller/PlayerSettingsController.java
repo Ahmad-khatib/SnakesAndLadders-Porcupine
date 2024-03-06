@@ -57,23 +57,26 @@ public class PlayerSettingsController {
             playerBox.getChildren().add(playerLabel);
             // Create a text field for the player's name
             TextField playerNameField = new TextField();
-            playerNameField.setPromptText("Enter name");
+            playerNameField.setPromptText("Enter Nick Name");
             playerBox.getChildren().add(playerNameField);
             // Styling for the text field
             playerNameField.setStyle("-fx-background-color: #173f02; -fx-text-fill: #77d472;  -fx-border-radius: 19px;");
 
             // Add listener for text field changes
             playerNameField.textProperty().addListener((observable, oldValue, newValue) -> {
+                // Remove spaces from the input
+                playerNameField.setText(newValue.replaceAll("\\s", ""));
                 startButton.setDisable(!areAllPlayersReady());
             });
 
             // Add listener for focus loss
             playerNameField.focusedProperty().addListener((observable, oldValue, newValue) -> {
                 if (!newValue) { // If focus lost
+                    // Remove spaces from the input
+                    playerNameField.setText(playerNameField.getText().replaceAll("\\s", ""));
                     startButton.setDisable(!areAllPlayersReady());
                 }
             });
-
             // Inside initializePlayerFields method
             for (int j = 0; j < 4; j++) {
                 // Load the icon image
@@ -323,7 +326,7 @@ public class PlayerSettingsController {
         }
         // All players are ready
         return true;
-    }
+}
 
 
 }

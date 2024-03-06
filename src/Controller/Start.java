@@ -25,6 +25,7 @@ public class Start extends Application {
 
         SystemData systemData = SystemData.getInstance();
         boolean loadSuccess = systemData.loadQuestions();
+        System.out.println(SystemData.loadGamesHistoryFromJson("src/Model/History.json"));
         Question q = SystemData.getInstance().popQuestion(Difficulty.EASY);
         System.out.println(q.getText());
         System.out.println(q.getAnswer1());
@@ -62,11 +63,11 @@ public class Start extends Application {
     public void start(Stage primaryStage) {
         try {
             // Load the FXML file
-            Parent root = load(getClass().getResource("/View/MainPage.fxml"));
+            Parent root = load(getClass().getResource("src/View/MainPage.fxml"));
 
             // Create the scene
             Scene scene = new Scene(root);
-            primaryStage.getIcons().add(new Image("/View/Photos/SnakeLadders2.png", 100, 100, true, true));
+            primaryStage.getIcons().add(new Image("src/View/Photos/SnakeLadders2.png", 100, 100, true, true));
             // Set the scene and show the stage
             primaryStage.setScene(scene);
             primaryStage.setTitle("Snake and Ladders Game"); // Set the title of the window
