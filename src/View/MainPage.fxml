@@ -58,7 +58,6 @@
                 </font>
             </Button>
 
-            <Button fx:id="explanationButton" onAction="#showGameExplanation" styleClass="explanationButton" text="?"/>
 
 
         </VBox>

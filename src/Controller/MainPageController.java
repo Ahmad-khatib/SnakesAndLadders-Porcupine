@@ -7,25 +7,18 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class MainPageController {
 
-    public Button explanationButton;
-    @FXML
-    private Button startGameButton;
+
     @FXML
     private Button ManageQuestionsButton;
     @FXML Button ViewHistoryButton;
 
-    @FXML
-    private PasswordField passwordField;
-    @FXML
-    private Label errorMessage;
+
 
     @FXML
     private void initialize() {

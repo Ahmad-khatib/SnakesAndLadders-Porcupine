@@ -98,7 +98,6 @@ public class EditQuestionController {
             // Handle invalid difficulty level
 
             // Display an error message to the user
-            // You can show a dialog or set an error label in the UI
         }
     }
 

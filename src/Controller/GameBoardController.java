@@ -154,7 +154,7 @@ public class GameBoardController extends GridPane {
                 } else if (tiles[i][j].getTileType().equals(Tile.TileType.NORMAL)) {
                     // Define the base color
                     double hue = 120; // Green hue
-                    double saturation = 0.5; // Adjust the saturation level as needed
+                    double saturation = 0.35; // Adjust the saturation level as needed
                     double opacity = 1.0; // Adjust the opacity as needed
 
                     // Calculate the distance from the center of the grid

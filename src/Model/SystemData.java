@@ -13,6 +13,8 @@ public class SystemData implements QuestionObserver {
     private static SystemData instance;
     private final HashMap<Difficulty, ArrayList<Question>> questions;
     private static ArrayList<Game> GamesHistory = new ArrayList<>();
+    private List<QuestionObserver> observers = new ArrayList<>();
+
 
     private SystemData() {
         questions = new HashMap<>();
@@ -174,20 +176,40 @@ public class SystemData implements QuestionObserver {
 
     @Override
     public void onQuestionAdded(Question question) {
-        // Not used in this context
+        // Notify all observers that a question has been added
+        for (QuestionObserver observer : observers) {
+            observer.onQuestionAdded(question);
+        }
     }
 
     @Override
     public void onQuestionEdited(Question oldQuestion, Question newQuestion) {
-        // Not used in this context
+        // Notify all observers that a question has been edited
+        for (QuestionObserver observer : observers) {
+            observer.onQuestionEdited(oldQuestion, newQuestion);
+        }
     }
 
     @Override
     public void onQuestionDeleted(Question deletedQuestion) {
-        // Implement logic to handle deletion of questions
-        // Remove the deleted question from the HashMap and save the changes to the JSON file
-        deleteQuestion(deletedQuestion);
+        // Notify all observers that a question has been deleted
+        for (QuestionObserver observer : observers) {
+            observer.onQuestionDeleted(deletedQuestion);
+        }
     }
+
+    // Method to add observers
+    public void addObserver(QuestionObserver observer) {
+        observers.add(observer);
+    }
+
+    // Method to remove observers
+    public void removeObserver(QuestionObserver observer) {
+        observers.remove(observer);
+ }
+
+
+
 
     public boolean addQuestion(Question newQuestion) {
         // Check if the new question's text already exists in any of the existing questions

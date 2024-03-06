@@ -1,7 +1,5 @@
 package Controller;
 
-import Model.Difficulty;
-import Model.Question;
 import Model.SystemData;
 import javafx.application.Application;
 import javafx.scene.Parent;
@@ -10,8 +8,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import static javafx.fxml.FXMLLoader.load;
 
@@ -25,12 +21,7 @@ public class Start extends Application {
 
         SystemData systemData = SystemData.getInstance();
         boolean loadSuccess = systemData.loadQuestions();
-        Question q = SystemData.getInstance().popQuestion(Difficulty.EASY);
-        System.out.println(q.getText());
-        System.out.println(q.getAnswer1());
-        System.out.println(q.getAnswer2());
-        System.out.println(q.getText());
-        System.out.println(q.getText());
+
 
         if (loadSuccess) {
 
@@ -38,7 +29,7 @@ public class Start extends Application {
         } else {
             System.out.println("Failed to load questions from JSON.");
         }
-        System.out.println(SystemData.loadGamesHistoryFromJson("src/Model/History.json"));
+        SystemData.loadGamesHistoryFromJson("src/Model/History.json");
         launch(args);
 
     }

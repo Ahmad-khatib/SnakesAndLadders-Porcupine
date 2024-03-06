@@ -773,7 +773,7 @@ public class SnakeAndLaddersPlacment {
 
                         default:
                             System.out.println("TopRow - BottomRow difference is not within the specified cases");
-                            // Your default logic
+
                             break;
                     }
                     return ladderImage;
@@ -810,13 +810,13 @@ public class SnakeAndLaddersPlacment {
 
                         case 6:    // not done
                             System.out.println("BottomRow - TopRow difference is 6");
-                            // Your logic for bottomRow - topRow difference of 6
+
                             break;
 
 
                         default:
                             System.out.println("BottomRow - TopRow difference is not within the specified cases");
-                            // Your default logic
+
                             break;
                     }
                 return ladderImage;
@@ -863,7 +863,7 @@ public class SnakeAndLaddersPlacment {
 
                         default:
                             System.out.println("TopRow - BottomRow difference is not within the specified cases");
-                            // Your default logic
+
                             break;
                     }
                     return ladderImage;
@@ -899,13 +899,11 @@ public class SnakeAndLaddersPlacment {
 
                         case 6:   // not done
                             System.out.println("BottomRow - TopRow difference is 6");
-                            // Your logic for bottomRow - topRow difference of 6
                             break;
 
 
                         default:
                             System.out.println("BottomRow - TopRow difference is not within the specified cases");
-                            // Your default logic
                             break;
                     }
                 return ladderImage;
@@ -952,7 +950,6 @@ public class SnakeAndLaddersPlacment {
 
                         default:
                             System.out.println("TopRow - BottomRow difference is not within the specified cases");
-                            // Your default logic
                             break;
                     }
                     return ladderImage;
@@ -994,7 +991,6 @@ public class SnakeAndLaddersPlacment {
 
                         default:
                             System.out.println("BottomRow - TopRow difference is not within the specified cases");
-                            // Your default logic
                             break;
                     }
                 return ladderImage;
@@ -1041,7 +1037,6 @@ public class SnakeAndLaddersPlacment {
 
                         default:
                             System.out.println("TopRow - BottomRow difference is not within the specified cases");
-                            // Your default logic
                             break;
                     }
                     return ladderImage;
@@ -1083,7 +1078,6 @@ public class SnakeAndLaddersPlacment {
 
                         default:
                             System.out.println("BottomRow - TopRow difference is not within the specified cases");
-                            // Your default logic
                             break;
                     }
                 return ladderImage;
@@ -1130,7 +1124,6 @@ public class SnakeAndLaddersPlacment {
 
                         default:
                             System.out.println("TopRow - BottomRow difference is not within the specified cases");
-                            // Your default logic
                             break;
                     }
                     return ladderImage;
@@ -1172,7 +1165,6 @@ public class SnakeAndLaddersPlacment {
 
                         default:
                             System.out.println("BottomRow - TopRow difference is not within the specified cases");
-                            // Your default logic
                             break;
                     }
                 return ladderImage;
@@ -1218,7 +1210,6 @@ public class SnakeAndLaddersPlacment {
                             break;
                         default:
                             System.out.println("BottomRow - TopRow difference is not within the specified cases");
-                            // Your default logic
                             break;
                     }
                     return ladderImage;
@@ -1261,7 +1252,6 @@ public class SnakeAndLaddersPlacment {
 
                         default:
                             System.out.println("BottomRow - TopRow difference is not within the specified cases");
-                            // Your default logic
                             break;
                     }
             case 7:                      // not done                // 7 step Ladder
@@ -1307,7 +1297,6 @@ public class SnakeAndLaddersPlacment {
 
                         default:
                             System.out.println("TopRow - BottomRow difference is not within the specified cases");
-                            // Your default logic
                             break;
                     }
                     return ladderImage;
@@ -1316,27 +1305,22 @@ public class SnakeAndLaddersPlacment {
                     switch (colDifferenceBottomTop) {
                         case 1:
                             System.out.println("BottomRow - TopRow difference is 1");
-                            // Your logic for bottomRow - topRow difference of 1
                             break;
 
                         case 2:
                             System.out.println("BottomRow - TopRow difference is 2");
-                            // Your logic for bottomRow - topRow difference of 2
                             break;
 
                         case 3:
                             System.out.println("BottomRow - TopRow difference is 3");
-                            // Your logic for bottomRow - topRow difference of 3
                             break;
 
                         case 4:
                             System.out.println("BottomRow - TopRow difference is 4");
-                            // Your logic for bottomRow - topRow difference of 4
                             break;
 
                         case 5:
                             System.out.println("BottomRow - TopRow difference is 5");
-                            // Your logic for bottomRow - topRow difference of 5
                             break;
 
                         case 6:
@@ -1347,7 +1331,6 @@ public class SnakeAndLaddersPlacment {
 
                         default:
                             System.out.println("BottomRow - TopRow difference is not within the specified cases");
-                            // Your default logic
                             break;
                     }
                 return ladderImage;

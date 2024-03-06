@@ -39,13 +39,14 @@ public class ManageQuestionsController implements QuestionObserver {
 
     private ObservableList<Question> questions = FXCollections.observableArrayList();
 
+    private boolean sortedByLevel = false;
 
     @FXML
     private void initialize() {
-
         System.out.println("ManageQuestionsController initialized.");
 
         SystemData systemData = SystemData.getInstance();
+        systemData.addObserver(this); // Register as an observer
         boolean success = systemData.loadQuestions();
         if (!success) {
             System.out.println("Failed to load questions from JSON file.");
@@ -67,15 +68,13 @@ public class ManageQuestionsController implements QuestionObserver {
             questionTexts.add(questionWithAnswers.toString());
         }
 
-        // Clear the existing items in the ListView
-        questionListView.getItems().clear();
-
         questionListView.setItems(questionTexts);
         refreshQuestionList();
         for (Question question : allQuestions) {
             question.registerObserver(this);
         }
     }
+
 
     @FXML
     private void goBack() {
@@ -118,7 +117,7 @@ public class ManageQuestionsController implements QuestionObserver {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-    }
+}
 
     private void updateQuestionListView(List<Question> questions) {
         ObservableList<String> questionTexts = FXCollections.observableArrayList();
@@ -148,7 +147,6 @@ public class ManageQuestionsController implements QuestionObserver {
             System.out.println("Failed to load questions from JSON file.");
             return;
         }
-
 
         List<Question> allQuestions = systemData.getAllQuestions();
 
@@ -199,8 +197,6 @@ public class ManageQuestionsController implements QuestionObserver {
             if (addQuestionController.isQuestionAdded()) {
                 // If a question was added, add it to the UI immediately
                 Question newQuestion = addQuestionController.getNewQuestion();
-                questions.add(newQuestion);
-                questionListView.getItems().add(newQuestion.getText());
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Conformation");
                 alert.setContentText("Question was saved successfully");
@@ -335,9 +331,6 @@ public class ManageQuestionsController implements QuestionObserver {
                         systemData.deleteQuestion(question);
                         // Notify the observer (SystemData) that a question is deleted
                         systemData.onQuestionDeleted(question);
-                        // Remove the question from the UI
-                        questions.remove(question);
-                        questionListView.getItems().remove(selectedQuestionText);
                         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
                         alert1.setTitle("Conformation");
                         alert1.setContentText("Question was deleted successfully");
@@ -373,6 +366,6 @@ public class ManageQuestionsController implements QuestionObserver {
     public void onQuestionDeleted(Question deletedQuestion) {
         questions.remove(deletedQuestion);
         questionListView.getItems().remove(deletedQuestion.getText());
-}
+    }
 
 }
