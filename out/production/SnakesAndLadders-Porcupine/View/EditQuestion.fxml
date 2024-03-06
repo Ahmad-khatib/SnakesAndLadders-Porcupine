@@ -12,41 +12,41 @@
             <children>
                 <Label style="-fx-font-family: 'Jokerman'; -fx-font-size: 36px;" text="Edit Question" textFill="#b5531b" />
                 <TextArea fx:id="questionTextArea" prefHeight="66.0" prefWidth="599.0" promptText="Enter the question here" style="-fx-font-family: 'Arial Rounded MT Bold'; -fx-font-size: 18px;">
-               <font>
-                  <Font name="Arial" size="12.0" />
-               </font></TextArea>
+                    <font>
+                        <Font name="Arial" size="12.0" />
+                    </font></TextArea>
                 <HBox spacing="10.0">
                     <children>
-                  <VBox prefHeight="136.0" prefWidth="600.0">
-                     <children>
-                              <TextArea fx:id="answer1TextArea" prefHeight="168.0" prefWidth="153.0" promptText="Answer 1" style="-fx-font-family: 'Arial Rounded MT Bold'; -fx-font-size: 18px;" />
-                              <TextArea fx:id="answer2TextArea" prefHeight="162.0" prefWidth="161.0" promptText="Answer 2" style="-fx-font-family:  'Arial Rounded MT Bold'; -fx-font-size: 18px;" />
-                              <TextArea fx:id="answer3TextArea" prefHeight="168.0" prefWidth="158.0" promptText="Answer 3" style="-fx-font-family:  'Arial Rounded MT Bold'; -fx-font-size: 18px;">
-                           <font>
-                              <Font name="Arial" size="12.0" />
-                           </font>
-                        </TextArea>
-                              <TextArea fx:id="answer4TextArea" prefHeight="168.0" prefWidth="170.0" promptText="Answer 4" style="-fx-font-family:  'Arial Rounded MT Bold'; -fx-font-size: 18px;">
-                           <font>
-                              <Font name="Arial" size="12.0" />
-                           </font>
-                        </TextArea>
-                     </children>
-                  </VBox>
+                        <VBox prefHeight="136.0" prefWidth="600.0">
+                            <children>
+                                <TextArea fx:id="answer1TextArea" prefHeight="168.0" prefWidth="153.0" promptText="Answer 1" style="-fx-font-family: 'Arial Rounded MT Bold'; -fx-font-size: 18px;" />
+                                <TextArea fx:id="answer2TextArea" prefHeight="162.0" prefWidth="161.0" promptText="Answer 2" style="-fx-font-family:  'Arial Rounded MT Bold'; -fx-font-size: 18px;" />
+                                <TextArea fx:id="answer3TextArea" prefHeight="168.0" prefWidth="158.0" promptText="Answer 3" style="-fx-font-family:  'Arial Rounded MT Bold'; -fx-font-size: 18px;">
+                                    <font>
+                                        <Font name="Arial" size="12.0" />
+                                    </font>
+                                </TextArea>
+                                <TextArea fx:id="answer4TextArea" prefHeight="168.0" prefWidth="170.0" promptText="Answer 4" style="-fx-font-family:  'Arial Rounded MT Bold'; -fx-font-size: 18px;">
+                                    <font>
+                                        <Font name="Arial" size="12.0" />
+                                    </font>
+                                </TextArea>
+                            </children>
+                        </VBox>
                     </children>
                 </HBox>
                 <HBox spacing="10.0">
-                   <children>
-                       <Label style="-fx-font-family: 'Jokerman'; -fx-font-size: 18px;" text="Correct Answer:" textFill="WHITE" />
-                       <ChoiceBox fx:id="correctAnswerChoiceBox" prefWidth="150.0">
-                        <!-- Add choice box items here -->
-                    </ChoiceBox>
-                   </children>
+                    <children>
+                        <Label style="-fx-font-family: 'Jokerman'; -fx-font-size: 18px;" text="Correct Answer:" textFill="WHITE" />
+                        <ChoiceBox fx:id="correctAnswerChoiceBox" prefWidth="150.0">
+                            <!-- Add choice box items here -->
+                        </ChoiceBox>
+                    </children>
                 </HBox>
                 <Button fx:id="saveButton" mnemonicParsing="false" style="-fx-font-family: 'Jokerman'; -fx-font-size: 18px; -fx-background-color: CHOCOLATE; -fx-background-radius: 30;" text="Save">
-               <effect>
-                  <InnerShadow />
-               </effect></Button>
+                    <effect>
+                        <InnerShadow />
+                    </effect></Button>
             </children>
         </VBox>
     </children>
