@@ -39,13 +39,14 @@ public class ManageQuestionsController implements QuestionObserver {
 
     private ObservableList<Question> questions = FXCollections.observableArrayList();
 
+    private boolean sortedByLevel = false;
 
     @FXML
     private void initialize() {
-
         System.out.println("ManageQuestionsController initialized.");
 
         SystemData systemData = SystemData.getInstance();
+        systemData.addObserver(this); // Register as an observer
         boolean success = systemData.loadQuestions();
         if (!success) {
             System.out.println("Failed to load questions from JSON file.");
@@ -67,15 +68,13 @@ public class ManageQuestionsController implements QuestionObserver {
             questionTexts.add(questionWithAnswers.toString());
         }
 
-        // Clear the existing items in the ListView
-        questionListView.getItems().clear();
-
         questionListView.setItems(questionTexts);
         refreshQuestionList();
         for (Question question : allQuestions) {
             question.registerObserver(this);
         }
     }
+
 
     @FXML
     private void goBack() {
@@ -99,8 +98,8 @@ public class ManageQuestionsController implements QuestionObserver {
         List<Question> allQuestions = systemData.getAllQuestions();
 
         // Check if questions are already sorted by level
-        if (isSortedByLevel(allQuestions)) {
-            showAlert("The questions are already sorted by level!");
+        if (sortedByLevel) {
+            showAlert();
             return; // Exit the method
         }
 
@@ -109,26 +108,18 @@ public class ManageQuestionsController implements QuestionObserver {
 
         // Update the ListView with sorted questions
         updateQuestionListView(allQuestions);
+
+        // Set sortedByLevel to true
+        sortedByLevel = true;
     }
 
-    private boolean isSortedByLevel(List<Question> questions) {
-        // Check if the questions are already sorted by level
-        for (int i = 0; i < questions.size() - 1; i++) {
-            if (questions.get(i).getLevel().ordinal() < questions.get(i + 1).getLevel().ordinal()) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private void showAlert(String message) {
+    private void showAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
         alert.setHeaderText(null);
-        alert.setContentText(message);
+        alert.setContentText("The questions are already sorted by level!");
         alert.showAndWait();
     }
-
     private void updateQuestionListView(List<Question> questions) {
         ObservableList<String> questionTexts = FXCollections.observableArrayList();
         for (Question question : questions) {
@@ -157,7 +148,6 @@ public class ManageQuestionsController implements QuestionObserver {
             System.out.println("Failed to load questions from JSON file.");
             return;
         }
-
 
         List<Question> allQuestions = systemData.getAllQuestions();
 
@@ -208,8 +198,6 @@ public class ManageQuestionsController implements QuestionObserver {
             if (addQuestionController.isQuestionAdded()) {
                 // If a question was added, add it to the UI immediately
                 Question newQuestion = addQuestionController.getNewQuestion();
-                questions.add(newQuestion);
-                questionListView.getItems().add(newQuestion.getText());
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Conformation");
                 alert.setContentText("Question was saved successfully");
@@ -344,9 +332,6 @@ public class ManageQuestionsController implements QuestionObserver {
                         systemData.deleteQuestion(question);
                         // Notify the observer (SystemData) that a question is deleted
                         systemData.onQuestionDeleted(question);
-                        // Remove the question from the UI
-                        questions.remove(question);
-                        questionListView.getItems().remove(selectedQuestionText);
                         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
                         alert1.setTitle("Conformation");
                         alert1.setContentText("Question was deleted successfully");
