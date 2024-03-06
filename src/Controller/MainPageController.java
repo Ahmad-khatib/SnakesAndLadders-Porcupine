@@ -68,7 +68,6 @@ public class MainPageController {
             e.printStackTrace();
         }
     }
-
     @FXML
     private void viewHistory() {
         try {
@@ -105,5 +104,8 @@ public class MainPageController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void showManageQuestions () {
     }
 }

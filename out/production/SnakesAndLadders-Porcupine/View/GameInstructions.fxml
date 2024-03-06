@@ -3,7 +3,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
 <StackPane xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
            prefHeight="600.0" prefWidth="800.0"
@@ -44,6 +43,6 @@
             <Label text="The first player to reach the final square on the game board is the winner! Celebrate your victory and prepare for a rematch!"/>
             <Label text="Get ready to test your luck, knowledge, and strategy in this thrilling digital adaptation of Sneaks and Ladders! Are you ready to climb to the top?"/>
         </VBox>
-        <Button fx:id="CloseButton" text="Close" onAction="#handleCloseButtonClicked"/>
+        <Button fx:id="closeButton" text="Close" onAction="#handleCloseButtonClicked"/>
     </VBox>
 </StackPane>

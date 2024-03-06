@@ -58,3 +58,41 @@
             -fx-translate-x: -300px; /* Move the button to the left by 10px */
             -fx-translate-y: 10px; /* Move the button down by 10px */
 }
+
+
+
+/* PorcupineStyle.css */
+
+#GameInstructions {
+    -fx-background-image: url("Photos/background1.jpg");
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.game-instructions-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.game-instructions-content {
+    -fx-font-size: 14px;
+    -fx-padding: 5px;
+}
+
+.game-instructions-button {
+    -fx-font-size: 16px;
+    -fx-background-color: #4CAF50; /* Green */
+    -fx-border: none;
+    -fx-color: white;
+    -fx-padding: 10px 20px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.game-instructions-button:hover {
+    -fx-background-color: #45a049; /* Darker Green */
+}

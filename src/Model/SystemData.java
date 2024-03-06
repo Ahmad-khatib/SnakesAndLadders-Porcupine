@@ -161,7 +161,6 @@ public class SystemData implements QuestionObserver {
                 for (Question existingQuestion : questionList) {
                     // Check if the question text is the same
                     if (existingQuestion.getText().equals(newQuestion.getText())) {
-                        // If the question text already exists, show an alert and return false
                         showAlert("Question Already Exists", "This question already exists. Please try another one.");
                         return false;
                     }
@@ -176,13 +175,10 @@ public class SystemData implements QuestionObserver {
                 newQuestion.getAnswer2().equals(newQuestion.getAnswer3()) ||
                 newQuestion.getAnswer2().equals(newQuestion.getAnswer4()) ||
                 newQuestion.getAnswer3().equals(newQuestion.getAnswer4())) {
-            // If any of the answers are the same, show an alert and return false
             showAlert("Duplicate Answers", "There are duplicate answers. Please try another one.");
             return false;
         }
 
-        // If the question text and answers do not exist, proceed with adding the question
-        // Get the difficulty of the new question
         Difficulty difficulty = newQuestion.getLevel();
 
         // Get the list of questions for the given difficulty level
